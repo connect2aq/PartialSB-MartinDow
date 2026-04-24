@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title={title}>
+        <!-- <div class="slds-p-horizontal_small slds-p-bottom_small">
+            <lightning-button label="Refresh" onclick={handleRefresh}></lightning-button>
+        </div> -->
+
+        <template if:true={hasRows}>
+            <lightning-datatable
+                key-field="Id"
+                data={rows}
+                columns={columns}
+                onrowaction={handleRowAction}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+
+        <template if:false={hasRows}>
+            <div class="slds-p-around_small slds-text-color_weak">
+                No events found for this Visit Planning record.
+            </div>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,417 @@
+<template>
+    <div class="dashboard-container">
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-spinner_container">
+                <lightning-spinner alternative-text="Loading..." size="large"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error Banner -->
+        <template if:true={hasError}>
+            <div class="error-banner">
+                <lightning-icon icon-name="utility:error" size="small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="header-info">
+                <h1 class="dashboard-title">
+                    <lightning-icon icon-name="standard:invoice" size="medium" class="title-icon"></lightning-icon>
+                    Invoice Realization Dashboard
+                </h1>
+                <p class="dashboard-subtitle">Invoice values realized per business case, matched by customer number</p>
+            </div>
+            <div class="header-actions">
+                <lightning-button label="Refresh"       icon-name="utility:refresh" onclick={handleRefresh}      variant="neutral"></lightning-button>
+                <lightning-button label="Clear Filters" icon-name="utility:clear"   onclick={handleClearFilters} variant="neutral"></lightning-button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <lightning-card title="Filters" icon-name="utility:filter" class="filter-section">
+            <div class="slds-p-around_medium">
+                <div class="filter-row">
+                    <div class="filter-item filter-item-year">
+                        <lightning-dual-listbox
+                            label="Year(s)"
+                            source-label="Available"
+                            selected-label="Selected"
+                            options={filterOptions.yearOptions}
+                            value={selectedYears}
+                            onchange={handleYearChange}
+                            min-height="80">
+                        </lightning-dual-listbox>
+                    </div>
+                    <div class="filter-item">
+                        <lightning-combobox label="Month" placeholder="All Months"
+                            options={filteredMonthOptions} value={selectedMonth}
+                            onchange={handleMonthChange}>
+                        </lightning-combobox>
+                    </div>
+                    <div class="filter-item">
+                        <lightning-combobox label="Region" placeholder="All Regions"
+                            options={filterOptions.regionOptions} value={selectedRegion}
+                            onchange={handleRegionChange}>
+                        </lightning-combobox>
+                    </div>
+                    <div class="filter-item">
+                        <lightning-combobox label="Technology" placeholder="All Technologies"
+                            options={filterOptions.technologyOptions} value={selectedTechnology}
+                            onchange={handleTechnologyChange}>
+                        </lightning-combobox>
+                    </div>
+                    <div class="filter-item">
+                        <lightning-combobox label="Vendor" placeholder="All Vendors"
+                            options={filterOptions.vendorOptions} value={selectedVendor}
+                            onchange={handleVendorChange}>
+                        </lightning-combobox>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+
+        <!-- KPI Cards (full width) -->
+        <div class="summary-cards">
+            <div class="summary-card card-blue">
+                <div class="card-header">
+                    <lightning-icon icon-name="utility:document" size="small"></lightning-icon>
+                    <span class="card-title">Snapshot Records</span>
+                </div>
+                <div class="card-value">{kpi.totalInvoices}</div>
+                <div class="card-sub">{kpi.totalLineItems} data points</div>
+            </div>
+            <div class="summary-card card-green">
+                <div class="card-header">
+                    <lightning-icon icon-name="utility:currency" size="small"></lightning-icon>
+                    <span class="card-title">Total Realized Value</span>
+                </div>
+                <div class="card-value">{kpi.totalValueFmt}</div>
+                <div class="card-sub">Sum of invoice values</div>
+            </div>
+            <div class="summary-card card-purple">
+                <div class="card-header">
+                    <lightning-icon icon-name="utility:case" size="small"></lightning-icon>
+                    <span class="card-title">Business Cases</span>
+                </div>
+                <div class="card-value">{kpi.distinctBusinessCases}</div>
+                <div class="card-sub">Total business cases</div>
+            </div>
+            <div class="summary-card card-orange">
+                <div class="card-header">
+                    <lightning-icon icon-name="utility:people" size="small"></lightning-icon>
+                    <span class="card-title">Unique Customers</span>
+                </div>
+                <div class="card-value">{kpi.distinctCustomers}</div>
+                <div class="card-sub">By customer number</div>
+            </div>
+        </div>
+
+        <!-- Two-column body: main content left, trending tech right -->
+        <div class="page-body">
+
+            <!-- LEFT: main content -->
+            <div class="main-col">
+
+                <!-- Monthly Trend Chart -->
+                <lightning-card title="Monthly Invoice Value Trend" icon-name="utility:chart" class="slds-m-bottom_medium">
+                    <div class="slds-p-around_medium">
+                        <template if:true={hasTrendData}>
+                            <div class="trend-chart-wrapper">
+                                <template for:each={trendBars} for:item="bar">
+                                    <div key={bar.key} class="trend-bar-col">
+                                        <div class="trend-bar-value">{bar.valueFmt}</div>
+                                        <div class="trend-bar-track">
+                                            <div class="trend-bar-fill" style={bar.barStyle}></div>
+                                        </div>
+                                        <div class="trend-bar-label">{bar.label}</div>
+                                        <div class="trend-bar-count">{bar.count} inv.</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={hasTrendData}>
+                            <div class="empty-state">
+                                <lightning-icon icon-name="utility:chart" size="medium"></lightning-icon>
+                                <p>No trend data for selected filters.</p>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+
+                <!-- Summary Table: all Business Cases -->
+                <lightning-card title="Realization by Business Case &amp; Customer" icon-name="utility:table" class="slds-m-bottom_medium">
+                    <div class="slds-p-around_medium">
+                        <template if:true={hasSummaryData}>
+                            <!-- Search bar -->
+                            <div class="summary-search-row">
+                                <lightning-input
+                                    type="search"
+                                    label=""
+                                    placeholder="Search by Business Case, Customer, Region, Status..."
+                                    value={summarySearchTerm}
+                                    onchange={handleSummarySearch}
+                                    class="summary-search-input">
+                                </lightning-input>
+                            </div>
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col"><div class="slds-truncate">Business Case</div></th>
+                                        <th scope="col"><div class="slds-truncate">Customer No.</div></th>
+                                        <th scope="col"><div class="slds-truncate">Region</div></th>
+                                        <th scope="col"><div class="slds-truncate">Status</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Invoices</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Line Items</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Realized (M)</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={paginatedSummaryData} for:item="row">
+                                        <tr key={row.key}>
+                                            <td>
+                                                <div class="slds-truncate" title={row.businessCaseName}>
+                                                    <a href={row.businessCaseUrl} target="_blank">{row.businessCaseName}</a>
+                                                </div>
+                                            </td>
+                                            <td><div class="slds-truncate">{row.customerNo}</div></td>
+                                            <td><div class="slds-truncate">{row.region}</div></td>
+                                            <td><div class="slds-truncate">{row.status}</div></td>
+                                            <td class="slds-text-align_right"><div class="slds-truncate">{row.invoiceCount}</div></td>
+                                            <td class="slds-text-align_right"><div class="slds-truncate">{row.lineCount}</div></td>
+                                            <td class="slds-text-align_right">
+                                                <div class="slds-truncate amount-cell">{row.totalValueFmt}</div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <tr class="grand-total-row">
+                                        <td colspan="4"><strong>Grand Total ({kpi.distinctBusinessCases} BCs)</strong></td>
+                                        <td class="slds-text-align_right"><strong>{kpi.totalInvoices}</strong></td>
+                                        <td class="slds-text-align_right"><strong>{kpi.totalLineItems}</strong></td>
+                                        <td class="slds-text-align_right"><strong>{kpi.totalValueFmt}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="slds-text-align_right slds-text-color_weak slds-text-body_small">
+                                            Showing {paginatedSummaryData.length} of {filteredSummaryData.length} business cases
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Summary table pagination -->
+                            <div class="pagination-controls">
+                                <lightning-button label="Previous" icon-name="utility:chevronleft"  disabled={summaryIsPrevDisabled} onclick={handleSummaryPrevPage}></lightning-button>
+                                <span class="page-info">{summaryPageInfo}</span>
+                                <lightning-button label="Next"     icon-name="utility:chevronright" icon-position="right" disabled={summaryIsNextDisabled} onclick={handleSummaryNextPage}></lightning-button>
+                            </div>
+                        </template>
+                        <template if:false={hasSummaryData}>
+                            <div class="empty-state">
+                                <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                                <p>Loading business cases...</p>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+
+                <!-- Grouped Table: Customer → Technology+Vendor -->
+                <lightning-card title="Invoice Summary by Group" icon-name="utility:table" class="slds-m-bottom_medium">
+                    <div slot="actions">
+                        <span class="slds-text-body_small slds-text-color_weak">{groupedCount} customers · expand to see breakdown · click sub-row to drill down</span>
+                    </div>
+                    <div class="slds-p-around_medium">
+                        <template if:true={hasGroupedData}>
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered group-table">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col" style="width:2rem"></th>
+                                        <th scope="col"><div class="slds-truncate">Customer No.</div></th>
+                                        <th scope="col"><div class="slds-truncate">Customer Name / Vendor</div></th>
+                                        <th scope="col"><div class="slds-truncate">Region</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Invoices</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Lines</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Total Qty</div></th>
+                                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Value (M)</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={groupedData} for:item="row">
+                                        <!-- Customer parent row -->
+                                        <template if:true={row.isCustomerRow}>
+                                            <tr key={row.key} data-ckey={row.customerKey} onclick={handleCustomerExpand} class="customer-row">
+                                                <td>
+                                                    <lightning-icon icon-name={row.expandIcon} size="xx-small" class="expand-icon"></lightning-icon>
+                                                </td>
+                                                <td><div class="slds-truncate cust-no">{row.customerNo}</div></td>
+                                                <td>
+                                                    <div class="slds-truncate cust-name">
+                                                        {row.customerName}
+                                                        <span class="sub-count">{row.subGroupCount} groups</span>
+                                                    </div>
+                                                </td>
+                                                <td><div class="slds-truncate">{row.region}</div></td>
+                                                <td class="slds-text-align_right"><strong>{row.invoiceCount}</strong></td>
+                                                <td class="slds-text-align_right"><strong>{row.lineCount}</strong></td>
+                                                <td class="slds-text-align_right">—</td>
+                                                <td class="slds-text-align_right"><strong class="amount-cell">{row.totalValueFmt}</strong></td>
+                                            </tr>
+                                        </template>
+                                        <!-- Sub-group child row (Technology + Vendor) -->
+                                        <template if:true={row.isSubRow}>
+                                            <tr key={row.key} data-key={row.groupKey} onclick={handleGroupRowClick} class={row.rowClass}>
+                                                <td></td>
+                                                <td></td>
+                                                <td><div class="slds-truncate sub-tech">{row.vendor}</div></td>
+                                                <td><div class="slds-truncate">{row.region}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate">{row.invoiceCount}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate">{row.lineCount}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate">{row.totalQtyFmt}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate amount-cell">{row.totalValueFmt}</div></td>
+                                            </tr>
+                                        </template>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:false={hasGroupedData}>
+                            <div class="empty-state">
+                                <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                                <p>No data for selected filters.</p>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+
+                <!-- Invoice Line Item Detail (drill-down) -->
+                <lightning-card title="Invoice Line Item Detail" icon-name="utility:list" class="slds-m-bottom_medium">
+                    <div slot="actions">
+                        <template if:true={hasSelectedGroup}>
+                            <span class="group-detail-label">{selectedGroupLabel}</span>
+                            <lightning-button label="Clear" icon-name="utility:close" variant="neutral" size="small" onclick={handleClearGroupSelection}></lightning-button>
+                        </template>
+                        <template if:false={hasSelectedGroup}>
+                            <span class="slds-text-body_small slds-text-color_weak">Select a row above to view details</span>
+                        </template>
+                    </div>
+                    <div class="slds-p-around_medium">
+                        <template if:true={hasSelectedGroup}>
+                            <template if:true={detailLoading}>
+                                <div class="slds-align_absolute-center slds-p-around_medium">
+                                    <lightning-spinner alternative-text="Loading line items..." size="small"></lightning-spinner>
+                                    <span class="slds-m-left_small slds-text-color_weak">Loading invoice line items...</span>
+                                </div>
+                            </template>
+                            <template if:true={hasDetailLineItems}>
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th scope="col"><div class="slds-truncate">Invoice No.</div></th>
+                                            <th scope="col"><div class="slds-truncate">Date</div></th>
+                                            <th scope="col"><div class="slds-truncate">Business Case</div></th>
+                                            <th scope="col"><div class="slds-truncate">Material Desc.</div></th>
+                                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Qty</div></th>
+                                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Invoice Value</div></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={paginatedData} for:item="li">
+                                            <tr key={li.lineItemId}>
+                                                <td><div class="slds-truncate"><a href={li.invoiceUrl} target="_blank">{li.invoiceNumber}</a></div></td>
+                                                <td><div class="slds-truncate">{li.invoiceDateFormatted}</div></td>
+                                                <td>
+                                                    <div class="slds-truncate" title={li.businessCaseName}>
+                                                        <a href={li.businessCaseUrl} target="_blank">{li.businessCaseName}</a>
+                                                    </div>
+                                                </td>
+                                                <td><div class="slds-truncate" title={li.materialDesc}>{li.materialDesc}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate">{li.quantity}</div></td>
+                                                <td class="slds-text-align_right"><div class="slds-truncate amount-cell">{li.invoiceValueFmt}</div></td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                                <div class="pagination-controls">
+                                    <lightning-button label="Previous" icon-name="utility:chevronleft"  disabled={isPrevDisabled} onclick={handlePrevPage}></lightning-button>
+                                    <span class="page-info">Page {currentPage} of {totalPages} ({selectedGroupLineItems.length} records)</span>
+                                    <lightning-button label="Next"     icon-name="utility:chevronright" icon-position="right" disabled={isNextDisabled} onclick={handleNextPage}></lightning-button>
+                                </div>
+                            </template>
+                        </template>
+                        <template if:false={hasSelectedGroup}>
+                            <div class="empty-state drill-prompt">
+                                <lightning-icon icon-name="utility:arrow_top" size="medium"></lightning-icon>
+                                <p>Click any row in the group table above to load its invoice line items here.</p>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+
+            </div><!-- /main-col -->
+
+            <!-- RIGHT: Trending Technology Sidebar -->
+            <div class="side-col">
+                <div class="tech-trend-card">
+
+                    <div class="tech-trend-header">
+                        <lightning-icon icon-name="utility:trending" size="small"></lightning-icon>
+                        <span class="tech-trend-title">Trending Technologies</span>
+                        <span class="tech-trend-sub">{selectedYearLabel} · by realized value</span>
+                    </div>
+
+                    <template if:true={hasTechTrend}>
+                        <ul class="tech-list">
+                            <template for:each={trendingTech} for:item="t">
+                                <li key={t.key} class="tech-item">
+                                    <div class="tech-rank">{t.rank}</div>
+                                    <div class="tech-details">
+                                        <div class="tech-name" title={t.label}>{t.label}</div>
+                                        <div class="tech-bar-track">
+                                            <div class="tech-bar-fill" style={t.barStyle}></div>
+                                        </div>
+                                        <div class="tech-meta">
+                                            <span class="tech-value">{t.valueFmt}</span>
+                                            <span class="tech-bc">{t.bcCount} BCs · {t.custCount} customers</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <!-- Customer breakdown for top tech -->
+                        <div class="tech-cust-section">
+                            <div class="tech-cust-title">Top Customers — {topTechLabel}</div>
+                            <template if:true={hasTopTechCustomers}>
+                                <ul class="cust-list">
+                                    <template for:each={topTechCustomers} for:item="c">
+                                        <li key={c.key} class="cust-item">
+                                            <div class="cust-bar-track">
+                                                <div class="cust-bar-fill" style={c.barStyle}></div>
+                                            </div>
+                                            <div class="cust-meta">
+                                                <span class="cust-name">{c.label}</span>
+                                                <span class="cust-value">{c.valueFmt}</span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+
+                    </template>
+
+                    <template if:false={hasTechTrend}>
+                        <div class="empty-state">
+                            <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                            <p>No data for selected filters.</p>
+                        </div>
+                    </template>
+
+                </div>
+            </div><!-- /side-col -->
+
+        </div><!-- /page-body -->
+
+    </div>
+</template>

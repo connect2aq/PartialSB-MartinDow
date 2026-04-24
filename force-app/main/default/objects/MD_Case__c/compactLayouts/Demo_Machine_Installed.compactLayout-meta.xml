@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demo_Machine_Installed</fullName>
+    <fields>AccountId__c</fields>
+    <fields>RecordTypeId</fields>
+    <fields>Name</fields>
+    <fields>OwnerId</fields>
+    <fields>logo__c</fields>
+    <label>Demo Machine Installed</label>
+</CompactLayout>

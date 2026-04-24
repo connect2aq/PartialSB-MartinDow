@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Incoterms__c</fullName>
+    <label>Incoterms</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CFR - Costs and freight</fullName>
+                <default>false</default>
+                <label>CFR - Costs and freight</label>
+            </value>
+            <value>
+                <fullName>CIF - Costs, insurance &amp; freight</fullName>
+                <default>false</default>
+                <label>CIF - Costs, insurance &amp; freight</label>
+            </value>
+            <value>
+                <fullName>CIP - Carriage and insurance paid to</fullName>
+                <default>false</default>
+                <label>CIP - Carriage and insurance paid to</label>
+            </value>
+            <value>
+                <fullName>CPT - Carriage paid to</fullName>
+                <default>false</default>
+                <label>CPT - Carriage paid to</label>
+            </value>
+            <value>
+                <fullName>DAF - Delivered at frontier</fullName>
+                <default>false</default>
+                <label>DAF - Delivered at frontier</label>
+            </value>
+            <value>
+                <fullName>DDP - Delivered Duty Paid</fullName>
+                <default>false</default>
+                <label>DDP - Delivered Duty Paid</label>
+            </value>
+            <value>
+                <fullName>DDU - Delivered Duty Unpaid</fullName>
+                <default>false</default>
+                <label>DDU - Delivered Duty Unpaid</label>
+            </value>
+            <value>
+                <fullName>DEQ - Delivered ex quay (duty paid)</fullName>
+                <default>false</default>
+                <label>DEQ - Delivered ex quay (duty paid)</label>
+            </value>
+            <value>
+                <fullName>DES - Delivered ex ship</fullName>
+                <default>false</default>
+                <label>DES - Delivered ex ship</label>
+            </value>
+            <value>
+                <fullName>EXW - Ex Works</fullName>
+                <default>false</default>
+                <label>EXW - Ex Works</label>
+            </value>
+            <value>
+                <fullName>FAS - Free Alongside Ship</fullName>
+                <default>false</default>
+                <label>FAS - Free Alongside Ship</label>
+            </value>
+            <value>
+                <fullName>FCA - Free Carrier</fullName>
+                <default>false</default>
+                <label>FCA - Free Carrier</label>
+            </value>
+            <value>
+                <fullName>FH  - Free house</fullName>
+                <default>false</default>
+                <label>FH  - Free house</label>
+            </value>
+            <value>
+                <fullName>FOB - Free on board</fullName>
+                <default>false</default>
+                <label>FOB - Free on board</label>
+            </value>
+            <value>
+                <fullName>UN  - Not Free</fullName>
+                <default>false</default>
+                <label>UN  - Not Free</label>
+            </value>
+            <value>
+                <fullName>LCL - Local Sales</fullName>
+                <default>false</default>
+                <label>LCL - Local Sales</label>
+            </value>
+            <value>
+                <fullName>LCL - Local</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LCL - Local</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

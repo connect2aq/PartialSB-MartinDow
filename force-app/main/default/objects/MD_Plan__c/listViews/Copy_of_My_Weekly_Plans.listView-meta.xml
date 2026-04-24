@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_My_Weekly_Plans</fullName>
+    <columns>RECORDTYPE</columns>
+    <columns>NAME</columns>
+    <columns>Select_Month__c</columns>
+    <columns>Seleck_Week__c</columns>
+    <columns>Plan_Start_Date__c</columns>
+    <columns>Plan_End_Date__c</columns>
+    <columns>Year__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>MD_Plan__c.Monthly_Plan</value>
+    </filters>
+    <label>My Monthly Plans</label>
+</ListView>

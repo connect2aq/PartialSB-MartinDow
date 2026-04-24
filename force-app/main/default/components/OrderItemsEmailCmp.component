@@ -1,0 +1,38 @@
+<apex:component access="global" controller="OrderItemsEmailCmpController">
+    <!-- Keep attribute name as recordId, but assign to a different controller property -->
+    <apex:attribute name="recordId"
+                    type="Id"
+                    description="MD_Order__c Id"
+                    assignTo="{!orderRecordId}" />
+
+    <!-- Render table of child items -->
+    <table border="1" cellpadding="8" cellspacing="0" width="100%" style="border-collapse:collapse;">
+        <tr>
+            <th align="left">Material #</th>
+            <th align="left">Description</th>
+            <th align="right">Quantity</th>
+            <th align="right">Market Price</th>
+            <th align="right">GST / Unit</th>
+            <th align="left">Storage Location</th>
+        </tr>
+        <apex:repeat value="{!items}" var="oi">
+            <tr>
+                <td>{!oi.Material_Number__c}</td>
+                <td>{!oi.Material_Description__c}</td>
+                <td align="right">{!oi.Quantity__c}</td>
+                <td align="right">
+                    <!-- Currency formatting will follow org/locale settings -->
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!oi.Market_Price__c}" />
+                    </apex:outputText>
+                </td>
+                <td align="right">
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!oi.GST_Per_Unit__c}" />
+                    </apex:outputText>
+                </td>
+                <td>{!oi.Storage_Location__c}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

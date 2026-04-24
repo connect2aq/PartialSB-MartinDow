@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title="SAP KUNNR Sync" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+<lightning-input
+    type="text"                  
+    inputmode="numeric"           
+    pattern="^[3][0-9]{9}$"      
+    maxlength="10"
+    label="SAP Customer Number (KUNNR)"
+    value={kunnr}
+    message-when-pattern-mismatch="Please enter exactly 10 digits starting with 3."
+    onchange={handleChange}>
+</lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-top_small">
+                    <lightning-button
+                        label="Sync & Fetch"
+                        variant="brand"
+                        disabled={disableSubmit}
+                        onclick={handleSync}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <template if:true={busy}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="Syncing"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={bundle}>
+                <div class="slds-m-top_large">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item flexibility="auto">
+                            <p><strong>Account:</strong> {bundle.account.Name} ({bundle.account.SAP_Customer_Number__c})</p>
+                            <p><strong>Phone:</strong> {bundle.account.Phone}</p>
+                            <p><strong>Email:</strong> {bundle.account.Email__c}</p>
+                            <p><strong>Address:</strong> {bundle.account.BillingStreet}, {bundle.account.BillingCity}, {bundle.account.BillingState} {bundle.account.BillingPostalCode}, {bundle.account.BillingCountry}</p>
+                            <p class="slds-m-top_small"><strong>Sales Areas:</strong> {salesAreaCount}</p>
+                            <p><strong>Tax Numbers:</strong> {taxCount}</p>
+                            <p><strong>Credit Profiles:</strong> {creditCount}</p>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </template>
+
+            <template if:true={noDataMessage}>
+                <div class="slds-m-top_large slds-text-color_weak">
+                    <lightning-icon icon-name="utility:info" size="small" class="slds-m-right_x-small"></lightning-icon>
+                    {noDataMessage}
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-m-top_large slds-text-color_error">
+                    <lightning-icon icon-name="utility:error" size="small" class="slds-m-right_x-small"></lightning-icon>
+                    {errorMessage}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

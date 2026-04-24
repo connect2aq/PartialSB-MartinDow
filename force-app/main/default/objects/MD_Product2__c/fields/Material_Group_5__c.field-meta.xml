@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Group_5__c</fullName>
+    <label>Material Group 5</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MaterialGroup5-0</fullName>
+                <default>false</default>
+                <label>MaterialGroup5-0</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup5-1</fullName>
+                <default>false</default>
+                <label>MaterialGroup5-1</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup5-2</fullName>
+                <default>false</default>
+                <label>MaterialGroup5-2</label>
+            </value>
+            <value>
+                <fullName>51 - Diagnostics</fullName>
+                <default>false</default>
+                <label>51 - Diagnostics</label>
+            </value>
+            <value>
+                <fullName>61 - Research Solutions</fullName>
+                <default>false</default>
+                <label>61 - Research Solutions</label>
+            </value>
+            <value>
+                <fullName>62 - Applied Solutions</fullName>
+                <default>false</default>
+                <label>62 - Applied Solutions</label>
+            </value>
+            <value>
+                <fullName>63 - Process Solutions</fullName>
+                <default>false</default>
+                <label>63 - Process Solutions</label>
+            </value>
+            <value>
+                <fullName>64 - ThermoFisher Scientific</fullName>
+                <default>false</default>
+                <label>64 - ThermoFisher Scientific</label>
+            </value>
+            <value>
+                <fullName>87 - Performance Materials</fullName>
+                <default>false</default>
+                <label>87 - Performance Materials</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

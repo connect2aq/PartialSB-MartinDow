@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <label>Stage</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Seeding</fullName>
+                <default>false</default>
+                <label>Seeding</label>
+            </value>
+            <value>
+                <fullName>Sample / Demo / Documentation</fullName>
+                <default>false</default>
+                <label>Sample / Demo / Documentation</label>
+            </value>
+            <value>
+                <fullName>Documentation / Under Review</fullName>
+                <default>false</default>
+                <label>Documentation / Under Review</label>
+            </value>
+            <value>
+                <fullName>Budgetary_Quotation</fullName>
+                <default>false</default>
+                <label>Budgetary Quotation</label>
+            </value>
+            <value>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+                <label>Discovery</label>
+            </value>
+            <value>
+                <fullName>Alignment / Viability</fullName>
+                <default>false</default>
+                <label>Alignment / Viability</label>
+            </value>
+            <value>
+                <fullName>Quote / Proposal</fullName>
+                <default>false</default>
+                <label>Quote / Proposal</label>
+            </value>
+            <value>
+                <fullName>Negotiation / Business Feasibility</fullName>
+                <default>false</default>
+                <label>Negotiation / Business Feasibility</label>
+            </value>
+            <value>
+                <fullName>Demo / Technical review</fullName>
+                <default>false</default>
+                <label>Demo / Technical review</label>
+            </value>
+            <value>
+                <fullName>Tender Submission</fullName>
+                <default>false</default>
+                <label>Tender Submission</label>
+            </value>
+            <value>
+                <fullName>Award</fullName>
+                <default>false</default>
+                <label>Award</label>
+            </value>
+            <value>
+                <fullName>Negotiation</fullName>
+                <default>false</default>
+                <label>Negotiation</label>
+            </value>
+            <value>
+                <fullName>Close_Opportunity</fullName>
+                <default>false</default>
+                <label>Close Opportunity</label>
+            </value>
+            <value>
+                <fullName>Closed Lost</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Closed Lost</label>
+            </value>
+            <value>
+                <fullName>Closed Won</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Closed Won</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

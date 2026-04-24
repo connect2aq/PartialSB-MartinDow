@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chemicals</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>New_Opportunity_Compact_Layout</compactLayoutAssignment>
+    <label>Chemicals</label>
+    <picklistValues>
+        <picklist>Approval_Status_FOC_Sample__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Approval_Status_File_Note__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Approval_Status_Paid_Stock__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Business_Model__c</picklist>
+        <values>
+            <fullName>One_Time_Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rental_Reagent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Business_Type__c</picklist>
+        <values>
+            <fullName>Direct Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indirect Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tender-Based</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Business_Unit__c</picklist>
+        <values>
+            <fullName>BU1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BU2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Close_Won_Or_Close_Lost__c</picklist>
+        <values>
+            <fullName>Close Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Close Won</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Term__c</picklist>
+        <values>
+            <fullName>1 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9 Year</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Type__c</picklist>
+        <values>
+            <fullName>One-Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recurrence</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Forecast_Category__c</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Source__c</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>External Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google AdWords</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchased List</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Loss_Reason__c</picklist>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Budget %2F Lost Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Decision %2F Non-Responsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Opportunity_Loss_Reason__c</picklist>
+        <values>
+            <fullName>Budgeting%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Credit Limit Short%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Overdue%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo Validation Failure%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Approval Delay%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Reason%3A e%2Eg %28Delay in Sales order Creation%29%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Machine Compatibility%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing too high%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Opportunity_Type1__c</picklist>
+        <values>
+            <fullName>Existing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Opportunity_Type__c</picklist>
+        <values>
+            <fullName>Competitive Conversion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Product Development</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Opporunity_Loss_Source__c</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Martin Dow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Principal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Organization_Type__c</picklist>
+        <values>
+            <fullName>Distributor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NGO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private Hospital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private Lab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Hospital</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Procurement_Mode__c</picklist>
+        <values>
+            <fullName>Direct Purchase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tender</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Type__c</picklist>
+        <values>
+            <fullName>Chemical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instrument</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Renewal_Frequency__c</picklist>
+        <values>
+            <fullName>Annually</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Close_Opportunity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentation %2F Under Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negotiation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote %2F Proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sample %2F Demo %2F Documentation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seeding</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Supplier_Name__c</picklist>
+        <values>
+            <fullName>Others</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Technology__c</picklist>
+        <values>
+            <fullName>Biobase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cobetter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kraeber</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Millipore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rocker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sigma Aldrich</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Existing Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Business</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

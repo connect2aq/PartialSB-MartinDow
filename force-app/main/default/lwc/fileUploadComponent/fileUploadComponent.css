@@ -1,0 +1,131 @@
+/* fileUploadComponent.css */
+
+/* Mobile-first responsive design */
+.mobile-camera-btn {
+    background: linear-gradient(45deg, #1589ee, #0176d3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(21, 137, 238, 0.3);
+    transition: all 0.3s ease;
+}
+
+.mobile-camera-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(21, 137, 238, 0.4);
+}
+
+/* File upload area styling */
+.file-upload {
+    margin: 1rem 0;
+    border: 2px dashed #e5e5e5;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.file-upload:hover {
+    border-color: #1589ee;
+    background-color: #f8f9fa;
+}
+
+/* Files grid for mobile optimization */
+.files-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+}
+
+/* Individual file item styling */
+.file-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 1rem;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-color: #1589ee;
+}
+
+/* File icon styling */
+.file-icon {
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
+    .files-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .files-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Loading state styling */
+.slds-spinner_container {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Upload button group styling */
+.slds-button-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.slds-button-group lightning-button {
+    flex: 1;
+    min-width: 80px;
+}
+
+/* Touch-friendly sizing for mobile */
+@media (max-width: 767px) {
+    .slds-button {
+        min-height: 44px; /* iOS recommended touch target */
+        font-size: 14px;
+    }
+    
+    .file-item {
+        padding: 0.75rem;
+    }
+    
+    .slds-media__body h4 {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+
+/* Delete confirmation modal styling */
+.slds-modal__content {
+    text-align: center;
+}
+
+.slds-modal__footer {
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Delete button styling */
+lightning-button[variant="destructive"] {
+    --sds-c-button-destructive-color-background: #ba0517;
+    --sds-c-button-destructive-color-background-hover: #8e030f;
+}
+
+.delete-button {
+    cursor: pointer !important;
+}
+
+/* Ensure button is clickable */
+.slds-button-group lightning-button {
+    pointer-events: all !important;
+}

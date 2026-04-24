@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discount_value_cannot_be_greater_than_Sa</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+   TEXT(Price_Adjustment_Type__c) = &quot;Discount&quot;,
+   Price_Adjustment_Value__c &gt;  UnitPrice__c 
+)</errorConditionFormula>
+    <errorMessage>Discount value cannot be greater than Sales Price.</errorMessage>
+</ValidationRule>

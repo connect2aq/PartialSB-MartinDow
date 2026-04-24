@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Group__c</fullName>
+    <label>Customer Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Distributor</fullName>
+                <default>false</default>
+                <label>01 - Distributor</label>
+            </value>
+            <value>
+                <fullName>02 - Institutions</fullName>
+                <default>false</default>
+                <label>02 - Institutions</label>
+            </value>
+            <value>
+                <fullName>03 - Export</fullName>
+                <default>false</default>
+                <label>03 - Export</label>
+            </value>
+            <value>
+                <fullName>04 - Tender Business</fullName>
+                <default>false</default>
+                <label>04 - Tender Business</label>
+            </value>
+            <value>
+                <fullName>05 - Trader</fullName>
+                <default>false</default>
+                <label>05 - Trader</label>
+            </value>
+            <value>
+                <fullName>06 - Hospitals</fullName>
+                <default>false</default>
+                <label>06 - Hospitals</label>
+            </value>
+            <value>
+                <fullName>07 - Pharmaceuticals</fullName>
+                <default>false</default>
+                <label>07 - Pharmaceuticals</label>
+            </value>
+            <value>
+                <fullName>08 - Government Institutions</fullName>
+                <default>false</default>
+                <label>08 - Government Institutions</label>
+            </value>
+            <value>
+                <fullName>09 - Textiles</fullName>
+                <default>false</default>
+                <label>09 - Textiles</label>
+            </value>
+            <value>
+                <fullName>10 - Pathological Labs</fullName>
+                <default>false</default>
+                <label>10 - Pathological Labs</label>
+            </value>
+            <value>
+                <fullName>11 - Cosmetics</fullName>
+                <default>false</default>
+                <label>11 - Cosmetics</label>
+            </value>
+            <value>
+                <fullName>12 - Foods &amp; Beverages</fullName>
+                <default>false</default>
+                <label>12 - Foods &amp; Beverages</label>
+            </value>
+            <value>
+                <fullName>13 - Technical</fullName>
+                <default>false</default>
+                <label>13 - Technical</label>
+            </value>
+            <value>
+                <fullName>14 - Others</fullName>
+                <default>false</default>
+                <label>14 - Others</label>
+            </value>
+            <value>
+                <fullName>15 - Government Hosp/Clin</fullName>
+                <default>false</default>
+                <label>15 - Government Hosp/Clin</label>
+            </value>
+            <value>
+                <fullName>16 - Private Hosp/Clin</fullName>
+                <default>false</default>
+                <label>16 - Private Hosp/Clin</label>
+            </value>
+            <value>
+                <fullName>17 - Retail Business</fullName>
+                <default>false</default>
+                <label>17 - Retail Business</label>
+            </value>
+            <value>
+                <fullName>18 - Government</fullName>
+                <default>false</default>
+                <label>18 - Government</label>
+            </value>
+            <value>
+                <fullName>19 - Govern&apos;nt-University</fullName>
+                <default>false</default>
+                <label>19 - Govern&apos;nt-University</label>
+            </value>
+            <value>
+                <fullName>20 - Private Doctor</fullName>
+                <default>false</default>
+                <label>20 - Private Doctor</label>
+            </value>
+            <value>
+                <fullName>21 - Private Hospital</fullName>
+                <default>false</default>
+                <label>21 - Private Hospital</label>
+            </value>
+            <value>
+                <fullName>22 - Other 3rd - Private</fullName>
+                <default>false</default>
+                <label>22 - Other 3rd - Private</label>
+            </value>
+            <value>
+                <fullName>23 - Other 3rd - Public</fullName>
+                <default>false</default>
+                <label>23 - Other 3rd - Public</label>
+            </value>
+            <value>
+                <fullName>24 - Toll</fullName>
+                <default>false</default>
+                <label>24 - Toll</label>
+            </value>
+            <value>
+                <fullName>25 - Wholesalers</fullName>
+                <default>false</default>
+                <label>25 - Wholesalers</label>
+            </value>
+            <value>
+                <fullName>50 - Others MDL</fullName>
+                <default>false</default>
+                <label>50 - Others MDL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

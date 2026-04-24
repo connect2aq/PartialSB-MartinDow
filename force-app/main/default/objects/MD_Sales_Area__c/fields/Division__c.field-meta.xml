@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Division__c</fullName>
+    <label>Division</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>20 - Chemicals</fullName>
+                <default>false</default>
+                <label>20 - Chemicals</label>
+            </value>
+            <value>
+                <fullName>30 - Diagnostics</fullName>
+                <default>false</default>
+                <label>30 - Diagnostics</label>
+            </value>
+            <value>
+                <fullName>40 - Services</fullName>
+                <default>false</default>
+                <label>40 - Services</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

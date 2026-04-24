@@ -1,0 +1,292 @@
+<apex:page standardController="MD_Case__c" 
+    extensions="MachinePdfController"
+    renderAs="pdf" 
+    showHeader="false" 
+    sidebar="false" 
+    standardStylesheets="false" 
+    applyHtmlTag="false" 
+    applyBodyTag="false">
+<html>
+<head>
+<style type="text/css">
+    @page {
+        size: A4 portrait;
+        margin: 8mm;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        line-height: 1.2;
+        margin: 0;
+        padding: 5px;
+        background-color: white;
+    }
+    
+    .page {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px;
+        page-break-inside: avoid;
+    }
+    
+    /* Header */
+    .header { margin-bottom: 8px; position: relative; }
+    .logo-section { float: left; width: 110px; margin-right: 8px; }
+    .logo img { width:100%; max-width:100%; }
+    .company-section { text-align: center; margin-left: 110px; margin-right: 60px; }
+    .company-name { font-size: 14px; font-weight: bold; margin-bottom: 3px; }
+    .report-title { font-size: 12px; font-weight: bold; text-decoration: underline; }
+    .report-number { position: absolute; top: 55px; right: 8px; font-size: 10px; font-weight: bold; }
+    .clearfix { clear: both; }
+    
+    /* Table */
+    .main-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 6px; }
+    .main-table td { border: 1px solid #000; padding: 3px; vertical-align: top; }
+    .form-label-cell { font-weight: bold; background-color: #f8f8f8; width: 80px; font-size: 9px; }
+    .form-field-cell { font-size: 9px; }
+    
+    /* Checkbox */
+    .checkbox-header { background-color: #d0d0d0; border: 1px solid #000; text-align: center; font-weight: bold; padding: 2px; font-size: 8px; }
+    .checkbox-content { padding: 4px; }
+    .checkbox-item { display: inline-block; margin-right: 8px; margin-bottom: 2px; font-size: 8px; }
+    .checkbox-x { width: 10px; height: 10px; border: 1px solid #000; display: inline-block; margin-right: 3px; vertical-align: middle; font-size: 8px; text-align: center; }
+    
+    /* Accounts */
+    .accounts-table th, .accounts-table td { border: 1px solid #000; padding: 3px; font-size: 8px; }
+    .accounts-table th { background-color: #f8f8f8; font-weight: bold; text-align: center; }
+    
+    /* Remarks */
+    .remarks-section { margin-bottom: 8px; }
+    .remarks-label { font-weight: bold; margin-bottom: 2px; }
+    .remarks-text { font-size: 9px; margin-top: 2px; border-bottom: 1px solid #000; }
+    
+    /* Signature */
+    .signature-section { margin-bottom: 8px; }
+    .signature-left, .signature-right { width: 45%; text-align: center; float: left; }
+    .signature-right { float: right; }
+    .signature-line { border-bottom: 1px solid #000; height: 20px; margin: 8px 0 3px 0; }
+    .signature-label { font-weight: bold; font-size: 9px; }
+    .long-line { border-bottom: 1px solid #000; margin: 8px 0; clear: both; }
+    
+    /* Footer */
+    .footer { border-top: 1px solid #000; padding-top: 10px; font-size: 8px; }
+    .office-row { width: 100%; }
+    .office-column { width: 33%; float: left; padding-right: 2px; }
+    .office-title { font-weight: bold; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="https://app-efficiency-7703--devsb--c.sandbox.vf.force.com/resource/1751968478000/Martin_Dow_Logo?"></img>
+                </div>
+            </div>
+            <div class="company-section">
+                <div class="company-name">Martin Dow Specialities (Pvt.) Ltd</div>
+                <div class="report-title">Field Service Report</div>
+            </div>
+            <div class="report-number">No.: {!IF(ISBLANK(MD_Case__c.Name), 'N/A', MD_Case__c.Name)}</div>
+            <div class="clearfix"></div>
+        </div>
+        
+<!-- Basic Info -->
+<div class="basic-info">
+    <b>Date:</b>
+    <apex:outputText value="{0,date,dd/MM/yyyy}">
+        <apex:param value="{!localTime}" />
+    </apex:outputText>
+
+    &nbsp;&nbsp; 
+    <b>Time:</b>
+    <apex:outputText value="{0,date,HH:mm}">
+        <apex:param value="{!localTime}" />
+    </apex:outputText>
+</div>
+        <!-- Main Table -->
+        <table class="main-table">
+            <tr>
+                <td class="form-label-cell">Customer:</td>
+                <td class="form-field-cell">{!IF(ISBLANK(MD_Case__c.AccountId__r.Name), 'N/A', MD_Case__c.AccountId__r.Name)}</td>
+                <td class="form-label-cell">Contact Person:</td>
+                <td colspan="3" class="form-field-cell">
+                    {!IF(
+                        ISBLANK(MD_Case__c.ContactId__r.FirstName) && ISBLANK(MD_Case__c.ContactId__r.LastName),
+                        'N/A',
+                        IF(
+                            ISBLANK(MD_Case__c.ContactId__r.FirstName),
+                            MD_Case__c.ContactId__r.LastName,
+                            IF(
+                                ISBLANK(MD_Case__c.ContactId__r.LastName),
+                                MD_Case__c.ContactId__r.FirstName,
+                                MD_Case__c.ContactId__r.FirstName + ' ' + MD_Case__c.ContactId__r.LastName
+                            )
+                        )
+                    )}
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label-cell">Address:</td>
+                <td class="form-field-cell">{!IF(ISBLANK(MD_Case__c.AccountId__r.AddressLine_1__c), 'N/A', MD_Case__c.AccountId__r.AddressLine_1__c)}</td>
+                <td class="form-label-cell">Mobile No.:</td>
+                <td colspan="3" class="form-field-cell">{!IF(ISBLANK(MD_Case__c.ContactId__r.MobilePhone), 'N/A', MD_Case__c.ContactId__r.MobilePhone)}</td>
+            </tr>
+            <tr>
+                <td class="form-label-cell">Tel:</td>
+                <td class="form-field-cell">{!IF(ISBLANK(MD_Case__c.ContactId__r.Phone), 'N/A', MD_Case__c.ContactId__r.Phone)}</td>
+                <td class="form-label-cell">Type of Instrument:</td>
+                <td colspan="3" class="form-field-cell">{!IF(ISBLANK(MD_Case__c.Machine_Installation__r.Material_Description__c), 'N/A', MD_Case__c.Machine_Installation__r.Material_Description__c)}</td>
+            </tr>
+            <tr>
+                <td class="form-label-cell">Assign Error Codes:</td>
+                <td class="form-field-cell">{!IF(ISBLANK(MD_Case__c.Assign_Error_Codes__c), 'N/A', MD_Case__c.Assign_Error_Codes__c)}</td>
+                <td class="form-label-cell">Serial Number:</td>
+                <td colspan="3" class="form-field-cell">{!IF(ISBLANK(MD_Case__c.Machine_Installation__r.Diagnostic_Machine__r.Serial_Number__c), 'N/A', MD_Case__c.Machine_Installation__r.Diagnostic_Machine__r.Serial_Number__c)}</td>
+            </tr>
+        </table>
+        
+        <!-- Checkbox Sections -->
+
+        
+        <div class="checkbox-header">KIND OF VISIT</div>
+        <div class="checkbox-content">
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Trouble_Shooting__c, 'X', '')}</span>Trouble Shooting</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Repair__c, 'X', '')}</span>Repair</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Service__c, 'X', '')}</span>Service</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.New_Installation__c, 'X', '')}</span>New Installation</div>
+        </div>
+        
+
+        
+        <div class="checkbox-header">VISIT TYPE</div>
+        <div class="checkbox-content">
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Sales__c, 'X', '')}</span>Sales</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Demo__c, 'X', '')}</span>Demo</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Under_Warranty__c, 'X', '')}</span>Under Warranty</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Under_Contract__c, 'X', '')}</span>Under Contract</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Chargeable__c, 'X', '')}</span>Chargeable</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Scheduled__c, 'X', '')}</span>Scheduled</div>
+        </div>
+
+        
+        <div class="checkbox-header">Site Check</div>
+        <div class="checkbox-content">
+            <div style="margin-bottom: 4px;"><b>Electrical Supply:</b> {!IF(ISBLANK(MD_Case__c.Electrical_Supply__c), 'N/A', MD_Case__c.Electrical_Supply__c)}</div>
+            <div style="margin-bottom: 4px;"><b>Grounding of power Supply:</b> {!IF(ISBLANK(MD_Case__c.Grounding_of_power_Supply__c), 'N/A', MD_Case__c.Grounding_of_power_Supply__c)}</div>
+            <div style="margin-bottom: 4px;"><b>Water Supply conductivity:</b> {!IF(ISBLANK(MD_Case__c.Water_Supply_conductivity__c), 'N/A', MD_Case__c.Water_Supply_conductivity__c)}</div>
+            <div style="margin-bottom: 4px;"><b>Air Conditioning room temperature:</b> {!IF(ISBLANK(MD_Case__c.Air_Conditioning_room_temperature__c), 'N/A', MD_Case__c.Air_Conditioning_room_temperature__c)}</div>
+        </div>
+
+        
+        <div class="checkbox-header">Verification and Calibration</div>
+        <div class="checkbox-content">
+            <div style="margin-bottom: 4px;"><b>Power-On Self-Test:</b> {!IF(ISBLANK(MD_Case__c.Power_On_Self_Test__c), 'N/A', MD_Case__c.Power_On_Self_Test__c)}</div>
+            <div style="margin-bottom: 4px;"><b>QC Run:</b> {!IF(ISBLANK(MD_Case__c.QC_Run__c), 'N/A', MD_Case__c.QC_Run__c)}</div>
+            <div style="margin-bottom: 4px;"><b>Calibration Performed:</b> {!IF(ISBLANK(MD_Case__c.Calibration_Performed__c), 'N/A', MD_Case__c.Calibration_Performed__c)}</div>
+            <div style="margin-bottom: 4px;"><b>QC Results Within Range:</b> {!IF(ISBLANK(MD_Case__c.QC_Results_Within_Range__c), 'N/A', MD_Case__c.QC_Results_Within_Range__c)}</div>
+            <div style="margin-bottom: 4px;"><b>Remarks:</b> {!IF(ISBLANK(MD_Case__c.Remark__c), 'N/A', MD_Case__c.Remark__c)}</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.After_Installing_Backup_Procedure__c, 'X', '')}</span>After Installing Backup Procedure</div>
+        </div>
+
+        
+        <div class="checkbox-header">Operator Training</div>
+        <div class="checkbox-content">
+            <div style="margin-bottom: 4px;"><b>Operators Trained:</b> {!IF(ISBLANK(MD_Case__c.Operators_Trained__c), 'N/A', MD_Case__c.Operators_Trained__c)}</div>
+        </div>
+
+        
+        <div class="checkbox-header">Training Topics Covered</div>
+        <div class="checkbox-content">
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Operation_Workflow__c, 'X', '')}</span>Operation And Workflow</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Troubleshooting__c, 'X', '')}</span>Troubleshooting</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Maintenance_Procedures__c, 'X', '')}</span>Maintenance Procedures</div>
+            <div class="checkbox-item"><span class="checkbox-x">{!IF(MD_Case__c.Safety_Guidelines__c, 'X', '')}</span>Safety Guidelines</div>
+        </div>
+        
+        <!-- Problem -->
+
+        <div class="remarks-section">
+            <div class="remarks-label">If Parts Replaced:</div>
+            <div class="remarks-text">{!IF(ISBLANK(MD_Case__c.If_parts_replaced__c), 'N/A', MD_Case__c.If_parts_replaced__c)}</div>
+        </div>
+        <div style="font-size:8px;">In Case of chargeable service or replacement of parts, estimated cost will be as follows:</div>
+        <!-- Parts Table -->
+        <table class="accounts-table" width="100%">
+            <tr>
+                <th>No.</th><th>Description</th><th>Part No.</th><th>Qty</th>
+            </tr>
+            <apex:variable value="{!0}" var="rowNum"/>
+            <apex:repeat value="{!MD_Case__c.Account_Particulars__r}" var="item">
+                <apex:variable value="{!rowNum + 1}" var="rowNum"/>
+                <tr>
+                    <td>{!rowNum}</td>
+                    <td>{!item.Service_Parts_Description__c}</td>
+                    <td>{!item.Part_no__c}</td>
+                    <td>{!item.Qty__c}</td>
+                </tr>
+            </apex:repeat>
+            <apex:variable value="{!5 - rowNum}" var="emptyRows"/>
+            <apex:repeat value="{!emptyRows}" var="i">
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            </apex:repeat>
+
+        </table>
+        <!-- Remarks -->
+        <div class="remarks-section">
+            <div class="remarks-label">Remarks:</div>
+            <div class="remarks-text">{!IF(ISBLANK(MD_Case__c.Remarks__c), 'N/A', MD_Case__c.Remarks__c)}</div>
+            <div style="font-size:8px;">I/We have found the above mentioned instrument in perfect working condition.</div>
+        </div>
+        
+        <!-- Signatures -->
+        <div class="signature-section">
+            <div class="signature-left">
+                <apex:outputText escape="false" value="{!MD_Case__c.Customer_Signature__c}"></apex:outputText>
+                <div class="signature-line"></div>
+                <div class="signature-label">CUSTOMER</div>
+            </div>
+            <div class="signature-right">
+                <apex:outputText escape="false" value="{!MD_Case__c.Field_Service_Signature__c}"></apex:outputText>
+                <div class="signature-line"></div>
+                <div class="signature-label">FIELD SERVICE ENGINEER</div>
+            </div>
+            <div class="long-line"></div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="office-column">
+                <div class="office-title">Head Office</div>
+                Nice Trade Center Building<br/>
+                Plot No. 44 A &amp; B, PECHS,<br/>
+                Block VI, Shahrah-e-Faisal,<br/>
+                Karachi.<br/>
+                UAN: +92 21 111 111 643<br/>
+                E-mail: info@martindow.com
+            </div>
+            <div class="office-column">
+                <div class="office-title">Lahore Office</div>
+                Plot 1, Block 6,<br/>
+                Sector - A3, Township,<br/>
+                Lahore<br/>
+                UAN: +92 42111 529 529<br/>
+                Tel: +92 42 351 508 30<br/>
+                E-mail: info@martindow.com
+            </div>
+            <div class="office-column">
+                <div class="office-title">Islamabad Office</div>
+                B-31, Satellite Town, Rawalpindi,<br/>
+                Near MCB Bank, Rawalpindi<br/>
+                Tel: (051) 5580458<br/>
+                (051) 5580457
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+</apex:page>

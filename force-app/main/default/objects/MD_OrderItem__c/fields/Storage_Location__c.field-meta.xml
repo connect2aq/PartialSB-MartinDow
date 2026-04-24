@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Storage_Location__c</fullName>
+    <label>Storage Location</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3301 - Cold Room</fullName>
+                <default>false</default>
+                <label>3301 - Cold Room</label>
+            </value>
+            <value>
+                <fullName>3302 - Culture Media RM</fullName>
+                <default>false</default>
+                <label>3302 - Culture Media RM</label>
+            </value>
+            <value>
+                <fullName>3303 - Demo Korangi WH</fullName>
+                <default>false</default>
+                <label>3303 - Demo Korangi WH</label>
+            </value>
+            <value>
+                <fullName>3304 - Dispensing Area</fullName>
+                <default>false</default>
+                <label>3304 - Dispensing Area</label>
+            </value>
+            <value>
+                <fullName>3305 - Flammable Hall</fullName>
+                <default>false</default>
+                <label>3305 - Flammable Hall</label>
+            </value>
+            <value>
+                <fullName>3306 - Flammable Hall S</fullName>
+                <default>false</default>
+                <label>3306 - Flammable Hall S</label>
+            </value>
+            <value>
+                <fullName>3307 - Flammable Hall R</fullName>
+                <default>false</default>
+                <label>3307 - Flammable Hall R</label>
+            </value>
+            <value>
+                <fullName>3308 - Flammable Temp</fullName>
+                <default>false</default>
+                <label>3308 - Flammable Temp</label>
+            </value>
+            <value>
+                <fullName>3309 - Freezer -20 Degr</fullName>
+                <default>false</default>
+                <label>3309 - Freezer -20 Degr</label>
+            </value>
+            <value>
+                <fullName>3310 - KWH Secure</fullName>
+                <default>false</default>
+                <label>3310 - KWH Secure</label>
+            </value>
+            <value>
+                <fullName>3311 - Millipore</fullName>
+                <default>false</default>
+                <label>3311 - Millipore</label>
+            </value>
+            <value>
+                <fullName>3312 - Millipore Shelve</fullName>
+                <default>false</default>
+                <label>3312 - Millipore Shelve</label>
+            </value>
+            <value>
+                <fullName>3313 - Millipore In-T/D</fullName>
+                <default>false</default>
+                <label>3313 - Millipore In-T/D</label>
+            </value>
+            <value>
+                <fullName>3314 - Mix Grp Mat Hall</fullName>
+                <default>false</default>
+                <label>3314 - Mix Grp Mat Hall</label>
+            </value>
+            <value>
+                <fullName>3315 - Packaging Mat RM</fullName>
+                <default>false</default>
+                <label>3315 - Packaging Mat RM</label>
+            </value>
+            <value>
+                <fullName>3316 - Pigment Room</fullName>
+                <default>false</default>
+                <label>3316 - Pigment Room</label>
+            </value>
+            <value>
+                <fullName>3317 - Expired</fullName>
+                <default>false</default>
+                <label>3317 - Expired</label>
+            </value>
+            <value>
+                <fullName>3318 - Toxic/Corrsve-H</fullName>
+                <default>false</default>
+                <label>3318 - Toxic/Corrsve-H</label>
+            </value>
+            <value>
+                <fullName>3319 - Toxic/Corrsve-HS</fullName>
+                <default>false</default>
+                <label>3319 - Toxic/Corrsve-HS</label>
+            </value>
+            <value>
+                <fullName>3320 - CS–Spr Parts KHI</fullName>
+                <default>false</default>
+                <label>3320 - CS–Spr Parts KHI</label>
+            </value>
+            <value>
+                <fullName>3321 - CS–Spr Parts ISB</fullName>
+                <default>false</default>
+                <label>3321 - CS–Spr Parts ISB</label>
+            </value>
+            <value>
+                <fullName>3322 - Main Store</fullName>
+                <default>false</default>
+                <label>3322 - Main Store</label>
+            </value>
+            <value>
+                <fullName>3323 - Free of Charge</fullName>
+                <default>false</default>
+                <label>3323 - Free of Charge</label>
+            </value>
+            <value>
+                <fullName>3330 - Agility – 3PWH</fullName>
+                <default>false</default>
+                <label>3330 - Agility – 3PWH</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+                <label>Scheduled</label>
+            </value>
+            <value>
+                <fullName>New</fullName>
+                <default>false</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Escalated</fullName>
+                <default>false</default>
+                <label>Escalated</label>
+            </value>
+            <value>
+                <fullName>Working</fullName>
+                <default>false</default>
+                <label>Working</label>
+            </value>
+            <value>
+                <fullName>Waiting</fullName>
+                <default>false</default>
+                <label>Waiting</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Assignment &amp; Routing</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Assignment &amp; Routing</label>
+            </value>
+            <value>
+                <fullName>Closure</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Closure</label>
+            </value>
+            <value>
+                <fullName>Engineer Working</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Engineer Working</label>
+            </value>
+            <value>
+                <fullName>Initiate</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Initiate</label>
+            </value>
+            <value>
+                <fullName>Internal Case Logging</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Internal Case Logging</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Pending Closure</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pending Closure</label>
+            </value>
+            <value>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Resolved</label>
+            </value>
+            <value>
+                <fullName>Tracking &amp; Repair</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tracking &amp; Repair</label>
+            </value>
+            <value>
+                <fullName>Visits Before Installation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Visits Before Installation</label>
+            </value>
+            <value>
+                <fullName>Visits For Installation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Visits For Installation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

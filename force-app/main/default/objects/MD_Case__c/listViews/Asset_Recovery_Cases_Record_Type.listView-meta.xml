@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asset_Recovery_Cases_Record_Type</fullName>
+    <columns>NAME</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>MD_Case__c.Demo_Machine_Return</value>
+    </filters>
+    <label>Asset Recovery Cases Record Type</label>
+</ListView>

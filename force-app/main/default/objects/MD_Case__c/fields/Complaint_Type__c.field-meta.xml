@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complaint_Type__c</fullName>
+    <label>Complaint Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Product Issues</fullName>
+                <default>false</default>
+                <label>Product Issues</label>
+            </value>
+            <value>
+                <fullName>Service Quality</fullName>
+                <default>false</default>
+                <label>Service Quality</label>
+            </value>
+            <value>
+                <fullName>Delivery Issues</fullName>
+                <default>false</default>
+                <label>Delivery Issues</label>
+            </value>
+            <value>
+                <fullName>Machine Malfunction</fullName>
+                <default>false</default>
+                <label>Machine Malfunction</label>
+            </value>
+            <value>
+                <fullName>Installation &amp; Training</fullName>
+                <default>false</default>
+                <label>Installation &amp; Training</label>
+            </value>
+            <value>
+                <fullName>Pricing or Billing Issues</fullName>
+                <default>false</default>
+                <label>Pricing or Billing Issues</label>
+            </value>
+            <value>
+                <fullName>Documentation</fullName>
+                <default>false</default>
+                <label>Documentation</label>
+            </value>
+            <value>
+                <fullName>Consumables Not Available</fullName>
+                <default>false</default>
+                <label>Consumables Not Available</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Feature Request</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Feature Request</label>
+            </value>
+            <value>
+                <fullName>Problem</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Problem</label>
+            </value>
+            <value>
+                <fullName>Question</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Question</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

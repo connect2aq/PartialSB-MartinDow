@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Area_Name_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(
+    &apos;/&apos; &amp; Id,
+    Sales_Org__c &amp; &apos; - &apos; &amp;
+    LEFT(TEXT(Distribution_Channel__c), FIND(&quot; - &quot;, TEXT(Distribution_Channel__c)) - 1) &amp; &apos; - &apos; &amp;
+    LEFT(TEXT(Division__c), FIND(&quot; - &quot;, TEXT(Division__c)) - 1) &amp; &apos; - &apos; &amp; Name, &quot;_self&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sales Area Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

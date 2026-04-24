@@ -1,0 +1,67 @@
+<template>
+  <div class="typeahead">
+    <label class="slds-form-element__label">
+      {label}
+      <template if:true={hasSelections}>
+        <span class="slds-badge slds-m-left_x-small"
+          >{selectedCount} selected</span
+        >
+      </template>
+    </label>
+    <div class="slds-form-element__control">
+      <div class="slds-combobox_container">
+        <div class={comboboxClass} aria-expanded={showPopover} role="combobox">
+          <div
+            class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+          >
+            <input
+              class="slds-input"
+              type="text"
+              placeholder={placeholder}
+              value={searchTerm}
+              oninput={handleSearchInput}
+              onclick={handleTogglePopover}
+              aria-haspopup="listbox"
+            />
+            <button
+              class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+              onclick={handleTogglePopover}
+              title="Open"
+            >
+              <lightning-icon
+                icon-name="utility:down"
+                size="x-small"
+              ></lightning-icon>
+            </button>
+          </div>
+
+          <template if:true={showPopover}>
+            <div
+              class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+            >
+              <ul role="listbox" class="slds-listbox slds-listbox_vertical">
+                <template for:each={filteredOptions} for:item="opt">
+                  <li class="slds-listbox__item" key={opt.value}>
+                    <label class="slds-checkbox" onclick={handleCheckboxClick}>
+                      <input
+                        type="checkbox"
+                        data-value={opt.value}
+                        checked={opt.checked}
+                        onclick={handleCheckboxClick}
+                        onchange={handleToggleSelection}
+                      />
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-listbox__option-text slds-truncate">
+                        {opt.label}
+                      </span>
+                    </label>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>logo__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(
+IsNewEscalation__c = TRUE,
+ IsWorkingEscalation__c = True,
+ IsQueueEscalation__c = True,
+ IsWaitingEscalation__c = True), 
+   IMAGE(&quot;/resource/Warning_Sign_Escalation&quot;, &quot;Warning - Escalation&quot;, 40, 40), 
+   &quot;No&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Escalated?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

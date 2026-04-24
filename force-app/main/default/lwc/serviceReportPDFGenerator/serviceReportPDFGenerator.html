@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Service Report PDF Generator" icon-name="custom:custom63">
+        
+        <!-- PDF Generation Button -->
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <lightning-button
+                label="Generate & Save PDF"
+                title="Generate & Save PDF"
+                icon-name="utility:download"
+                onclick={handleGeneratePDF}
+                variant="brand"
+                class="slds-m-bottom_small generate-btn"
+                disabled={isLoading}>
+            </lightning-button>
+            
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Processing..." size="small"></lightning-spinner>
+            </template>
+            
+            <template if:true={showSuccessMessage}>
+                <div class="success-message">
+                    <lightning-icon icon-name="utility:success" size="small" class="success-icon"></lightning-icon>
+                    PDF generated and saved successfully!
+                </div>
+            </template>
+        </div>
+
+    </lightning-card>
+</template>

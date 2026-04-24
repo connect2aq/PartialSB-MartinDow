@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Validation_For_ShipToAccount</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(Machine_Installation__c)),ISPICKVAL(Status__c, &apos;Closed&apos;),AND(
+  ISBLANK(Machine_Installation__r.Ship_To_Account__c),
+NOT(ISBLANK( Machine_Installation__r.Diagnostic_Machine__r.Serial_Number__c ))
+  ))</errorConditionFormula>
+    <errorDisplayField>Machine_Installation__c</errorDisplayField>
+    <errorMessage>Cannot close Service Request: Missing Ship To Account on Machine Installation.</errorMessage>
+</ValidationRule>

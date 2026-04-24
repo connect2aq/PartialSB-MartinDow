@@ -1,0 +1,265 @@
+<apex:page standardController="MD_Quote__c" renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+    <html>
+        <head>
+            <style type="text/css">
+                @page {
+                    size: A4 portrait;
+                    margin: 10mm;
+                }
+
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    color: #000000;
+                    background-color: #ffffff;
+                    line-height: 1.6;
+                    font-size: 10px;
+                }
+
+                /* master layout table: repeats header/footer on each page */
+                .page-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                .page-table thead { display: table-header-group; }
+                .page-table tfoot { display: table-footer-group; }
+
+                .hr-line {
+                    border-bottom: 2px solid #000000;
+                    height: 0;
+                    margin: 0;
+                }
+
+                /* header layout */
+                .header-row { width: 100%; }
+                .logo { float: left; width: 130px; margin-right: 15px; }
+                .vf-logo { width: 100%; max-width: 130px; }
+                .contact-info { float: right; text-align: right; font-size: 9px; width: 320px; }
+                .contact-info p { margin: 3px 0; white-space: nowrap; }
+                .clearfix { clear: both; }
+
+                /* footer layout */
+                .footer-wrap { text-align: center; font-size: 10px; color: #555555; }
+                .footer-wrap p { margin: 2px 0; line-height: 1.2; }
+
+                /* content wrapper */
+                .content {
+                    width: 100%;
+                    max-width: 190mm;
+                    margin: 0 auto;
+                }
+
+                /* sections */
+                .to-section { margin: 15px 0; }
+                .to-section p { margin: 3px 0; }
+                .subject { font-weight: bold; font-size: 12px; margin: 10px 0; }
+                .greeting { margin: 10px 0; }
+
+                /* items table */
+                .items-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 15px 0;
+                    table-layout: fixed;
+                    page-break-inside: auto;
+                }
+                .items-table thead { display: table-header-group; }
+                .items-table tr { page-break-inside: avoid; }
+                .items-table th, .items-table td {
+                    border: 1px solid #000000;
+                    padding: 5px 6px;
+                    text-align: left;
+                    vertical-align: top;
+                    font-size: 8.5px;
+                    word-wrap: break-word;
+                    overflow: hidden;
+                }
+                .items-table th { background-color: #f0f0f0; font-weight: bold; }
+                .center-align { text-align: center; }
+                .right-align  { text-align: right; }
+                .total-row { font-weight: bold; background-color: #f0f0f0; }
+                .desc-cell { white-space: normal; line-height: 1.4; }
+
+                /* notes/signature */
+                .notes { margin: 15px 0; font-size: 10px; }
+                .notes p { margin: 5px 0; }
+                .signature { margin-top: 50px; text-align: left; }
+                .signature p { margin: 3px 0; }
+                .signature-line {
+                    border-bottom: 1px solid #000000;
+                    width: 200px;
+                    margin: 15px 0 5px 0;
+                }
+            </style>
+        </head>
+        <body>
+
+            <!-- repeating master layout -->
+            <table class="page-table">
+                <thead>
+                    <tr>
+                        <td>
+                            <div class="header-row">
+                                <div class="logo">
+                                    <apex:image url="{!URLFOR($Resource.Martin_Dow_Logo)}" styleClass="vf-logo" alt="Martin Dow Logo"/>
+                                </div>
+                                <div class="contact-info">
+                                    <p><strong>Date:</strong> <apex:outputText value="{0, date, MMMM dd, yyyy}"><apex:param value="{!TODAY()}" /></apex:outputText></p>
+                                    <p><strong>Division/Dept:</strong> {!MD_Quote__c.CreatedBy.Division__c}</p>
+                                    <p><strong>Responsible:</strong> {!MD_Quote__c.CreatedBy.FirstName} {!MD_Quote__c.CreatedBy.LastName}</p>
+                                    <p><strong>E-Mail:</strong> {!MD_Quote__c.CreatedBy.Email}</p>
+                                    <p><strong>Our.Ref:</strong> {!MD_Quote__c.Name}</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="hr-line"></div>
+                        </td>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td>
+                            <div class="hr-line"></div>
+                            <div class="footer-wrap">
+                                <p><strong>Martin Dow Specialities (Pvt.) Ltd.</strong></p>
+                                <p>Head Office: 7th Floor, Nice Trade Orbit (NTO) Building, 44-A, Block 6 PECHS, Razi Road, Shahrah-e-Faisal, Karachi. | Phone: +92 (21) 111 111 634</p>
+                                <p>Registered Office: 7, Jail Road, Quetta | Phone: +92 (81) 829957-60 | Fax: +92 (81) 826149</p>
+                                <p>Lahore Office: Plot No. 75-F Industrial Area Township, Kot Lakhpat, Lahore | Phone: +92 (42) 5123550-51 | Fax: +92 (42) 5150830</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="content">
+
+                                <!-- To Section -->
+                                <div class="to-section">
+                                    <p><strong>To,</strong></p>
+                                    <p>{!MD_Quote__c.Contact__r.FirstName} {!MD_Quote__c.Contact__r.LastName}</p>
+                                    <p>{!MD_Quote__c.Account__r.Name} {!MD_Quote__c.Account__r.Account_Name2__c}</p>
+                                    <p>{!MD_Quote__c.Account__r.City__c}</p>
+                                </div>
+
+                                <!-- Subject -->
+                                <div class="subject">Subject: {!MD_Quote__c.Subject__c}</div>
+
+                                <!-- Greeting -->
+                                <p class="greeting">Respected Sir,</p>
+                                <p>Concerning to your request, we are pleased to offer our best possible prices for your kind consideration.</p>
+
+                                <!-- Items Table -->
+                                <table class="items-table">
+                                    <colgroup>
+                                        <col style="width: 4%;"/>
+                                        <col style="width: 9%;"/>
+                                        <col style="width: 28%;"/>
+                                        <col style="width: 8%;"/>
+                                        <col style="width: 5%;"/>
+                                        <col style="width: 10%;"/>
+                                        <col style="width: 10%;"/>
+                                        <col style="width: 26%;"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="center-align">#</th>
+                                            <th>Catalog Number</th>
+                                            <th>Item&#39;s Description / Specification</th>
+                                            <th>Pack Size</th>
+                                            <th class="center-align">Qty.</th>
+                                            <th class="right-align">Unit Price (PKR)</th>
+                                            <th class="right-align">Total Price (PKR)</th>
+                                            <th>Delivery</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Dynamic Line Items -->
+                                        <apex:variable var="rowNum" value="{!0}" />
+                                        <apex:repeat value="{!MD_Quote__c.Quote_Line_Items__r}" var="item">
+                                            <tr>
+                                                <td class="center-align">
+                                                    <apex:variable var="rowNum" value="{!rowNum + 1}" />
+                                                    {!rowNum}
+                                                </td>
+                                                <td>{!item.Product2Id__r.Old_Material_Number__c}</td>
+                                                <td class="desc-cell">
+                                                    <strong>{!item.Material_Description__c}</strong><br/>
+                                                    <apex:outputPanel rendered="{!NOT(ISBLANK(item.Certification__c))}">
+                                                        Certification: {!item.Certification__c}<br/>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!NOT(ISBLANK(item.Manufacturer__c))}">
+                                                        Manufacturer: {!item.Manufacturer__c}<br/>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!NOT(ISBLANK(item.Country_of_Origin__c))}">
+                                                        Country of Origin: {!item.Country_of_Origin__c}
+                                                    </apex:outputPanel>
+                                                </td>
+                                                <td>{!item.Product2Id__r.Size_Dimensions__c}</td>
+                                                <td class="center-align">
+                                                    <apex:outputText value="{0, number, ###,##0}">
+                                                        <apex:param value="{!item.Quantity__c}" />
+                                                    </apex:outputText>
+                                                </td>
+                                                <td class="right-align">
+                                                    <apex:outputText value="{0, number, ###,##0}">
+                                                        <apex:param value="{!item.UnitPrice__c}" />
+                                                    </apex:outputText>
+                                                </td>
+                                                <td class="right-align">
+                                                    <apex:outputText value="{0, number, ###,##0}">
+                                                        <apex:param value="{!item.TotalPrice__c}" />
+                                                    </apex:outputText>
+                                                </td>
+                                                <td>{!item.Delivery__c}</td>
+                                            </tr>
+                                        </apex:repeat>
+
+                                        <!-- Total Row -->
+                                        <tr class="total-row">
+                                            <td colspan="6" class="right-align"><strong>Total Amount</strong></td>
+                                            <td class="right-align">
+                                                <strong>
+                                                    <apex:outputText value="{0, number, ###,##0}">
+                                                        <apex:param value="{!MD_Quote__c.Total_Price__c}" />
+                                                    </apex:outputText>
+                                                </strong>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- Notes -->
+                                <div class="notes">
+                                    <p><em>*For Technical Details and More Information See attached brochure.</em></p>
+                                    <p><strong>Price Validity:</strong> {!MD_Quote__c.Price_Validity__c}</p>
+                                    <p><strong>Sales Tax:</strong> {!MD_Quote__c.Sales_Tax__c}</p>
+                                    <p><strong>Warranty:</strong> {!MD_Quote__c.Warranty__c}</p>
+                                    <p><strong>Payment Term:</strong> {!MD_Quote__c.Payment_Term__c}</p>
+                                    <p><strong>Installation:</strong> {!MD_Quote__c.Installation__c}</p>
+                                </div>
+
+                                <!-- Closing -->
+                                <p>Thanking You,</p>
+                                <p>For Martin Dow Specialities (Pvt.) Ltd.</p>
+
+                                <!-- Signature -->
+                                <div class="signature">
+                                    <div class="signature-line"></div>
+                                    <p>{!MD_Quote__c.CreatedBy.FirstName} {!MD_Quote__c.CreatedBy.LastName}</p>
+                                    <p>{!MD_Quote__c.CreatedBy.Position__c}</p>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>oppo_product_compact_layout</fullName>
+    <fields>Name</fields>
+    <fields>Opportunity__c</fields>
+    <fields>Product__c</fields>
+    <fields>MaterialNumber__c</fields>
+    <fields>Material_Description__c</fields>
+    <fields>Old_Material_Number__c</fields>
+    <fields>Quantity__c</fields>
+    <fields>Unit_Price__c</fields>
+    <fields>Total_Price__c</fields>
+    <label>oppo product compact layout</label>
+</CompactLayout>

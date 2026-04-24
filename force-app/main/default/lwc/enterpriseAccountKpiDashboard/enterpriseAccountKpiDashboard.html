@@ -1,0 +1,205 @@
+<template>
+  <lightning-card title="Enterprise Account KPIs" icon-name="custom:custom63">
+    <div class="slds-p-around_medium">
+      <div class="kpi-tiles slds-grid slds-wrap">
+        <template if:true={enterpriseKpiTiles}>
+          <template
+            for:each={enterpriseKpiTiles}
+            for:item="tile"
+            for:index="index"
+          >
+            <div
+              key={tile.label}
+              class="kpi-tile slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+              style="min-width: 120px"
+            >
+              <div class="kpi-label">{tile.label}</div>
+              <div class="kpi-value">{tile.value}</div>
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
+
+    <!-- Enterprise-level Diagnostic Machines Section -->
+    <template if:true={enterpriseKpi}>
+      <template if:true={hasEnterpriseDiagnostics}>
+        <div
+          class="diagnostic-title slds-text-title_caps slds-m-top_medium slds-m-bottom_xx-small"
+          style="font-weight: 600; color: #1a2745"
+        >
+          Enterprise Diagnostic Machines
+        </div>
+        <div
+          class="diagnostic-kpis slds-grid slds-wrap slds-theme_alert-texture slds-p-around_xx-small slds-m-bottom_medium"
+        >
+          <div class="slds-col slds-size_1-of-5">
+            <span class="kpi-label">Ordered</span>:
+            <span class="kpi-value">{enterpriseKpi.diagnosticOrdered}</span>
+          </div>
+          <div class="slds-col slds-size_1-of-5">
+            <span class="kpi-label">Installed</span>:
+            <span class="kpi-value">{enterpriseKpi.diagnosticInstalled}</span>
+          </div>
+          <div class="slds-col slds-size_1-of-5">
+            <span class="kpi-label">Active</span>:
+            <span class="kpi-value">{enterpriseKpi.diagnosticActive}</span>
+          </div>
+          <div class="slds-col slds-size_1-of-5">
+            <span class="kpi-label">Rejected</span>:
+            <span class="kpi-value">{enterpriseKpi.diagnosticRejected}</span>
+          </div>
+          <div class="slds-col slds-size_1-of-5">
+            <span class="kpi-label">Inactive</span>:
+            <span class="kpi-value">{enterpriseKpi.diagnosticInactive}</span>
+          </div>
+        </div>
+      </template>
+    </template>
+    <template if:true={functionalAccounts}>
+      <div
+        class="slds-text-title_caps slds-m-top_large slds-m-bottom_small"
+        style="
+          font-weight: 600;
+          color: #1a2745;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+        "
+      >
+        <lightning-icon
+          icon-name="utility:groups"
+          size="small"
+          class="slds-m-right_small"
+        ></lightning-icon>
+        Functional Account KPIs
+      </div>
+      <div class="func-table">
+        <template for:each={functionalAccounts} for:item="func">
+          <div
+            key={func.accountId}
+            class="func-section slds-box slds-m-bottom_small"
+          >
+            <!-- Row 1: Account Details (with background color and spacing) -->
+            <div
+              class="func-details slds-grid slds-wrap slds-p-around_small func-details-bg slds-m-bottom_small"
+              style="background-color: #f3f6fb; border-radius: 0.25rem"
+            >
+              <div class="slds-col slds-size_1-of-5">
+                <b>Name:</b> {func.name}
+              </div>
+              <div class="slds-col slds-size_1-of-5">
+                <b>SAP #:</b> {func.sapNumber}
+              </div>
+              <div class="slds-col slds-size_1-of-5">
+                <b>Address:</b> {func.addressLine1}
+              </div>
+              <div class="slds-col slds-size_1-of-5">
+                <b>City:</b> {func.city}
+              </div>
+              <div class="slds-col slds-size_1-of-5">
+                <b>Segment:</b> {func.accountSegment}
+              </div>
+            </div>
+            <!-- Add spacing between first and second row -->
+            <div style="height: 0.75rem"></div>
+            <!-- Row 2: 9 KPIs -->
+            <div class="func-kpis slds-grid slds-wrap slds-p-bottom_xx-small">
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Account Segment</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.accountSegment}</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Sales YTD</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.totalSalesYTDFormatted}</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Sales MTD</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.totalSalesMTDFormatted}</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Open Opps (Amount)</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.openOpportunityCount}
+                  ({func.openOpportunityAmount})</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Opp→Sales YTD</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.opportunityToSalesConversionYTDFormatted}%</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Opp→Sales MTD</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.opportunityToSalesConversionMTDFormatted}%</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Visits YTD (C / P)</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.visitsYTDCompleted} / {func.visitsYTDPlanned}</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Visits MTD (C / P)</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.visitsMTDCompleted} / {func.visitsMTDPlanned}</span
+                >
+              </div>
+              <div class="slds-col slds-size_1-of-9">
+                <span class="kpi-label">Open Complaints</span><br /><span
+                  class="kpi-value func-kpi-value"
+                  >{func.openComplaints}</span
+                >
+              </div>
+            </div>
+            <!-- Row 3: Diagnostic KPIs (conditionally rendered, with title) -->
+            <template if:true={func.hasDiagnostics}>
+              <div
+                class="diagnostic-title slds-text-title_caps slds-m-top_x-small slds-m-bottom_xx-small"
+                style="font-weight: 600; color: #1a2745"
+              >
+                Diagnostic Machines
+              </div>
+              <div
+                class="diagnostic-kpis slds-grid slds-wrap slds-theme_alert-texture slds-p-around_xx-small"
+              >
+                <div class="slds-col slds-size_1-of-5">
+                  <span class="kpi-label">Ordered</span>:
+                  <span class="kpi-value">{func.diagnosticOrdered}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                  <span class="kpi-label">Installed</span>:
+                  <span class="kpi-value">{func.diagnosticInstalled}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                  <span class="kpi-label">Active</span>:
+                  <span class="kpi-value">{func.diagnosticActive}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                  <span class="kpi-label">Rejected</span>:
+                  <span class="kpi-value">{func.diagnosticRejected}</span>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                  <span class="kpi-label">Inactive</span>:
+                  <span class="kpi-value">{func.diagnosticInactive}</span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+    </template>
+    <template if:true={error}>
+      <div class="slds-text-color_error">{error}</div>
+    </template>
+  </lightning-card>
+</template>

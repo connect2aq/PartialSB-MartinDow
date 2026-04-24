@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Output_Tax_Category_ZMST_Code__c</fullName>
+    <label>ZMST Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3 - Filer Dealer</fullName>
+                <default>false</default>
+                <label>3 - Filer Dealer</label>
+            </value>
+            <value>
+                <fullName>4 - Non Filer Dealer</fullName>
+                <default>false</default>
+                <label>4 - Non Filer Dealer</label>
+            </value>
+            <value>
+                <fullName>5 - End User/Govt/Tribal</fullName>
+                <default>false</default>
+                <label>5 - End User/Govt/Tribal</label>
+            </value>
+            <value>
+                <fullName>6 - Filer TM</fullName>
+                <default>false</default>
+                <label>6 - Filer TM</label>
+            </value>
+            <value>
+                <fullName>7 - Non Filer TM</fullName>
+                <default>false</default>
+                <label>7 - Non Filer TM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

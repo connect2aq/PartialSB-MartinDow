@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Loss_Reason__c</fullName>
+    <label>Opportunity Loss Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Close_Won_Or_Close_Lost__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pricing too high.</fullName>
+                <default>false</default>
+                <label>Pricing too high.</label>
+            </value>
+            <value>
+                <fullName>Internal Approval Delay.</fullName>
+                <default>false</default>
+                <label>Internal Approval Delay.</label>
+            </value>
+            <value>
+                <fullName>Internal Reason: e.g (Delay in Sales order Creation).</fullName>
+                <default>false</default>
+                <label>Internal Reason: e.g (Delay in Sales order Creation).</label>
+            </value>
+            <value>
+                <fullName>Customer Overdue.</fullName>
+                <default>false</default>
+                <label>Customer Overdue.</label>
+            </value>
+            <value>
+                <fullName>Customer Credit Limit Short.</fullName>
+                <default>false</default>
+                <label>Customer Credit Limit Short.</label>
+            </value>
+            <value>
+                <fullName>Budgeting.</fullName>
+                <default>false</default>
+                <label>Budgeting.</label>
+            </value>
+            <value>
+                <fullName>Demo Validation Failure.</fullName>
+                <default>false</default>
+                <label>Demo Validation Failure.</label>
+            </value>
+            <value>
+                <fullName>Machine Compatibility.</fullName>
+                <default>false</default>
+                <label>Machine Compatibility.</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Pricing too high.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Internal Approval Delay.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Internal Reason: e.g (Delay in Sales order Creation).</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Customer Overdue.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Customer Credit Limit Short.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Budgeting.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Demo Validation Failure.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close Lost</controllingFieldValue>
+            <valueName>Machine Compatibility.</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Type__c</fullName>
+    <label>Material Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ZSCC</fullName>
+                <default>false</default>
+                <label>ZSCC</label>
+            </value>
+            <value>
+                <fullName>ZTRC</fullName>
+                <default>false</default>
+                <label>ZTRC</label>
+            </value>
+            <value>
+                <fullName>ZTRD</fullName>
+                <default>false</default>
+                <label>ZTRD</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

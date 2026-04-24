@@ -1,0 +1,1459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Group_1__c</fullName>
+    <label>Material Group 1</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MaterialGroup1-0</fullName>
+                <default>false</default>
+                <label>MaterialGroup1-0</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup1-1</fullName>
+                <default>false</default>
+                <label>MaterialGroup1-1</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup1-2</fullName>
+                <default>false</default>
+                <label>MaterialGroup1-2</label>
+            </value>
+            <value>
+                <fullName>34 - Protein Platforms</fullName>
+                <default>false</default>
+                <label>34 - Protein Platforms</label>
+            </value>
+            <value>
+                <fullName>42 - DNA-RNA Platforms</fullName>
+                <default>false</default>
+                <label>42 - DNA-RNA Platforms</label>
+            </value>
+            <value>
+                <fullName>50 - Muse RUO</fullName>
+                <default>false</default>
+                <label>50 - Muse RUO</label>
+            </value>
+            <value>
+                <fullName>51 - Muse Clinical</fullName>
+                <default>false</default>
+                <label>51 - Muse Clinical</label>
+            </value>
+            <value>
+                <fullName>52 - Extractions- F&amp;F</fullName>
+                <default>false</default>
+                <label>52 - Extractions- F&amp;F</label>
+            </value>
+            <value>
+                <fullName>53 - Natural - F&amp;F</fullName>
+                <default>false</default>
+                <label>53 - Natural - F&amp;F</label>
+            </value>
+            <value>
+                <fullName>54 - Synthetics - F&amp;F</fullName>
+                <default>false</default>
+                <label>54 - Synthetics - F&amp;F</label>
+            </value>
+            <value>
+                <fullName>55 - Assays components</fullName>
+                <default>false</default>
+                <label>55 - Assays components</label>
+            </value>
+            <value>
+                <fullName>56 - Diagnostic Beads</fullName>
+                <default>false</default>
+                <label>56 - Diagnostic Beads</label>
+            </value>
+            <value>
+                <fullName>57 - Magprep</fullName>
+                <default>false</default>
+                <label>57 - Magprep</label>
+            </value>
+            <value>
+                <fullName>58 - PROCLIN</fullName>
+                <default>false</default>
+                <label>58 - PROCLIN</label>
+            </value>
+            <value>
+                <fullName>59 - Labelled isotopes</fullName>
+                <default>false</default>
+                <label>59 - Labelled isotopes</label>
+            </value>
+            <value>
+                <fullName>60 - Analytical Reagents / Chemicals</fullName>
+                <default>false</default>
+                <label>60 - Analytical Reagents / Chemicals</label>
+            </value>
+            <value>
+                <fullName>61 - Imaging Flow Software</fullName>
+                <default>false</default>
+                <label>61 - Imaging Flow Software</label>
+            </value>
+            <value>
+                <fullName>63 - In Process Testing Pharma</fullName>
+                <default>false</default>
+                <label>63 - In Process Testing Pharma</label>
+            </value>
+            <value>
+                <fullName>64 - In Process Testing Food&amp;Beverages</fullName>
+                <default>false</default>
+                <label>64 - In Process Testing Food&amp;Beverages</label>
+            </value>
+            <value>
+                <fullName>65 - Release Testing Pharma</fullName>
+                <default>false</default>
+                <label>65 - Release Testing Pharma</label>
+            </value>
+            <value>
+                <fullName>66 - Release Testing Food&amp;Beverages</fullName>
+                <default>false</default>
+                <label>66 - Release Testing Food&amp;Beverages</label>
+            </value>
+            <value>
+                <fullName>67 - Environmental Monitoring Pharma</fullName>
+                <default>false</default>
+                <label>67 - Environmental Monitoring Pharma</label>
+            </value>
+            <value>
+                <fullName>68 - Environmental Monitoring Food&amp;Bev</fullName>
+                <default>false</default>
+                <label>68 - Environmental Monitoring Food&amp;Bev</label>
+            </value>
+            <value>
+                <fullName>69 - Media Sigma</fullName>
+                <default>false</default>
+                <label>69 - Media Sigma</label>
+            </value>
+            <value>
+                <fullName>72 - In Process Products Medical</fullName>
+                <default>false</default>
+                <label>72 - In Process Products Medical</label>
+            </value>
+            <value>
+                <fullName>73 - BioMonitoring Services</fullName>
+                <default>false</default>
+                <label>73 - BioMonitoring Services</label>
+            </value>
+            <value>
+                <fullName>74 - BioControl Systems</fullName>
+                <default>false</default>
+                <label>74 - BioControl Systems</label>
+            </value>
+            <value>
+                <fullName>103 - Reactive Mesogens</fullName>
+                <default>false</default>
+                <label>103 - Reactive Mesogens</label>
+            </value>
+            <value>
+                <fullName>108 - PM</fullName>
+                <default>false</default>
+                <label>108 - PM</label>
+            </value>
+            <value>
+                <fullName>112 - Mica Cosmetics</fullName>
+                <default>false</default>
+                <label>112 - Mica Cosmetics</label>
+            </value>
+            <value>
+                <fullName>115 - Light Protection &amp; Tanning</fullName>
+                <default>false</default>
+                <label>115 - Light Protection &amp; Tanning</label>
+            </value>
+            <value>
+                <fullName>117 - New platforms</fullName>
+                <default>false</default>
+                <label>117 - New platforms</label>
+            </value>
+            <value>
+                <fullName>159 - VA</fullName>
+                <default>false</default>
+                <label>159 - VA</label>
+            </value>
+            <value>
+                <fullName>160 - PS-VA</fullName>
+                <default>false</default>
+                <label>160 - PS-VA</label>
+            </value>
+            <value>
+                <fullName>161 - OLED materials</fullName>
+                <default>false</default>
+                <label>161 - OLED materials</label>
+            </value>
+            <value>
+                <fullName>169 - IPS</fullName>
+                <default>false</default>
+                <label>169 - IPS</label>
+            </value>
+            <value>
+                <fullName>187 - TN-TFT</fullName>
+                <default>false</default>
+                <label>187 - TN-TFT</label>
+            </value>
+            <value>
+                <fullName>203 - Lighting and Photovoltaics</fullName>
+                <default>false</default>
+                <label>203 - Lighting and Photovoltaics</label>
+            </value>
+            <value>
+                <fullName>204 - Established Businesses</fullName>
+                <default>false</default>
+                <label>204 - Established Businesses</label>
+            </value>
+            <value>
+                <fullName>211 - Mica Industrial</fullName>
+                <default>false</default>
+                <label>211 - Mica Industrial</label>
+            </value>
+            <value>
+                <fullName>214 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>214 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>215 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>215 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>216 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>216 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>217 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>217 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>218 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>218 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>219 - Mica Coatings</fullName>
+                <default>false</default>
+                <label>219 - Mica Coatings</label>
+            </value>
+            <value>
+                <fullName>237 - Technical Functionals</fullName>
+                <default>false</default>
+                <label>237 - Technical Functionals</label>
+            </value>
+            <value>
+                <fullName>249 - Toll Manufacturing PM</fullName>
+                <default>false</default>
+                <label>249 - Toll Manufacturing PM</label>
+            </value>
+            <value>
+                <fullName>253 - Lab Classics Lab Supply</fullName>
+                <default>false</default>
+                <label>253 - Lab Classics Lab Supply</label>
+            </value>
+            <value>
+                <fullName>256 - Partner Materials</fullName>
+                <default>false</default>
+                <label>256 - Partner Materials</label>
+            </value>
+            <value>
+                <fullName>318 - Deposition Materials</fullName>
+                <default>false</default>
+                <label>318 - Deposition Materials</label>
+            </value>
+            <value>
+                <fullName>349 - Other complementary products</fullName>
+                <default>false</default>
+                <label>349 - Other complementary products</label>
+            </value>
+            <value>
+                <fullName>360 - New LC Modes</fullName>
+                <default>false</default>
+                <label>360 - New LC Modes</label>
+            </value>
+            <value>
+                <fullName>366 - Skin Perfection</fullName>
+                <default>false</default>
+                <label>366 - Skin Perfection</label>
+            </value>
+            <value>
+                <fullName>367 - Repellent &amp; Other Cosmetic Functiona</fullName>
+                <default>false</default>
+                <label>367 - Repellent &amp; Other Cosmetic Functiona</label>
+            </value>
+            <value>
+                <fullName>369 - UB-FFS</fullName>
+                <default>false</default>
+                <label>369 - UB-FFS</label>
+            </value>
+            <value>
+                <fullName>370 - New LC Applications</fullName>
+                <default>false</default>
+                <label>370 - New LC Applications</label>
+            </value>
+            <value>
+                <fullName>371 - MWT - Protein Quantitation</fullName>
+                <default>false</default>
+                <label>371 - MWT - Protein Quantitation</label>
+            </value>
+            <value>
+                <fullName>403 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>403 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>404 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>404 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>405 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>405 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>406 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>406 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>407 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>407 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>408 - Ancillaries &amp; Siloxanes</fullName>
+                <default>false</default>
+                <label>408 - Ancillaries &amp; Siloxanes</label>
+            </value>
+            <value>
+                <fullName>411 - Dielectric Materials</fullName>
+                <default>false</default>
+                <label>411 - Dielectric Materials</label>
+            </value>
+            <value>
+                <fullName>412 - Lithography Materials</fullName>
+                <default>false</default>
+                <label>412 - Lithography Materials</label>
+            </value>
+            <value>
+                <fullName>413 - Silica Materials</fullName>
+                <default>false</default>
+                <label>413 - Silica Materials</label>
+            </value>
+            <value>
+                <fullName>414 - Process Materials</fullName>
+                <default>false</default>
+                <label>414 - Process Materials</label>
+            </value>
+            <value>
+                <fullName>415 - Printing Materials</fullName>
+                <default>false</default>
+                <label>415 - Printing Materials</label>
+            </value>
+            <value>
+                <fullName>416 - Conductive Pastes</fullName>
+                <default>false</default>
+                <label>416 - Conductive Pastes</label>
+            </value>
+            <value>
+                <fullName>480 - Solvents for Research</fullName>
+                <default>false</default>
+                <label>480 - Solvents for Research</label>
+            </value>
+            <value>
+                <fullName>499 - BioChem Core</fullName>
+                <default>false</default>
+                <label>499 - BioChem Core</label>
+            </value>
+            <value>
+                <fullName>524 - Organic Analysis &amp; Sensorics</fullName>
+                <default>false</default>
+                <label>524 - Organic Analysis &amp; Sensorics</label>
+            </value>
+            <value>
+                <fullName>525 - Elemental Analysis</fullName>
+                <default>false</default>
+                <label>525 - Elemental Analysis</label>
+            </value>
+            <value>
+                <fullName>526 - Solvents Instrumental Analysis</fullName>
+                <default>false</default>
+                <label>526 - Solvents Instrumental Analysis</label>
+            </value>
+            <value>
+                <fullName>527 - Analytical Technologies</fullName>
+                <default>false</default>
+                <label>527 - Analytical Technologies</label>
+            </value>
+            <value>
+                <fullName>528 - Thin-Layer Chromatography</fullName>
+                <default>false</default>
+                <label>528 - Thin-Layer Chromatography</label>
+            </value>
+            <value>
+                <fullName>529 - Point-of-Use (POU)</fullName>
+                <default>false</default>
+                <label>529 - Point-of-Use (POU)</label>
+            </value>
+            <value>
+                <fullName>530 - Endogenous Metabolites And Natural</fullName>
+                <default>false</default>
+                <label>530 - Endogenous Metabolites And Natural</label>
+            </value>
+            <value>
+                <fullName>531 - Drugs &amp; Metrological Institutes</fullName>
+                <default>false</default>
+                <label>531 - Drugs &amp; Metrological Institutes</label>
+            </value>
+            <value>
+                <fullName>532 - Organic &amp; Inorganic Contaminants</fullName>
+                <default>false</default>
+                <label>532 - Organic &amp; Inorganic Contaminants</label>
+            </value>
+            <value>
+                <fullName>533 - Additional, Phys Prop &amp; Matrix</fullName>
+                <default>false</default>
+                <label>533 - Additional, Phys Prop &amp; Matrix</label>
+            </value>
+            <value>
+                <fullName>534 - Endogenous Metabolites And Natural</fullName>
+                <default>false</default>
+                <label>534 - Endogenous Metabolites And Natural</label>
+            </value>
+            <value>
+                <fullName>535 - Drugs &amp; Metrological Institutes</fullName>
+                <default>false</default>
+                <label>535 - Drugs &amp; Metrological Institutes</label>
+            </value>
+            <value>
+                <fullName>536 - Organic &amp; Inorganic Contaminants</fullName>
+                <default>false</default>
+                <label>536 - Organic &amp; Inorganic Contaminants</label>
+            </value>
+            <value>
+                <fullName>537 - Additional, Phys Prop &amp; Matrix</fullName>
+                <default>false</default>
+                <label>537 - Additional, Phys Prop &amp; Matrix</label>
+            </value>
+            <value>
+                <fullName>538 - Sample Preparation</fullName>
+                <default>false</default>
+                <label>538 - Sample Preparation</label>
+            </value>
+            <value>
+                <fullName>539 - LPLC / Purification</fullName>
+                <default>false</default>
+                <label>539 - LPLC / Purification</label>
+            </value>
+            <value>
+                <fullName>540 - HPLC</fullName>
+                <default>false</default>
+                <label>540 - HPLC</label>
+            </value>
+            <value>
+                <fullName>541 - Gas Chromatography</fullName>
+                <default>false</default>
+                <label>541 - Gas Chromatography</label>
+            </value>
+            <value>
+                <fullName>542 - Analytical &amp; General Lab Equipment</fullName>
+                <default>false</default>
+                <label>542 - Analytical &amp; General Lab Equipment</label>
+            </value>
+            <value>
+                <fullName>604 - Diagnostics (BJ)</fullName>
+                <default>false</default>
+                <label>604 - Diagnostics (BJ)</label>
+            </value>
+            <value>
+                <fullName>605 - Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>605 - Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>614 - Protein Detection Instruments</fullName>
+                <default>false</default>
+                <label>614 - Protein Detection Instruments</label>
+            </value>
+            <value>
+                <fullName>615 - Licensing</fullName>
+                <default>false</default>
+                <label>615 - Licensing</label>
+            </value>
+            <value>
+                <fullName>635 - Lateral Flow Membrane (CA)</fullName>
+                <default>false</default>
+                <label>635 - Lateral Flow Membrane (CA)</label>
+            </value>
+            <value>
+                <fullName>636 - OEM Chromatography Media (CB)</fullName>
+                <default>false</default>
+                <label>636 - OEM Chromatography Media (CB)</label>
+            </value>
+            <value>
+                <fullName>637 - Contract Manufacturing Org - MM</fullName>
+                <default>false</default>
+                <label>637 - Contract Manufacturing Org - MM</label>
+            </value>
+            <value>
+                <fullName>638 - OEM Roll Stock (CD)</fullName>
+                <default>false</default>
+                <label>638 - OEM Roll Stock (CD)</label>
+            </value>
+            <value>
+                <fullName>639 - Blood Typing (CE)</fullName>
+                <default>false</default>
+                <label>639 - Blood Typing (CE)</label>
+            </value>
+            <value>
+                <fullName>640 - Diagnostic Bulk and Custom (CF)</fullName>
+                <default>false</default>
+                <label>640 - Diagnostic Bulk and Custom (CF)</label>
+            </value>
+            <value>
+                <fullName>643 - Accessories</fullName>
+                <default>false</default>
+                <label>643 - Accessories</label>
+            </value>
+            <value>
+                <fullName>644 - Consumables</fullName>
+                <default>false</default>
+                <label>644 - Consumables</label>
+            </value>
+            <value>
+                <fullName>645 - Hardware</fullName>
+                <default>false</default>
+                <label>645 - Hardware</label>
+            </value>
+            <value>
+                <fullName>646 - Rental</fullName>
+                <default>false</default>
+                <label>646 - Rental</label>
+            </value>
+            <value>
+                <fullName>647 - Instrument Services</fullName>
+                <default>false</default>
+                <label>647 - Instrument Services</label>
+            </value>
+            <value>
+                <fullName>649 - Microscopy</fullName>
+                <default>false</default>
+                <label>649 - Microscopy</label>
+            </value>
+            <value>
+                <fullName>650 - Organics</fullName>
+                <default>false</default>
+                <label>650 - Organics</label>
+            </value>
+            <value>
+                <fullName>653 - Global Customer Training &amp; BSN (NA)</fullName>
+                <default>false</default>
+                <label>653 - Global Customer Training &amp; BSN (NA)</label>
+            </value>
+            <value>
+                <fullName>655 - BioDevelp. &amp; Mgf. Supprt Srvcs (RW)</fullName>
+                <default>false</default>
+                <label>655 - BioDevelp. &amp; Mgf. Supprt Srvcs (RW)</label>
+            </value>
+            <value>
+                <fullName>656 - Mobius Disposable Assemblies (RS)</fullName>
+                <default>false</default>
+                <label>656 - Mobius Disposable Assemblies (RS)</label>
+            </value>
+            <value>
+                <fullName>657 - Single-Use Bioreactors (RX)</fullName>
+                <default>false</default>
+                <label>657 - Single-Use Bioreactors (RX)</label>
+            </value>
+            <value>
+                <fullName>658 - Sterile Sampling (TG)</fullName>
+                <default>false</default>
+                <label>658 - Sterile Sampling (TG)</label>
+            </value>
+            <value>
+                <fullName>660 - Virus Removal Products (RE)</fullName>
+                <default>false</default>
+                <label>660 - Virus Removal Products (RE)</label>
+            </value>
+            <value>
+                <fullName>662 - Integrity Testers (RH)</fullName>
+                <default>false</default>
+                <label>662 - Integrity Testers (RH)</label>
+            </value>
+            <value>
+                <fullName>663 - Clarification Products (RB)</fullName>
+                <default>false</default>
+                <label>663 - Clarification Products (RB)</label>
+            </value>
+            <value>
+                <fullName>664 - TFF Expendables (RC)</fullName>
+                <default>false</default>
+                <label>664 - TFF Expendables (RC)</label>
+            </value>
+            <value>
+                <fullName>666 - Housings (RU)</fullName>
+                <default>false</default>
+                <label>666 - Housings (RU)</label>
+            </value>
+            <value>
+                <fullName>668 - NovAseptic Systems Components (RT)</fullName>
+                <default>false</default>
+                <label>668 - NovAseptic Systems Components (RT)</label>
+            </value>
+            <value>
+                <fullName>669 - ExCyte (RZ)</fullName>
+                <default>false</default>
+                <label>669 - ExCyte (RZ)</label>
+            </value>
+            <value>
+                <fullName>670 - Supplements</fullName>
+                <default>false</default>
+                <label>670 - Supplements</label>
+            </value>
+            <value>
+                <fullName>671 - Probumin (TD)</fullName>
+                <default>false</default>
+                <label>671 - Probumin (TD)</label>
+            </value>
+            <value>
+                <fullName>674 - Cell Culture Media</fullName>
+                <default>false</default>
+                <label>674 - Cell Culture Media</label>
+            </value>
+            <value>
+                <fullName>677 - Solid Application</fullName>
+                <default>false</default>
+                <label>677 - Solid Application</label>
+            </value>
+            <value>
+                <fullName>678 - Liquid Application</fullName>
+                <default>false</default>
+                <label>678 - Liquid Application</label>
+            </value>
+            <value>
+                <fullName>680 - Advanced Drug Delivery</fullName>
+                <default>false</default>
+                <label>680 - Advanced Drug Delivery</label>
+            </value>
+            <value>
+                <fullName>682 - Specialties</fullName>
+                <default>false</default>
+                <label>682 - Specialties</label>
+            </value>
+            <value>
+                <fullName>687 - MWT - Protein Sample Prep</fullName>
+                <default>false</default>
+                <label>687 - MWT - Protein Sample Prep</label>
+            </value>
+            <value>
+                <fullName>689 - Cell Culture Workflow Tools</fullName>
+                <default>false</default>
+                <label>689 - Cell Culture Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>693 - Multiplex Protein Detection</fullName>
+                <default>false</default>
+                <label>693 - Multiplex Protein Detection</label>
+            </value>
+            <value>
+                <fullName>694 - Core Cell Culture</fullName>
+                <default>false</default>
+                <label>694 - Core Cell Culture</label>
+            </value>
+            <value>
+                <fullName>696 - Antibody Technologies</fullName>
+                <default>false</default>
+                <label>696 - Antibody Technologies</label>
+            </value>
+            <value>
+                <fullName>698 - Bioactive Small Molecules</fullName>
+                <default>false</default>
+                <label>698 - Bioactive Small Molecules</label>
+            </value>
+            <value>
+                <fullName>69E - MWT - Electrophoresis - WB</fullName>
+                <default>false</default>
+                <label>69E - MWT - Electrophoresis - WB</label>
+            </value>
+            <value>
+                <fullName>702 - Classical Inorganics for QC</fullName>
+                <default>false</default>
+                <label>702 - Classical Inorganics for QC</label>
+            </value>
+            <value>
+                <fullName>704 - BioDev&amp;Mfg Supp Sol</fullName>
+                <default>false</default>
+                <label>704 - BioDev&amp;Mfg Supp Sol</label>
+            </value>
+            <value>
+                <fullName>707 - Bioavailability Enhancement</fullName>
+                <default>false</default>
+                <label>707 - Bioavailability Enhancement</label>
+            </value>
+            <value>
+                <fullName>710 - Biochem Platforms</fullName>
+                <default>false</default>
+                <label>710 - Biochem Platforms</label>
+            </value>
+            <value>
+                <fullName>711 - Fusion Products</fullName>
+                <default>false</default>
+                <label>711 - Fusion Products</label>
+            </value>
+            <value>
+                <fullName>714 - Flowsight</fullName>
+                <default>false</default>
+                <label>714 - Flowsight</label>
+            </value>
+            <value>
+                <fullName>715 - Cellstream</fullName>
+                <default>false</default>
+                <label>715 - Cellstream</label>
+            </value>
+            <value>
+                <fullName>716 - Imagestream</fullName>
+                <default>false</default>
+                <label>716 - Imagestream</label>
+            </value>
+            <value>
+                <fullName>719 - Guava</fullName>
+                <default>false</default>
+                <label>719 - Guava</label>
+            </value>
+            <value>
+                <fullName>721 - Guava/Muse Service</fullName>
+                <default>false</default>
+                <label>721 - Guava/Muse Service</label>
+            </value>
+            <value>
+                <fullName>733 - POU Service</fullName>
+                <default>false</default>
+                <label>733 - POU Service</label>
+            </value>
+            <value>
+                <fullName>736 - Classical Solvents for QC</fullName>
+                <default>false</default>
+                <label>736 - Classical Solvents for QC</label>
+            </value>
+            <value>
+                <fullName>737 - Safety &amp; Essentials</fullName>
+                <default>false</default>
+                <label>737 - Safety &amp; Essentials</label>
+            </value>
+            <value>
+                <fullName>738 - Durapore Cartridges &amp; Capsules</fullName>
+                <default>false</default>
+                <label>738 - Durapore Cartridges &amp; Capsules</label>
+            </value>
+            <value>
+                <fullName>739 - Express Cartridges &amp; Capsules</fullName>
+                <default>false</default>
+                <label>739 - Express Cartridges &amp; Capsules</label>
+            </value>
+            <value>
+                <fullName>740 - Gas Cartridges &amp; Capsules</fullName>
+                <default>false</default>
+                <label>740 - Gas Cartridges &amp; Capsules</label>
+            </value>
+            <value>
+                <fullName>741 - Pre/Depth Filtr Cartridge &amp; Capsules</fullName>
+                <default>false</default>
+                <label>741 - Pre/Depth Filtr Cartridge &amp; Capsules</label>
+            </value>
+            <value>
+                <fullName>742 - Mobius Disposable Mixing</fullName>
+                <default>false</default>
+                <label>742 - Mobius Disposable Mixing</label>
+            </value>
+            <value>
+                <fullName>743 - Disposable Connectors</fullName>
+                <default>false</default>
+                <label>743 - Disposable Connectors</label>
+            </value>
+            <value>
+                <fullName>744 - Single-Use Systems</fullName>
+                <default>false</default>
+                <label>744 - Single-Use Systems</label>
+            </value>
+            <value>
+                <fullName>746 - Equip. Installation &amp; Qualific Srvcs</fullName>
+                <default>false</default>
+                <label>746 - Equip. Installation &amp; Qualific Srvcs</label>
+            </value>
+            <value>
+                <fullName>747 - Equipment Maintenance Services</fullName>
+                <default>false</default>
+                <label>747 - Equipment Maintenance Services</label>
+            </value>
+            <value>
+                <fullName>748 - Equipment Spare Parts</fullName>
+                <default>false</default>
+                <label>748 - Equipment Spare Parts</label>
+            </value>
+            <value>
+                <fullName>749 - Standard Lab Services</fullName>
+                <default>false</default>
+                <label>749 - Standard Lab Services</label>
+            </value>
+            <value>
+                <fullName>750 - Custom Lab Services</fullName>
+                <default>false</default>
+                <label>750 - Custom Lab Services</label>
+            </value>
+            <value>
+                <fullName>754 - Biomolecules</fullName>
+                <default>false</default>
+                <label>754 - Biomolecules</label>
+            </value>
+            <value>
+                <fullName>755 - Molecular Biology - Biotools</fullName>
+                <default>false</default>
+                <label>755 - Molecular Biology - Biotools</label>
+            </value>
+            <value>
+                <fullName>759 - ELISAs</fullName>
+                <default>false</default>
+                <label>759 - ELISAs</label>
+            </value>
+            <value>
+                <fullName>760 - Proteins &amp; Enzymes</fullName>
+                <default>false</default>
+                <label>760 - Proteins &amp; Enzymes</label>
+            </value>
+            <value>
+                <fullName>766 - Singulex</fullName>
+                <default>false</default>
+                <label>766 - Singulex</label>
+            </value>
+            <value>
+                <fullName>768 - Specialty Cell Culture</fullName>
+                <default>false</default>
+                <label>768 - Specialty Cell Culture</label>
+            </value>
+            <value>
+                <fullName>769 - Cell Culture Sera</fullName>
+                <default>false</default>
+                <label>769 - Cell Culture Sera</label>
+            </value>
+            <value>
+                <fullName>773 - Discovery Chemistry &amp; Services - RC</fullName>
+                <default>false</default>
+                <label>773 - Discovery Chemistry &amp; Services - RC</label>
+            </value>
+            <value>
+                <fullName>774 - Chemical Synthesis - RC</fullName>
+                <default>false</default>
+                <label>774 - Chemical Synthesis - RC</label>
+            </value>
+            <value>
+                <fullName>775 - Stable Isotopes - RC</fullName>
+                <default>false</default>
+                <label>775 - Stable Isotopes - RC</label>
+            </value>
+            <value>
+                <fullName>777 - Biochem Specialty &amp; Kits</fullName>
+                <default>false</default>
+                <label>777 - Biochem Specialty &amp; Kits</label>
+            </value>
+            <value>
+                <fullName>778 - Inorganics for Research</fullName>
+                <default>false</default>
+                <label>778 - Inorganics for Research</label>
+            </value>
+            <value>
+                <fullName>780 - Material Science</fullName>
+                <default>false</default>
+                <label>780 - Material Science</label>
+            </value>
+            <value>
+                <fullName>781 - Labware Alliances</fullName>
+                <default>false</default>
+                <label>781 - Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>784 - Biomolecules - AB</fullName>
+                <default>false</default>
+                <label>784 - Biomolecules - AB</label>
+            </value>
+            <value>
+                <fullName>785 - Cell Culture - AB</fullName>
+                <default>false</default>
+                <label>785 - Cell Culture - AB</label>
+            </value>
+            <value>
+                <fullName>786 - Cells and Cell based assays - AB</fullName>
+                <default>false</default>
+                <label>786 - Cells and Cell based assays - AB</label>
+            </value>
+            <value>
+                <fullName>787 - Custom Products - AB</fullName>
+                <default>false</default>
+                <label>787 - Custom Products - AB</label>
+            </value>
+            <value>
+                <fullName>788 - Functional Genomics - AB</fullName>
+                <default>false</default>
+                <label>788 - Functional Genomics - AB</label>
+            </value>
+            <value>
+                <fullName>789 - Genomics - AB</fullName>
+                <default>false</default>
+                <label>789 - Genomics - AB</label>
+            </value>
+            <value>
+                <fullName>790 - H &amp; H - AB</fullName>
+                <default>false</default>
+                <label>790 - H &amp; H - AB</label>
+            </value>
+            <value>
+                <fullName>792 - Protein Assays - AB</fullName>
+                <default>false</default>
+                <label>792 - Protein Assays - AB</label>
+            </value>
+            <value>
+                <fullName>793 - Proteins &amp; Enzymes - AB</fullName>
+                <default>false</default>
+                <label>793 - Proteins &amp; Enzymes - AB</label>
+            </value>
+            <value>
+                <fullName>799 - Fine Chemicals - AC</fullName>
+                <default>false</default>
+                <label>799 - Fine Chemicals - AC</label>
+            </value>
+            <value>
+                <fullName>806 - Dry Powder Media</fullName>
+                <default>false</default>
+                <label>806 - Dry Powder Media</label>
+            </value>
+            <value>
+                <fullName>807 - Growth Factors</fullName>
+                <default>false</default>
+                <label>807 - Growth Factors</label>
+            </value>
+            <value>
+                <fullName>817 - Adjustments PM Liquid Crystals</fullName>
+                <default>false</default>
+                <label>817 - Adjustments PM Liquid Crystals</label>
+            </value>
+            <value>
+                <fullName>819 - Adjustments PM Pigments &amp; Funct Mat</fullName>
+                <default>false</default>
+                <label>819 - Adjustments PM Pigments &amp; Funct Mat</label>
+            </value>
+            <value>
+                <fullName>820 - Adjustments CO PM</fullName>
+                <default>false</default>
+                <label>820 - Adjustments CO PM</label>
+            </value>
+            <value>
+                <fullName>822 - Adjustments PM Advanced Technologies</fullName>
+                <default>false</default>
+                <label>822 - Adjustments PM Advanced Technologies</label>
+            </value>
+            <value>
+                <fullName>824 - Adjustments PM IC Materials</fullName>
+                <default>false</default>
+                <label>824 - Adjustments PM IC Materials</label>
+            </value>
+            <value>
+                <fullName>825 - Adjustments PM Photoresists</fullName>
+                <default>false</default>
+                <label>825 - Adjustments PM Photoresists</label>
+            </value>
+            <value>
+                <fullName>831 - Adjustments Deposition Materials</fullName>
+                <default>false</default>
+                <label>831 - Adjustments Deposition Materials</label>
+            </value>
+            <value>
+                <fullName>841 - Final Fill</fullName>
+                <default>false</default>
+                <label>841 - Final Fill</label>
+            </value>
+            <value>
+                <fullName>842 - Trypsin Inhibitor</fullName>
+                <default>false</default>
+                <label>842 - Trypsin Inhibitor</label>
+            </value>
+            <value>
+                <fullName>843 - Trypsin Liquid</fullName>
+                <default>false</default>
+                <label>843 - Trypsin Liquid</label>
+            </value>
+            <value>
+                <fullName>844 - Trypsin Powder</fullName>
+                <default>false</default>
+                <label>844 - Trypsin Powder</label>
+            </value>
+            <value>
+                <fullName>845 - Biopharmaceutical Expression Systems</fullName>
+                <default>false</default>
+                <label>845 - Biopharmaceutical Expression Systems</label>
+            </value>
+            <value>
+                <fullName>873 - Early Dev Svcs Gene Tox</fullName>
+                <default>false</default>
+                <label>873 - Early Dev Svcs Gene Tox</label>
+            </value>
+            <value>
+                <fullName>874 - Early Dev Svcs Mamm Tox</fullName>
+                <default>false</default>
+                <label>874 - Early Dev Svcs Mamm Tox</label>
+            </value>
+            <value>
+                <fullName>877 - Biotesting Routine</fullName>
+                <default>false</default>
+                <label>877 - Biotesting Routine</label>
+            </value>
+            <value>
+                <fullName>883 - Clearance Services</fullName>
+                <default>false</default>
+                <label>883 - Clearance Services</label>
+            </value>
+            <value>
+                <fullName>885 - Adjustments Research Solutions</fullName>
+                <default>false</default>
+                <label>885 - Adjustments Research Solutions</label>
+            </value>
+            <value>
+                <fullName>886 - Adjustments Applied Solutions</fullName>
+                <default>false</default>
+                <label>886 - Adjustments Applied Solutions</label>
+            </value>
+            <value>
+                <fullName>887 - Adjustments Process Solutions</fullName>
+                <default>false</default>
+                <label>887 - Adjustments Process Solutions</label>
+            </value>
+            <value>
+                <fullName>894 - Cell Marque</fullName>
+                <default>false</default>
+                <label>894 - Cell Marque</label>
+            </value>
+            <value>
+                <fullName>920 - Solutions - F&amp;F</fullName>
+                <default>false</default>
+                <label>920 - Solutions - F&amp;F</label>
+            </value>
+            <value>
+                <fullName>926 - Contract Manufacturing Org - SA</fullName>
+                <default>false</default>
+                <label>926 - Contract Manufacturing Org - SA</label>
+            </value>
+            <value>
+                <fullName>927 - Amnis Reagents and Kits</fullName>
+                <default>false</default>
+                <label>927 - Amnis Reagents and Kits</label>
+            </value>
+            <value>
+                <fullName>928 - Amnis training</fullName>
+                <default>false</default>
+                <label>928 - Amnis training</label>
+            </value>
+            <value>
+                <fullName>929 - Amnis Service</fullName>
+                <default>false</default>
+                <label>929 - Amnis Service</label>
+            </value>
+            <value>
+                <fullName>985 - CO Performance Materials</fullName>
+                <default>false</default>
+                <label>985 - CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>B01 - Biobase Labware Alliances</fullName>
+                <default>false</default>
+                <label>B01 - Biobase Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>B14 - CYTOSCAN</fullName>
+                <default>false</default>
+                <label>B14 - CYTOSCAN</label>
+            </value>
+            <value>
+                <fullName>B1J - ONCOSCAN PRODUCT</fullName>
+                <default>false</default>
+                <label>B1J - ONCOSCAN PRODUCT</label>
+            </value>
+            <value>
+                <fullName>B1L - ONCOSCAN CNV</fullName>
+                <default>false</default>
+                <label>B1L - ONCOSCAN CNV</label>
+            </value>
+            <value>
+                <fullName>B1Q - SNP 6.0</fullName>
+                <default>false</default>
+                <label>B1Q - SNP 6.0</label>
+            </value>
+            <value>
+                <fullName>B1V - ACCESSORIES EXP</fullName>
+                <default>false</default>
+                <label>B1V - ACCESSORIES EXP</label>
+            </value>
+            <value>
+                <fullName>B1X - UPGRADES EXP</fullName>
+                <default>false</default>
+                <label>B1X - UPGRADES EXP</label>
+            </value>
+            <value>
+                <fullName>B1Y - DX2</fullName>
+                <default>false</default>
+                <label>B1Y - DX2</label>
+            </value>
+            <value>
+                <fullName>B1Z - GCS3000 CLIN</fullName>
+                <default>false</default>
+                <label>B1Z - GCS3000 CLIN</label>
+            </value>
+            <value>
+                <fullName>B24 - ACCESSORIES CLIN</fullName>
+                <default>false</default>
+                <label>B24 - ACCESSORIES CLIN</label>
+            </value>
+            <value>
+                <fullName>B25 - GENETITAN CLIN</fullName>
+                <default>false</default>
+                <label>B25 - GENETITAN CLIN</label>
+            </value>
+            <value>
+                <fullName>B27 - NIMBUS AUTOMATION</fullName>
+                <default>false</default>
+                <label>B27 - NIMBUS AUTOMATION</label>
+            </value>
+            <value>
+                <fullName>B2J - UPGRADES GENOTYPING</fullName>
+                <default>false</default>
+                <label>B2J - UPGRADES GENOTYPING</label>
+            </value>
+            <value>
+                <fullName>B2K - FIELD SERVICES BILLABLE</fullName>
+                <default>false</default>
+                <label>B2K - FIELD SERVICES BILLABLE</label>
+            </value>
+            <value>
+                <fullName>B2Q - AXIOM CARRIER SCREENING</fullName>
+                <default>false</default>
+                <label>B2Q - AXIOM CARRIER SCREENING</label>
+            </value>
+            <value>
+                <fullName>B2S - OTHER GA SVCS - CLINICAL</fullName>
+                <default>false</default>
+                <label>B2S - OTHER GA SVCS - CLINICAL</label>
+            </value>
+            <value>
+                <fullName>C01 - Cobetter Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>C01 - Cobetter Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>C02 - Cobetter In Process Testing</fullName>
+                <default>false</default>
+                <label>C02 - Cobetter In Process Testing</label>
+            </value>
+            <value>
+                <fullName>C03 - Cobetter Cartridge Filters</fullName>
+                <default>false</default>
+                <label>C03 - Cobetter Cartridge Filters</label>
+            </value>
+            <value>
+                <fullName>D01 - Lab Supply - Diagnostics</fullName>
+                <default>false</default>
+                <label>D01 - Lab Supply - Diagnostics</label>
+            </value>
+            <value>
+                <fullName>D08 - Lab Supply - Others</fullName>
+                <default>false</default>
+                <label>D08 - Lab Supply - Others</label>
+            </value>
+            <value>
+                <fullName>D09 - Lab Supply - Service</fullName>
+                <default>false</default>
+                <label>D09 - Lab Supply - Service</label>
+            </value>
+            <value>
+                <fullName>G01 - LGC Drugs &amp; Metrological Institutes</fullName>
+                <default>false</default>
+                <label>G01 - LGC Drugs &amp; Metrological Institutes</label>
+            </value>
+            <value>
+                <fullName>K01 - Kraeber DNA-RNA Platforms</fullName>
+                <default>false</default>
+                <label>K01 - Kraeber DNA-RNA Platforms</label>
+            </value>
+            <value>
+                <fullName>L01 - Adjustments Applied Solutions BCS</fullName>
+                <default>false</default>
+                <label>L01 - Adjustments Applied Solutions BCS</label>
+            </value>
+            <value>
+                <fullName>ME1 - Essential</fullName>
+                <default>false</default>
+                <label>ME1 - Essential</label>
+            </value>
+            <value>
+                <fullName>MG1 - Non-Essential</fullName>
+                <default>false</default>
+                <label>MG1 - Non-Essential</label>
+            </value>
+            <value>
+                <fullName>N6P - CYTOSCAN RR</fullName>
+                <default>false</default>
+                <label>N6P - CYTOSCAN RR</label>
+            </value>
+            <value>
+                <fullName>P01 - USP Chemicals MM</fullName>
+                <default>false</default>
+                <label>P01 - USP Chemicals MM</label>
+            </value>
+            <value>
+                <fullName>P02 - DSP Functional Chemicals MM</fullName>
+                <default>false</default>
+                <label>P02 - DSP Functional Chemicals MM</label>
+            </value>
+            <value>
+                <fullName>P03 - USP Chemicals SIAL</fullName>
+                <default>false</default>
+                <label>P03 - USP Chemicals SIAL</label>
+            </value>
+            <value>
+                <fullName>P04 - Powder Buffers SIAL</fullName>
+                <default>false</default>
+                <label>P04 - Powder Buffers SIAL</label>
+            </value>
+            <value>
+                <fullName>P05 - DSP Functional Chemicals SIAL</fullName>
+                <default>false</default>
+                <label>P05 - DSP Functional Chemicals SIAL</label>
+            </value>
+            <value>
+                <fullName>P06 - Processing Solutions SIAL</fullName>
+                <default>false</default>
+                <label>P06 - Processing Solutions SIAL</label>
+            </value>
+            <value>
+                <fullName>P07 - Other BioPharm Materials SIAL</fullName>
+                <default>false</default>
+                <label>P07 - Other BioPharm Materials SIAL</label>
+            </value>
+            <value>
+                <fullName>P08 - Standard Hardware</fullName>
+                <default>false</default>
+                <label>P08 - Standard Hardware</label>
+            </value>
+            <value>
+                <fullName>P09 - Custom Hardware</fullName>
+                <default>false</default>
+                <label>P09 - Custom Hardware</label>
+            </value>
+            <value>
+                <fullName>P10 - Powder Buffers MM</fullName>
+                <default>false</default>
+                <label>P10 - Powder Buffers MM</label>
+            </value>
+            <value>
+                <fullName>P11 - Processing Solutions MM</fullName>
+                <default>false</default>
+                <label>P11 - Processing Solutions MM</label>
+            </value>
+            <value>
+                <fullName>P12 - Immediate Advantage and Services</fullName>
+                <default>false</default>
+                <label>P12 - Immediate Advantage and Services</label>
+            </value>
+            <value>
+                <fullName>P13 - Liquid Media</fullName>
+                <default>false</default>
+                <label>P13 - Liquid Media</label>
+            </value>
+            <value>
+                <fullName>P14 - Media Development Services</fullName>
+                <default>false</default>
+                <label>P14 - Media Development Services</label>
+            </value>
+            <value>
+                <fullName>P21 - Affinity Chromatography Media</fullName>
+                <default>false</default>
+                <label>P21 - Affinity Chromatography Media</label>
+            </value>
+            <value>
+                <fullName>P22 - IEX Chromatography Media</fullName>
+                <default>false</default>
+                <label>P22 - IEX Chromatography Media</label>
+            </value>
+            <value>
+                <fullName>P23 - Inorganic Sorbents</fullName>
+                <default>false</default>
+                <label>P23 - Inorganic Sorbents</label>
+            </value>
+            <value>
+                <fullName>P24 - Prepacked Columns</fullName>
+                <default>false</default>
+                <label>P24 - Prepacked Columns</label>
+            </value>
+            <value>
+                <fullName>P31 - Special API</fullName>
+                <default>false</default>
+                <label>P31 - Special API</label>
+            </value>
+            <value>
+                <fullName>P32 - Biopharm Ingredients</fullName>
+                <default>false</default>
+                <label>P32 - Biopharm Ingredients</label>
+            </value>
+            <value>
+                <fullName>P33 - Cleaning in Place</fullName>
+                <default>false</default>
+                <label>P33 - Cleaning in Place</label>
+            </value>
+            <value>
+                <fullName>P34 - Portfolio API</fullName>
+                <default>false</default>
+                <label>P34 - Portfolio API</label>
+            </value>
+            <value>
+                <fullName>P35 - Special Raw Material</fullName>
+                <default>false</default>
+                <label>P35 - Special Raw Material</label>
+            </value>
+            <value>
+                <fullName>P41 - ADC Conjugation-API</fullName>
+                <default>false</default>
+                <label>P41 - ADC Conjugation-API</label>
+            </value>
+            <value>
+                <fullName>P42 - cGMP Small Molecules-API</fullName>
+                <default>false</default>
+                <label>P42 - cGMP Small Molecules-API</label>
+            </value>
+            <value>
+                <fullName>P43 - GenericsAPI</fullName>
+                <default>false</default>
+                <label>P43 - GenericsAPI</label>
+            </value>
+            <value>
+                <fullName>P44 - HPAPI</fullName>
+                <default>false</default>
+                <label>P44 - HPAPI</label>
+            </value>
+            <value>
+                <fullName>P45 - HPAPI- Linker</fullName>
+                <default>false</default>
+                <label>P45 - HPAPI- Linker</label>
+            </value>
+            <value>
+                <fullName>P46 - Linker-API</fullName>
+                <default>false</default>
+                <label>P46 - Linker-API</label>
+            </value>
+            <value>
+                <fullName>P47 - Formulation - SIAL</fullName>
+                <default>false</default>
+                <label>P47 - Formulation - SIAL</label>
+            </value>
+            <value>
+                <fullName>P48 - cGMP SmallMolecules -Pharm Materials</fullName>
+                <default>false</default>
+                <label>P48 - cGMP SmallMolecules -Pharm Materials</label>
+            </value>
+            <value>
+                <fullName>P49 - Generics-Pharm Materials</fullName>
+                <default>false</default>
+                <label>P49 - Generics-Pharm Materials</label>
+            </value>
+            <value>
+                <fullName>P50 - Medical Device</fullName>
+                <default>false</default>
+                <label>P50 - Medical Device</label>
+            </value>
+            <value>
+                <fullName>P51 - Non GMP Small Molecules</fullName>
+                <default>false</default>
+                <label>P51 - Non GMP Small Molecules</label>
+            </value>
+            <value>
+                <fullName>P52 - Carboxen</fullName>
+                <default>false</default>
+                <label>P52 - Carboxen</label>
+            </value>
+            <value>
+                <fullName>P53 - Critical Raw Material</fullName>
+                <default>false</default>
+                <label>P53 - Critical Raw Material</label>
+            </value>
+            <value>
+                <fullName>P54 - Chess</fullName>
+                <default>false</default>
+                <label>P54 - Chess</label>
+            </value>
+            <value>
+                <fullName>P55 - Oth-P</fullName>
+                <default>false</default>
+                <label>P55 - Oth-P</label>
+            </value>
+            <value>
+                <fullName>P56 - Proligo</fullName>
+                <default>false</default>
+                <label>P56 - Proligo</label>
+            </value>
+            <value>
+                <fullName>P57 - IFRS 15 adj PS</fullName>
+                <default>false</default>
+                <label>P57 - IFRS 15 adj PS</label>
+            </value>
+            <value>
+                <fullName>P58 - IFRS 15 adj RS</fullName>
+                <default>false</default>
+                <label>P58 - IFRS 15 adj RS</label>
+            </value>
+            <value>
+                <fullName>P59 - IFRS 15 adj AS</fullName>
+                <default>false</default>
+                <label>P59 - IFRS 15 adj AS</label>
+            </value>
+            <value>
+                <fullName>P61 - Cell Therapy</fullName>
+                <default>false</default>
+                <label>P61 - Cell Therapy</label>
+            </value>
+            <value>
+                <fullName>P62 - Viral &amp; Gene Therapy</fullName>
+                <default>false</default>
+                <label>P62 - Viral &amp; Gene Therapy</label>
+            </value>
+            <value>
+                <fullName>P63 - Cell Bank Manufacturing</fullName>
+                <default>false</default>
+                <label>P63 - Cell Bank Manufacturing</label>
+            </value>
+            <value>
+                <fullName>P65 - BioRepository</fullName>
+                <default>false</default>
+                <label>P65 - BioRepository</label>
+            </value>
+            <value>
+                <fullName>R02 - Rocker Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>R02 - Rocker Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>R03 - Rocker In Process Testing Ph</fullName>
+                <default>false</default>
+                <label>R03 - Rocker In Process Testing Ph</label>
+            </value>
+            <value>
+                <fullName>T8A - Workflow Ancillaries</fullName>
+                <default>false</default>
+                <label>T8A - Workflow Ancillaries</label>
+            </value>
+            <value>
+                <fullName>XX1 - Hotc/Nutra/Device</fullName>
+                <default>false</default>
+                <label>XX1 - Hotc/Nutra/Device</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

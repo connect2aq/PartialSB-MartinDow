@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Client Proposal Line Items">
+        <div class="slds-p-around_x-small slds-grid slds-gutters">
+            <!-- <div class="slds-col">
+                <lightning-button label="Get Latest" onclick={handleRefresh}></lightning-button>
+            </div> -->
+        </div>
+
+        <!-- <lightning-datatable
+            key-field="Id"
+            data={rows}
+            columns={columns}
+            draft-values={draftValues}
+            errors={tableErrors}
+            hide-checkbox-column
+            onsave={handleSave}
+            oncancel={handleCancel}>
+        </lightning-datatable> -->
+        <c-md-qli-data-table
+    key-field="Id"
+    data={rows}
+    columns={columns}
+    draft-values={draftValues}
+    errors={tableErrors}
+    hide-checkbox-column
+    onsave={handleSave}
+    oncancel={handleCancel}>
+</c-md-qli-data-table>
+    </lightning-card>
+</template>

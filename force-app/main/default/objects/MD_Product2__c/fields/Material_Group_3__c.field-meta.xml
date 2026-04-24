@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Group_3__c</fullName>
+    <label>Material Group 3</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MaterialGroup3-0</fullName>
+                <default>false</default>
+                <label>MaterialGroup3-0</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup3-1</fullName>
+                <default>false</default>
+                <label>MaterialGroup3-1</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup3-2</fullName>
+                <default>false</default>
+                <label>MaterialGroup3-2</label>
+            </value>
+            <value>
+                <fullName>AS1 - Advanced Genomics</fullName>
+                <default>false</default>
+                <label>AS1 - Advanced Genomics</label>
+            </value>
+            <value>
+                <fullName>AS2 - Commodities &amp; Services</fullName>
+                <default>false</default>
+                <label>AS2 - Commodities &amp; Services</label>
+            </value>
+            <value>
+                <fullName>AS3 - Flavors &amp; Fragrances</fullName>
+                <default>false</default>
+                <label>AS3 - Flavors &amp; Fragrances</label>
+            </value>
+            <value>
+                <fullName>AS4 - Flow Cytometry</fullName>
+                <default>false</default>
+                <label>AS4 - Flow Cytometry</label>
+            </value>
+            <value>
+                <fullName>AS5 - Immunoassay &amp; Rapid</fullName>
+                <default>false</default>
+                <label>AS5 - Immunoassay &amp; Rapid</label>
+            </value>
+            <value>
+                <fullName>AS6 - Tissue Diagnostics</fullName>
+                <default>false</default>
+                <label>AS6 - Tissue Diagnostics</label>
+            </value>
+            <value>
+                <fullName>AS7 - Gene Editing</fullName>
+                <default>false</default>
+                <label>AS7 - Gene Editing</label>
+            </value>
+            <value>
+                <fullName>B01 - Biobase Labware Alliances</fullName>
+                <default>false</default>
+                <label>B01 - Biobase Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>C04 - Lab Water</fullName>
+                <default>false</default>
+                <label>C04 - Lab Water</label>
+            </value>
+            <value>
+                <fullName>C05 - Lab Classics</fullName>
+                <default>false</default>
+                <label>C05 - Lab Classics</label>
+            </value>
+            <value>
+                <fullName>C09 - Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>C09 - Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>C15 - MolecularPlatforms</fullName>
+                <default>false</default>
+                <label>C15 - MolecularPlatforms</label>
+            </value>
+            <value>
+                <fullName>C16 - Protein &amp; Pathway Technologies</fullName>
+                <default>false</default>
+                <label>C16 - Protein &amp; Pathway Technologies</label>
+            </value>
+            <value>
+                <fullName>C17 - Cell Biology</fullName>
+                <default>false</default>
+                <label>C17 - Cell Biology</label>
+            </value>
+            <value>
+                <fullName>C22 - Cell Culture</fullName>
+                <default>false</default>
+                <label>C22 - Cell Culture</label>
+            </value>
+            <value>
+                <fullName>C23 - BioPharma Materials</fullName>
+                <default>false</default>
+                <label>C23 - BioPharma Materials</label>
+            </value>
+            <value>
+                <fullName>C24 - Single-Use/Hardware</fullName>
+                <default>false</default>
+                <label>C24 - Single-Use/Hardware</label>
+            </value>
+            <value>
+                <fullName>C25 - Aseptic</fullName>
+                <default>false</default>
+                <label>C25 - Aseptic</label>
+            </value>
+            <value>
+                <fullName>C26 - Downstream</fullName>
+                <default>false</default>
+                <label>C26 - Downstream</label>
+            </value>
+            <value>
+                <fullName>C27 - Purification</fullName>
+                <default>false</default>
+                <label>C27 - Purification</label>
+            </value>
+            <value>
+                <fullName>C28 - API Contract Manufacturing</fullName>
+                <default>false</default>
+                <label>C28 - API Contract Manufacturing</label>
+            </value>
+            <value>
+                <fullName>C29 - Formulation</fullName>
+                <default>false</default>
+                <label>C29 - Formulation</label>
+            </value>
+            <value>
+                <fullName>C30 - Pharm Materials</fullName>
+                <default>false</default>
+                <label>C30 - Pharm Materials</label>
+            </value>
+            <value>
+                <fullName>C31 - Biodevelopment Manufacturing</fullName>
+                <default>false</default>
+                <label>C31 - Biodevelopment Manufacturing</label>
+            </value>
+            <value>
+                <fullName>C33 - Bioreliance Testing Services</fullName>
+                <default>false</default>
+                <label>C33 - Bioreliance Testing Services</label>
+            </value>
+            <value>
+                <fullName>C34 - Chemical Synthesis</fullName>
+                <default>false</default>
+                <label>C34 - Chemical Synthesis</label>
+            </value>
+            <value>
+                <fullName>C35 - Biochemistry</fullName>
+                <default>false</default>
+                <label>C35 - Biochemistry</label>
+            </value>
+            <value>
+                <fullName>C36 - Material Science</fullName>
+                <default>false</default>
+                <label>C36 - Material Science</label>
+            </value>
+            <value>
+                <fullName>C42 - Provantage Lab Services</fullName>
+                <default>false</default>
+                <label>C42 - Provantage Lab Services</label>
+            </value>
+            <value>
+                <fullName>C45 - Instrumental Analysis (IA)</fullName>
+                <default>false</default>
+                <label>C45 - Instrumental Analysis (IA)</label>
+            </value>
+            <value>
+                <fullName>C46 - Point-of-Use (POU)</fullName>
+                <default>false</default>
+                <label>C46 - Point-of-Use (POU)</label>
+            </value>
+            <value>
+                <fullName>C47 - Reference Materials (RM)</fullName>
+                <default>false</default>
+                <label>C47 - Reference Materials (RM)</label>
+            </value>
+            <value>
+                <fullName>C48 - Analytical Chromatography (AC)</fullName>
+                <default>false</default>
+                <label>C48 - Analytical Chromatography (AC)</label>
+            </value>
+            <value>
+                <fullName>C49 - Immunoassay Platform Solutions</fullName>
+                <default>false</default>
+                <label>C49 - Immunoassay Platform Solutions</label>
+            </value>
+            <value>
+                <fullName>C50 - Discovery Chemistry &amp; Services</fullName>
+                <default>false</default>
+                <label>C50 - Discovery Chemistry &amp; Services</label>
+            </value>
+            <value>
+                <fullName>C51 - In Process Testing</fullName>
+                <default>false</default>
+                <label>C51 - In Process Testing</label>
+            </value>
+            <value>
+                <fullName>C52 - Release Testing</fullName>
+                <default>false</default>
+                <label>C52 - Release Testing</label>
+            </value>
+            <value>
+                <fullName>C53 - Environmental Monitoring</fullName>
+                <default>false</default>
+                <label>C53 - Environmental Monitoring</label>
+            </value>
+            <value>
+                <fullName>C55 - BioMonitoring Services</fullName>
+                <default>false</default>
+                <label>C55 - BioMonitoring Services</label>
+            </value>
+            <value>
+                <fullName>C56 - BioControl Systems</fullName>
+                <default>false</default>
+                <label>C56 - BioControl Systems</label>
+            </value>
+            <value>
+                <fullName>C60 - Cell Culture Workflow Tools</fullName>
+                <default>false</default>
+                <label>C60 - Cell Culture Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>C61 - Molecular Workflow Tools</fullName>
+                <default>false</default>
+                <label>C61 - Molecular Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>C62 - Labware Alliances</fullName>
+                <default>false</default>
+                <label>C62 - Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>C91 - Cobetter Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>C91 - Cobetter Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>C92 - Cobetter In Process Testing</fullName>
+                <default>false</default>
+                <label>C92 - Cobetter In Process Testing</label>
+            </value>
+            <value>
+                <fullName>C93 - Cobetter Cartridge Filters</fullName>
+                <default>false</default>
+                <label>C93 - Cobetter Cartridge Filters</label>
+            </value>
+            <value>
+                <fullName>D01 - LCM Materials</fullName>
+                <default>false</default>
+                <label>D01 - LCM Materials</label>
+            </value>
+            <value>
+                <fullName>D11 - Decorative Materials</fullName>
+                <default>false</default>
+                <label>D11 - Decorative Materials</label>
+            </value>
+            <value>
+                <fullName>D12 - Functional Materials</fullName>
+                <default>false</default>
+                <label>D12 - Functional Materials</label>
+            </value>
+            <value>
+                <fullName>D13 - Advanced Technologies</fullName>
+                <default>false</default>
+                <label>D13 - Advanced Technologies</label>
+            </value>
+            <value>
+                <fullName>D14 - IC Materials</fullName>
+                <default>false</default>
+                <label>D14 - IC Materials</label>
+            </value>
+            <value>
+                <fullName>D15 - Display Patterning Materials</fullName>
+                <default>false</default>
+                <label>D15 - Display Patterning Materials</label>
+            </value>
+            <value>
+                <fullName>D16 - Deposition Materials</fullName>
+                <default>false</default>
+                <label>D16 - Deposition Materials</label>
+            </value>
+            <value>
+                <fullName>D21 - Lab Supply</fullName>
+                <default>false</default>
+                <label>D21 - Lab Supply</label>
+            </value>
+            <value>
+                <fullName>E05 - CO Performance Materials</fullName>
+                <default>false</default>
+                <label>E05 - CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>F07 - Adjustments PM Display Materials</fullName>
+                <default>false</default>
+                <label>F07 - Adjustments PM Display Materials</label>
+            </value>
+            <value>
+                <fullName>F09 - Adjustments PM Pigments &amp; Funct Mat</fullName>
+                <default>false</default>
+                <label>F09 - Adjustments PM Pigments &amp; Funct Mat</label>
+            </value>
+            <value>
+                <fullName>F10 - Adjustments CO Performance Materials</fullName>
+                <default>false</default>
+                <label>F10 - Adjustments CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>F13 - Adjustments PM Advanced Technologies</fullName>
+                <default>false</default>
+                <label>F13 - Adjustments PM Advanced Technologies</label>
+            </value>
+            <value>
+                <fullName>F14 - Adjustments PM IC Materials</fullName>
+                <default>false</default>
+                <label>F14 - Adjustments PM IC Materials</label>
+            </value>
+            <value>
+                <fullName>F21 - Adjustments Research Solutions</fullName>
+                <default>false</default>
+                <label>F21 - Adjustments Research Solutions</label>
+            </value>
+            <value>
+                <fullName>F22 - Adjustments Applied Solutions</fullName>
+                <default>false</default>
+                <label>F22 - Adjustments Applied Solutions</label>
+            </value>
+            <value>
+                <fullName>F23 - Adjustments Process Solutions</fullName>
+                <default>false</default>
+                <label>F23 - Adjustments Process Solutions</label>
+            </value>
+            <value>
+                <fullName>G01 - LGC Reference Materials (RM)</fullName>
+                <default>false</default>
+                <label>G01 - LGC Reference Materials (RM)</label>
+            </value>
+            <value>
+                <fullName>K01 - Kraeber MolecularPlatforms</fullName>
+                <default>false</default>
+                <label>K01 - Kraeber MolecularPlatforms</label>
+            </value>
+            <value>
+                <fullName>M01 - GeneTitan</fullName>
+                <default>false</default>
+                <label>M01 - GeneTitan</label>
+            </value>
+            <value>
+                <fullName>M02 - GCS3000</fullName>
+                <default>false</default>
+                <label>M02 - GCS3000</label>
+            </value>
+            <value>
+                <fullName>M03 - TFS Others</fullName>
+                <default>false</default>
+                <label>M03 - TFS Others</label>
+            </value>
+            <value>
+                <fullName>MA3 - Ampoule</fullName>
+                <default>false</default>
+                <label>MA3 - Ampoule</label>
+            </value>
+            <value>
+                <fullName>MB3 - Tablet</fullName>
+                <default>false</default>
+                <label>MB3 - Tablet</label>
+            </value>
+            <value>
+                <fullName>MC3 - Capsules</fullName>
+                <default>false</default>
+                <label>MC3 - Capsules</label>
+            </value>
+            <value>
+                <fullName>MD3 - Derma</fullName>
+                <default>false</default>
+                <label>MD3 - Derma</label>
+            </value>
+            <value>
+                <fullName>ME3 - Consumer</fullName>
+                <default>false</default>
+                <label>ME3 - Consumer</label>
+            </value>
+            <value>
+                <fullName>MG3 - Tablet</fullName>
+                <default>false</default>
+                <label>MG3 - Tablet</label>
+            </value>
+            <value>
+                <fullName>MH3 - Hand Sanitizer</fullName>
+                <default>false</default>
+                <label>MH3 - Hand Sanitizer</label>
+            </value>
+            <value>
+                <fullName>MI3 - Injectable (Ampoule)</fullName>
+                <default>false</default>
+                <label>MI3 - Injectable (Ampoule)</label>
+            </value>
+            <value>
+                <fullName>MJ3 - Injectable (Vial)</fullName>
+                <default>false</default>
+                <label>MJ3 - Injectable (Vial)</label>
+            </value>
+            <value>
+                <fullName>ML3 - Gel</fullName>
+                <default>false</default>
+                <label>ML3 - Gel</label>
+            </value>
+            <value>
+                <fullName>MN3 - Lotion</fullName>
+                <default>false</default>
+                <label>MN3 - Lotion</label>
+            </value>
+            <value>
+                <fullName>MO3 - Drops</fullName>
+                <default>false</default>
+                <label>MO3 - Drops</label>
+            </value>
+            <value>
+                <fullName>MP3 - Liquid Syrup</fullName>
+                <default>false</default>
+                <label>MP3 - Liquid Syrup</label>
+            </value>
+            <value>
+                <fullName>MR3 - Cream</fullName>
+                <default>false</default>
+                <label>MR3 - Cream</label>
+            </value>
+            <value>
+                <fullName>MS3 - Sachet</fullName>
+                <default>false</default>
+                <label>MS3 - Sachet</label>
+            </value>
+            <value>
+                <fullName>MT3 - Ointment</fullName>
+                <default>false</default>
+                <label>MT3 - Ointment</label>
+            </value>
+            <value>
+                <fullName>MU3 - Oral Solution</fullName>
+                <default>false</default>
+                <label>MU3 - Oral Solution</label>
+            </value>
+            <value>
+                <fullName>MV3 - Vial</fullName>
+                <default>false</default>
+                <label>MV3 - Vial</label>
+            </value>
+            <value>
+                <fullName>MX3 - Suspension</fullName>
+                <default>false</default>
+                <label>MX3 - Suspension</label>
+            </value>
+            <value>
+                <fullName>MY3 - Syrup</fullName>
+                <default>false</default>
+                <label>MY3 - Syrup</label>
+            </value>
+            <value>
+                <fullName>R02 - Rocker Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>R02 - Rocker Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>R03 - Rocker In Process Testing</fullName>
+                <default>false</default>
+                <label>R03 - Rocker In Process Testing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

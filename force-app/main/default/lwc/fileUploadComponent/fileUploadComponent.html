@@ -1,0 +1,108 @@
+<!-- fileUploadComponent.html -->
+<template>
+    <lightning-card title="Files & Documents" icon-name="standard:file">
+        
+        <!-- Loading Spinner -->
+        <div if:true={isLoading} class="slds-is-relative">
+            <lightning-spinner alternative-text="Uploading files..." size="medium"></lightning-spinner>
+        </div>
+
+        <!-- Mobile-Optimized File Upload Section -->
+        <div class="slds-card__body slds-card__body_inner">
+            
+
+
+            <!-- Lightning File Upload Component -->
+            <div class="file-upload">
+                <lightning-file-upload
+                    label="Upload Files (Images & PDFs)"
+                    name="fileUploader"
+                    accept={acceptedFormats}
+                    record-id={recordId}
+                    onuploadfinished={handleUploadFinished}
+                    onuploadstart={handleUploadStart}
+                    multiple={multiple}
+                    disabled={isLoading}>
+                </lightning-file-upload>
+            </div>
+
+            <!-- File Format Info -->
+            <div class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                <lightning-icon icon-name="utility:info" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                Supported formats: JPG, PNG, GIF, PDF | Max size: 25MB per file
+            </div>
+
+        </div>
+
+        <!-- Existing Files List -->
+        <div if:true={uploadedFiles.length} class="slds-card__body slds-card__body_inner">
+            <h3 class="slds-text-heading_small slds-m-bottom_medium">
+                <lightning-icon icon-name="standard:file" size="small" class="slds-m-right_x-small"></lightning-icon>
+                Uploaded Files ({uploadedFiles.length})
+            </h3>
+            
+            <!-- Files Grid for Mobile -->
+            <div class="files-grid">
+                <template for:each={uploadedFiles} for:item="file">
+                    <div key={file.Id} class="file-item slds-box slds-box_x-small slds-m-bottom_x-small">
+                        
+                        <!-- File Info -->
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <lightning-icon 
+                                    icon-name={file.FileIcon} 
+                                    size="medium"
+                                    class="file-icon">
+                                </lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h4 class="slds-text-heading_x-small slds-truncate" title={file.Title}>
+                                    {file.Title}
+                                </h4>
+                                <p class="slds-text-body_small slds-text-color_weak">
+                                    {file.FileSize} • {file.FileType}
+                                </p>
+                                <p class="slds-text-body_small slds-text-color_weak">
+                                    Uploaded: {file.CreatedDate}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- File Actions -->
+                        <div class="slds-m-top_x-small">
+                            <lightning-button-group>
+                                <lightning-button 
+                                    label="Preview" 
+                                    icon-name="utility:preview"
+                                    size="small"
+                                    data-id={file.Id}
+                                    onclick={handleFilePreview}>
+                                </lightning-button>
+                                <lightning-button 
+                                    label="Download" 
+                                    icon-name="utility:download"
+                                    size="small"
+                                    data-id={file.Id}
+                                    onclick={handleFileDownload}>
+                                </lightning-button>
+                            </lightning-button-group>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- No Files Message -->
+        <div if:false={uploadedFiles.length} class="slds-card__body slds-card__body_inner">
+            <div class="slds-illustration slds-illustration_small">
+                <div class="slds-text-longform">
+                    <h3 class="slds-text-heading_medium">No files uploaded yet</h3>
+                    <p class="slds-text-body_regular">
+                        Use the buttons above to take photos or upload documents.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </lightning-card>
+</template>

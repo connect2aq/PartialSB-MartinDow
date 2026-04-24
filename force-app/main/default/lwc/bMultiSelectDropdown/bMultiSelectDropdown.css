@@ -1,0 +1,70 @@
+/* Multi-select dropdown specific styles */
+:host {
+  display: block;
+  width: 100%;
+}
+
+.typeahead {
+  width: 100%;
+}
+
+.slds-form-element__control {
+  width: 100%;
+}
+
+.slds-combobox_container {
+  width: 100%;
+}
+
+.slds-combobox {
+  position: relative;
+  width: 100%;
+}
+
+.slds-combobox__form-element {
+  width: 100%;
+}
+
+.slds-dropdown {
+  position: absolute;
+  z-index: 7001;
+  right: 0;
+  top: 100%;
+  margin-top: 0.125rem;
+  max-height: 15rem;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #dddbda;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+}
+
+.slds-listbox__item {
+  padding: 0;
+}
+
+.slds-checkbox {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.slds-checkbox:hover {
+  background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.slds-checkbox input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.slds-listbox__option-text {
+  flex: 1;
+  color: var(--slds-g-color-neutral-base-10, #181818);
+  opacity: 1;
+}
+
+.slds-badge {
+  font-size: 0.75rem;
+}

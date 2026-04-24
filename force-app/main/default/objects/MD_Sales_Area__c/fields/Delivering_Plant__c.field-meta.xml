@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivering_Plant__c</fullName>
+    <label>Delivering Plant</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3100 - MDSPL – Head Office, Karachi</fullName>
+                <default>false</default>
+                <label>3100 - MDSPL – Head Office, Karachi</label>
+            </value>
+            <value>
+                <fullName>3200 - MDSPL – Lahore Warehouse</fullName>
+                <default>false</default>
+                <label>3200 - MDSPL – Lahore Warehouse</label>
+            </value>
+            <value>
+                <fullName>3300 - MDSPL – Korangi Warehouse</fullName>
+                <default>true</default>
+                <label>3300 - MDSPL – Korangi Warehouse</label>
+            </value>
+            <value>
+                <fullName>3100 - MDMSPL-Head Office Karachi</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>3100 - MDMSPL-Head Office Karachi</label>
+            </value>
+            <value>
+                <fullName>3200 - MDMSPL-Lahore Warehouse</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>3200 - MDMSPL-Lahore Warehouse</label>
+            </value>
+            <value>
+                <fullName>3300 - MDMSPL-Korangi Warehouse</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>3300 - MDMSPL-Korangi Warehouse</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

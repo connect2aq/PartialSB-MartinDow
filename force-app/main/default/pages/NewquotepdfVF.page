@@ -1,0 +1,178 @@
+<apex:page renderAs="pdf" showHeader="false" standardController="MD_Quote__c">
+
+    <!-- Header -->
+    <table width="100%" style="border-bottom:2px solid #000; margin-bottom:20px;">
+        <tr>
+            <td width="60%">
+                <apex:image url="{!URLFOR($Resource.Martin_Dow_Logo)}" width="150"/>
+            </td>
+            <td align="right" style="font-family:Arial; font-size:12px;">
+                <p><strong>Date:</strong> 
+                    <apex:outputText value="{0, date, MMMM dd, yyyy}">
+                        <apex:param value="{!TODAY()}" />
+                    </apex:outputText>
+                </p>
+                <b>Division/Dept:</b> MDSPL - Diagnostic<br/>
+                <b>Responsible:</b> {!MD_Quote__c.CreatedBy.Name}<br/>
+                <b>E-Mail:</b> {!MD_Quote__c.CreatedBy.Email}<br/>
+                <b>Our.Ref:</b> {!MD_Quote__c.Name}
+            </td>
+        </tr>
+    </table>
+
+    <!-- Address / Subject -->
+    <table width="100%" style="font-family:Arial; font-size:13px; line-height:1.6;">
+        <tr><td><b>To,</b></td></tr>
+        <tr><td>Representative Name</td></tr>
+        <tr>
+            <td><b>{!MD_Quote__c.MD_Opportunity__r.Account_Name__r.Name}</b></td>
+        </tr>
+        <tr>
+            <td>{!MD_Quote__c.MD_Opportunity__r.Account_Name__r.City__c}</td>
+        </tr>
+        <tr style="padding-top:8px;">
+            <td style="padding-top:8px;">
+                <b>Subject:</b> {!MD_Quote__c.Subject__c}
+            </td>
+        </tr>
+        <tr><td style="padding-top:8px;">Dear Concern,</td></tr>
+        <tr>
+            <td>
+                As per our discussion regarding placement of Chemistry Analyzer, we are pleased to offer our best possible proposal on Reagent Rental basis for your kind consideration.
+            </td>
+        </tr>
+        <tr><td style="padding-top:8px;"><b>a. Instrument:</b></td></tr>
+    </table>
+
+    <!-- Table 1: Instrument Details - FIXED BORDERS & ALIGNMENT -->
+    <table width="100%" border="1" cellspacing="0" cellpadding="6" style="font-family:Arial; font-size:12px; border-collapse:collapse; margin-top:10px; border:1px solid #000;">
+        <thead style="background:#f2f2f2; text-align:center;">
+            <tr>
+                <th width="8%" style="border:1px solid #000;">Sr. No.</th>
+                <th width="15%" style="border:1px solid #000;">Cat No.</th>
+                <th width="52%" style="border:1px solid #000;">Item Description / Specification</th>
+                <th width="25%" style="border:1px solid #000;">Per Unit Price (PKR) Without GST</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:variable var="rowNum1" value="{!0}"/>
+            <apex:repeat value="{!MD_Quote__c.Quote_Line_Items__r}" var="item">
+                <apex:outputPanel layout="none" rendered="{!CONTAINS(item.Product2Id__r.Industry_Standard_Description__c, 'INS')}">
+                    <apex:variable var="rowNum1" value="{!rowNum1 + 1}"/>
+                    <tr>
+                        <td align="center" width="8%" style="border:1px solid #000;">
+                            {!rowNum1}
+                        </td>
+                        <td width="15%" style="border:1px solid #000;">{!item.Product2Id__r.Old_Material_Number__c}</td>
+                        <td width="52%" style="border:1px solid #000;">
+                            <b>{!item.Material_Description__c}</b><br/>
+                            Certification: {!item.Certification__c}<br/>
+                            Item Description: 
+                            <apex:outputText escape="false" value="{!item.Item_Description__c}" /><br/>
+                            Manufacturer: {!item.Manufacturer__c}<br/>
+                            Country of Origin: {!item.Country_of_Origin__c}
+                        </td>
+                        <td align="center" width="25%" style="border:1px solid #000;">
+                            Will be Placed on Reagent Rental Basis
+                        </td>
+                    </tr>
+                </apex:outputPanel>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+
+    <!-- Table 2: Reagents & Consumables -->
+    <p style="font-family:Arial; font-size:13px; margin-top:20px;"><b>b. Reagents &amp; Consumables:</b></p>
+    <table width="100%" border="1" cellspacing="0" cellpadding="6" style="font-family:Arial; font-size:12px; border-collapse:collapse; border:1px solid #000;">
+        <thead style="background:#f2f2f2; text-align:center;">
+            <tr>
+                <th rowspan="2" style="border:1px solid #000;">Sr. No.</th>
+                <th rowspan="2" style="border:1px solid #000;">Cat No.</th>
+                <th rowspan="2" style="border:1px solid #000;">Item Description / Specification</th>
+                <th rowspan="2" style="border:1px solid #000;">Pack Size (ml)</th>
+                <th colspan="2" style="border:1px solid #000;">Price in PKR without GST</th>
+            </tr>
+            <tr>
+                <th style="border:1px solid #000;">Per Kit</th>
+                <th style="border:1px solid #000;">Per Test</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:variable var="rowNum2" value="{!0}"/>
+            <apex:variable var="totalKit" value="{!0}"/>
+            <apex:variable var="totalTest" value="{!0}"/>
+            <apex:repeat value="{!MD_Quote__c.Quote_Line_Items__r}" var="item">
+                <tr>
+                    <td align="center" style="border:1px solid #000;">
+                        <apex:variable var="rowNum2" value="{!rowNum2 + 1}"/> {!rowNum2}
+                    </td>
+                    <td style="border:1px solid #000;">{!item.Product2Id__r.Old_Material_Number__c}</td>
+                    <td style="border:1px solid #000;">{!item.Material_Description__c}</td>
+                    <td style="border:1px solid #000;">{!item.Product2Id__r.Size_Dimensions__c}</td>
+                    <td align="right" style="border:1px solid #000;">
+                        {!IF(OR(ISBLANK(item.Per_Kit__c), item.Per_Kit__c = 0), '', TEXT(item.Per_Kit__c))}
+                        <apex:variable var="totalKit" value="{!totalKit + IF(ISBLANK(item.Per_Kit__c),0,item.Per_Kit__c)}" />
+                    </td>
+                    <td align="right" style="border:1px solid #000;">
+                        {!IF(OR(ISBLANK(item.Per_Test__c), item.Per_Test__c = 0), '', TEXT(item.Per_Test__c))}
+                        <apex:variable var="totalTest" value="{!totalTest + IF(ISBLANK(item.Per_Test__c),0,item.Per_Test__c)}" />
+                    </td>
+                </tr>
+            </apex:repeat>
+
+            <!-- Total Row -->
+            <tr>
+                <td colspan="4" align="left" style="border:1px solid #000;"><b>Total</b></td>
+                <td align="right" style="border:1px solid #000;"><b>{!totalKit}</b></td>
+                <td align="right" style="border:1px solid #000;"><b>{!totalTest}</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p style="font-family:Arial; font-size:12px; margin-top:10px;">
+        <b>Prices are exclusive of GST and will be charged as per govt. policy (18% for registered, 22% for Non-registered).</b>
+    </p>
+
+    <!-- Terms & Conditions -->
+    <p style="font-family:Arial; font-size:13px; margin-top:20px;"><b>Terms and Conditions:</b></p>
+    <table width="100%" cellpadding="5" style="font-family:Arial; font-size:12px;">
+        <tr><td>1. The Instrument will be placed on Reagent Rental basis.</td></tr>
+        <tr><td>2. The Instrument will remain the property of Martin Dow Specialities (Pvt.) Ltd.</td></tr>
+        <tr><td>3. The Customer will take care of all possible safety measures of the placed equipment.</td></tr>
+        <tr><td>4. To make the placement viable, minimum business of Rs. 500,000 is required per month.</td></tr>
+        <tr><td>5. The customer will purchase reagents and consumables only from Martin Dow Specialities (Pvt.) Ltd. on agreed prices and terms.</td></tr>
+        <tr><td>6. The contract will remain valid for 3 years from the date of placement/signing of contract, and extendable for a further 2 years after mutual consent.</td></tr>
+        <tr><td>7. In case either party is not satisfied with the services, the contract may be terminated with one month's prior notice and the machine will be taken back.</td></tr>
+        <tr><td>8. Martin Dow Specialities (Pvt.) Ltd. will increase reagent prices @ 10% annually after mutual consent.</td></tr>
+        <tr><td>9. Prices may review in case of change in custom tariff or currency devaluation (± 5%).</td></tr>
+        <tr><td>10. Prices may also review if increased by the manufacturer.</td></tr>
+        <tr><td>11. Purchase order will be issued in the name of Martin Dow Specialities (Pvt.) Ltd.</td></tr>
+        <tr><td>12. Payment term: Through cheque or pay order in favor of Martin Dow Specialities (Pvt.) Ltd.</td></tr>
+        <tr><td>13. Training: Sales and application specialists or engineers will provide installation, training and after-sales services.</td></tr>
+        <tr><td>14. Prices are valid for 30 days (for acceptance).</td></tr>
+        <tr><td>15. Prices are exclusive of GST (18% registered, 22% non-registered) and will be charged additionally as per government policy.</td></tr>
+        <tr><td>16. We require the NTN number and complete organization details for the invoice.</td></tr>
+    </table>
+
+    <!-- Signature -->
+    <table width="100%" style="margin-top:30px; font-family:Arial; font-size:13px;">
+        <tr><td>Thanking You,</td></tr>
+        <tr>
+            <td>
+                <br/><b>{!MD_Quote__c.MD_Opportunity__r.Owner.Name}</b><br/>
+                Tender Business Executive<br/>
+                Martin Dow Specialities (Pvt.) Ltd.
+            </td>
+        </tr>
+    </table>
+
+    <!-- Footer -->
+    <div style="font-family:Arial; font-size:10px; text-align:center; margin-top:40px; border-top:1px solid #000; padding-top:8px;">
+        <b>Martin Dow Specialities (Pvt.) Ltd.</b><br/>
+        Head Office: 7th Floor, Nice Trade Orbit (NTO) Building, 44-A, Block 6 PECHS, Razi Road, Shahrah-e-Faisal, Karachi. | Phone: +92 (21) 111 111 634<br/>
+        Registered Office: 7, Jail Road, Quetta | Phone: +92 (81) 829957-60 | Fax: +92 (81) 826149<br/>
+        Lahore Office: Plot No. 75-F Industrial Area Township, Kot Lakhpat, Lahore | Phone: +92 (42) 5123550-51 | Fax: +92 (42) 5150830
+    </div>
+
+</apex:page>

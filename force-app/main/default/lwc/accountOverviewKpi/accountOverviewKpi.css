@@ -1,0 +1,7 @@
+/* Only minimal custom styling */
+.slds-tile {
+  height: 100%;
+  background: #f4f6f9;
+  border-radius: 0.25rem;
+  padding: 1rem;
+}

@@ -1,0 +1,110 @@
+/* Inactive status styling for product status label */
+.status-inactive {
+  color: #c23934;
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  .quantity-input input,
+  .quantity-input input[type="number"],
+  .quantity-input .slds-input {
+    color: #222 !important;
+    background: #fff !important;
+    caret-color: #222 !important;
+    border-color: #b0b0b0 !important;
+    -webkit-text-fill-color: #222 !important;
+    box-shadow: none !important;
+  }
+  .quantity-input input::placeholder,
+  .quantity-input input::-webkit-input-placeholder {
+    color: #222 !important;
+    opacity: 1 !important;
+  }
+  .quantity-input input:-webkit-autofill {
+    -webkit-text-fill-color: #222 !important;
+    background: #fff !important;
+  }
+}
+@media (max-width: 600px) {
+  .quantity-input input,
+  .quantity-input input[type="number"],
+  .quantity-input .slds-input {
+    color: #222 !important;
+    background: #fff !important;
+    caret-color: #222 !important;
+    border-color: #b0b0b0 !important;
+    -webkit-text-fill-color: #222 !important;
+  }
+}
+/* Enable horizontal scroll for advance search section only on mobile */
+@media (max-width: 600px) {
+  .scrollable-x-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    padding-bottom: 8px;
+  }
+  /* Make quantity input text dark and visible on mobile */
+  input[type="number"] {
+    color: #222 !important;
+    background: #fff !important;
+  }
+}
+/* Always enable horizontal scroll for results on mobile */
+@media (max-width: 600px) {
+  .scrollable-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+  }
+}
+.full-width-combobox {
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+}
+
+.batch-row {
+  background: #e3f2fd !important;
+  color: #16325c !important;
+}
+.card-checkbox {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+.slds-modal__container {
+    max-width: 50rem; /* Adjust popup width */
+}
+
+.slds-table th, .slds-table td {
+    text-align: left;
+}
+.batch-row:hover {
+  background-color: #f3f2f2;
+  cursor: pointer;
+}
+
+.nested-table {
+  border-left: 3px solid #0176d3;
+  margin-top: 0.5rem;
+}
+.tbl-responsive-products {
+  overflow-x: scroll;
+  display: block;
+}
+@media (max-width: 600px) {
+  .batch-row {
+    background: #bbdefb !important;
+    color: #16325c !important;
+  }
+  
+}
+/* Quantity input width control in list view (desktop only) */
+@media (min-width: 601px) {
+    .slds-table .quantity-input {
+        width: 4rem;        /* ~64px, adjust if needed */
+        min-width: 4rem;
+        max-width: 4rem;
+        box-sizing: border-box;
+    }
+}

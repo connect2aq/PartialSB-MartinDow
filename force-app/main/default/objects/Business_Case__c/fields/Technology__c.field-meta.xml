@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technology__c</fullName>
+    <label>Technology</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>XRAY - Xray</fullName>
+                <default>false</default>
+                <label>XRAY - Xray</label>
+            </value>
+            <value>
+                <fullName>HM - Heamatology</fullName>
+                <default>false</default>
+                <label>HM - Heamatology</label>
+            </value>
+            <value>
+                <fullName>COAG - Coagulation</fullName>
+                <default>false</default>
+                <label>COAG - Coagulation</label>
+            </value>
+            <value>
+                <fullName>ELCT - Electrolyte</fullName>
+                <default>false</default>
+                <label>ELCT - Electrolyte</label>
+            </value>
+            <value>
+                <fullName>URIN - Urine</fullName>
+                <default>false</default>
+                <label>URIN - Urine</label>
+            </value>
+            <value>
+                <fullName>UBT - Urea Breath Test</fullName>
+                <default>false</default>
+                <label>UBT - Urea Breath Test</label>
+            </value>
+            <value>
+                <fullName>ABG - Arterial Blood Gas</fullName>
+                <default>false</default>
+                <label>ABG - Arterial Blood Gas</label>
+            </value>
+            <value>
+                <fullName>POC - Point of Care</fullName>
+                <default>false</default>
+                <label>POC - Point of Care</label>
+            </value>
+            <value>
+                <fullName>IMA - Immunoassay</fullName>
+                <default>false</default>
+                <label>IMA - Immunoassay</label>
+            </value>
+            <value>
+                <fullName>CC - Clinical Chemistry</fullName>
+                <default>false</default>
+                <label>CC - Clinical Chemistry</label>
+            </value>
+            <value>
+                <fullName>ELT - Electrolyte</fullName>
+                <default>false</default>
+                <label>ELT - Electrolyte</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

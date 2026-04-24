@@ -1,0 +1,171 @@
+<apex:page renderAs="pdf" standardController="MD_Quote__c" extensions="QuotationPdfController">
+<!-- Header Section with Logo and Company Details -->
+<table style="width:100%; font-family: Arial, sans-serif; margin-bottom: 20px;">
+    <tr>
+        <!-- Left: Logo -->
+        <td style="width:20%; vertical-align: top;">
+            <img src="{!URLFOR($Resource.Martindow)}" width="120"/>
+        </td>
+        <!-- Center: Company Info -->
+        <td style="width:80%; text-align: center; font-size: 11px; line-height: 16px;">
+            <strong style="font-size:14px;">Martin Dow Specialities (Pvt) Limited.</strong><br/>
+            STRN 17-00-3032-066-18 &nbsp;&nbsp; NTN 3032066-6<br/>
+            Nice Trade Orbit Building Karachi,<br/>
+            Tel Phone : (21)111-111-634 &nbsp;&nbsp; Fax No. (21)34535294
+        </td>
+        
+    </tr>
+</table>
+
+<!-- Customer Demand Title -->
+<div style="text-align: center; font-size: 18px; font-weight: bold; margin: 20px 0; border: 2px solid black; padding: 10px; background-color: #f0f0f0;">
+    Quotation
+</div>
+
+<!-- Account Information Box (3 lines for Account Name, City, Street) -->
+<div style="border: 2px solid black; padding: 15px; margin-bottom: 15px; height: 60px;">
+    <!-- This will be mapped later with Account Name, City, Street -->
+    <div style="line-height: 20px;">
+        <div>{!MD_Quote__c.Account__r.Name}</div>
+        <div>{!MD_Quote__c.Account__r.Account_Name2__c}</div>
+        <div>{!MD_Quote__c.Account__r.City__c}</div>
+    </div>
+</div>
+
+<!-- <apex:repeat value="{!MD_Quote__c.Account__r.MD_Sales_Area__c}" var="accountItem"> -->
+    <!-- Customer Information Section -->
+    <table style="width: 100%; font-size: 12px; margin-bottom: 20px; border-collapse: collapse;">
+        <tr>
+            <td style="width: 50%; vertical-align: top;">
+                <table style="width: 100%; line-height: 20px;">
+                    <tr>
+                        <td style="font-weight: bold;">Attention</td>
+                        <td>{!MD_Quote__c.Contact__r.FirstName} {!MD_Quote__c.Contact__r.LastName}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Contact No.</td>
+                        <td>{!MD_Quote__c.Phone__c}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Email Address</td>
+                        <td>{!MD_Quote__c.Email__c}</td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 50%; vertical-align: top;">
+                <table style="width: 100%; line-height: 20px;">
+                    <!-- <tr>
+                        <td style="width: 40%; font-weight: bold;">Payment Terms</td>
+                        <td style="width: 60%;">{!PaymentTerms}</td>
+                    </tr> -->
+                    <tr>
+                        <td style="width: 40%; font-weight: bold;">Customer A/c.</td>
+                        <td style="width: 60%;">{!MD_Quote__c.Account__r.SAP_Customer_Number__c}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Reference No.</td>
+                        <td>{!MD_Quote__c.Name}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Date</td>
+                        <td>
+                        <apex:outputText value="{0,date,M/d/yyyy}">
+    <apex:param value="{!MD_Quote__c.Presented_Date__c}" />
+</apex:outputText>
+</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Valid till</td>
+                        <td>
+<apex:outputText value="{0,date,M/d/yyyy}">
+    <apex:param value="{!MD_Quote__c.ExpirationDate__c}" />
+</apex:outputText>
+</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+<!-- </apex:repeat> -->
+
+<!-- Items Table with Total Row -->
+<table style="width:100%; border-collapse: collapse; font-size: 11px; margin-bottom: 20px;" border="1" cellpadding="4">
+    <thead>
+        <tr style="background-color: #f0f0f0; font-weight: bold;">
+            <th style="border: 1px solid black; text-align: center; width: 12%;">Material Number</th>
+            <th style="border: 1px solid black; text-align: center; width: 28%;">Item Description</th>
+            <th style="border: 1px solid black; text-align: center; width: 10%;">Pack Size</th>
+            <th style="border: 1px solid black; text-align: center; width: 12%;">Unit Price PKR</th>
+            <th style="border: 1px solid black; text-align: center; width: 8%;">Quantity</th>
+            <th style="border: 1px solid black; text-align: center; width: 15%;">Discount</th>
+            <th style="border: 1px solid black; text-align: center; width: 15%;">Total Price in PKR</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Dynamic rows for quote line items - will show if records exist -->
+        <apex:repeat value="{!MD_Quote__c.Quote_Line_Items__r}" var="item">
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">{!item.Product2Id__r.Material_Number__c}
+                {!item.Product2Id__r.Old_Material_Number__c}</td>
+                <td style="border: 1px solid black; padding-left: 5px;">{!item.Product2Id__r.Description__c}</td>
+                <td style="border: 1px solid black; text-align: center;">{!item.Product2Id__r.Size_Dimensions__c}</td>
+                <td style="border: 1px solid black; text-align: right; padding-right: 5px;">{!item.UnitPrice__c}</td>
+                <td style="border: 1px solid black; text-align: center;">{!item.Quantity__c}</td>
+                <td style="border: 1px solid black; text-align: right; padding-right: 5px;">
+    <apex:outputPanel rendered="{!item.Discount__c != null && item.Discount__c != 0}">
+        {!item.Discount__c}%
+    </apex:outputPanel>
+</td>
+                <td style="border: 1px solid black; text-align: right; padding-right: 5px;">{!item.TotalPrice__c}</td>
+            </tr>
+        </apex:repeat>
+        
+        <!-- Always show one empty row for consistent layout -->
+        <tr>
+            <td style="border: 1px solid black; text-align: center; height: 30px;"></td>
+            <td style="border: 1px solid black;"></td>
+            <td style="border: 1px solid black; text-align: center;"></td>
+            <td style="border: 1px solid black; text-align: right;"></td>
+            <td style="border: 1px solid black; text-align: center;"></td>
+            <td style="border: 1px solid black; text-align: right;"></td>
+            <td style="border: 1px solid black; text-align: right;"></td>
+        </tr>
+        
+        <!-- Total Row -->
+        <tr style="background-color: #f0f0f0; font-weight: bold;">
+            <td colspan="5" style="border: 1px solid black; text-align: center;">Total</td>
+            <td style="border: 1px solid black; text-align: right; padding-right: 5px;"></td>
+            <td style="border: 1px solid black; text-align: right; padding-right: 5px;">{!MD_Quote__c.Total_Price__c}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Signature Section -->
+<table style="width: 100%; margin-top: 75px; font-size: 12px;">
+    <tr>
+        <td style="width: 50%; text-align: left;">
+            <div style="border-bottom: 1px solid black; width: 200px; margin-bottom: 5px;"></div>
+            <strong>Checked By</strong>
+        </td>
+        <td style="width: 50%; text-align: right;">
+            <div style="border-bottom: 1px solid black; width: 200px; margin-bottom: 5px; margin-left: auto;"></div>
+            <strong>Prepared By</strong>
+        </td>
+    </tr>
+</table>
+    <table style="width:100%; font-family: Arial, sans-serif; margin-bottom: 50px; margin-top: 30px;">
+    <tr>
+        <!-- Right: Company Info and Contact Details -->
+        <td style="width:80%; text-align: left; font-size: 11px; line-height: 16px;">
+            <div style="margin-bottom: 15px;">
+                <strong>Head Office</strong><br/>
+                Phone # <br/>
+                UAN # +92(21)111-523-523<br/>
+                Fax # +92(21)3455921,34524091
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+</apex:page>

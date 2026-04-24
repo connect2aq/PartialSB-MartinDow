@@ -1,0 +1,928 @@
+/* Component-scoped overrides to ensure the customer popover option text is visible
+   Use SLDS/theming-aware variables where possible, with safe fallbacks.
+   Avoid heavy-handed !important rules so this remains easy to override later.
+*/
+
+:host .slds-listbox__option-text {
+  /* Prefer SLDS token if available, otherwise fallback to a readable navy color */
+  color: var(--slds-c-text-default, #16325c);
+  -webkit-text-fill-color: var(--slds-c-text-default, #16325c);
+  opacity: 1;
+}
+
+/* Ensure the option label and text are visible and inherit normal font weight */
+:host .slds-listbox__item .slds-form-element__label,
+:host .slds-listbox__item .slds-listbox__option-text {
+  visibility: visible;
+  font-weight: normal;
+}
+
+/* Make sure the dropdown sits above other content in complex layouts */
+:host .slds-dropdown {
+  z-index: 9000;
+}
+
+/* Align the checkbox and label nicely inside the popover list items */
+:host .slds-listbox__item .slds-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+:host .slds-listbox__item .slds-checkbox .slds-checkbox_faux {
+  margin-right: 0.5rem;
+}
+
+:host .slds-listbox__item .slds-listbox__option-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ===== DASHBOARD CONTAINER ===== */
+.dashboard-container {
+  padding: 1rem;
+  background: #f7f9fb;
+  min-height: 100vh;
+}
+a:not(:last-child)::after {
+  content: ", ";
+}
+/* ===== HEADER STYLES ===== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #1b5297, #0176d3);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title-icon {
+  --slds-c-icon-color-background: white;
+}
+
+.dashboard-subtitle {
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ===== TREND CHARTS STYLES ===== */
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  padding: 1rem;
+}
+
+.trend-chart {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 350px;
+}
+
+/* Chart responsive design */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
+
+  .trend-chart {
+    max-height: 250px;
+  }
+}
+
+/* Chart loading states */
+.chart-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  color: #6c757d;
+}
+
+.chart-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+/* Trend view controls */
+.trend-controls {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SUMMARY CARDS ===== */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #0176d3;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #5c6b73;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #181818;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.card-change {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.card-change.positive {
+  color: #04844b;
+}
+
+.card-change.warning {
+  color: #fe9339;
+}
+
+.card-change.negative {
+  color: #ea001e;
+}
+
+/* ===== FILTER SECTION ===== */
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-container {
+  padding: 0;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.filter-item {
+  min-width: 0; /* Prevents grid items from overflowing */
+}
+
+/* ===== TAB CONTENT ===== */
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ===== PAGINATION ===== */
+.pagination-info {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #5c6b73;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.page-info {
+  font-size: 0.875rem;
+  color: #5c6b73;
+}
+
+/* ===== CUSTOMER MODAL ===== */
+.customer-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.detail-section {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #181818;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #5c6b73;
+  flex: 0 0 40%;
+}
+
+.detail-value {
+  color: #181818;
+  flex: 1;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* ===== LOADING STATES ===== */
+.slds-spinner_container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 0.5rem;
+  }
+
+  .dashboard-header {
+    padding: 1rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .summary-card {
+    padding: 1rem;
+  }
+
+  .card-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== DATA TABLE CUSTOMIZATION ===== */
+.slds-table thead th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #0176d3;
+  font-weight: 600;
+  color: #181818;
+}
+
+.slds-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* ===== PERFORMANCE STATUS STYLING ===== */
+.status-on-track {
+  color: #04844b;
+  font-weight: 600;
+}
+
+.status-at-risk {
+  color: #fe9339;
+  font-weight: 600;
+}
+
+.status-behind {
+  color: #ea001e;
+  font-weight: 600;
+}
+
+.status-no-target {
+  color: #5c6b73;
+  font-weight: 600;
+}
+
+/* ===== CARD ENHANCEMENTS ===== */
+.slds-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.slds-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.slds-card__header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.slds-card__body {
+  padding: 1.5rem;
+}
+
+/* ===== CUSTOMER CARD SPECIFIC STYLES ===== */
+.customer-card {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-card .slds-card__body {
+  flex-grow: 1;
+}
+
+.customer-card .slds-text-heading_small {
+  color: #181818;
+  font-weight: 600;
+}
+
+.customer-card .slds-text-color_weak {
+  color: #5c6b73;
+}
+
+.customer-card .slds-text-color_success {
+  color: #04844b;
+  font-weight: 600;
+}
+
+/* Address sections in cards */
+.address-section {
+  background: #f1f4f7;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #5c6b73;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.address-content {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Performance metrics styling */
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.metric-row:last-child {
+  border-bottom: none;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: #5c6b73;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-weight: 600;
+  color: #181818;
+}
+
+/* Customer card field styling - differentiate labels from values */
+.customer-card .slds-text-body_small.slds-text-color_weak {
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  color: #5c6b73 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.125rem;
+}
+
+.customer-card .slds-text-body_regular {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #181818 !important;
+  line-height: 1.3;
+}
+
+/* Status indicators */
+.status-indicator {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-on-track {
+  background: #e8f5e8;
+  color: #04844b;
+}
+
+.status-at-risk {
+  background: #fff4e6;
+  color: #fe9339;
+}
+
+.status-behind {
+  background: #ffeaea;
+  color: #ea001e;
+}
+
+.status-no-target {
+  background: #f4f6f8;
+  color: #5c6b73;
+}
+
+/* View mode toggle */
+.view-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Card grid responsive adjustments */
+@media (max-width: 1200px) {
+  .customer-card-grid .slds-col {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .customer-card-grid .slds-col {
+    max-width: 100%;
+  }
+
+  .customer-card {
+    min-height: auto;
+  }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+.slds-button:focus {
+  box-shadow: 0 0 0 2px #0176d3;
+}
+
+.summary-card:focus-within {
+  outline: 2px solid #0176d3;
+  outline-offset: 2px;
+}
+
+/* ===== ANIMATION AND TRANSITIONS ===== */
+.tab-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .dashboard-container {
+    background: white;
+    padding: 0;
+  }
+
+  .dashboard-header {
+    background: white;
+    color: black;
+    box-shadow: none;
+  }
+
+  .header-actions,
+  .filter-section,
+  .pagination-controls {
+    display: none;
+  }
+
+  .summary-cards {
+    break-inside: avoid;
+  }
+
+  .slds-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===== STATUS ICON COLORS ===== */
+.status-icon-green {
+  --slds-c-icon-color-foreground: #04844b;
+}
+
+.status-icon-orange {
+  --slds-c-icon-color-foreground: #fe9339;
+}
+
+.status-icon-red {
+  --slds-c-icon-color-foreground: #ea001e;
+}
+
+.status-icon-gray {
+  --slds-c-icon-color-foreground: #5c6b73;
+}
+
+/* ===== TABLE STATUS CLASSES ===== */
+.status-on-track {
+  color: #04844b;
+  font-weight: 600;
+}
+
+.status-at-risk {
+  color: #fe9339;
+  font-weight: 600;
+}
+
+.status-behind {
+  color: #ea001e;
+  font-weight: 600;
+}
+
+.status-no-target {
+  color: #5c6b73;
+  font-weight: 600;
+}
+
+.status-unknown {
+  color: #5c6b73;
+  font-weight: 600;
+}
+
+/* ===== CARD SPACING IMPROVEMENTS ===== */
+.customer-card {
+  min-height: 380px; /* Reduced from 450px */
+}
+
+.customer-card .slds-card__header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.customer-card .slds-card__body {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Tighter spacing for card content */
+.customer-card .slds-m-bottom_small {
+  margin-bottom: 0.75rem;
+}
+
+.customer-card .slds-text-heading_small {
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.customer-card .slds-text-body_small {
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+/* ===== RISK MANAGEMENT STYLES ===== */
+.risk-alert-card {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.risk-alert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+}
+
+.risk-alert-card .slds-text-heading_large {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Risk Level Color Classes for Data Tables */
+.slds-text-color_error {
+  color: #c23934 !important;
+  font-weight: 600;
+}
+
+.slds-text-color_warning {
+  color: #fe9339 !important;
+  font-weight: 600;
+}
+
+.slds-text-color_success {
+  color: #04844b !important;
+  font-weight: 600;
+}
+
+.slds-text-color_default {
+  color: #514f4d !important;
+}
+
+.slds-text-color_weak {
+  color: #706e6b !important;
+}
+
+.slds-text-title_caps {
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  font-weight: 600;
+}
+
+/* Risk Status Badges */
+.risk-critical-badge {
+  background-color: #c23934;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+.risk-warning-badge {
+  background-color: #fe9339;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+.risk-low-badge {
+  background-color: #0176d3;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+.risk-normal-badge {
+  background-color: #04844b;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+/* ===== RISK MANAGEMENT BADGES ===== */
+.risk-healthy {
+  background-color: #28a745 !important; /* Professional Green for Healthy */
+  color: white !important;
+  border: 1px solid #1e7e34 !important;
+}
+
+.risk-warning {
+  background-color: #ffc107 !important; /* Professional Amber for Warning */
+  color: #212529 !important; /* Dark text for excellent readability on amber */
+  border: 1px solid #e0a800 !important;
+}
+
+.risk-high {
+  background-color: #fd7e14 !important; /* Professional Orange for High Risk */
+  color: white !important;
+  border: 1px solid #dc6502 !important;
+}
+
+.risk-critical {
+  background-color: #dc3545 !important; /* Professional Red for Critical */
+  color: white !important;
+  border: 1px solid #bd2130 !important;
+}
+
+/* Risk badge specific styling with higher specificity */
+.slds-badge.risk-healthy,
+.slds-badge.risk-warning,
+.slds-badge.risk-high,
+.slds-badge.risk-critical {
+  font-size: 0.675rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05rem !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.25rem !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure risk badge colors override any SLDS defaults */
+span.slds-badge.risk-healthy {
+  background-color: #28a745 !important;
+  color: white !important;
+  border: 1px solid #1e7e34 !important;
+}
+
+span.slds-badge.risk-warning {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+  border: 1px solid #e0a800 !important;
+}
+
+span.slds-badge.risk-high {
+  background-color: #fd7e14 !important;
+  color: white !important;
+  border: 1px solid #dc6502 !important;
+}
+
+span.slds-badge.risk-critical {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border: 1px solid #bd2130 !important;
+}
+
+/* ===== RISK STATUS TEXT STYLING ===== */
+/* Risk status text colors to match badge colors for consistency */
+.risk-status-healthy {
+  color: #28a745 !important;
+  font-weight: 600;
+}
+
+.risk-status-warning {
+  color: #856404 !important;
+  font-weight: 600;
+}
+
+.risk-status-high {
+  color: #fd7e14 !important;
+  font-weight: 600;
+}
+
+.risk-status-critical {
+  color: #dc3545 !important;
+  font-weight: 600;
+}
+
+/* Risk level icon styling with better contrast */
+.slds-badge.risk-healthy lightning-icon,
+.slds-badge.risk-healthy .slds-icon {
+  --slds-c-icon-color-foreground: white !important;
+  --slds-c-icon-color-background: transparent !important;
+}
+
+.slds-badge.risk-warning lightning-icon,
+.slds-badge.risk-warning .slds-icon {
+  --slds-c-icon-color-foreground: #212529 !important;
+  --slds-c-icon-color-background: transparent !important;
+}
+
+.slds-badge.risk-high lightning-icon,
+.slds-badge.risk-high .slds-icon {
+  --slds-c-icon-color-foreground: white !important;
+  --slds-c-icon-color-background: transparent !important;
+}
+
+.slds-badge.risk-critical lightning-icon,
+.slds-badge.risk-critical .slds-icon {
+  --slds-c-icon-color-foreground: white !important;
+  --slds-c-icon-color-background: transparent !important;
+}
+
+/* ===== GRAND TOTAL ROW STYLING ===== */
+.grand-total-row {
+  background-color: #f3f3f3 !important;
+  font-weight: 700 !important;
+  border-top: 2px solid #0176d3 !important;
+  border-bottom: 2px solid #0176d3 !important;
+}

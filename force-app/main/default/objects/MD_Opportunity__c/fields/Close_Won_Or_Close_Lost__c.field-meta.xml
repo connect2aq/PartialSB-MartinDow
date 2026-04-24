@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_Won_Or_Close_Lost__c</fullName>
+    <label>Close Won Or Close Lost</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Stage__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Close Won</fullName>
+                <default>false</default>
+                <label>Close Won</label>
+            </value>
+            <value>
+                <fullName>Close Lost</fullName>
+                <default>false</default>
+                <label>Close Lost</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Close_Opportunity</controllingFieldValue>
+            <valueName>Close Won</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Close_Opportunity</controllingFieldValue>
+            <valueName>Close Lost</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

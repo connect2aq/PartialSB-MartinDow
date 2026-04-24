@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Instrument__c</fullName>
+    <description>Will be marked as true if the material is instrument</description>
+    <formula>CONTAINS(UPPER(AG_OG__c), &quot;INS&quot;)</formula>
+    <label>Is Instrument?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

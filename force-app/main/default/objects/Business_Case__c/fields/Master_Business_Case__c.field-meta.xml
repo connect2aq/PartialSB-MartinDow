@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Business_Case__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Master Business Case</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Business_Case__c.Is_Master__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Business_Case__c</referenceTo>
+    <relationshipLabel>Business Cases</relationshipLabel>
+    <relationshipName>Business_Cases</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,127 @@
+<template>
+    <lightning-card title="Check-In / Check Out">
+        <!-- Buttons block (updated) -->
+        <div class="slds-m-around_medium">
+            <!-- Row 1: Check-In + Check-Out (same line, spaced) -->
+            <div class="slds-grid slds-gutters_small slds-wrap">
+                <div class="slds-col slds-grow-none">
+                    <lightning-button 
+                        label="Check-In" 
+                        onclick={handleCheckIn} 
+                        variant="brand"
+                        disabled={isCheckInDisabled}>
+                    </lightning-button>
+                </div>
+
+                <div class="slds-col slds-grow-none">
+                    <lightning-button 
+                        label="Check-Out" 
+                        onclick={handleCheckOut} 
+                        variant="neutral"
+                        disabled={isCheckOutDisabled}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <!-- Row 2: Mark as Not Completed (below with space) -->
+            <div class="slds-m-top_small">
+                <lightning-button
+                    label="Mark as Not Completed"
+                    onclick={openNotCompletedModal}
+                    variant="destructive-text"
+                    disabled={isNotCompletedDisabled}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Show Event Description after Check-In -->
+        <template if:true={showCheckInDescription}>
+            <div class="slds-m-around_medium">
+                <div class="slds-box slds-theme_shade slds-p-around_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">Event Description:</h3>
+                    <p class="slds-text-body_regular">{eventDescription}</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Checkout Remarks Modal (existing) -->
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCancelRemarks}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Add Check-Out Remarks</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="remarks-textarea">Remarks</label>
+                            <div class="slds-form-element__control">
+                                <textarea 
+                                    id="remarks-textarea"
+                                    class="slds-textarea" 
+                                    placeholder="Enter your remarks here..."
+                                    onchange={handleRemarksChange}
+                                    maxlength="255"
+                                >{remarksText}</textarea>
+                            </div>
+                            <div class="slds-form-element__help">
+                                <span class="slds-text-body_small">
+                                    {remainingCharacters} characters remaining
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={handleCancelRemarks}>Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick={handleSaveRemarks}>Save</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- NEW: Not Completed Modal -->
+        <template if:true={showNotCompletedModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeNotCompletedModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-modal__title slds-hyphenate">Mark as Not Completed</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-combobox
+                            name="incompleteReason"
+                            label="Reason"
+                            placeholder="Select a reason"
+                            options={reasonOptions}
+                            value={selectedReason}
+                            required
+                            onchange={handleReasonChange}>
+                        </lightning-combobox>
+
+                        <lightning-textarea
+                            class="slds-m-top_small"
+                            name="ncDescription"
+                            label="Description (optional)"
+                            value={notCompletedDescription}
+                            onchange={handleNcDescriptionChange}>
+                        </lightning-textarea>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" onclick={closeNotCompletedModal} class="slds-m-right_small"></lightning-button>
+                        <lightning-button variant="brand" label="Save" onclick={handleSaveNotCompleted} disabled={disableNcSave}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>

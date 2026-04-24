@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FOC_Order</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>FOC Order</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/lightning/o/MD_Order__c/new?recordTypeId=012Q8000002DN5pIAG&amp;defaultFieldValues=BusinessOpportunity__c={!MD_Opportunity__c.Id} ,Account__c={!MD_Opportunity__c.AccountId__c},AccountId__c={!MD_Opportunity__c.AccountId__c}</url>
+</WebLink>

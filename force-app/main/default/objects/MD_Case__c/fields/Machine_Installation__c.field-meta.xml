@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Machine_Installation__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Machine Installation</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <filterItems>
+            <field>Machine_Installation__c.bill_to_account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Machine_Installation__c.Ship_To_Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Machine_Installation__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Machine_Installation__c</referenceTo>
+    <relationshipLabel>Service Requests</relationshipLabel>
+    <relationshipName>Service_Requests</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

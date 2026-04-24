@@ -1,0 +1,129 @@
+<template>
+  <lightning-card icon-name="standard:account" title="Account Overview">
+    <!-- Filters Section -->
+    <!-- <div class="slds-p-horizontal_medium slds-p-top_small slds-grid slds-wrap">
+      <p class="slds-text-body_regular slds-text-align_center">
+        [Filters will be added here]
+      </p>
+    </div> -->
+
+    <!-- KPI Tiles -->
+    <div class="slds-p-around_medium slds-border_top">
+      <lightning-card icon-name="standard:account">
+        <div slot="title" class="slds-grid slds-align-middle">
+          <span>KPIs</span>
+          <lightning-button-icon
+            icon-name="utility:refresh"
+            alternative-text="Refresh"
+            title="Refresh"
+            onclick={handleRefresh}
+            class="slds-m-left_x-small"
+            size="small"
+            variant="border-filled"
+          ></lightning-button-icon>
+        </div>
+        <div class="slds-grid slds-wrap slds-p-around_medium dashboard">
+          <template for:each={tiles} for:item="tile">
+            <template if:true={tile.wide}>
+              <div
+                key={tile.label}
+                class="slds-col slds-size_1-of-1 slds-medium-size_2-of-2 slds-large-size_2-of-3 slds-p-around_small"
+              >
+                <div class="tile slds-box slds-box_xx-small slds-theme_default">
+                  <div class="slds-text-title" style="white-space: pre-line">
+                    <lightning-formatted-text
+                      value={tile.label}
+                    ></lightning-formatted-text>
+                  </div>
+                  <div class="slds-text-heading_large slds-m-top_xx-small">
+                    {tile.value}
+                  </div>
+                </div>
+              </div>
+            </template>
+            <template if:false={tile.wide}>
+              <div
+                key={tile.label}
+                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_small"
+              >
+                <div class="tile slds-box slds-box_xx-small slds-theme_default">
+                  <div class="slds-text-title" style="white-space: pre-line">
+                    <lightning-formatted-text
+                      value={tile.label}
+                    ></lightning-formatted-text>
+                  </div>
+                  <div class="slds-text-heading_large slds-m-top_xx-small">
+                    {tile.value}
+                  </div>
+                </div>
+              </div>
+            </template>
+          </template>
+        </div>
+      </lightning-card>
+    </div>
+
+    <!-- Asset Tiles Section (only for Diagnostic division) -->
+    <template if:true={showAssetsSection}>
+      <div class="slds-p-around_medium slds-border_top">
+        <lightning-card
+          icon-name="standard:asset_audit"
+          title="Diagnostic Machines (Diagnostic Division)"
+        >
+          <div class="slds-grid slds-wrap slds-p-around_medium dashboard">
+            <template for:each={assetTiles} for:item="tile">
+              <div
+                key={tile.label}
+                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-5 slds-p-around_small"
+              >
+                <div class="tile slds-box slds-box_xx-small slds-theme_default">
+                  <div class="slds-text-title">
+                    <lightning-formatted-text
+                      value={tile.label}
+                    ></lightning-formatted-text>
+                  </div>
+                  <div class="slds-text-heading_large slds-m-top_xx-small">
+                    {tile.value}
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <div class="slds-text-title_caps slds-m-bottom_x-small">
+              Status Descriptions
+            </div>
+            <ul class="slds-list_dotted">
+              <li>
+                <b>Ordered</b> – Diagnostic Machine approved and in procurement
+              </li>
+              <li>
+                <b>Installed</b> – Diagnostic Machine physically installed AND
+                under demo/trial evaluation
+              </li>
+              <li>
+                <b>Active</b> – Demo passed; Diagnostic Machine accepted and in
+                regular use
+              </li>
+              <li>
+                <b>Rejected</b> – Demo failed; customer did not accept the
+                Diagnostic Machine
+              </li>
+              <li>
+                <b>Inactive</b> – Diagnostic Machine removed or not in use
+                anymore (e.g., after rejection or decommissioned)
+              </li>
+            </ul>
+          </div>
+        </lightning-card>
+      </div>
+    </template>
+
+    <!-- RR Commitment tracker Section -->
+    <div class="slds-p-around_medium slds-border_top">
+      <p class="slds-text-body_regular slds-text-align_center">
+        [RR Commitment tracker will be added here]
+      </p>
+    </div>
+  </lightning-card>
+</template>

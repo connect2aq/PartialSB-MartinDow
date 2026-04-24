@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Demo_Extension_Creation</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(Machine_Installation__r.Status__c)&lt;&gt;&quot;Demo&quot;</errorConditionFormula>
+    <errorMessage>You can only create a Demo Extension for Machine Installations with Status = Demo.</errorMessage>
+</ValidationRule>

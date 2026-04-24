@@ -1,0 +1,313 @@
+<apex:page standardController="MD_Quote__c" renderAs="pdf">
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 20px;
+        }
+        
+        .header-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .header-table td {
+            vertical-align: top;
+        }
+        
+        .logo-section {
+            width: 60%;
+        }
+        
+        .meta-section {
+            width: 40%;
+            text-align: right;
+        }
+        
+        .company-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a1b9a;
+            margin-bottom: 2px;
+        }
+        
+        .company-subtitle {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .meta-row {
+            margin-bottom: 3px;
+        }
+        
+        .address-section {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .subject-line {
+            margin: 15px 0 5px 0;
+            font-size: 14px;
+        }
+        
+        .subject-label {
+            font-weight: bold;
+        }
+        
+        .subject-value {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        .intro-text {
+            margin: 10px 0 15px 0;
+            font-size: 14px;
+        }
+        
+        /* Table styling - very basic */
+        .data-table {
+            width: 100%;
+            border: 3px solid black;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .data-table th {
+            border: 2px solid black;
+            background-color: #6b7c93;
+            color: white;
+            padding: 8px 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .data-table td {
+            border: 2px solid black;
+            padding: 8px 5px;
+            vertical-align: top;
+        }
+        
+        .price-cell {
+            font-weight: bold;
+        }
+        
+        .badge-prompt {
+            background-color: yellow;
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+            margin-right: 5px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .badge-repeat {
+            background-color: yellow;
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .note-section {
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        
+        .note-label {
+            font-weight: bold;
+        }
+        
+        .highlighted-text {
+            background-color: yellow;
+            padding: 1px 3px;
+        }
+        
+        .validity-text {
+            margin: 12px 0;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .signature-table {
+            width: 100%;
+            margin: 25px 0 15px 0;
+        }
+        
+        .signature-table td {
+            width: 50%;
+            text-align: center;
+            vertical-align: bottom;
+            padding-top: 30px;
+            font-size: 13px;
+        }
+        
+        .signature-line {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .footer-section {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+        
+        .footer-table {
+            width: 100%;
+            font-size: 11px;
+        }
+        
+        .footer-table td {
+            width: 33.33%;
+            vertical-align: top;
+            padding-right: 10px;
+        }
+        
+        .office-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .office-subtitle {
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td style="width: 60%; vertical-align: top;">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="vertical-align: middle; padding-right: 10px;">
+                            <img src="{!URLFOR($Resource.Martindow)}" width="80" alt="Martin Dow Logo" />
+                        </td>
+                        <td style="vertical-align: middle; padding-left: 10px;">
+                            <!-- Company name and tagline removed as requested -->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 40%; vertical-align: top; text-align: right;">
+                <div style="margin-bottom: 3px;"><strong>E-Mail</strong> Fahad.irfan@martindow.com</div>
+                <div style="margin-bottom: 3px;"><strong>Phone</strong> 0306-2993596</div>
+                <div style="margin-bottom: 3px;"><strong>DATE</strong> 06/08/2025</div>
+            </td>
+        </tr>
+    </table>
+    
+    <!-- Address Section -->
+    <div class="address-section">
+        Mr. Yasir Iqbal<br/>
+        Procter &amp; Gamble
+    </div>
+    
+    <!-- Subject Line -->
+    <div class="subject-line">
+        <span class="subject-label">SUB:</span>
+        <span class="subject-value">QUOTATION</span>
+    </div>
+    
+    <!-- Intro Text -->
+    <div class="intro-text">
+        With reference your recent enquiry, we are pleased to quote as follows:
+    </div>
+    
+    <!-- Data Table -->
+    <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 2px solid #000000; margin: 15px 0;">
+        <thead>
+            <tr style="background-color: #6b7c93; color: #ffffff;">
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Catalogue</th>
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Item Description</th>
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Pack Size</th>
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Brand</th>
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Price</th>
+                <th style="border: 1px solid #000000; padding: 8px; text-align: left; font-weight: bold;">Delivery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #000000; padding: 8px;">1117230500</td>
+                <td style="border: 1px solid #000000; padding: 8px;">Casein-peptone lecithin polysorbate broth (base)</td>
+                <td style="border: 1px solid #000000; padding: 8px;">500g</td>
+                <td style="border: 1px solid #000000; padding: 8px;">MERCK</td>
+                <td style="border: 1px solid #000000; padding: 8px; font-weight: bold;">30,000</td>
+                <td style="border: 1px solid #000000; padding: 8px;">
+                    <span style="background-color: #ffe76a; border: 1px solid #000000; padding: 2px 5px; margin-right: 5px; font-size: 10px; font-weight: bold;">Prompt</span>
+                    <span style="background-color: #ffe76a; border: 1px solid #000000; padding: 2px 5px; font-size: 10px; font-weight: bold;">REPEAT ORDER</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Notes Section -->
+    <div style="margin: 12px 0; font-size: 13px;">
+        <span style="font-weight: bold;">Special Note:</span>
+        <span style="background-color: #fff59d; padding: 1px 3px;">The quoted prices will be changed in case of any major fluctuation in exchange rates.</span>
+    </div>
+    
+    <div style="margin: 12px 0; font-size: 13px;">
+        <span style="font-weight: bold;">Sales Tax:</span>
+        <span style="background-color: #fff59d; padding: 1px 3px;">The prices are exclusive of Sales Tax, which will be charged as per the Government rule.</span>
+    </div>
+    
+    <div style="margin: 12px 0; font-size: 13px;">
+        <span style="font-weight: bold;">Note:</span>
+        <span style="background-color: #fff59d; padding: 1px 3px;">The quotation includes the delivery charges. No extra charges have to be paid for the delivery of the materials</span>
+    </div>
+    
+    <!-- Validity -->
+    <div style="margin: 12px 0; font-size: 13px; font-weight: bold;">Price validity: 90 days.</div>
+    
+    <div style="margin: 12px 0; font-size: 13px;">
+        <span style="font-weight: bold;">Note:</span>
+        <span style="background-color: #fff59d; padding: 1px 3px;">Please make your PO in the name of <strong>Martin Dow Specialities Pvt. Ltd.</strong></span>
+    </div>
+    
+    <!-- Signature Section -->
+    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 25px 0 15px 0;">
+        <tr>
+            <td style="width: 50%; text-align: left; vertical-align: bottom; padding-top: 30px; font-size: 13px;">
+                <div style="font-weight: bold; margin-bottom: 3px;">_________________</div>
+                <div>Regional Manager</div>
+            </td>
+            <td style="width: 50%; text-align: right; vertical-align: bottom; padding-top: 30px; font-size: 13px;">
+                <div style="font-weight: bold; margin-bottom: 3px;">_________________</div>
+                <div>Business Manager</div>
+            </td>
+        </tr>
+    </table>
+    
+    <!-- Footer Section -->
+    <div style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 15px;">
+        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; font-size: 11px;">
+            <tr>
+                <td style="width: 33%; vertical-align: top; padding-right: 15px;">
+                    <div style="font-weight: bold; margin-bottom: 3px;">Martin Dow Specialities (Pvt.) Ltd.</div>
+                    <div style="color: #666; margin-bottom: 5px;">Head Office</div>
+                    <div>7<sup>th</sup> Floor, Nice Trade Orbit (NTO) Building, 44-A, Block 6 PECHS, Razi Road, Sharah e Faisal, Karachi.</div>
+                    <div>Phone +92 (21) 111 111 634</div>
+                </td>
+                <td style="width: 33%; vertical-align: top; padding-right: 15px;">
+                    <div style="font-weight: bold; margin-bottom: 3px;">Registered Office</div>
+                    <div>7, Jail Road-Quetta</div>
+                    <div>Phone +92 (81) 829957-60</div>
+                    <div>Fax +92 (81) 826149</div>
+                </td>
+                <td style="width: 34%; vertical-align: top;">
+                    <div style="font-weight: bold; margin-bottom: 3px;">Lahore Office</div>
+                    <div>Plot No. 75-F Industrial Area Township, Kot Lakhpat, Lahore</div>
+                    <div>Phone +92 (42) 5123550-51</div>
+                    <div>Fax +92 (42) 5150830</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+</apex:page>

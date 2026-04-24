@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New</fullName>
+    <fields>Name</fields>
+    <fields>Diagnostic_Machine__c</fields>
+    <fields>Material_Description__c</fields>
+    <fields>Material_Number__c</fields>
+    <fields>bill_to_account__c</fields>
+    <fields>Ship_To_Account__c</fields>
+    <fields>Status__c</fields>
+    <label>New</label>
+</CompactLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Group_4__c</fullName>
+    <label>Material Group 4</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MaterialGroup4-0</fullName>
+                <default>false</default>
+                <label>MaterialGroup4-0</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup4-1</fullName>
+                <default>false</default>
+                <label>MaterialGroup4-1</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup4-2</fullName>
+                <default>false</default>
+                <label>MaterialGroup4-2</label>
+            </value>
+            <value>
+                <fullName>CX5 - CO Performance Materials</fullName>
+                <default>false</default>
+                <label>CX5 - CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>CZ6 - Adjustments Research Solutions</fullName>
+                <default>false</default>
+                <label>CZ6 - Adjustments Research Solutions</label>
+            </value>
+            <value>
+                <fullName>CZ7 - Adjustments Applied Solutions</fullName>
+                <default>false</default>
+                <label>CZ7 - Adjustments Applied Solutions</label>
+            </value>
+            <value>
+                <fullName>CZ8 - Adjustments Process Solutions</fullName>
+                <default>false</default>
+                <label>CZ8 - Adjustments Process Solutions</label>
+            </value>
+            <value>
+                <fullName>LA1 - Lab Water</fullName>
+                <default>false</default>
+                <label>LA1 - Lab Water</label>
+            </value>
+            <value>
+                <fullName>LA2 - Biomonitoring</fullName>
+                <default>false</default>
+                <label>LA2 - Biomonitoring</label>
+            </value>
+            <value>
+                <fullName>LA3 - Advanced Analytical</fullName>
+                <default>false</default>
+                <label>LA3 - Advanced Analytical</label>
+            </value>
+            <value>
+                <fullName>LA4 - Biosystems and Regulated Materials</fullName>
+                <default>false</default>
+                <label>LA4 - Biosystems and Regulated Materials</label>
+            </value>
+            <value>
+                <fullName>LA5 - Gene Editing</fullName>
+                <default>false</default>
+                <label>LA5 - Gene Editing</label>
+            </value>
+            <value>
+                <fullName>LD1 - Lab Supply</fullName>
+                <default>false</default>
+                <label>LD1 - Lab Supply</label>
+            </value>
+            <value>
+                <fullName>LP2 - BioProcessing</fullName>
+                <default>false</default>
+                <label>LP2 - BioProcessing</label>
+            </value>
+            <value>
+                <fullName>LP3 - Actives &amp; Formulation</fullName>
+                <default>false</default>
+                <label>LP3 - Actives &amp; Formulation</label>
+            </value>
+            <value>
+                <fullName>LP4 - Process Solutions Services</fullName>
+                <default>false</default>
+                <label>LP4 - Process Solutions Services</label>
+            </value>
+            <value>
+                <fullName>LR1 - Life Science Reagents and Kits</fullName>
+                <default>false</default>
+                <label>LR1 - Life Science Reagents and Kits</label>
+            </value>
+            <value>
+                <fullName>LR2 - Lab and Specialty Chemicals</fullName>
+                <default>false</default>
+                <label>LR2 - Lab and Specialty Chemicals</label>
+            </value>
+            <value>
+                <fullName>LR3 - Lab Separation and Workflow Tools</fullName>
+                <default>false</default>
+                <label>LR3 - Lab Separation and Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>MA1 - MicroArray</fullName>
+                <default>false</default>
+                <label>MA1 - MicroArray</label>
+            </value>
+            <value>
+                <fullName>MG4 - Non-Pshychotropic</fullName>
+                <default>false</default>
+                <label>MG4 - Non-Pshychotropic</label>
+            </value>
+            <value>
+                <fullName>MP4 - Pshychotropic</fullName>
+                <default>false</default>
+                <label>MP4 - Pshychotropic</label>
+            </value>
+            <value>
+                <fullName>PM1 - Display Materials</fullName>
+                <default>false</default>
+                <label>PM1 - Display Materials</label>
+            </value>
+            <value>
+                <fullName>PM2 - Pigments &amp; Functional Materials</fullName>
+                <default>false</default>
+                <label>PM2 - Pigments &amp; Functional Materials</label>
+            </value>
+            <value>
+                <fullName>PM3 - Advanced Technologies</fullName>
+                <default>false</default>
+                <label>PM3 - Advanced Technologies</label>
+            </value>
+            <value>
+                <fullName>PM4 - IC Materials</fullName>
+                <default>false</default>
+                <label>PM4 - IC Materials</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

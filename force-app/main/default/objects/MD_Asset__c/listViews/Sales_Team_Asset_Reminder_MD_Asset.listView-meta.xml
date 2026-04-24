@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Team_Asset_Reminder_MD_Asset</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Sales Team Asset Reminder</label>
+    <queue>Sales_Team_Asset_Reminder</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

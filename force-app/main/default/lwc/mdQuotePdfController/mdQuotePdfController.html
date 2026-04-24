@@ -1,0 +1,24 @@
+<template>
+    <lightning-modal-header label={quoteName}></lightning-modal-header>
+
+    <lightning-modal-body>
+        <div style="width:100%; height:650px;">
+            <iframe src={pdfUrl} width="100%" height="100%" frameborder="0" title="Quote PDF"></iframe>
+        </div>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button
+            label="Attach to Files"
+            variant="brand"
+            onclick={attachPdf}
+            class="slds-m-right_small">
+        </lightning-button>
+
+        <lightning-button
+            label="Close"
+            variant="neutral"
+            onclick={closeModal}>
+        </lightning-button>
+    </lightning-modal-footer>
+</template>

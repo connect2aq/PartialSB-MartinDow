@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tax_Category_Code__c</fullName>
+    <label>Tax Category Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PK01 - Pakistan: CNIC</fullName>
+                <default>false</default>
+                <label>PK01 - Pakistan: CNIC</label>
+            </value>
+            <value>
+                <fullName>PK02 - Pakistan: FBR - NTN</fullName>
+                <default>false</default>
+                <label>PK02 - Pakistan: FBR - NTN</label>
+            </value>
+            <value>
+                <fullName>PK03 - Pakistan: FBR - GST</fullName>
+                <default>false</default>
+                <label>PK03 - Pakistan: FBR - GST</label>
+            </value>
+            <value>
+                <fullName>PK04 - Pakistan: SRB</fullName>
+                <default>false</default>
+                <label>PK04 - Pakistan: SRB</label>
+            </value>
+            <value>
+                <fullName>PK05 - Pakistan: PRA</fullName>
+                <default>false</default>
+                <label>PK05 - Pakistan: PRA</label>
+            </value>
+            <value>
+                <fullName>PK06 - Pakistan: BRA</fullName>
+                <default>false</default>
+                <label>PK06 - Pakistan: BRA</label>
+            </value>
+            <value>
+                <fullName>PK07 - Pakistan: KRA</fullName>
+                <default>false</default>
+                <label>PK07 - Pakistan: KRA</label>
+            </value>
+            <value>
+                <fullName>AR1A - Argentina: CUIT Number</fullName>
+                <default>false</default>
+                <label>AR1A - Argentina: CUIT Number</label>
+            </value>
+            <value>
+                <fullName>AR1B - Argentina: CUIL Number</fullName>
+                <default>false</default>
+                <label>AR1B - Argentina: CUIL Number</label>
+            </value>
+            <value>
+                <fullName>AR2 - Argentina: Income Tax Number</fullName>
+                <default>false</default>
+                <label>AR2 - Argentina: Income Tax Number</label>
+            </value>
+            <value>
+                <fullName>AR3 - Argentina: NIP number or CM number</fullName>
+                <default>false</default>
+                <label>AR3 - Argentina: NIP number or CM number</label>
+            </value>
+            <value>
+                <fullName>AT0 - Austria: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>AT0 - Austria: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>AU0 - Australia: ABN</fullName>
+                <default>false</default>
+                <label>AU0 - Australia: ABN</label>
+            </value>
+            <value>
+                <fullName>BE0 - Belgium: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>BE0 - Belgium: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>BE1 - Belgium: Enterprise Number</fullName>
+                <default>false</default>
+                <label>BE1 - Belgium: Enterprise Number</label>
+            </value>
+            <value>
+                <fullName>BE2 - Belgium: VAT Reg. No. w/o country code</fullName>
+                <default>false</default>
+                <label>BE2 - Belgium: VAT Reg. No. w/o country code</label>
+            </value>
+            <value>
+                <fullName>BR1 - Brazil: CNPJ Number</fullName>
+                <default>false</default>
+                <label>BR1 - Brazil: CNPJ Number</label>
+            </value>
+            <value>
+                <fullName>BR3 - Brazil: State Tax Number</fullName>
+                <default>false</default>
+                <label>BR3 - Brazil: State Tax Number</label>
+            </value>
+            <value>
+                <fullName>BR4 - Brazil: Municipal Tax Number</fullName>
+                <default>false</default>
+                <label>BR4 - Brazil: Municipal Tax Number</label>
+            </value>
+            <value>
+                <fullName>CA1 - Canada: Goods and Service Tax (GST) No.</fullName>
+                <default>false</default>
+                <label>CA1 - Canada: Goods and Service Tax (GST) No.</label>
+            </value>
+            <value>
+                <fullName>CA2 - Canada: Business Number</fullName>
+                <default>false</default>
+                <label>CA2 - Canada: Business Number</label>
+            </value>
+            <value>
+                <fullName>CA3 - Canada: Provincial Sales Tax (PST) No.</fullName>
+                <default>false</default>
+                <label>CA3 - Canada: Provincial Sales Tax (PST) No.</label>
+            </value>
+            <value>
+                <fullName>CA4 - Canada: Quebec Sales Tax (QST) No.</fullName>
+                <default>false</default>
+                <label>CA4 - Canada: Quebec Sales Tax (QST) No.</label>
+            </value>
+            <value>
+                <fullName>CH1 - Switzerland: UID Number</fullName>
+                <default>false</default>
+                <label>CH1 - Switzerland: UID Number</label>
+            </value>
+            <value>
+                <fullName>CL1 - Chile: RUT Number</fullName>
+                <default>false</default>
+                <label>CL1 - Chile: RUT Number</label>
+            </value>
+            <value>
+                <fullName>CN0 - China: Tax Number</fullName>
+                <default>false</default>
+                <label>CN0 - China: Tax Number</label>
+            </value>
+            <value>
+                <fullName>CZ1 - Czech Republic: DIC Number</fullName>
+                <default>false</default>
+                <label>CZ1 - Czech Republic: DIC Number</label>
+            </value>
+            <value>
+                <fullName>CZ2 - Czech Republic: ICO Number</fullName>
+                <default>false</default>
+                <label>CZ2 - Czech Republic: ICO Number</label>
+            </value>
+            <value>
+                <fullName>DE0 - Germany: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>DE0 - Germany: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>DE1 - Germany: Income Tax Number (§48)</fullName>
+                <default>false</default>
+                <label>DE1 - Germany: Income Tax Number (§48)</label>
+            </value>
+            <value>
+                <fullName>DE2 - Germany: VAT Number (Credit Proc. §14)</fullName>
+                <default>false</default>
+                <label>DE2 - Germany: VAT Number (Credit Proc. §14)</label>
+            </value>
+            <value>
+                <fullName>DK0 - Denmark: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>DK0 - Denmark: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>DK2 - Denmark: Tax Number</fullName>
+                <default>false</default>
+                <label>DK2 - Denmark: Tax Number</label>
+            </value>
+            <value>
+                <fullName>ES0 - Spain: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>ES0 - Spain: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>ES1 - Spain: NIF Number</fullName>
+                <default>false</default>
+                <label>ES1 - Spain: NIF Number</label>
+            </value>
+            <value>
+                <fullName>FI0 - Finland: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>FI0 - Finland: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>FR0 - France: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>FR0 - France: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>FR1 - France: SIRET Number</fullName>
+                <default>false</default>
+                <label>FR1 - France: SIRET Number</label>
+            </value>
+            <value>
+                <fullName>FR2 - France: SIREN Number</fullName>
+                <default>false</default>
+                <label>FR2 - France: SIREN Number</label>
+            </value>
+            <value>
+                <fullName>GB0 - United Kingdom: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>GB0 - United Kingdom: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>GB2 - United Kingdom: National Insurance Number</fullName>
+                <default>false</default>
+                <label>GB2 - United Kingdom: National Insurance Number</label>
+            </value>
+            <value>
+                <fullName>GR0 - Greece: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>GR0 - Greece: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>GR1 - Greece: Personal ID</fullName>
+                <default>false</default>
+                <label>GR1 - Greece: Personal ID</label>
+            </value>
+            <value>
+                <fullName>GR2 - Greece: AFM Number</fullName>
+                <default>false</default>
+                <label>GR2 - Greece: AFM Number</label>
+            </value>
+            <value>
+                <fullName>IE0 - Ireland: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>IE0 - Ireland: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>IT0 - Italy: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>IT0 - Italy: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>IT2 - Italy: IVA Code</fullName>
+                <default>false</default>
+                <label>IT2 - Italy: IVA Code</label>
+            </value>
+            <value>
+                <fullName>KR1 - South Korea: Corporation ID or Personal</fullName>
+                <default>false</default>
+                <label>KR1 - South Korea: Corporation ID or Personal</label>
+            </value>
+            <value>
+                <fullName>KR2 - South Korea: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>KR2 - South Korea: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>LU0 - Luxembourg: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>LU0 - Luxembourg: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>MX2 - Mexico: VAT Liability</fullName>
+                <default>false</default>
+                <label>MX2 - Mexico: VAT Liability</label>
+            </value>
+            <value>
+                <fullName>MY1 - Malaysia: GST Number</fullName>
+                <default>false</default>
+                <label>MY1 - Malaysia: GST Number</label>
+            </value>
+            <value>
+                <fullName>NL0 - Netherlands: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>NL0 - Netherlands: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>NO2 - Norway: Tax Number</fullName>
+                <default>false</default>
+                <label>NO2 - Norway: Tax Number</label>
+            </value>
+            <value>
+                <fullName>PH1 - Philippines: Taxpayer ID Number</fullName>
+                <default>false</default>
+                <label>PH1 - Philippines: Taxpayer ID Number</label>
+            </value>
+            <value>
+                <fullName>PL1 - Poland: NIP Number</fullName>
+                <default>false</default>
+                <label>PL1 - Poland: NIP Number</label>
+            </value>
+            <value>
+                <fullName>PT0 - Portugal: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>PT0 - Portugal: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>RU1 - Russia: INN</fullName>
+                <default>false</default>
+                <label>RU1 - Russia: INN</label>
+            </value>
+            <value>
+                <fullName>SE0 - Sweden: VAT Registration Number</fullName>
+                <default>false</default>
+                <label>SE0 - Sweden: VAT Registration Number</label>
+            </value>
+            <value>
+                <fullName>SE2 - Sweden: Organization Registration Number</fullName>
+                <default>false</default>
+                <label>SE2 - Sweden: Organization Registration Number</label>
+            </value>
+            <value>
+                <fullName>SK1 - Slovakia: DIC Number</fullName>
+                <default>false</default>
+                <label>SK1 - Slovakia: DIC Number</label>
+            </value>
+            <value>
+                <fullName>SK2 - Slovakia: ICO Number</fullName>
+                <default>false</default>
+                <label>SK2 - Slovakia: ICO Number</label>
+            </value>
+            <value>
+                <fullName>TH1 - Thailand: Personal ID</fullName>
+                <default>false</default>
+                <label>TH1 - Thailand: Personal ID</label>
+            </value>
+            <value>
+                <fullName>US1 - USA: Social Security Number</fullName>
+                <default>false</default>
+                <label>US1 - USA: Social Security Number</label>
+            </value>
+            <value>
+                <fullName>US2 - USA: Employer ID Number</fullName>
+                <default>false</default>
+                <label>US2 - USA: Employer ID Number</label>
+            </value>
+            <value>
+                <fullName>VE1 - Venezuela: RIF Number</fullName>
+                <default>false</default>
+                <label>VE1 - Venezuela: RIF Number</label>
+            </value>
+            <value>
+                <fullName>VE2 - Venezuela: NIT Number</fullName>
+                <default>false</default>
+                <label>VE2 - Venezuela: NIT Number</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

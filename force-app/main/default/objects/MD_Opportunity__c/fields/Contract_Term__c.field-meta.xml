@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Term__c</fullName>
+    <label>Contract Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+                <label>1 Year</label>
+            </value>
+            <value>
+                <fullName>2 Year</fullName>
+                <default>false</default>
+                <label>2 Year</label>
+            </value>
+            <value>
+                <fullName>3 Year</fullName>
+                <default>false</default>
+                <label>3 Year</label>
+            </value>
+            <value>
+                <fullName>4 Year</fullName>
+                <default>false</default>
+                <label>4 Year</label>
+            </value>
+            <value>
+                <fullName>5 Year</fullName>
+                <default>false</default>
+                <label>5 Year</label>
+            </value>
+            <value>
+                <fullName>6 Year</fullName>
+                <default>false</default>
+                <label>6 Year</label>
+            </value>
+            <value>
+                <fullName>7 Year</fullName>
+                <default>false</default>
+                <label>7 Year</label>
+            </value>
+            <value>
+                <fullName>8 Year</fullName>
+                <default>false</default>
+                <label>8 Year</label>
+            </value>
+            <value>
+                <fullName>9 Year</fullName>
+                <default>false</default>
+                <label>9 Year</label>
+            </value>
+            <value>
+                <fullName>10 Year</fullName>
+                <default>false</default>
+                <label>10 Year</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

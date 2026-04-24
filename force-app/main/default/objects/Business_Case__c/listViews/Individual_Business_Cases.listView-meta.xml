@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Individual_Business_Cases</fullName>
+    <columns>NAME</columns>
+    <columns>Customer_Name__c</columns>
+    <columns>Customer_Number__c</columns>
+    <columns>Material_Numbers__c</columns>
+    <columns>Material_Description__c</columns>
+    <columns>Technologya__c</columns>
+    <columns>Vendora__c</columns>
+    <columns>Unit_Cost__c</columns>
+    <columns>Monthly_Reagent_Commitment__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Business_Case__c.Individual_Business_Case</value>
+    </filters>
+    <label>Individual Business Cases</label>
+</ListView>

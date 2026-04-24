@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Business_Case_Key__c</fullName>
+    <description>DEBUG: Auto-generated Business Case Key for validation against Apex logic - Customer Code + Vendor + Technology</description>
+    <externalId>false</externalId>
+    <formula>Customer_Code__c + &quot;|&quot; + 
+LEFT(Vendor__c, FIND(&quot; - &quot;, Vendor__c + &quot; - &quot;) - 1) + &quot;|&quot; + 
+LEFT(Technology__c, FIND(&quot; - &quot;, Technology__c + &quot; - &quot;) - 1) + &quot;|&quot; + 
+TEXT(YEAR(Snapshot_Month__c)) + &quot;-&quot; + 
+LPAD(TEXT(MONTH(Snapshot_Month__c)), 2, &quot;0&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Auto Business Case Key (DEBUG)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

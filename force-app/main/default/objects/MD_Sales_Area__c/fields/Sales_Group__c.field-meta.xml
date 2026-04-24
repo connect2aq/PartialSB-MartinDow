@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Group__c</fullName>
+    <label>Sales Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Z01 - Sales Group Karachi</fullName>
+                <default>false</default>
+                <label>Z01 - Sales Group Karachi</label>
+            </value>
+            <value>
+                <fullName>Z02 - Sales Group Hyderabad</fullName>
+                <default>false</default>
+                <label>Z02 - Sales Group Hyderabad</label>
+            </value>
+            <value>
+                <fullName>Z03 - Sales Group Sukkur</fullName>
+                <default>false</default>
+                <label>Z03 - Sales Group Sukkur</label>
+            </value>
+            <value>
+                <fullName>Z04 - Sales Group Quetta</fullName>
+                <default>false</default>
+                <label>Z04 - Sales Group Quetta</label>
+            </value>
+            <value>
+                <fullName>Z05 - Sales Group Multan</fullName>
+                <default>false</default>
+                <label>Z05 - Sales Group Multan</label>
+            </value>
+            <value>
+                <fullName>Z06 - Sales Group Faisalabad</fullName>
+                <default>false</default>
+                <label>Z06 - Sales Group Faisalabad</label>
+            </value>
+            <value>
+                <fullName>Z07 - Sales Group Lahore</fullName>
+                <default>false</default>
+                <label>Z07 - Sales Group Lahore</label>
+            </value>
+            <value>
+                <fullName>Z08 - Sales Group Gujranwala</fullName>
+                <default>false</default>
+                <label>Z08 - Sales Group Gujranwala</label>
+            </value>
+            <value>
+                <fullName>Z09 - Sales Group Rawalpindi</fullName>
+                <default>false</default>
+                <label>Z09 - Sales Group Rawalpindi</label>
+            </value>
+            <value>
+                <fullName>Z10 - Sales Group Peshawar</fullName>
+                <default>false</default>
+                <label>Z10 - Sales Group Peshawar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

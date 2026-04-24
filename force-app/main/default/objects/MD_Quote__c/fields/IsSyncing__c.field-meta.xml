@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsSyncing__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Syncing allows this line items and total value to update the Opportunity automatically, ensuring both remain aligned.
+Note: Only one Client Proposal can be synced to an Opportunity at a time.</inlineHelpText>
+    <label>Syncing</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

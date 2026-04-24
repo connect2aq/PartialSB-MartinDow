@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Group_2__c</fullName>
+    <label>Material Group 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MaterialGroup2-0</fullName>
+                <default>false</default>
+                <label>MaterialGroup2-0</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup2-1</fullName>
+                <default>false</default>
+                <label>MaterialGroup2-1</label>
+            </value>
+            <value>
+                <fullName>MaterialGroup2-2</fullName>
+                <default>false</default>
+                <label>MaterialGroup2-2</label>
+            </value>
+            <value>
+                <fullName>10 - OLED</fullName>
+                <default>false</default>
+                <label>10 - OLED</label>
+            </value>
+            <value>
+                <fullName>26 - LC-Materials</fullName>
+                <default>false</default>
+                <label>26 - LC-Materials</label>
+            </value>
+            <value>
+                <fullName>6P - Viral &amp; Gene Therapy</fullName>
+                <default>false</default>
+                <label>6P - Viral &amp; Gene Therapy</label>
+            </value>
+            <value>
+                <fullName>A1 - Cobetter Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>A1 - Cobetter Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>A2 - Cobetter In Process Testing</fullName>
+                <default>false</default>
+                <label>A2 - Cobetter In Process Testing</label>
+            </value>
+            <value>
+                <fullName>A3 - Cobetter Cartridge Filters</fullName>
+                <default>false</default>
+                <label>A3 - Cobetter Cartridge Filters</label>
+            </value>
+            <value>
+                <fullName>BA - Advanced Genomics</fullName>
+                <default>false</default>
+                <label>BA - Advanced Genomics</label>
+            </value>
+            <value>
+                <fullName>BB - BRM Applied Biology - Sigma</fullName>
+                <default>false</default>
+                <label>BB - BRM Applied Biology - Sigma</label>
+            </value>
+            <value>
+                <fullName>BC - BRM Applied Lab Essentials - Sigma</fullName>
+                <default>false</default>
+                <label>BC - BRM Applied Lab Essentials - Sigma</label>
+            </value>
+            <value>
+                <fullName>BD - BRM Services</fullName>
+                <default>false</default>
+                <label>BD - BRM Services</label>
+            </value>
+            <value>
+                <fullName>BE - Flavors and fragances</fullName>
+                <default>false</default>
+                <label>BE - Flavors and fragances</label>
+            </value>
+            <value>
+                <fullName>BF - Flow Cytometry Service</fullName>
+                <default>false</default>
+                <label>BF - Flow Cytometry Service</label>
+            </value>
+            <value>
+                <fullName>BG - Beads &amp; Fusion</fullName>
+                <default>false</default>
+                <label>BG - Beads &amp; Fusion</label>
+            </value>
+            <value>
+                <fullName>BI - Blood Typing</fullName>
+                <default>false</default>
+                <label>BI - Blood Typing</label>
+            </value>
+            <value>
+                <fullName>BJ - Immunoassay Kits &amp; components</fullName>
+                <default>false</default>
+                <label>BJ - Immunoassay Kits &amp; components</label>
+            </value>
+            <value>
+                <fullName>BK - Membranes &amp; rapid technologies</fullName>
+                <default>false</default>
+                <label>BK - Membranes &amp; rapid technologies</label>
+            </value>
+            <value>
+                <fullName>BL - Tissue Diag Lab Essentials - Sigma</fullName>
+                <default>false</default>
+                <label>BL - Tissue Diag Lab Essentials - Sigma</label>
+            </value>
+            <value>
+                <fullName>BM - Biobase Labware Alliances</fullName>
+                <default>false</default>
+                <label>BM - Biobase Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>BO - Biobase Labware Alliances</fullName>
+                <default>false</default>
+                <label>BO - Biobase Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>C5 - CO Performance Materials</fullName>
+                <default>false</default>
+                <label>C5 - CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>DA - Diagnostics</fullName>
+                <default>false</default>
+                <label>DA - Diagnostics</label>
+            </value>
+            <value>
+                <fullName>G1 - LGC Reference Materials (RM)</fullName>
+                <default>false</default>
+                <label>G1 - LGC Reference Materials (RM)</label>
+            </value>
+            <value>
+                <fullName>GE - Gene Editing</fullName>
+                <default>false</default>
+                <label>GE - Gene Editing</label>
+            </value>
+            <value>
+                <fullName>H0 - BioControl Systems</fullName>
+                <default>false</default>
+                <label>H0 - BioControl Systems</label>
+            </value>
+            <value>
+                <fullName>H1 - Display Patterning Materials</fullName>
+                <default>false</default>
+                <label>H1 - Display Patterning Materials</label>
+            </value>
+            <value>
+                <fullName>H2 - IC Materials</fullName>
+                <default>false</default>
+                <label>H2 - IC Materials</label>
+            </value>
+            <value>
+                <fullName>H3 - Cell Analysis - Guava</fullName>
+                <default>false</default>
+                <label>H3 - Cell Analysis - Guava</label>
+            </value>
+            <value>
+                <fullName>H6 - In Process Testing</fullName>
+                <default>false</default>
+                <label>H6 - In Process Testing</label>
+            </value>
+            <value>
+                <fullName>H7 - Release Testing</fullName>
+                <default>false</default>
+                <label>H7 - Release Testing</label>
+            </value>
+            <value>
+                <fullName>H8 - Environmental Monitoring</fullName>
+                <default>false</default>
+                <label>H8 - Environmental Monitoring</label>
+            </value>
+            <value>
+                <fullName>J0 - Analytical Chromatography (AC)</fullName>
+                <default>false</default>
+                <label>J0 - Analytical Chromatography (AC)</label>
+            </value>
+            <value>
+                <fullName>J1 - BioMonitoring Services</fullName>
+                <default>false</default>
+                <label>J1 - BioMonitoring Services</label>
+            </value>
+            <value>
+                <fullName>J2 - Point-of-Use (POU)</fullName>
+                <default>false</default>
+                <label>J2 - Point-of-Use (POU)</label>
+            </value>
+            <value>
+                <fullName>J3 - Instrumental Analysis (IA)</fullName>
+                <default>false</default>
+                <label>J3 - Instrumental Analysis (IA)</label>
+            </value>
+            <value>
+                <fullName>J4 - Lab Classics</fullName>
+                <default>false</default>
+                <label>J4 - Lab Classics</label>
+            </value>
+            <value>
+                <fullName>J5 - Downstream</fullName>
+                <default>false</default>
+                <label>J5 - Downstream</label>
+            </value>
+            <value>
+                <fullName>J8 - Reference Materials (RM)</fullName>
+                <default>false</default>
+                <label>J8 - Reference Materials (RM)</label>
+            </value>
+            <value>
+                <fullName>J9 - Reference Materials Cerilliant</fullName>
+                <default>false</default>
+                <label>J9 - Reference Materials Cerilliant</label>
+            </value>
+            <value>
+                <fullName>K1 - Kraeber Molecular Platforms</fullName>
+                <default>false</default>
+                <label>K1 - Kraeber Molecular Platforms</label>
+            </value>
+            <value>
+                <fullName>K2 - Deposition Materials</fullName>
+                <default>false</default>
+                <label>K2 - Deposition Materials</label>
+            </value>
+            <value>
+                <fullName>L0 - Immunoassay Platform Solutions</fullName>
+                <default>false</default>
+                <label>L0 - Immunoassay Platform Solutions</label>
+            </value>
+            <value>
+                <fullName>L3 - Molecular Platforms</fullName>
+                <default>false</default>
+                <label>L3 - Molecular Platforms</label>
+            </value>
+            <value>
+                <fullName>L5 - H &amp; H - MM</fullName>
+                <default>false</default>
+                <label>L5 - H &amp; H - MM</label>
+            </value>
+            <value>
+                <fullName>L7 - Cell Culture - MM</fullName>
+                <default>false</default>
+                <label>L7 - Cell Culture - MM</label>
+            </value>
+            <value>
+                <fullName>L8 - BioPharma Materials - MM</fullName>
+                <default>false</default>
+                <label>L8 - BioPharma Materials - MM</label>
+            </value>
+            <value>
+                <fullName>L9 - Pharm Materials - MM</fullName>
+                <default>false</default>
+                <label>L9 - Pharm Materials - MM</label>
+            </value>
+            <value>
+                <fullName>LD - Chemical Synthesis</fullName>
+                <default>false</default>
+                <label>LD - Chemical Synthesis</label>
+            </value>
+            <value>
+                <fullName>LE - Biochemistry</fullName>
+                <default>false</default>
+                <label>LE - Biochemistry</label>
+            </value>
+            <value>
+                <fullName>LF - Material Science</fullName>
+                <default>false</default>
+                <label>LF - Material Science</label>
+            </value>
+            <value>
+                <fullName>LI - Applied Biology - Sigma</fullName>
+                <default>false</default>
+                <label>LI - Applied Biology - Sigma</label>
+            </value>
+            <value>
+                <fullName>LL - Cell Culture - SIAL</fullName>
+                <default>false</default>
+                <label>LL - Cell Culture - SIAL</label>
+            </value>
+            <value>
+                <fullName>LM - BioPharma Materials - SIAL</fullName>
+                <default>false</default>
+                <label>LM - BioPharma Materials - SIAL</label>
+            </value>
+            <value>
+                <fullName>LN - API - SIAL</fullName>
+                <default>false</default>
+                <label>LN - API - SIAL</label>
+            </value>
+            <value>
+                <fullName>LO - Pharm Materials - SIAL</fullName>
+                <default>false</default>
+                <label>LO - Pharm Materials - SIAL</label>
+            </value>
+            <value>
+                <fullName>LQ - Early Development Services - SIAL</fullName>
+                <default>false</default>
+                <label>LQ - Early Development Services - SIAL</label>
+            </value>
+            <value>
+                <fullName>LR - Biopharm Services - SIAL</fullName>
+                <default>false</default>
+                <label>LR - Biopharm Services - SIAL</label>
+            </value>
+            <value>
+                <fullName>LU - Cell Marque</fullName>
+                <default>false</default>
+                <label>LU - Cell Marque</label>
+            </value>
+            <value>
+                <fullName>LW - Formulation - SIAL</fullName>
+                <default>false</default>
+                <label>LW - Formulation - SIAL</label>
+            </value>
+            <value>
+                <fullName>LX - Protein &amp; Pathway Technologies</fullName>
+                <default>false</default>
+                <label>LX - Protein &amp; Pathway Technologies</label>
+            </value>
+            <value>
+                <fullName>LY - Cell Biology</fullName>
+                <default>false</default>
+                <label>LY - Cell Biology</label>
+            </value>
+            <value>
+                <fullName>LZ - Discovery Chemistry &amp; Services</fullName>
+                <default>false</default>
+                <label>LZ - Discovery Chemistry &amp; Services</label>
+            </value>
+            <value>
+                <fullName>MG2 - Commercial</fullName>
+                <default>false</default>
+                <label>MG2 - Commercial</label>
+            </value>
+            <value>
+                <fullName>MP2 - P.S.</fullName>
+                <default>false</default>
+                <label>MP2 - P.S.</label>
+            </value>
+            <value>
+                <fullName>N3 - Lab Water Hardware Consumables &amp; Othr</fullName>
+                <default>false</default>
+                <label>N3 - Lab Water Hardware Consumables &amp; Othr</label>
+            </value>
+            <value>
+                <fullName>N4 - Lab Water Service</fullName>
+                <default>false</default>
+                <label>N4 - Lab Water Service</label>
+            </value>
+            <value>
+                <fullName>N8 - ProVantage BioDevelp &amp; Mgf Supprt-MM</fullName>
+                <default>false</default>
+                <label>N8 - ProVantage BioDevelp &amp; Mgf Supprt-MM</label>
+            </value>
+            <value>
+                <fullName>N9 - Single-Use</fullName>
+                <default>false</default>
+                <label>N9 - Single-Use</label>
+            </value>
+            <value>
+                <fullName>P1 - Aseptic</fullName>
+                <default>false</default>
+                <label>P1 - Aseptic</label>
+            </value>
+            <value>
+                <fullName>P2 - Purification</fullName>
+                <default>false</default>
+                <label>P2 - Purification</label>
+            </value>
+            <value>
+                <fullName>P3 - Systems Hardware</fullName>
+                <default>false</default>
+                <label>P3 - Systems Hardware</label>
+            </value>
+            <value>
+                <fullName>P7 - Excipients</fullName>
+                <default>false</default>
+                <label>P7 - Excipients</label>
+            </value>
+            <value>
+                <fullName>P8 - API - MM</fullName>
+                <default>false</default>
+                <label>P8 - API - MM</label>
+            </value>
+            <value>
+                <fullName>P9 - Specialties</fullName>
+                <default>false</default>
+                <label>P9 - Specialties</label>
+            </value>
+            <value>
+                <fullName>Q6 - Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>Q6 - Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>Q7 - Cell Analysis - Amnis</fullName>
+                <default>false</default>
+                <label>Q7 - Cell Analysis - Amnis</label>
+            </value>
+            <value>
+                <fullName>Q9 - Field Services - MM</fullName>
+                <default>false</default>
+                <label>Q9 - Field Services - MM</label>
+            </value>
+            <value>
+                <fullName>QC - Cell Culture Workflow Tools</fullName>
+                <default>false</default>
+                <label>QC - Cell Culture Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>QL - Labware Alliances</fullName>
+                <default>false</default>
+                <label>QL - Labware Alliances</label>
+            </value>
+            <value>
+                <fullName>QM - Molecular Workflow Tools</fullName>
+                <default>false</default>
+                <label>QM - Molecular Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>R1 - ProVantage Lab Services - MM</fullName>
+                <default>false</default>
+                <label>R1 - ProVantage Lab Services - MM</label>
+            </value>
+            <value>
+                <fullName>R2 - Rocker Analytical Workflow Tools</fullName>
+                <default>false</default>
+                <label>R2 - Rocker Analytical Workflow Tools</label>
+            </value>
+            <value>
+                <fullName>R3 - Rocker In Process Testing</fullName>
+                <default>false</default>
+                <label>R3 - Rocker In Process Testing</label>
+            </value>
+            <value>
+                <fullName>R7 - Decorative Materials</fullName>
+                <default>false</default>
+                <label>R7 - Decorative Materials</label>
+            </value>
+            <value>
+                <fullName>R8 - Functional Materials</fullName>
+                <default>false</default>
+                <label>R8 - Functional Materials</label>
+            </value>
+            <value>
+                <fullName>R9 - Bioavailability</fullName>
+                <default>false</default>
+                <label>R9 - Bioavailability</label>
+            </value>
+            <value>
+                <fullName>T1 - GeneTitan System</fullName>
+                <default>false</default>
+                <label>T1 - GeneTitan System</label>
+            </value>
+            <value>
+                <fullName>T2 - GeneTitan Reagent/Consumable</fullName>
+                <default>false</default>
+                <label>T2 - GeneTitan Reagent/Consumable</label>
+            </value>
+            <value>
+                <fullName>T3 - Other Consumables GT</fullName>
+                <default>false</default>
+                <label>T3 - Other Consumables GT</label>
+            </value>
+            <value>
+                <fullName>T4 - GeneChip System</fullName>
+                <default>false</default>
+                <label>T4 - GeneChip System</label>
+            </value>
+            <value>
+                <fullName>T5 - GeneChip Reagents/Consumables</fullName>
+                <default>false</default>
+                <label>T5 - GeneChip Reagents/Consumables</label>
+            </value>
+            <value>
+                <fullName>T6 - Automation System/Accessories</fullName>
+                <default>false</default>
+                <label>T6 - Automation System/Accessories</label>
+            </value>
+            <value>
+                <fullName>T7 - Workflow Ancillaries</fullName>
+                <default>false</default>
+                <label>T7 - Workflow Ancillaries</label>
+            </value>
+            <value>
+                <fullName>T8 - MicroArray Service</fullName>
+                <default>false</default>
+                <label>T8 - MicroArray Service</label>
+            </value>
+            <value>
+                <fullName>V2 - New Businesses</fullName>
+                <default>false</default>
+                <label>V2 - New Businesses</label>
+            </value>
+            <value>
+                <fullName>Y7 - Adjustments PM Liquid Crystals</fullName>
+                <default>false</default>
+                <label>Y7 - Adjustments PM Liquid Crystals</label>
+            </value>
+            <value>
+                <fullName>Y9 - Adjustments PM Pigments &amp; Funct Mat</fullName>
+                <default>false</default>
+                <label>Y9 - Adjustments PM Pigments &amp; Funct Mat</label>
+            </value>
+            <value>
+                <fullName>Z1 - Adjustments CO Performance Materials</fullName>
+                <default>false</default>
+                <label>Z1 - Adjustments CO Performance Materials</label>
+            </value>
+            <value>
+                <fullName>Z3 - Adjustments PM Advanced Technologies</fullName>
+                <default>false</default>
+                <label>Z3 - Adjustments PM Advanced Technologies</label>
+            </value>
+            <value>
+                <fullName>Z5 - Adjustments PM IC Materials</fullName>
+                <default>false</default>
+                <label>Z5 - Adjustments PM IC Materials</label>
+            </value>
+            <value>
+                <fullName>Z6 - Adjustments PM Photoresists</fullName>
+                <default>false</default>
+                <label>Z6 - Adjustments PM Photoresists</label>
+            </value>
+            <value>
+                <fullName>ZC - Adjustments Deposition Materials</fullName>
+                <default>false</default>
+                <label>ZC - Adjustments Deposition Materials</label>
+            </value>
+            <value>
+                <fullName>ZE - Adjustments Research Solutions</fullName>
+                <default>false</default>
+                <label>ZE - Adjustments Research Solutions</label>
+            </value>
+            <value>
+                <fullName>ZF - Adjustments Applied Solutions</fullName>
+                <default>false</default>
+                <label>ZF - Adjustments Applied Solutions</label>
+            </value>
+            <value>
+                <fullName>ZG - Adjustments Process Solutions</fullName>
+                <default>false</default>
+                <label>ZG - Adjustments Process Solutions</label>
+            </value>
+            <value>
+                <fullName>ZL - Adjustments Applied Solutions BCS</fullName>
+                <default>false</default>
+                <label>ZL - Adjustments Applied Solutions BCS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

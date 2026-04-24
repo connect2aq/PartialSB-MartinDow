@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Demand_Item</fullName>
+    <fields>Name</fields>
+    <fields>Customer_Demand__c</fields>
+    <fields>Material_Master__c</fields>
+    <label>Customer Demand Item</label>
+</CompactLayout>

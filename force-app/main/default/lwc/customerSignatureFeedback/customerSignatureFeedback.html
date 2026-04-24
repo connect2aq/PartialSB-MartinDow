@@ -1,0 +1,213 @@
+<!-- customerSignatureFeedback.html -->
+<template>
+    <lightning-card title="Signature Capture" icon-name="utility:signature">
+        <div class="slds-m-around_medium">
+            
+            <!-- Initial Buttons View -->
+            <div if:true={showInitialButtons} class="initial-buttons-container">
+                <div class="buttons-wrapper">
+                    <lightning-button 
+                        variant="brand" 
+                        label="Customer Signature" 
+                        onclick={openCustomerSection}
+                        class="signature-button"
+                        disabled={isLoading}>
+                    </lightning-button>
+                    <lightning-button 
+                        variant="neutral" 
+                        label="Field Service Signature" 
+                        onclick={openFieldServiceSection}
+                        class="signature-button"
+                        disabled={isLoading}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <!-- Customer Signature Section -->
+            <div if:true={showCustomerSection} class="signature-section">
+                <div class="section-header">
+                    <h3 class="section-title">Customer Signature & Feedback</h3>
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        alternative-text="Close"
+                        onclick={closeCustomerSection}
+                        class="close-button">
+                    </lightning-button-icon>
+                </div>
+
+                <!-- Customer Feedback Section -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="feedback-input">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        Customer Feedback/Remarks
+                    </label>
+                    <div class="slds-form-element__control">
+                        <lightning-textarea
+                            name="feedback"
+                            placeholder="Please enter your feedback or remarks..."
+                            value={customerFeedback}
+                            onchange={handleFeedbackChange}
+                            max-length="2000"
+                            required>
+                        </lightning-textarea>
+                    </div>
+                </div>
+
+                <!-- Customer Signature Section -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        Customer Signature
+                    </label>
+                    <div class="signature-container">
+                        <!-- Name Input for Auto Signature -->
+                        <div class="slds-form-element slds-m-bottom_small">
+                            <lightning-input 
+                                type="text"
+                                label="Type customer name for auto-signature"
+                                value={customerName}
+                                onchange={handleCustomerNameChange}
+                                placeholder="Enter customer name">
+                            </lightning-input>
+                        </div>
+
+                        <!-- Signature Pad -->
+                        <div class="signature-pad-container">
+                            <div class="signature-pad-label">Or draw signature below:</div>
+                            <canvas 
+                                lwc:ref="customerSignatureCanvas"
+                                class="signature-canvas"
+                                onmousedown={startCustomerDrawing}
+                                onmousemove={drawCustomer}
+                                onmouseup={stopCustomerDrawing}
+                                onmouseout={stopCustomerDrawing}
+                                ontouchstart={startCustomerDrawing}
+                                ontouchmove={drawCustomer}
+                                ontouchend={stopCustomerDrawing}>
+                            </canvas>
+                        </div>
+
+                        <!-- Auto-generated Name Signature Preview -->
+                        <div if:true={showCustomerNameSignature} class="name-signature-preview">
+                            <div class="signature-preview-label">Customer Name Signature Preview:</div>
+                            <div class="name-signature">{customerName}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Action Buttons -->
+                <div class="slds-button-group" role="group">
+                    <lightning-button 
+                        variant="neutral" 
+                        label="Clear Signature" 
+                        onclick={clearCustomerSignature}
+                        disabled={isLoading}>
+                    </lightning-button>
+                    <lightning-button 
+                        variant="brand" 
+                        label="Save Customer Signature & Feedback" 
+                        onclick={saveCustomerSignatureAndFeedback}
+                        disabled={isLoading}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <!-- Field Service Signature Modal -->
+            <template if:true={showFieldServiceSection}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <lightning-button-icon
+                                icon-name="utility:close"
+                                alternative-text="Close"
+                                onclick={closeFieldServiceSection}
+                                class="slds-modal__close">
+                            </lightning-button-icon>
+                            <h2 class="slds-text-heading_medium slds-hyphenate">Field Service Signature</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            
+                            <!-- Field Service Signature Section -->
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    Field Service Representative Signature
+                                </label>
+                                <div class="signature-container">
+                                    <!-- Name Input for Auto Signature -->
+                                    <div class="slds-form-element slds-m-bottom_small">
+                                        <lightning-input 
+                                            type="text"
+                                            label="Type representative name for auto-signature"
+                                            value={fieldServiceName}
+                                            onchange={handleFieldServiceNameChange}
+                                            placeholder="Enter field service representative name">
+                                        </lightning-input>
+                                    </div>
+
+                                    <!-- Signature Pad -->
+                                    <div class="signature-pad-container">
+                                        <div class="signature-pad-label">Or draw signature below:</div>
+                                        <canvas 
+                                            lwc:ref="fieldServiceSignatureCanvas"
+                                            class="signature-canvas"
+                                            onmousedown={startFieldServiceDrawing}
+                                            onmousemove={drawFieldService}
+                                            onmouseup={stopFieldServiceDrawing}
+                                            onmouseout={stopFieldServiceDrawing}
+                                            ontouchstart={startFieldServiceDrawing}
+                                            ontouchmove={drawFieldService}
+                                            ontouchend={stopFieldServiceDrawing}>
+                                        </canvas>
+                                    </div>
+
+                                    <!-- Auto-generated Name Signature Preview -->
+                                    <div if:true={showFieldServiceNameSignature} class="name-signature-preview">
+                                        <div class="signature-preview-label">Representative Name Signature Preview:</div>
+                                        <div class="name-signature">{fieldServiceName}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button 
+                                variant="neutral" 
+                                label="Clear Signature" 
+                                onclick={clearFieldServiceSignature}
+                                disabled={isLoading}>
+                            </lightning-button>
+                            <lightning-button 
+                                variant="brand" 
+                                label="Save Field Service Signature" 
+                                onclick={saveFieldServiceSignature}
+                                disabled={isLoading}>
+                            </lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+            <!-- Loading Spinner -->
+            <div if:true={isLoading} class="slds-is-relative slds-m-top_medium">
+                <lightning-spinner alternative-text="Saving..." size="small"></lightning-spinner>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div if:true={showSuccess} class="slds-m-top_medium">
+                <div class="slds-notify slds-notify_alert slds-theme_success">
+                    <span class="slds-assistive-text">Success</span>
+                    <h2>{successMessage}</h2>
+                </div>
+            </div>
+
+            <div if:true={errorMessage} class="slds-m-top_medium">
+                <div class="slds-notify slds-notify_alert slds-theme_error">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{errorMessage}</h2>
+                </div>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>

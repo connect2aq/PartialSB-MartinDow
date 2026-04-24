@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Diagnostic_Machine</fullName>
+    <fields>Name</fields>
+    <fields>External_Id__c</fields>
+    <fields>Serial_Number__c</fields>
+    <fields>Status__c</fields>
+    <fields>Product__c</fields>
+    <fields>Material_Number__c</fields>
+    <fields>Material_Description__c</fields>
+    <label>Diagnostic Machine</label>
+</CompactLayout>

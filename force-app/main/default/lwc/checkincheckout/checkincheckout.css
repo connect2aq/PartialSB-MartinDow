@@ -1,0 +1,4 @@
+/* Ensure combobox menu is not clipped inside modal */
+.slds-modal__content {
+  overflow: visible;
+}

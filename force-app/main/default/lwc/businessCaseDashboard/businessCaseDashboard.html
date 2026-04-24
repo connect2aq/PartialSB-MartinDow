@@ -1,0 +1,1798 @@
+<template>
+  <!-- Main Container with SLDS Styling -->
+  <div class="slds-p-around_medium">
+    <!-- Page Header -->
+    <div class="slds-page-header slds-m-bottom_large">
+      <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+          <div class="slds-media">
+            <div class="slds-media__figure">
+              <lightning-icon
+                icon-name="standard:account"
+                size="medium"
+              ></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-page-header__name">
+                <div class="slds-page-header__name-title">
+                  <h1>
+                    <span class="slds-page-header__title slds-truncate"
+                      >Reagent Rental Dashboard</span
+                    >
+                  </h1>
+                </div>
+              </div>
+              <p class="slds-page-header__name-meta">
+                Investment performance and commitment tracking across regions,
+                suppliers and customers
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="slds-page-header__col-actions">
+          <div class="slds-page-header__controls">
+            <lightning-button-group>
+              <lightning-button
+                label="Refresh Data"
+                icon-name="utility:refresh"
+                onclick={handleRefresh}
+                variant="brand"
+              >
+              </lightning-button>
+            </lightning-button-group>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="slds-m-bottom_large">
+      <lightning-card title="Filters">
+        <div class="slds-grid slds-gutters slds-wrap">
+          <!-- <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-dual-listbox
+              name="monthFilter"
+              label="Month"
+              value={selectedMonth}
+              placeholder="All Months"
+              options={monthOptions}
+              onchange={handleMonthChange}
+            >
+            </lightning-dual-listbox>
+          </div> -->
+          <!-- <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-combobox
+              name="monthFilter"
+              label="Month"
+              value={selectedMonth}
+              placeholder="All Months"
+              options={monthOptions}
+              onchange={handleMonthChange}
+            >
+            </lightning-combobox>
+          </div> -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-input
+              type="date"
+              name="dateFromFilter"
+              label="Date From"
+              value={selectedDateFrom}
+              onchange={handleDateFromChange}
+            >
+            </lightning-input>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-input
+              type="date"
+              name="dateToFilter"
+              label="Date To"
+              value={selectedDateTo}
+              onchange={handleDateToChange}
+            >
+            </lightning-input>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Business Case"
+              placeholder="Filter business cases"
+              options={businessCasesOptions}
+              selected-values={selectedBusinessCases}
+              onchange={handleBusinessCaseChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Customers"
+              placeholder="Filter customers"
+              options={customerOptions}
+              selected-values={selectedCustomers}
+              onchange={handleCustomerChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Region"
+              placeholder="Filter regions"
+              options={regionOptions}
+              selected-values={selectedRegions}
+              onchange={handleRegionChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Supplier"
+              placeholder="Filter suppliers"
+              options={supplierOptions}
+              selected-values={selectedSuppliers}
+              onchange={handleSupplierChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Business Case Status"
+              placeholder="Filter business case statuses"
+              options={businessCaseStatusOptions}
+              selected-values={selectedBusinessCaseStatuses}
+              onchange={handleBusinessCaseStatusChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Machine Status"
+              placeholder="Filter machine statuses"
+              options={machineStatusOptions}
+              selected-values={selectedMachineStatuses}
+              onchange={handleMachineStatusChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <c-b-multi-select-dropdown
+              label="Commitment Status"
+              placeholder="Filter commitment statuses"
+              options={commitmentStatusOptions}
+              selected-values={selectedCommitmentStatuses}
+              onchange={handleCommitmentStatusChange}
+            >
+            </c-b-multi-select-dropdown>
+          </div>
+          <!-- <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-combobox
+              name="riskStatusFilter"
+              label="Risk Status"
+              value={selectedRiskStatus}
+              placeholder="All Risk Levels"
+              options={riskStatusOptions}
+              onchange={handleRiskStatusChange}
+            >
+            </lightning-combobox>
+          </div> -->
+          <!-- <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"
+          >
+            <lightning-input
+              type="search"
+              name="searchInput"
+              label="Search"
+              value={searchTerm}
+              placeholder="Search customers, regions..."
+              onchange={handleSearchChange}
+            >
+            </lightning-input>
+          </div> -->
+        </div>
+        <!-- Action buttons for applying or resetting all filters -->
+        <div class="slds-m-top_small">
+          <!-- <lightning-button
+            label="Search"
+            variant="brand"
+            onclick={handleSearchClick}
+            class="slds-m-right_small"
+          ></lightning-button> -->
+          <lightning-button
+            label="Reset"
+            variant="neutral"
+            onclick={handleResetFilters}
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="slds-m-bottom_large">
+      <!-- Financial Overview Section -->
+      <div class="slds-m-bottom_small">
+        <h3 class="slds-text-heading_medium slds-m-bottom_small">
+          <lightning-icon
+            icon-name="standard:opportunity"
+            size="small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          Financial Performance Overview
+        </h3>
+      </div>
+
+      <!-- Financial Metrics Row -->
+      <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:opportunity"
+                  size="small"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Total Investment</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large slds-text-color_success">
+              {formattedTotalInvestment}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:sales_path"
+                  size="small"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Total Sales</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large slds-text-color_success">
+              {formattedTotalSales}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:sales_path"
+                  size="small"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Total Margin</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large slds-text-color_success">
+              {formattedTotalMargin}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:calibration"
+                  size="small"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Cost Recovery</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large slds-text-color_success">
+              {formattedCostRecovery}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Machine Status Section -->
+      <div class="slds-m-bottom_small">
+        <h3 class="slds-text-heading_medium slds-m-bottom_small">
+          <lightning-icon
+            icon-name="standard:asset_object"
+            size="small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          Diagnostic Machine Status Overview
+        </h3>
+      </div>
+
+      <!-- Machine Status Tiles Row -->
+      <div class="slds-grid slds-gutters slds-wrap">
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-6"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:work_order"
+                  size="small"
+                  class="slds-icon-text-warning"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Initial Assessment</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large">{orderedMachines}</div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-6"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:asset_object"
+                  size="small"
+                  class="slds-icon-text-success"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Demo</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large">{installedMachines}</div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-6"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="utility:success"
+                  size="small"
+                  class="slds-icon-text-success"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">RR</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large">{activeMachines}</div>
+          </div>
+        </div>
+
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-6"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="utility:error"
+                  size="small"
+                  class="slds-icon-text-error"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Return</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large">{rejectedMachines}</div>
+          </div>
+        </div>
+
+        <!-- <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-6"
+        >
+          <div class="slds-box slds-theme_default slds-text-align_center">
+            <div class="slds-media slds-media_center slds-m-bottom_small">
+              <div class="slds-media__figure">
+                <lightning-icon
+                  icon-name="standard:maintenance_asset"
+                  size="small"
+                  class="slds-icon-text-default"
+                ></lightning-icon>
+              </div>
+              <div class="slds-media__body">
+                <span class="slds-text-heading_small">Inactive</span>
+              </div>
+            </div>
+            <div class="slds-text-heading_large">{inactiveMachines}</div>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- Customer Commitment Status Section -->
+      <div class="slds-m-bottom_small slds-m-top_large">
+        <h3 class="slds-text-heading_medium slds-m-bottom_small">
+          <lightning-icon
+            icon-name="standard:goals"
+            size="small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          Customer Commitment & Risk Assessment Overview
+        </h3>
+        <div
+          class="slds-text-body_small slds-text-color_weak slds-m-bottom_medium"
+        >
+          Comprehensive view of customer performance including current month
+          status and consecutive failure risk analysis.
+        </div>
+      </div>
+
+      <!-- Section 1: Current Month Performance Status -->
+      <div class="slds-m-bottom_medium">
+        <h4 class="slds-text-heading_small slds-m-bottom_small">
+          📊 Current Month Performance Status
+        </h4>
+        <div
+          class="slds-text-body_small slds-text-color_weak slds-m-bottom_small"
+        >
+          Based on average monthly sales vs. monthly commitment (current month
+          snapshot)
+        </div>
+        <div class="slds-grid slds-gutters slds-wrap">
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:error"
+                    size="small"
+                    class="slds-icon-text-error"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">Behind Target</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">{riskAnalysis.behind}</div>
+            </div>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:success"
+                    size="small"
+                    class="slds-icon-text-success"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">On Track</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">{riskAnalysis.ontrack}</div>
+            </div>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:success"
+                    size="small"
+                    class="slds-icon-text-success"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">At Risk</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">{riskAnalysis.atrisk}</div>
+            </div>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:target"
+                    size="small"
+                    class="slds-icon-text-default"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">No Target Set</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">
+                {riskAnalysis.notargetset}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Asset Protection Risk Analysis -->
+      <div class="slds-m-bottom_large">
+        <h4 class="slds-text-heading_small slds-m-bottom_small">
+          ⚠️ Asset Protection Risk Analysis
+        </h4>
+        <div
+          class="slds-text-body_small slds-text-color_weak slds-m-bottom_small"
+        >
+          Based on consecutive months of target failures (trend analysis for
+          asset recovery decisions)
+        </div>
+        <div class="slds-grid slds-gutters slds-wrap">
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:success"
+                    size="small"
+                    class="slds-icon-text-success"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">HEALTHY</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">
+                {formattedRiskSummary.healthyCount}
+              </div>
+              <div class="slds-text-body_small slds-text-color_weak">
+                0 Failed Months
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:info"
+                    size="small"
+                    class="slds-icon-text-default"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">WARNING</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">
+                {formattedRiskSummary.warningCount}
+              </div>
+              <div class="slds-text-body_small slds-text-color_weak">
+                1 Failed Month
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:warning"
+                    size="small"
+                    class="slds-icon-text-warning"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">HIGH RISK</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">
+                {formattedRiskSummary.highCount}
+              </div>
+              <div class="slds-text-body_small slds-text-color_weak">
+                2-3 Failed Months
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4"
+          >
+            <div class="slds-box slds-theme_default slds-text-align_center">
+              <div class="slds-media slds-media_center slds-m-bottom_small">
+                <div class="slds-media__figure">
+                  <lightning-icon
+                    icon-name="utility:error"
+                    size="small"
+                    class="slds-icon-text-error"
+                  ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                  <span class="slds-text-heading_small">CRITICAL</span>
+                </div>
+              </div>
+              <div class="slds-text-heading_large">
+                {formattedRiskSummary.criticalCount}
+              </div>
+              <div class="slds-text-body_small slds-text-color_weak">
+                4+ Failed Months
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <lightning-tabset active-tab-value={activeTab} onactive={handleTabChange}>
+        <!-- Commitment Performance Tab -->
+        <lightning-tab label="Commitment Performance" value="commitment">
+          <div class="slds-p-around_medium slds-grid slds-wrap slds-gutters">
+            <!-- Regional Commitment Report -->
+            <div class="slds-col slds-size_1-of-1 slds-m-bottom_large">
+              <lightning-card
+                title="Regional Commitment Performance (Last Month)"
+                icon-name="standard:location"
+              >
+                <lightning-datatable
+                  key-field="region"
+                  data={regionalCommitmentData}
+                  columns={regionalCommitmentColumns}
+                  hide-checkbox-column="true"
+                  show-row-number-column="true"
+                >
+                </lightning-datatable>
+              </lightning-card>
+            </div>
+
+            <!-- Supplier Commitment Report -->
+            <div class="slds-col slds-size_1-of-1 slds-m-bottom_large">
+              <lightning-card
+                title="Supplier Commitment Performance (Last Month)"
+                icon-name="standard:partners"
+              >
+                <lightning-datatable
+                  key-field="supplier"
+                  data={supplierCommitmentData}
+                  columns={supplierCommitmentColumns}
+                  hide-checkbox-column="true"
+                  show-row-number-column="true"
+                >
+                </lightning-datatable>
+              </lightning-card>
+            </div>
+
+            <!-- Customer Commitment Report -->
+            <div class="slds-col slds-size_1-of-1">
+              <lightning-card
+                title="Customer Commitment Performance"
+                icon-name="standard:account"
+              >
+                <!-- View Mode Toggle -->
+                <div slot="actions">
+                  <lightning-combobox
+                    name="viewModeToggle"
+                    label="View Mode"
+                    value={customerViewMode}
+                    placeholder="Select View Mode"
+                    options={viewModeOptions}
+                    onchange={handleViewModeToggle}
+                    variant="label-hidden"
+                  >
+                  </lightning-combobox>
+                </div>
+
+                <!-- Table View -->
+                <template if:true={isTableView}>
+                  <lightning-datatable
+                    key-field="customerCode"
+                    data={paginatedCustomerCommitmentData}
+                    columns={customerCommitmentColumns}
+                    hide-checkbox-column="true"
+                    show-row-number-column="true"
+                    onrowaction={handleCustomerRowAction}
+                  >
+                  </lightning-datatable>
+                </template>
+
+                <!-- Card View -->
+                <template if:true={isCardView}>
+                  <div
+                    class="slds-grid slds-wrap slds-gutters customer-card-grid"
+                  >
+                    <template
+                      for:each={paginatedCustomerCommitmentData}
+                      for:item="customer"
+                    >
+                      <div
+                        key={customer.businessCaseName}
+                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_medium"
+                      >
+                        <div class="slds-card customer-card">
+                          <!-- Customer Header with Risk Badge -->
+                          <div
+                            class="slds-card__header slds-p-vertical_x-small"
+                          >
+                            <header class="slds-media slds-media_center">
+                              <div class="slds-media__figure">
+                                <lightning-icon
+                                  icon-name="standard:account"
+                                  size="small"
+                                ></lightning-icon>
+                              </div>
+                              <div class="slds-media__body">
+                                <div
+                                  class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+                                >
+                                  <div class="slds-col slds-grow">
+                                    <h2 class="slds-card__header-title">
+                                      <span
+                                        class="slds-text-heading_small slds-truncate"
+                                        >{customer.customerName}</span
+                                      >
+                                    </h2>
+                                    <p
+                                      class="slds-text-body_small slds-text-color_weak"
+                                    >
+                                      {customer.customerCode}
+                                    </p>
+                                    <template
+                                      if:true={customer.businessCaseName}
+                                    >
+                                      <p class="slds-text-body_small">
+                                        <lightning-icon
+                                          icon-name="standard:case"
+                                          size="xx-small"
+                                          class="slds-m-right_xx-small"
+                                        ></lightning-icon>
+                                        <a
+                                          key={customer.businessCaseId}
+                                          href="#"
+                                          class="slds-text-link"
+                                          onclick={handleViewBusinessCase}
+                                          data-customer-code={customer.customerCode}
+                                          data-businesscase-name={customer.businessCaseName}
+                                        >
+                                          {customer.businessCaseName}
+                                        </a>
+                                      </p>
+                                    </template>
+                                    <!-- <template if:true={customer.businessCasesLinks}>
+                                      <p class="slds-text-body_small">
+                                        <lightning-icon
+                                          icon-name="standard:case"
+                                          size="xx-small"
+                                          class="slds-m-right_xx-small"
+                                        ></lightning-icon>
+                                        <template for:each={customer.businessCasesLinks} for:item="bc" for:index="index">
+                                          <a
+                                            key={bc.id}
+                                            href="#"
+                                            class="slds-text-link"
+                                            onclick={handleViewBusinessCaseUpdated}
+                                            data-business-case-id={bc.id}
+                                            data-customer-code={customer.customerCode}
+                                          >
+                                            {bc.name}
+                                          </a>
+                                          <template if:true={bc.isNotLast}>, </template>
+                                        </template>
+                                      </p>
+                                    </template> -->
+                                  </div>
+                                  <!-- Risk Badge -->
+                                  <div class="slds-col slds-no-flex">
+                                    <span class={customer.riskBadgeClass}>
+                                      <lightning-icon
+                                        icon-name={customer.riskIcon}
+                                        size="xx-small"
+                                        class="slds-m-right_xx-small"
+                                      ></lightning-icon>
+                                      {customer.riskLevel}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </header>
+                          </div>
+
+                          <!-- Customer Details -->
+                          <div
+                            class="slds-card__body slds-card__body_inner slds-p-vertical_small"
+                          >
+                            <!-- Business Info -->
+                            <div
+                              class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium"
+                            >
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Supplier
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.vendor}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Technology
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.technology}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Region
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.region}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Machines
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.machines}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Business Case Status
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.businessCaseStatus}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Machine Status
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.machineStatus}
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Addresses Section -->
+                            <div
+                              class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium"
+                            >
+                              <!-- Bill To Address -->
+                              <div class="slds-col slds-size_1-of-2">
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                                >
+                                  <lightning-icon
+                                    icon-name="utility:location"
+                                    size="xx-small"
+                                  ></lightning-icon>
+                                  Bill To Address
+                                </div>
+                                <div class="slds-text-body_small">
+                                  <div>{customer.city}</div>
+                                  <template if:true={customer.addressLine1}>
+                                    <div>{customer.addressLine1}</div>
+                                  </template>
+                                  <template if:true={customer.addressLine2}>
+                                    <div>{customer.addressLine2}</div>
+                                  </template>
+                                </div>
+                              </div>
+
+                              <!-- Ship To Address -->
+                              <div class="slds-col slds-size_1-of-2">
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                                >
+                                  <lightning-icon
+                                    icon-name="utility:send"
+                                    size="xx-small"
+                                  ></lightning-icon>
+                                  Ship To Address
+                                </div>
+                                <div class="slds-text-body_small">
+                                  <template
+                                    if:true={customer.shipToCustomerName}
+                                  >
+                                    <div class="slds-text-body_regular">
+                                      {customer.shipToCustomerName}
+                                    </div>
+                                  </template>
+                                  <div>{customer.shipToCity}</div>
+                                  <template
+                                    if:true={customer.shipToAddressLine1}
+                                  >
+                                    <div>{customer.shipToAddressLine1}</div>
+                                  </template>
+                                  <template
+                                    if:true={customer.shipToAddressLine2}
+                                  >
+                                    <div>{customer.shipToAddressLine2}</div>
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Performance Metrics for Commitment -->
+                            <div
+                              class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium"
+                            >
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Monthly Commitment
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.formattedCommitment}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Avg Monthly Sales
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.formattedAvgSales}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Achievement
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.achievementPercent}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Status
+                                </div>
+                                <div>
+                                  <template if:true={customer.isOnTrack}>
+                                    <span class="status-on-track"
+                                      >{customer.performanceStatus}</span
+                                    >
+                                  </template>
+                                  <template if:true={customer.isBehind}>
+                                    <span class="status-behind"
+                                      >{customer.performanceStatus}</span
+                                    >
+                                  </template>
+                                  <template if:true={customer.isNoTarget}>
+                                    <span class="status-no-target"
+                                      >{customer.performanceStatus}</span
+                                    >
+                                  </template>
+                                  <template if:true={customer.isAtRisk}>
+                                    <span class="status-at-risk"
+                                      >{customer.performanceStatus}</span
+                                    >
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Risk Management Assessment Section -->
+                            <div class="slds-border_top slds-p-top_small">
+                              <div
+                                class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_x-small"
+                              >
+                                <div class="slds-col">
+                                  <h3 class="slds-text-heading_small">
+                                    <lightning-icon
+                                      icon-name="utility:shield"
+                                      size="xx-small"
+                                      class="slds-m-right_xx-small"
+                                    ></lightning-icon>
+                                    Risk Assessment
+                                  </h3>
+                                </div>
+                              </div>
+                              <div
+                                class="slds-grid slds-wrap slds-gutters_small"
+                              >
+                                <div
+                                  class="slds-col slds-size_1-of-1 slds-m-bottom_x-small"
+                                >
+                                  <div
+                                    class="slds-text-body_small slds-text-color_weak"
+                                  >
+                                    Risk Status
+                                  </div>
+                                  <div class={customer.riskStatusTextClass}>
+                                    {customer.riskStatusText}
+                                  </div>
+                                </div>
+                                <template if:true={customer.showRiskAction}>
+                                  <div
+                                    class="slds-col slds-size_1-of-1 slds-m-top_x-small"
+                                  >
+                                    <lightning-button
+                                      variant="destructive"
+                                      label={customer.riskActionLabel}
+                                      icon-name="utility:warning"
+                                      onclick={handleRiskAction}
+                                      data-customer-code={customer.customerCode}
+                                      class="slds-size_1-of-1"
+                                    ></lightning-button>
+                                  </div>
+                                </template>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+
+                <!-- Pagination for Cards/Table -->
+                <template if:true={isCardView}>
+                  <div class="slds-card__footer">
+                    <div
+                      class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+                    >
+                      <div class="slds-col">
+                        <span class="slds-text-body_small slds-text-color_weak">
+                          Showing {startRecord} to {endRecord} of {totalRecords}
+                          customers
+                        </span>
+                      </div>
+                      <div class="slds-col slds-no-flex">
+                        <lightning-button-group>
+                          <lightning-button
+                            label="Previous"
+                            icon-name="utility:chevronleft"
+                            onclick={handlePreviousPage}
+                            disabled={isFirstPage}
+                          >
+                          </lightning-button>
+                          <lightning-button
+                            label="Next"
+                            icon-name="utility:chevronright"
+                            icon-position="right"
+                            onclick={handleNextPage}
+                            disabled={isLastPage}
+                          >
+                          </lightning-button>
+                        </lightning-button-group>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </lightning-card>
+            </div>
+          </div>
+        </lightning-tab>
+
+        <!-- Investment Performance Tab -->
+        <lightning-tab label="Investment Performance" value="investment">
+          <div class="slds-p-around_medium slds-grid slds-wrap slds-gutters">
+            <!-- Regional Investment Report -->
+            <div class="slds-col slds-size_1-of-1 slds-m-bottom_large">
+              <lightning-card
+                title="Regional Investment Performance"
+                icon-name="standard:location"
+              >
+                <lightning-datatable
+                  key-field="region"
+                  data={regionalInvestmentData}
+                  columns={regionalInvestmentColumns}
+                  hide-checkbox-column="true"
+                  show-row-number-column="true"
+                >
+                </lightning-datatable>
+              </lightning-card>
+            </div>
+
+            <!-- Supplier Investment Report -->
+            <div class="slds-col slds-size_1-of-1 slds-m-bottom_large">
+              <lightning-card
+                title="Supplier Investment Performance"
+                icon-name="standard:partners"
+              >
+                <lightning-datatable
+                  key-field="supplier"
+                  data={supplierInvestmentData}
+                  columns={supplierInvestmentColumns}
+                  hide-checkbox-column="true"
+                  show-row-number-column="true"
+                >
+                </lightning-datatable>
+              </lightning-card>
+            </div>
+
+            <!-- Customer Investment Report -->
+            <div class="slds-col slds-size_1-of-1">
+              <lightning-card
+                title="Customer Investment Performance"
+                icon-name="standard:account"
+              >
+                <!-- View Mode Toggle -->
+                <div slot="actions">
+                  <lightning-combobox
+                    name="viewModeToggle"
+                    label="View Mode"
+                    value={customerViewMode}
+                    placeholder="Select View Mode"
+                    options={viewModeOptions}
+                    onchange={handleViewModeToggle}
+                    variant="label-hidden"
+                  >
+                  </lightning-combobox>
+                </div>
+
+                <!-- Table View -->
+                <template if:true={isTableView}>
+                  <lightning-datatable
+                    key-field="customerCode"
+                    data={paginatedCustomerInvestmentData}
+                    columns={customerInvestmentColumns}
+                    hide-checkbox-column="true"
+                    show-row-number-column="true"
+                    onrowaction={handleCustomerRowAction}
+                  >
+                  </lightning-datatable>
+                </template>
+
+                <!-- Card View -->
+                <template if:true={isCardView}>
+                  <div
+                    class="slds-grid slds-wrap slds-gutters customer-card-grid"
+                  >
+                    <template
+                      for:each={paginatedCustomerInvestmentData}
+                      for:item="customer"
+                    >
+                      <div
+                        key={customer.customerCode}
+                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-m-bottom_medium"
+                      >
+                        <div class="slds-card customer-card">
+                          <!-- Customer Header -->
+                          <div
+                            class="slds-card__header slds-p-vertical_x-small"
+                          >
+                            <header class="slds-media slds-media_center">
+                              <div class="slds-media__figure">
+                                <lightning-icon
+                                  icon-name="standard:account"
+                                  size="small"
+                                ></lightning-icon>
+                              </div>
+                              <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                  <span
+                                    class="slds-text-heading_small slds-truncate"
+                                    >{customer.customerName}</span
+                                  >
+                                </h2>
+                                <p
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  {customer.customerCode}
+                                </p>
+                                <template if:true={customer.businessCaseName}>
+                                  <p class="slds-text-body_small">
+                                    <lightning-icon
+                                      icon-name="standard:case"
+                                      size="xx-small"
+                                      class="slds-m-right_xx-small"
+                                    ></lightning-icon>
+                                    <a
+                                      href="#"
+                                      class="slds-text-link"
+                                      onclick={handleViewBusinessCase}
+                                      data-customer-code={customer.customerCode}
+                                    >
+                                      {customer.businessCaseName}
+                                    </a>
+                                  </p>
+                                </template>
+                              </div>
+                            </header>
+                          </div>
+
+                          <!-- Customer Details -->
+                          <div
+                            class="slds-card__body slds-card__body_inner slds-p-vertical_small"
+                          >
+                            <!-- Business Info -->
+                            <div
+                              class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium"
+                            >
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Supplier
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.vendor}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Technology
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.technology}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Region
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.region}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Machines
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.machines}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Business Case Status
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.businessCaseStatus}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Machine Status
+                                </div>
+                                <div class="slds-text-body_regular">
+                                  {customer.machineStatus}
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Addresses Section -->
+                            <div
+                              class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium"
+                            >
+                              <!-- Bill To Address -->
+                              <div class="slds-col slds-size_1-of-2">
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                                >
+                                  <lightning-icon
+                                    icon-name="utility:location"
+                                    size="xx-small"
+                                  ></lightning-icon>
+                                  &nbsp;Bill To Address
+                                </div>
+                                <div class="slds-text-body_small">
+                                  <div>{customer.city}</div>
+                                  <template if:true={customer.addressLine1}>
+                                    <div>{customer.addressLine1}</div>
+                                  </template>
+                                  <template if:true={customer.addressLine2}>
+                                    <div>{customer.addressLine2}</div>
+                                  </template>
+                                </div>
+                              </div>
+
+                              <!-- Ship To Address -->
+                              <div class="slds-col slds-size_1-of-2">
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                                >
+                                  <lightning-icon
+                                    icon-name="utility:send"
+                                    size="xx-small"
+                                  ></lightning-icon>
+                                  &nbsp;Ship To Address
+                                </div>
+                                <div class="slds-text-body_small">
+                                  <template
+                                    if:true={customer.shipToCustomerName}
+                                  >
+                                    <div class="slds-text-body_regular">
+                                      {customer.shipToCustomerName}
+                                    </div>
+                                  </template>
+                                  <div>{customer.shipToCity}</div>
+                                  <template
+                                    if:true={customer.shipToAddressLine1}
+                                  >
+                                    <div>{customer.shipToAddressLine1}</div>
+                                  </template>
+                                  <template
+                                    if:true={customer.shipToAddressLine2}
+                                  >
+                                    <div>{customer.shipToAddressLine2}</div>
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Performance Metrics -->
+                            <div class="slds-grid slds-wrap slds-gutters_small">
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Investment
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.formattedInvestment}
+                                </div>
+                              </div>
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Total Sales
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.formattedTotalSales}
+                                </div>
+                              </div>
+                              <!-- <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Cost Recovery
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.costRecoveryPercent}
+                                </div>
+                              </div> -->
+                              <div
+                                class="slds-col slds-size_1-of-2 slds-m-bottom_x-small"
+                              >
+                                <div
+                                  class="slds-text-body_small slds-text-color_weak"
+                                >
+                                  Margin
+                                </div>
+                                <div class="slds-text-heading_small">
+                                  {customer.formattedMargin}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+
+                <!-- Pagination for Cards/Table -->
+                <template if:true={isCardView}>
+                  <div class="slds-card__footer">
+                    <div
+                      class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+                    >
+                      <div class="slds-col">
+                        <span class="slds-text-body_small slds-text-color_weak">
+                          Showing {startRecord} to {endRecord} of {totalRecords}
+                          customers
+                        </span>
+                      </div>
+                      <div class="slds-col slds-no-flex">
+                        <lightning-button-group>
+                          <lightning-button
+                            label="Previous"
+                            icon-name="utility:chevronleft"
+                            onclick={handlePreviousPage}
+                            disabled={isFirstPage}
+                          >
+                          </lightning-button>
+                          <lightning-button
+                            label="Next"
+                            icon-name="utility:chevronright"
+                            icon-position="right"
+                            onclick={handleNextPage}
+                            disabled={isLastPage}
+                          >
+                          </lightning-button>
+                        </lightning-button-group>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </lightning-card>
+            </div>
+          </div>
+        </lightning-tab>
+
+        <!-- Detailed View Tab -->
+        <lightning-tab label="Detailed View" value="detailed">
+          <div class="slds-p-around_medium">
+            <lightning-card
+              title="Business Case Snapshots"
+              icon-name="standard:calibration"
+            >
+              <div slot="actions">
+                <lightning-button
+                  variant="brand-outline"
+                  label="Export to Excel"
+                  icon-name="utility:download"
+                  onclick={exportSnapshotsToExcel}>
+                </lightning-button>
+              </div>
+              <!-- Pagination Info -->
+              <div
+                class="slds-text-body_small slds-text-color_weak slds-m-bottom_small"
+              >
+                <span
+                  >Showing {startRecord} to {endRecord} of {totalRecords}
+                  records</span
+                >
+              </div>
+
+              <lightning-datatable
+                key-field="id"
+                data={detailedPaginatedData}
+                columns={detailedSnapshotColumns}
+                hide-checkbox-column="true"
+                show-row-number-column="false"
+                onrowaction={handleRowAction}
+              >
+              </lightning-datatable>
+
+              <!-- Pagination Controls -->
+              <div
+                class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-top_small"
+              >
+                <lightning-button-group>
+                  <lightning-button
+                    label="Previous"
+                    icon-name="utility:chevronleft"
+                    disabled={isDetailedFirstPage}
+                    onclick={handleDetailedPreviousPage}
+                  >
+                  </lightning-button>
+                  <lightning-button
+                    label="Next"
+                    icon-name="utility:chevronright"
+                    icon-position="right"
+                    disabled={isDetailedLastPage}
+                    onclick={handleDetailedNextPage}
+                  >
+                  </lightning-button>
+                </lightning-button-group>
+                <span class="slds-text-body_small slds-text-color_weak"
+                  >Page {detailedCurrentPage} of {totalDetailPages}</span
+                >
+              </div>
+            </lightning-card>
+          </div>
+        </lightning-tab>
+      </lightning-tabset>
+
+      <!-- Loading Spinner -->
+      <template if:true={isLoading}>
+        <lightning-spinner
+          alternative-text="Loading dashboard data..."
+          size="large"
+        ></lightning-spinner>
+      </template>
+    </div>
+
+    <!-- Customer Detail Modal -->
+    <template if:true={showCustomerModal}>
+      <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">
+            <button
+              class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+              onclick={closeCustomerModal}
+            >
+              <lightning-icon
+                icon-name="utility:close"
+                size="small"
+              ></lightning-icon>
+              <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 class="slds-modal__title slds-hyphenate">Customer Details</h2>
+          </header>
+          <div class="slds-modal__content slds-p-around_medium">
+            <template if:true={selectedCustomerData}>
+              <div class="customer-detail-grid">
+                <div class="detail-section">
+                  <h3 class="section-title">
+                    <lightning-icon
+                      icon-name="standard:account"
+                      size="small"
+                    ></lightning-icon>
+                    Customer Information
+                  </h3>
+                  <div class="detail-row">
+                    <span class="detail-label">Customer Code:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.customerCode}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Customer Name:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.customerName}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Region:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.region}</span
+                    >
+                  </div>
+                </div>
+
+                <div class="detail-section">
+                  <h3 class="section-title">
+                    <lightning-icon
+                      icon-name="standard:address"
+                      size="small"
+                    ></lightning-icon>
+                    Bill To Address Information
+                  </h3>
+                  <div class="detail-row">
+                    <span class="detail-label">City:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.city}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Address Line 1:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.addressLine1}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Address Line 2:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.addressLine2}</span
+                    >
+                  </div>
+                </div>
+
+                <div class="detail-section">
+                  <h3 class="section-title">
+                    <lightning-icon
+                      icon-name="standard:location"
+                      size="small"
+                    ></lightning-icon>
+                    Ship To Account Information
+                  </h3>
+                  <div class="detail-row">
+                    <span class="detail-label">Ship To Customer Number:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.shipToCustomerNumber}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ship To Customer Name:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.shipToCustomerName}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ship To City:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.shipToCity}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ship To Address Line 1:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.shipToAddressLine1}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ship To Address Line 2:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.shipToAddressLine2}</span
+                    >
+                  </div>
+                </div>
+
+                <div class="detail-section">
+                  <h3 class="section-title">
+                    <lightning-icon
+                      icon-name="standard:sales_path"
+                      size="small"
+                    ></lightning-icon>
+                    Performance Metrics
+                  </h3>
+                  <div class="detail-row">
+                    <span class="detail-label">Total Investment:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.formattedInvestment}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Total Sales:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.formattedSales}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Cost Recovery:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.formattedCostRecovery}</span
+                    >
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Machine Count:</span>
+                    <span class="detail-value"
+                      >{selectedCustomerData.machines}</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Risk Management Section -->
+                <div class="detail-section">
+                  <h3 class="section-title">
+                    <lightning-icon
+                      icon-name="utility:shield"
+                      size="small"
+                    ></lightning-icon>
+                    Risk Management Assessment
+                  </h3>
+                  <div class="detail-row">
+                    <span class="detail-label">Risk Level:</span>
+                    <span class="detail-value">
+                      <span class={selectedCustomerData.riskBadgeClass}>
+                        <lightning-icon
+                          icon-name={selectedCustomerData.riskIcon}
+                          size="xx-small"
+                          class="slds-m-right_xx-small"
+                        ></lightning-icon>
+                        {selectedCustomerData.riskLevel}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Risk Status:</span>
+                    <span class={selectedCustomerData.riskStatusTextClass}
+                      >{selectedCustomerData.riskStatusText}</span
+                    >
+                  </div>
+                  <template if:true={selectedCustomerData.showActionRequired}>
+                    <div class="detail-row">
+                      <span class="detail-label">Required Action:</span>
+                      <span class="detail-value"
+                        >{selectedCustomerData.riskActionLabel}</span
+                      >
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+          <footer class="slds-modal__footer">
+            <lightning-button
+              variant="neutral"
+              label="Close"
+              onclick={closeCustomerModal}
+            >
+            </lightning-button>
+          </footer>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template></div
+></template>

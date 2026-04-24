@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor__c</fullName>
+    <label>Vendor</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>E - VitalScientific</fullName>
+                <default>false</default>
+                <label>E - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>S - VitalScientific</fullName>
+                <default>false</default>
+                <label>S - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>D - VitalScientific</fullName>
+                <default>false</default>
+                <label>D - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>B - Boule</fullName>
+                <default>false</default>
+                <label>B - Boule</label>
+            </value>
+            <value>
+                <fullName>LOC - VitalScientific</fullName>
+                <default>false</default>
+                <label>LOC - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>U - VitalScientific</fullName>
+                <default>false</default>
+                <label>U - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>DM - VitalScientific</fullName>
+                <default>false</default>
+                <label>DM - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>A - Boule</fullName>
+                <default>false</default>
+                <label>A - Boule</label>
+            </value>
+            <value>
+                <fullName>F - VitalScientific</fullName>
+                <default>false</default>
+                <label>F - VitalScientific</label>
+            </value>
+            <value>
+                <fullName>LT -</fullName>
+                <default>false</default>
+                <label>LT -</label>
+            </value>
+            <value>
+                <fullName>YHLO - YHLO</fullName>
+                <default>false</default>
+                <label>YHLO - YHLO</label>
+            </value>
+            <value>
+                <fullName>ER - Erba</fullName>
+                <default>false</default>
+                <label>ER - Erba</label>
+            </value>
+            <value>
+                <fullName>NV - Nova</fullName>
+                <default>false</default>
+                <label>NV - Nova</label>
+            </value>
+            <value>
+                <fullName>OR - OCD</fullName>
+                <default>false</default>
+                <label>OR - OCD</label>
+            </value>
+            <value>
+                <fullName>STA - Stago</fullName>
+                <default>false</default>
+                <label>STA - Stago</label>
+            </value>
+            <value>
+                <fullName>AV - AlphaVenus</fullName>
+                <default>false</default>
+                <label>AV - AlphaVenus</label>
+            </value>
+            <value>
+                <fullName>DYM - Dymind</fullName>
+                <default>false</default>
+                <label>DYM - Dymind</label>
+            </value>
+            <value>
+                <fullName>HW - Headway</fullName>
+                <default>false</default>
+                <label>HW - Headway</label>
+            </value>
+            <value>
+                <fullName>ZYB - ZYBIO</fullName>
+                <default>false</default>
+                <label>ZYB - ZYBIO</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

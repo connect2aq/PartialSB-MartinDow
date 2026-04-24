@@ -1,0 +1,156 @@
+<template>
+  <!-- Simple Test Dashboard -->
+  <div class="slds-p-around_medium">
+    <!-- Page Header -->
+    <div class="slds-page-header slds-m-bottom_large">
+      <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+          <div class="slds-media">
+            <div class="slds-media__figure">
+              <lightning-icon
+                icon-name="standard:account"
+                size="medium"
+              ></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-page-header__name">
+                <div class="slds-page-header__name-title">
+                  <h1>
+                    <span class="slds-page-header__title slds-truncate"
+                      >Simple Dashboard Test</span
+                    >
+                  </h1>
+                </div>
+              </div>
+              <p class="slds-page-header__name-meta">
+                Testing basic functionality
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="slds-page-header__col-actions">
+          <div class="slds-page-header__controls">
+            <lightning-button-group>
+              <lightning-button
+                label="Refresh Data"
+                icon-name="utility:refresh"
+                onclick={handleRefresh}
+                variant="brand"
+              >
+              </lightning-button>
+              <lightning-button
+                label="Export Data"
+                icon-name="utility:download"
+                onclick={handleExport}
+                variant="neutral"
+              >
+              </lightning-button>
+            </lightning-button-group>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simple Overview Cards -->
+    <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+        <div class="slds-box slds-theme_default slds-text-align_center">
+          <div class="slds-media slds-media_center slds-m-bottom_small">
+            <div class="slds-media__figure">
+              <lightning-icon icon-name="standard:opportunity" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <span class="slds-text-heading_small">Total Investment</span>
+            </div>
+          </div>
+          <div class="slds-text-heading_large slds-text-color_success">
+            {formattedTotalInvestment}
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+        <div class="slds-box slds-theme_default slds-text-align_center">
+          <div class="slds-media slds-media_center slds-m-bottom_small">
+            <div class="slds-media__figure">
+              <lightning-icon icon-name="standard:sales_path" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <span class="slds-text-heading_small">Total Sales</span>
+            </div>
+          </div>
+          <div class="slds-text-heading_large slds-text-color_success">
+            {formattedTotalSales}
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+        <div class="slds-box slds-theme_default slds-text-align_center">
+          <div class="slds-media slds-media_center slds-m-bottom_small">
+            <div class="slds-media__figure">
+              <lightning-icon icon-name="standard:currency" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <span class="slds-text-heading_small">Total Margin</span>
+            </div>
+          </div>
+          <div class="slds-text-heading_large slds-text-color_success">
+            {formattedTotalMargin}
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+        <div class="slds-box slds-theme_default slds-text-align_center">
+          <div class="slds-media slds-media_center slds-m-bottom_small">
+            <div class="slds-media__figure">
+              <lightning-icon icon-name="standard:forecasts" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <span class="slds-text-heading_small">Cost Recovery</span>
+            </div>
+          </div>
+          <div class="slds-text-heading_large slds-text-color_success">
+            {costRecoveryRate}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simple Tab Section -->
+    <lightning-tabset active-tab-value={activeTab} onactive={handleTabChange}>
+      <lightning-tab label="Investment Trends" value="investment">
+        <div class="slds-p-around_medium">
+          <h3 class="slds-text-heading_medium slds-m-bottom_medium">Investment Trends</h3>
+          <p>Investment trends content will go here...</p>
+          <div class="slds-text-body_regular">
+            <strong>Total Customers:</strong> {overviewMetrics.totalCustomers}<br/>
+            <strong>Total Investment:</strong> {formattedTotalInvestment}<br/>
+            <strong>Total Sales:</strong> {formattedTotalSales}
+          </div>
+        </div>
+      </lightning-tab>
+
+      <lightning-tab label="Commitment Trends" value="commitment">
+        <div class="slds-p-around_medium">
+          <h3 class="slds-text-heading_medium slds-m-bottom_medium">Commitment Trends</h3>
+          <p>Commitment trends content will go here...</p>
+          <div class="slds-text-body_regular">
+            <strong>On Track:</strong> {overviewMetrics.onTrackCustomers}<br/>
+            <strong>Behind Target:</strong> {overviewMetrics.behindTargetCustomers}<br/>
+            <strong>No Target:</strong> {overviewMetrics.noTargetCustomers}
+          </div>
+        </div>
+      </lightning-tab>
+    </lightning-tabset>
+
+    <!-- Loading Spinner -->
+    <template if:true={isLoading}>
+      <lightning-spinner
+        alternative-text="Loading dashboard data..."
+        size="large"
+      ></lightning-spinner>
+    </template>
+  </div>
+</template>

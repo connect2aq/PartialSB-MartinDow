@@ -1,0 +1,797 @@
+<template>
+    <div class="slds-p-around_medium slds-card scrollable-x-mobile">
+        <!-- Header -->
+        <h2
+            class="slds-text-heading_medium slds-text-align_center slds-m-bottom_medium"
+        >
+            Material Search
+        </h2>
+
+        <!-- Search Panel -->
+        <div class="slds-grid slds-gutters slds-m-bottom_medium">
+            <div class="slds-col slds-size_2-of-3">
+                <lightning-input
+                    label="Global Search (Material, Description, Old Material No.)"
+                    value={searchTerm}
+                    onchange={handleSearchInput}
+                ></lightning-input>
+
+                <template if:true={isSearchLoading}>
+                    <div class="slds-m-top_small slds-m-bottom_small">
+                        <lightning-spinner
+                            alternative-text="Searching..."
+                            size="medium"
+                        ></lightning-spinner>
+                    </div>
+                </template>
+
+                <!-- Advance Search Collapsible Section -->
+                <lightning-card
+                    class="slds-m-top_small"
+                    style="box-shadow: none; border: none"
+                >
+                    <lightning-accordion
+                        allow-multiple-sections-open="false"
+                        active-section-name=""
+                    >
+                        <lightning-accordion-section
+                            name="advanceSearch"
+                            label="Advance Search"
+                        >
+                            <!-- Material Group Dropdowns: 2 per row, then 1 -->
+                            <div class="slds-m-bottom_small">
+                                <div class="slds-grid slds-gutters slds-m-bottom_xx-small">
+                                    <div class="slds-col" style="min-width: 320px">
+                                        <lightning-combobox
+                                            name="group1"
+                                            label="Material Group 1"
+                                            value={selectedGroup1}
+                                            options={group1Options}
+                                            onchange={handleGroup1Change}
+                                            class="full-width-combobox"
+                                        ></lightning-combobox>
+                                    </div>
+                                    <div class="slds-col" style="min-width: 320px">
+                                        <lightning-combobox
+                                            name="group2"
+                                            label="Material Group 2"
+                                            value={selectedGroup2}
+                                            options={group2Options}
+                                            onchange={handleGroup2Change}
+                                            class="full-width-combobox"
+                                        ></lightning-combobox>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters slds-m-bottom_xx-small">
+                                    <div class="slds-col" style="min-width: 320px">
+                                        <lightning-combobox
+                                            name="group3"
+                                            label="Material Group 3"
+                                            value={selectedGroup3}
+                                            options={group3Options}
+                                            onchange={handleGroup3Change}
+                                            class="full-width-combobox"
+                                        ></lightning-combobox>
+                                    </div>
+                                    <div class="slds-col" style="min-width: 320px">
+                                        <lightning-combobox
+                                            name="group4"
+                                            label="Material Group 4"
+                                            value={selectedGroup4}
+                                            options={group4Options}
+                                            onchange={handleGroup4Change}
+                                            class="full-width-combobox"
+                                        ></lightning-combobox>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col" style="min-width: 320px">
+                                        <lightning-combobox
+                                            name="group5"
+                                            label="Material Group 5"
+                                            value={selectedGroup5}
+                                            options={group5Options}
+                                            onchange={handleGroup5Change}
+                                            class="full-width-combobox"
+                                        ></lightning-combobox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section Break for Vendor/Technology/Product Type -->
+                            <div
+                                class="slds-m-vertical_medium"
+                                style="border-top: 1px solid #e5e5e5; padding-top: 1.5rem"
+                            >
+                                <div class="slds-text-title_bold slds-m-bottom_small">
+                                    Industry Filters
+                                </div>
+                                <div class="slds-m-bottom_xx-small">
+                                    <lightning-combobox
+                                        name="vendor"
+                                        label="Vendor"
+                                        value={selectedVendor}
+                                        options={vendorOptions}
+                                        onchange={handleVendorChange}
+                                        class="full-width-combobox"
+                                    ></lightning-combobox>
+                                </div>
+                                <div class="slds-m-bottom_xx-small">
+                                    <lightning-combobox
+                                        name="technology"
+                                        label="Technology"
+                                        value={selectedTechnology}
+                                        options={technologyOptions}
+                                        onchange={handleTechnologyChange}
+                                        class="full-width-combobox"
+                                    ></lightning-combobox>
+                                </div>
+                                <div>
+                                    <lightning-combobox
+                                        name="productType"
+                                        label="Product Type"
+                                        value={selectedProductType}
+                                        options={productTypeOptions}
+                                        onchange={handleProductTypeChange}
+                                        class="full-width-combobox"
+                                    ></lightning-combobox>
+                                </div>
+                            </div>
+                        </lightning-accordion-section>
+                    </lightning-accordion>
+                </lightning-card>
+
+                <!-- Buttons Row: Always Visible -->
+                <div class="slds-grid slds-gutters slds-m-top_medium">
+                    <div class="slds-col">
+                        <lightning-button
+                            label="Search"
+                            variant="brand"
+                            onclick={handleSearchClick}
+                            class="slds-m-right_small"
+                        ></lightning-button>
+                        <lightning-button
+                            label="Reset"
+                            variant="neutral"
+                            onclick={handleResetFilters}
+                        ></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Products Panel -->
+        <template if:true={selectedProducts.length}>
+            <div class="slds-box slds-theme_alert-texture slds-m-bottom_medium">
+                <h3 class="slds-text-title_bold">Selected Products</h3>
+                <div
+                    class="slds-wrap slds-m-top_x-small slds-m-bottom_medium"
+                    style="display: flex; flex-wrap: wrap; gap: 12px 24px"
+                >
+                    <template for:each={selectedProducts} for:item="item">
+                        <span
+                            key={item}
+                            class="slds-m-right_x-small slds-m-bottom_x-small slds-badge-wrapper"
+                        >
+                            <lightning-badge
+                                label={item.productLabel}
+                                class="slds-m-right_xx-small"
+                            ></lightning-badge>
+                            <lightning-button-icon
+                                icon-name="utility:close"
+                                alternative-text="Unselect"
+                                onclick={handleUnselectProduct}
+                                data-id={item.Material_Number__c}
+                                variant="bare"
+                                size="x-small"
+                                class="slds-m-left_xx-small"
+                            ></lightning-button-icon>
+                        </span>
+                    </template>
+                </div>
+                <lightning-button
+                    label="Save Selected"
+                    variant="success"
+                    onclick={handleSaveSelected}
+                    class="slds-m-top_large slds-m-bottom_xx-large"
+                ></lightning-button>
+            </div>
+        </template>
+
+        <!-- toggle button for list view and card view -->
+        <div class="slds-m-top_medium slds-text-align_right" if:true={hasPaginatedResults}>
+            <lightning-button-group>
+                <lightning-button-icon
+                    icon-name="utility:tile_card_list"
+                    alternative-text="Card View"
+                    variant={cardViewVariant}
+                    onclick={handleCardView}
+                ></lightning-button-icon>
+                <lightning-button-icon
+                    icon-name="utility:table"
+                    alternative-text="List View"
+                    variant={listViewVariant}
+                    onclick={handleListView}
+                ></lightning-button-icon>
+            </lightning-button-group>
+        </div>
+
+        <div class="slds-m-bottom_small" if:false={getSelectedProducts}>
+            <lightning-button
+                variant="brand"
+                label="Perform Bulk Action"
+                onclick={handleBulkAction}
+                disabled={getSelectedProducts}
+            >
+            </lightning-button>
+        </div>
+
+        <!-- Search Results (Card View) -->
+        <template if:true={showCardView}>
+            <div class="scrollable-x">
+                <div class="" if:true={objectApiName}>
+                    <lightning-input
+                        type="checkbox"
+                        id="cardSelectAll"
+                        data-id="cardSelectAllDataId"
+                        onchange={handleCardSelectAll}
+                    >
+                    </lightning-input>
+                </div>
+
+                <div
+                    class="slds-grid slds-wrap slds-gutter_medium"
+                    style="display: flex; flex-wrap: wrap"
+                >
+                    <template for:each={paginatedResults} for:item="item">
+                        <div
+                            key={item.Material_Number__c}
+                            style="flex: 0 0 48%; margin-bottom: 10px; margin-right: 10px"
+                        >
+                            <div class="slds-box slds-theme_default">
+                                <!-- Checkbox in top-right -->
+                                <div
+                                    class="slds-grid slds-grid_align-spread slds-m-bottom_small"
+                                    if:true={objectApiName}
+                                >
+                                    <lightning-input
+                                        type="checkbox"
+                                        data-id={item.Material_Number__c}
+                                        checked={item.isSelected}
+                                        onchange={handleCheckboxChange}
+                                    >
+                                    </lightning-input>
+                                </div>
+
+                                <h3 class="slds-text-heading_small">
+                                    {item.Material_Number__c} - {item.Description__c} -
+                                    {item.Old_Material_Number__c}
+                                </h3>
+
+                                <p><strong>Price:</strong> {item.priceFormatted}</p>
+
+                                <p>
+                                    <strong>Status:</strong>
+                                    <span class={item.statusClass}> {item.statusLabel}</span>
+                                </p>
+                                <p><strong>Division:</strong> {item.Division__c}</p>
+                                <p>
+                                    <strong>Base Unit of Measure:</strong>
+                                    {item.Size_Dimensions__c}
+                                </p>
+                                <p>
+                                    <strong>Size / Dimensions:</strong> {item.Size_Dimensions__c}
+                                </p>
+                                <p>
+                                    <strong>Material Groups:</strong> {item.Material_Group_1__c},
+                                    {item.Material_Group_2__c}, {item.Material_Group_3__c},
+                                    {item.Material_Group_4__c}, {item.Material_Group_5__c}
+                                </p>
+                                <p>
+                                    <strong>Industry Standard:</strong>
+                                    {item.Industry_Standard_Description__c}
+                                </p>
+                                <p><strong>Sub Group:</strong> {item.Sub_Group__c}</p>
+                                <p><strong>Commodity Code:</strong> {item.Commodity_Code__c}</p>
+                                                                <!-- Quantity now always visible under Price -->
+                                <div class="slds-m-top_xx-small slds-m-bottom_small">
+                                    <div class="slds-form-element slds-m-bottom_xx-small">
+                                        <label
+                                            class="slds-form-element__label"
+                                            for={item.quantityInputId}
+                                        >
+                                            Quantity
+                                        </label>
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            value={item.quantity}
+                                            data-id={item.Material_Number__c}
+                                            id={item.quantityInputId}
+                                            class="slds-input quantity-input"
+                                            onchange={handleQuantityChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <template if:true={item.detailsFetched}>
+                                    <div class="slds-box slds-theme_info slds-m-top_small">
+                                        <div class="slds-m-top_xx-small">
+                                            <p>
+                                                <strong>Total Available Stock: </strong>
+                                                {item.totalAvailableStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Blocked Stock: </strong>
+                                                {item.totalBlockedStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Allocated Stock: </strong>
+                                                {item.totalAllocatedStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Restricted Stock: </strong>
+                                                {item.totalRestrictedStock}
+                                            </p>
+                                        </div>
+
+                                        <template if:true={item.supplierBatch}>
+                                            <div class="slds-m-top_small">
+                                                <strong>Batch Inventory Details:</strong>
+                                                <table
+                                                    class="slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_x-small"
+                                                >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Storage Location</th>
+                                                            <th>Available</th>
+                                                            <th>Blocked</th>
+                                                            <th>Allocated</th>
+                                                            <th>Restricted</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <template
+                                                            for:each={item.supplierBatch}
+                                                            for:item="supBatch"
+                                                        >
+                                                            <tr
+                                                                key={supBatch.storageLocation}
+                                                                class="batch-row"
+                                                            >
+                                                                <td>{supBatch.storageLocation}</td>
+                                                                <td>{supBatch.availableStock}</td>
+                                                                <td>{supBatch.blockedStock}</td>
+                                                                <td>
+                                                                    <a
+                                                                        href="javascript:void(0);"
+                                                                        data-storage={supBatch.storageLocation}
+                                                                        data-material={item.Material_Number__c}
+                                                                        onclick={handleAllocatedClick}
+                                                                        style="cursor: pointer; text-decoration: underline;"
+                                                                    >
+                                                                        {supBatch.allocatedStock}
+                                                                    </a>
+                                                                </td>
+                                                                <td>{supBatch.restrictedStock}</td>
+                                                            </tr>
+
+                                                            <!-- Nested detail table (visible when expanded) -->
+                                                            <template if:true={supBatch.showAllocations}>
+                                                                <tr key={supBatch.storageLocation}>
+                                                                    <td
+                                                                        colspan="5"
+                                                                        class="slds-p-around_small slds-theme_shade"
+                                                                    >
+                                                                        <table
+                                                                            key={supBatch.storageLocation}
+                                                                            class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-m-top_x-small"
+                                                                        >
+                                                                            <thead>
+                                                                                <tr class="slds-text-title_caps">
+                                                                                    <th>Supplier Batch</th>
+                                                                                    <th>Batch</th>
+                                                                                    <th>Customer Number</th>
+                                                                                    <th>Customer</th>
+                                                                                    <th>SO</th>
+                                                                                    <th>Allocated Qty</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <template
+                                                                                    for:each={supBatch.batches}
+                                                                                    for:item="batch"
+                                                                                >
+                                                                                    <template
+                                                                                        for:each={batch.allocations}
+                                                                                        for:item="alloc"
+                                                                                    >
+                                                                                        <tr key={batch.so}>
+                                                                                            <td>
+                                                                                                {batch.supplierBatch}
+                                                                                            </td>
+                                                                                            <td>{batch.batch}</td>
+                                                                                            <td>{alloc.customer}</td>
+                                                                                            <td>{alloc.name}</td>
+                                                                                            <td>{alloc.so}</td>
+                                                                                            <td>
+                                                                                                {alloc.allocatedStock}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </template>
+                                                                                </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </template>
+                                                        </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <template if:false={item.detailsFetched}>
+                                    <template if:true={item.isLoading}>
+                                        <div class="slds-m-top_small" style="margin: 5px">
+                                            <lightning-spinner
+                                                alternative-text="Loading"
+                                                size="small"
+                                            ></lightning-spinner>
+                                        </div>
+                                    </template>
+                                    <template if:false={item.isLoading}>
+                                        <lightning-button
+                                            label="View Inventory"
+                                            variant="brand"
+                                            onclick={handleFetchPrice}
+                                            data-id={item.Material_Number__c}
+                                            class="slds-m-top_small"
+                                            style="margin: 5px"
+                                        ></lightning-button>
+                                    </template>
+                                </template>
+
+                                <template if:true={objectApiName}>
+                                    <template if:true={item.detailsFetched}>
+                                        <lightning-button
+                                            label={item.selectLabel}
+                                            variant={item.selectVariant}
+                                            onclick={handleSelectToggle}
+                                            data-id={item.Material_Number__c}
+                                            class="slds-m-top_small"
+                                        ></lightning-button>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="slds-m-top_medium slds-text-align_center">
+                <lightning-button-icon
+                    icon-name="utility:chevronleft"
+                    alternative-text="Previous"
+                    onclick={handlePrevPage}
+                    disabled={disablePrev}
+                ></lightning-button-icon>
+                <span class="slds-p-horizontal_small">
+                    Page {currentPage} of {totalPages}
+                </span>
+                <lightning-button-icon
+                    icon-name="utility:chevronright"
+                    alternative-text="Next"
+                    onclick={handleNextPage}
+                    disabled={disableNext}
+                ></lightning-button-icon>
+            </div>
+        </template>
+
+        <!-- Search Results (List View) -->
+        <template if:true={showListView}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_medium">
+                <thead>
+                    <tr>
+                        <th>
+                            <template if:true={objectApiName}>
+                                <lightning-input
+                                    type="checkbox"
+                                    id="listSelectAll"
+                                    data-id="listSelectAllDataId"
+                                    onchange={handleListSelectAll}
+                                >
+                                </lightning-input>
+                            </template>
+                        </th>
+                        <th>Material Number</th>
+                        <th>Description</th>
+                        <th>Old Material No.</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <!-- Division removed, Quantity added -->
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={paginatedResults} for:item="item">
+                        <tr key={item.Material_Number__c}>
+                            <td>
+                                <template if:true={objectApiName}>
+                                    <lightning-input
+                                        type="checkbox"
+                                        data-id={item.Material_Number__c}
+                                        checked={item.isSelected}
+                                        onchange={handleCheckboxChange}
+                                    >
+                                    </lightning-input>
+                                </template>
+                            </td>
+                            <td>{item.Material_Number__c}</td>
+                            <td>{item.Description__c}</td>
+                            <td>{item.Old_Material_Number__c}</td>
+                            <td>{item.priceFormatted}</td>
+                            <td>
+                                <span class={item.statusClass}>{item.statusLabel}</span>
+                            </td>
+                            <!-- NEW: Quantity column instead of Division -->
+                            <td>
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            value={item.quantity}
+                                            data-id={item.Material_Number__c}
+                                            id={item.quantityInputId}
+                                            class="slds-input quantity-input"
+                                            onchange={handleQuantityChange}
+                                        />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <template if:false={item.detailsFetched}>
+                                    <template if:true={item.isLoading}>
+                                        <lightning-spinner
+                                            alternative-text="Loading"
+                                            size="small"
+                                        ></lightning-spinner>
+                                    </template>
+                                    <template if:false={item.isLoading}>
+                                        <lightning-button
+                                            label="View Inventory"
+                                            variant={item.selectVariant}
+                                            data-id={item.Material_Number__c}
+                                            onclick={handleFetchPrice}
+                                            size="small"
+                                        ></lightning-button>
+                                    </template>
+                                </template>
+                            </td>
+                        </tr>
+
+                        <!-- Expanded details row -->
+                        <template if:true={item.detailsFetched}>
+                            <tr key={item.Material_Number__c}>
+                                <td colspan="8">
+                                    <div class="slds-box slds-theme_info slds-m-top_x-small">
+                                        <div class="slds-m-top_xx-small">
+                                            <p>
+                                                <strong>Total Available Stock:</strong>
+                                                {item.totalAvailableStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Blocked Stock:</strong>
+                                                {item.totalBlockedStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Allocated Stock:</strong>
+                                                {item.totalAllocatedStock}
+                                            </p>
+                                            <p>
+                                                <strong>Total Restricted Stock:</strong>
+                                                {item.totalRestrictedStock}
+                                            </p>
+                                        </div>
+
+                                        <!-- Supplier Batch table -->
+                                        <template if:true={item.supplierBatch}>
+                                            <div class="slds-m-top_small">
+                                                <strong>Batch Inventory Details:</strong>
+                                                <table
+                                                    class="slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_x-small"
+                                                >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Storage Location</th>
+                                                            <th>Available</th>
+                                                            <th>Blocked</th>
+                                                            <th>Allocated</th>
+                                                            <th>Restricted</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <template
+                                                            for:each={item.supplierBatch}
+                                                            for:item="supBatch"
+                                                        >
+                                                            <tr key={supBatch.storageLocation}>
+                                                                <td>{supBatch.storageLocation}</td>
+                                                                <td>{supBatch.availableStock}</td>
+                                                                <td>{supBatch.blockedStock}</td>
+                                                                <td>
+                                                                    <a
+                                                                        href="javascript:void(0);"
+                                                                        data-storage={supBatch.storageLocation}
+                                                                        data-material={item.Material_Number__c}
+                                                                        onclick={handleAllocatedClick}
+                                                                        style="cursor:pointer; text-decoration:underline;"
+                                                                    >
+                                                                        {supBatch.allocatedStock}
+                                                                    </a>
+                                                                </td>
+                                                                <td>{supBatch.restrictedStock}</td>
+                                                            </tr>
+
+                                                            <!-- Nested Allocations Table -->
+                                                            <template if:true={supBatch.showAllocations}>
+                                                                <tr key={supBatch.storageLocation}>
+                                                                    <td
+                                                                        colspan="5"
+                                                                        class="slds-p-around_small slds-theme_shade"
+                                                                    >
+                                                                        <table
+                                                                            key={supBatch.storageLocation}
+                                                                            class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-m-top_x-small"
+                                                                        >
+                                                                            <thead>
+                                                                                <tr class="slds-text-title_caps">
+                                                                                    <th>Supplier Batch</th>
+                                                                                    <th>Batch</th>
+                                                                                    <th>Customer Number</th>
+                                                                                    <th>Customer</th>
+                                                                                    <th>SO</th>
+                                                                                    <th>Allocated Qty</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <template
+                                                                                    for:each={supBatch.batches}
+                                                                                    for:item="batch"
+                                                                                >
+                                                                                    <template
+                                                                                        for:each={batch.allocations}
+                                                                                        for:item="alloc"
+                                                                                    >
+                                                                                        <tr key={alloc.so}>
+                                                                                            <td>
+                                                                                                {batch.supplierBatch}
+                                                                                            </td>
+                                                                                            <td>{batch.batch}</td>
+                                                                                            <td>{alloc.customer}</td>
+                                                                                            <td>{alloc.name}</td>
+                                                                                            <td>{alloc.so}</td>
+                                                                                            <td>
+                                                                                                {alloc.allocatedStock}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </template>
+                                                                                </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </template>
+                                                        </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="slds-m-top_medium slds-text-align_center">
+                <lightning-button-icon
+                    icon-name="utility:chevronleft"
+                    alternative-text="Previous"
+                    onclick={handlePrevPage}
+                    disabled={disablePrev}
+                ></lightning-button-icon>
+                <span class="slds-p-horizontal_small">
+                    Page {currentPage} of {totalPages}
+                </span>
+                <lightning-button-icon
+                    icon-name="utility:chevronright"
+                    alternative-text="Next"
+                    onclick={handleNextPage}
+                    disabled={disableNext}
+                ></lightning-button-icon>
+            </div>
+        </template>
+
+
+        <!-- No Results -->
+        <template if:true={showNoResults}>
+            <div
+                class="slds-text-color_error slds-text-align_center slds-m-top_medium"
+            >
+                No products found.
+            </div>
+        </template>
+
+        <!-- Modal Popup -->
+        <template if:true={isModalOpen}>
+            <section
+                role="dialog"
+                tabindex="-1"
+                aria-modal="true"
+                class="slds-modal slds-fade-in-open"
+            >
+                <div class="slds-modal__container">
+                    <!-- Header -->
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Allocation Details</h2>
+                        <button
+                            class="slds-button slds-button_icon slds-modal__close"
+                            title="Close"
+                            onclick={closeModal}
+                        >
+                            <lightning-icon
+                                icon-name="utility:close"
+                                size="small"
+                            ></lightning-icon>
+                        </button>
+                    </header>
+
+                    <!-- Body (popup table) -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr>
+                                    <th>SO</th>
+                                    <th>Customer No</th>
+                                    <th>Customer Name</th>
+                                    <th>Allocated Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={modalData} for:item="record">
+                                    <tr key={record.Id}>
+                                        <td>{record.so}</td>
+                                        <td>{record.customer}</td>
+                                        <td>{record.name}</td>
+                                        <td>{record.allocatedStock}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Footer -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button
+                            variant="neutral"
+                            label="Close"
+                            onclick={closeModal}
+                        ></lightning-button>
+                    </footer>
+                </div>
+            </section>
+
+            <!-- Modal Backdrop -->
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

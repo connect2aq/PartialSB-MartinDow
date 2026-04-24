@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Master__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Material Master</label>
+    <referenceTo>MD_Product2__c</referenceTo>
+    <relationshipLabel>Material Price Inventories</relationshipLabel>
+    <relationshipName>Material_Price_Inventories</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

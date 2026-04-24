@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Terms__c</fullName>
+    <label>Payment Terms</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0001 - Payable immediately Due net</fullName>
+                <default>false</default>
+                <label>0001 - Payable immediately Due net</label>
+            </value>
+            <value>
+                <fullName>0002 - within 14 days 2 % cash discount</fullName>
+                <default>false</default>
+                <label>0002 - within 14 days 2 % cash discount</label>
+            </value>
+            <value>
+                <fullName>0003 - within 14 days 3 % cash discount</fullName>
+                <default>false</default>
+                <label>0003 - within 14 days 3 % cash discount</label>
+            </value>
+            <value>
+                <fullName>0004 - Payable immediately Due net</fullName>
+                <default>false</default>
+                <label>0004 - Payable immediately Due net</label>
+            </value>
+            <value>
+                <fullName>0005 - Payable immediately Due net</fullName>
+                <default>false</default>
+                <label>0005 - Payable immediately Due net</label>
+            </value>
+            <value>
+                <fullName>0006 - Before End of the month 4 % cash discount</fullName>
+                <default>false</default>
+                <label>0006 - Before End of the month 4 % cash discount</label>
+            </value>
+            <value>
+                <fullName>0007 - For Invoicing up to 15 of Month</fullName>
+                <default>false</default>
+                <label>0007 - For Invoicing up to 15 of Month</label>
+            </value>
+            <value>
+                <fullName>0008 - For Invoicing up to 15 of Month</fullName>
+                <default>false</default>
+                <label>0008 - For Invoicing up to 15 of Month</label>
+            </value>
+            <value>
+                <fullName>0009 - Payable in 3 partial amounts</fullName>
+                <default>false</default>
+                <label>0009 - Payable in 3 partial amounts</label>
+            </value>
+            <value>
+                <fullName>0010 - 4 Months Installment</fullName>
+                <default>false</default>
+                <label>0010 - 4 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0011 - 5 Months Installment</fullName>
+                <default>false</default>
+                <label>0011 - 5 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0012 - 7 Months Installment</fullName>
+                <default>false</default>
+                <label>0012 - 7 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0013 - 8 Months Installment</fullName>
+                <default>false</default>
+                <label>0013 - 8 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0014 - 9 Months Installment</fullName>
+                <default>false</default>
+                <label>0014 - 9 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0015 - 10 Months Installment</fullName>
+                <default>false</default>
+                <label>0015 - 10 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0016 - 11 Months Installment</fullName>
+                <default>false</default>
+                <label>0016 - 11 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0017 - 13 Months Installment</fullName>
+                <default>false</default>
+                <label>0017 - 13 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0018 - 14 Months Installment</fullName>
+                <default>false</default>
+                <label>0018 - 14 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0019 - 15 Months Installment</fullName>
+                <default>false</default>
+                <label>0019 - 15 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0020 - 16 Months Installment</fullName>
+                <default>false</default>
+                <label>0020 - 16 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0021 - 17 Months Installment</fullName>
+                <default>false</default>
+                <label>0021 - 17 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0022 - 20 Months Installment</fullName>
+                <default>false</default>
+                <label>0022 - 20 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0023 - 24 Months Installment</fullName>
+                <default>false</default>
+                <label>0023 - 24 Months Installment</label>
+            </value>
+            <value>
+                <fullName>0024 - 20 Months Installment</fullName>
+                <default>false</default>
+                <label>0024 - 20 Months Installment</label>
+            </value>
+            <value>
+                <fullName>C001 - Payable immediately Due net</fullName>
+                <default>false</default>
+                <label>C001 - Payable immediately Due net</label>
+            </value>
+            <value>
+                <fullName>C002 - Letter of Credit at Sight</fullName>
+                <default>false</default>
+                <label>C002 - Letter of Credit at Sight</label>
+            </value>
+            <value>
+                <fullName>C003 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>C003 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>C004 - within 45 days Due net</fullName>
+                <default>false</default>
+                <label>C004 - within 45 days Due net</label>
+            </value>
+            <value>
+                <fullName>C005 - within 50 days Due net</fullName>
+                <default>false</default>
+                <label>C005 - within 50 days Due net</label>
+            </value>
+            <value>
+                <fullName>C006 - within 60 days Due net</fullName>
+                <default>false</default>
+                <label>C006 - within 60 days Due net</label>
+            </value>
+            <value>
+                <fullName>C007 - within 75 days Due net</fullName>
+                <default>false</default>
+                <label>C007 - within 75 days Due net</label>
+            </value>
+            <value>
+                <fullName>C008 - within 90 days Due net</fullName>
+                <default>false</default>
+                <label>C008 - within 90 days Due net</label>
+            </value>
+            <value>
+                <fullName>C009 - within 120 days Due net</fullName>
+                <default>false</default>
+                <label>C009 - within 120 days Due net</label>
+            </value>
+            <value>
+                <fullName>C010 - within 150 days Due net</fullName>
+                <default>false</default>
+                <label>C010 - within 150 days Due net</label>
+            </value>
+            <value>
+                <fullName>C011 - within 180 days Due net</fullName>
+                <default>false</default>
+                <label>C011 - within 180 days Due net</label>
+            </value>
+            <value>
+                <fullName>C012 - within 7 days Due net</fullName>
+                <default>false</default>
+                <label>C012 - within 7 days Due net</label>
+            </value>
+            <value>
+                <fullName>C013 - within 10 days Due net</fullName>
+                <default>false</default>
+                <label>C013 - within 10 days Due net</label>
+            </value>
+            <value>
+                <fullName>C014 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>C014 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>C015 - within 45 days Due net</fullName>
+                <default>false</default>
+                <label>C015 - within 45 days Due net</label>
+            </value>
+            <value>
+                <fullName>C016 - within 50 days Due net</fullName>
+                <default>false</default>
+                <label>C016 - within 50 days Due net</label>
+            </value>
+            <value>
+                <fullName>C017 - within 60 days Due net</fullName>
+                <default>false</default>
+                <label>C017 - within 60 days Due net</label>
+            </value>
+            <value>
+                <fullName>C018 - within 75 days Due net</fullName>
+                <default>false</default>
+                <label>C018 - within 75 days Due net</label>
+            </value>
+            <value>
+                <fullName>C019 - within 90 days Due net</fullName>
+                <default>false</default>
+                <label>C019 - within 90 days Due net</label>
+            </value>
+            <value>
+                <fullName>C020 - within 120 days Due net</fullName>
+                <default>false</default>
+                <label>C020 - within 120 days Due net</label>
+            </value>
+            <value>
+                <fullName>C021 - within 180 days Due net</fullName>
+                <default>false</default>
+                <label>C021 - within 180 days Due net</label>
+            </value>
+            <value>
+                <fullName>C022 - within 240 days Due net</fullName>
+                <default>false</default>
+                <label>C022 - within 240 days Due net</label>
+            </value>
+            <value>
+                <fullName>C023 - within 365 days Due net</fullName>
+                <default>false</default>
+                <label>C023 - within 365 days Due net</label>
+            </value>
+            <value>
+                <fullName>C024 - within 450 days Due net</fullName>
+                <default>false</default>
+                <label>C024 - within 450 days Due net</label>
+            </value>
+            <value>
+                <fullName>C025 - Advance Payment</fullName>
+                <default>false</default>
+                <label>C025 - Advance Payment</label>
+            </value>
+            <value>
+                <fullName>C026 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>C026 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>C027 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>C027 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>C028 - Payable in 2 partial amounts</fullName>
+                <default>false</default>
+                <label>C028 - Payable in 2 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C029 - Payable in 2 partial amounts</fullName>
+                <default>false</default>
+                <label>C029 - Payable in 2 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C030 - Payable in 3 partial amounts</fullName>
+                <default>false</default>
+                <label>C030 - Payable in 3 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C031 - Payable in 3 partial amounts</fullName>
+                <default>false</default>
+                <label>C031 - Payable in 3 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C032 - Payable in 3 partial amounts</fullName>
+                <default>false</default>
+                <label>C032 - Payable in 3 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C034 - Payable in 4 partial amounts</fullName>
+                <default>false</default>
+                <label>C034 - Payable in 4 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C035 - Payable in 4 partial amounts</fullName>
+                <default>false</default>
+                <label>C035 - Payable in 4 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C036 - Payable in 4 partial amounts</fullName>
+                <default>false</default>
+                <label>C036 - Payable in 4 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C037 - Payable in 4 partial amounts</fullName>
+                <default>false</default>
+                <label>C037 - Payable in 4 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C038 - Payable in 5 partial amounts</fullName>
+                <default>false</default>
+                <label>C038 - Payable in 5 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C039 - Payable in 6 partial amounts</fullName>
+                <default>false</default>
+                <label>C039 - Payable in 6 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C040 - Payable in 10 partial amounts</fullName>
+                <default>false</default>
+                <label>C040 - Payable in 10 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C041 - Payable in 10 partial amounts</fullName>
+                <default>false</default>
+                <label>C041 - Payable in 10 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C042 - Payable in 10 partial amounts</fullName>
+                <default>false</default>
+                <label>C042 - Payable in 10 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C043 - Payable in 10 partial amounts</fullName>
+                <default>false</default>
+                <label>C043 - Payable in 10 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C044 - Payable in 18 partial amounts</fullName>
+                <default>false</default>
+                <label>C044 - Payable in 18 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C045 - Payable in 24 partial amounts</fullName>
+                <default>false</default>
+                <label>C045 - Payable in 24 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C046 - Payable in 30 partial amounts</fullName>
+                <default>false</default>
+                <label>C046 - Payable in 30 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C047 - Payable in 36 partial amounts</fullName>
+                <default>false</default>
+                <label>C047 - Payable in 36 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C048 - Payable in 18 partial amounts</fullName>
+                <default>false</default>
+                <label>C048 - Payable in 18 partial amounts</label>
+            </value>
+            <value>
+                <fullName>C049 - Within 210 Days Due Date</fullName>
+                <default>false</default>
+                <label>C049 - Within 210 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C050 - Within 270 Days Due Date</fullName>
+                <default>false</default>
+                <label>C050 - Within 270 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C051 - Within 300 Days Due Date</fullName>
+                <default>false</default>
+                <label>C051 - Within 300 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C052 - Within 330 Days Due Date</fullName>
+                <default>false</default>
+                <label>C052 - Within 330 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C053 - Within 360 Days Due Date</fullName>
+                <default>false</default>
+                <label>C053 - Within 360 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C054 - Within 390 Days Due Date</fullName>
+                <default>false</default>
+                <label>C054 - Within 390 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C055 - Within 420 Days Due Date</fullName>
+                <default>false</default>
+                <label>C055 - Within 420 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C056 - Within 450 Days Due Date</fullName>
+                <default>false</default>
+                <label>C056 - Within 450 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C057 - Within 480 Days Due Date</fullName>
+                <default>false</default>
+                <label>C057 - Within 480 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C058 - Within 510 Days Due Date</fullName>
+                <default>false</default>
+                <label>C058 - Within 510 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C059 - Within 540 Days Due Date</fullName>
+                <default>false</default>
+                <label>C059 - Within 540 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C060 - Within 570 Days Due Date</fullName>
+                <default>false</default>
+                <label>C060 - Within 570 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C061 - Within 600 Days Due Date</fullName>
+                <default>false</default>
+                <label>C061 - Within 600 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C062 - Within 630 Days Due Date</fullName>
+                <default>false</default>
+                <label>C062 - Within 630 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C063 - Within 660 Days Due Date</fullName>
+                <default>false</default>
+                <label>C063 - Within 660 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C064 - Within 690 Days Due Date</fullName>
+                <default>false</default>
+                <label>C064 - Within 690 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C065 - Within 720 Days Due Date</fullName>
+                <default>false</default>
+                <label>C065 - Within 720 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C070 - Pay 750 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C070 - Pay 750 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C071 - Pay 780 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C071 - Pay 780 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C072 - Pay 810 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C072 - Pay 810 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C073 - Pay 840 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C073 - Pay 840 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C074 - Pay 870 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C074 - Pay 870 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C075 - Pay 900 days aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C075 - Pay 900 days aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>C107 - 90 Days After Receipt of Bill</fullName>
+                <default>false</default>
+                <label>C107 - 90 Days After Receipt of Bill</label>
+            </value>
+            <value>
+                <fullName>C108 - Within 15 Days Due Date</fullName>
+                <default>false</default>
+                <label>C108 - Within 15 Days Due Date</label>
+            </value>
+            <value>
+                <fullName>C109 - Paym 3 Month aftr Invcing Date</fullName>
+                <default>false</default>
+                <label>C109 - Paym 3 Month aftr Invcing Date</label>
+            </value>
+            <value>
+                <fullName>I001 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>I001 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>I002 - within 90 days Due net</fullName>
+                <default>false</default>
+                <label>I002 - within 90 days Due net</label>
+            </value>
+            <value>
+                <fullName>I003 - within 20 days Due net</fullName>
+                <default>false</default>
+                <label>I003 - within 20 days Due net</label>
+            </value>
+            <value>
+                <fullName>I004 - within 60 days Due net</fullName>
+                <default>false</default>
+                <label>I004 - within 60 days Due net</label>
+            </value>
+            <value>
+                <fullName>I005 - within 120 days Due net</fullName>
+                <default>false</default>
+                <label>I005 - within 120 days Due net</label>
+            </value>
+            <value>
+                <fullName>I006 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>I006 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>I007 - within 45 days Due net</fullName>
+                <default>false</default>
+                <label>I007 - within 45 days Due net</label>
+            </value>
+            <value>
+                <fullName>I008 - within 90 days Due net</fullName>
+                <default>false</default>
+                <label>I008 - within 90 days Due net</label>
+            </value>
+            <value>
+                <fullName>I009 - within 135 days Due net</fullName>
+                <default>false</default>
+                <label>I009 - within 135 days Due net</label>
+            </value>
+            <value>
+                <fullName>I010 - within 20 days Due net</fullName>
+                <default>false</default>
+                <label>I010 - within 20 days Due net</label>
+            </value>
+            <value>
+                <fullName>I011 - within 25 days Due net</fullName>
+                <default>false</default>
+                <label>I011 - within 25 days Due net</label>
+            </value>
+            <value>
+                <fullName>I012 - within 27 days Due net</fullName>
+                <default>false</default>
+                <label>I012 - within 27 days Due net</label>
+            </value>
+            <value>
+                <fullName>I013 - within 30 days Due net</fullName>
+                <default>false</default>
+                <label>I013 - within 30 days Due net</label>
+            </value>
+            <value>
+                <fullName>I014 - within 36 days Due net</fullName>
+                <default>false</default>
+                <label>I014 - within 36 days Due net</label>
+            </value>
+            <value>
+                <fullName>I015 - within 54 days Due net</fullName>
+                <default>false</default>
+                <label>I015 - within 54 days Due net</label>
+            </value>
+            <value>
+                <fullName>V037 - LC at 180 Days from Invoice date</fullName>
+                <default>false</default>
+                <label>V037 - LC at 180 Days from Invoice date</label>
+            </value>
+            <value>
+                <fullName>Z001 - Bank Contract</fullName>
+                <default>false</default>
+                <label>Z001 - Bank Contract</label>
+            </value>
+            <value>
+                <fullName>Z300 - Pybl in 12 instal ovr 365 Days</fullName>
+                <default>false</default>
+                <label>Z300 - Pybl in 12 instal ovr 365 Days</label>
+            </value>
+            <value>
+                <fullName>Z400 - Pybl in 18 instal ovr 545 Days</fullName>
+                <default>false</default>
+                <label>Z400 - Pybl in 18 instal ovr 545 Days</label>
+            </value>
+            <value>
+                <fullName>Z500 - Pybl in 30 instal ovr 912 Days</fullName>
+                <default>false</default>
+                <label>Z500 - Pybl in 30 instal ovr 912 Days</label>
+            </value>
+            <value>
+                <fullName>C001 - Pay immediately</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C001 - Pay immediately</label>
+            </value>
+            <value>
+                <fullName>C003 - Letter of credit 30 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C003 - Letter of credit 30 days</label>
+            </value>
+            <value>
+                <fullName>C004 - Letter of credit 45 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C004 - Letter of credit 45 days</label>
+            </value>
+            <value>
+                <fullName>C005 - Letter of credit 50 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C005 - Letter of credit 50 days</label>
+            </value>
+            <value>
+                <fullName>C006 - Letter of credit 60 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C006 - Letter of credit 60 days</label>
+            </value>
+            <value>
+                <fullName>C007 - Letter of credit 75 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C007 - Letter of credit 75 days</label>
+            </value>
+            <value>
+                <fullName>C008 - Letter of credit 90 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C008 - Letter of credit 90 days</label>
+            </value>
+            <value>
+                <fullName>C009 - Letter of credit 120 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C009 - Letter of credit 120 days</label>
+            </value>
+            <value>
+                <fullName>C010 - Letter of credit 150 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C010 - Letter of credit 150 days</label>
+            </value>
+            <value>
+                <fullName>C011 - Letter of credit 180 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C011 - Letter of credit 180 days</label>
+            </value>
+            <value>
+                <fullName>C012 - Payment 7 days after Invoicing Date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C012 - Payment 7 days after Invoicing Date</label>
+            </value>
+            <value>
+                <fullName>C013 - Payment 10 days after Invoicing Date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C013 - Payment 10 days after Invoicing Date</label>
+            </value>
+            <value>
+                <fullName>C014 - Payment 30 Days after Invoicing Date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C014 - Payment 30 Days after Invoicing Date</label>
+            </value>
+            <value>
+                <fullName>C015 - Payment 45 Days after Invoicing Date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C015 - Payment 45 Days after Invoicing Date</label>
+            </value>
+            <value>
+                <fullName>C016 - Payment 50 Days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C016 - Payment 50 Days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C017 - Payment 60 Days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C017 - Payment 60 Days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C018 - Payment 75 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C018 - Payment 75 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C019 - Payment 90 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C019 - Payment 90 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C020 - Payment 120 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C020 - Payment 120 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C021 - Payment 180 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C021 - Payment 180 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C022 - Payment 240 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C022 - Payment 240 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C023 - Payable 365 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C023 - Payable 365 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C024 - Payable 450 days after invoicing date</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C024 - Payable 450 days after invoicing date</label>
+            </value>
+            <value>
+                <fullName>C026 - 30 days from the date of AWB</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C026 - 30 days from the date of AWB</label>
+            </value>
+            <value>
+                <fullName>C027 - 30 days from the date of BL</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C027 - 30 days from the date of BL</label>
+            </value>
+            <value>
+                <fullName>C028 - Payable in 2 installments over 60 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C028 - Payable in 2 installments over 60 days</label>
+            </value>
+            <value>
+                <fullName>C029 - Payable in 2 installments over 180 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C029 - Payable in 2 installments over 180 days</label>
+            </value>
+            <value>
+                <fullName>C030 - Payable in 3 installments over 60 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C030 - Payable in 3 installments over 60 days</label>
+            </value>
+            <value>
+                <fullName>C031 - Payable in 3 installments over 180 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C031 - Payable in 3 installments over 180 days</label>
+            </value>
+            <value>
+                <fullName>C032 - Payable in 3 equal installments over 360 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C032 - Payable in 3 equal installments over 360 days</label>
+            </value>
+            <value>
+                <fullName>C033 - Payable in 4 equal installments over 90 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C033 - Payable in 4 equal installments over 90 days</label>
+            </value>
+            <value>
+                <fullName>C034 - Payable in 4 equal installments over 120 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C034 - Payable in 4 equal installments over 120 days</label>
+            </value>
+            <value>
+                <fullName>C035 - Payable in 4 equal installments over 180 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C035 - Payable in 4 equal installments over 180 days</label>
+            </value>
+            <value>
+                <fullName>C036 - Payable in 4 equal installments over 360 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C036 - Payable in 4 equal installments over 360 days</label>
+            </value>
+            <value>
+                <fullName>C037 - Payable in 4 equal installments over 540 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C037 - Payable in 4 equal installments over 540 days</label>
+            </value>
+            <value>
+                <fullName>C038 - Payable in 5 installments over 120 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C038 - Payable in 5 installments over 120 days</label>
+            </value>
+            <value>
+                <fullName>C039 - Payable in 6 installments over 150 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C039 - Payable in 6 installments over 150 days</label>
+            </value>
+            <value>
+                <fullName>C040 - Payable in 10 equal installments over 270 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C040 - Payable in 10 equal installments over 270 days</label>
+            </value>
+            <value>
+                <fullName>C041 - Payable in 10 equal installments over 300 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C041 - Payable in 10 equal installments over 300 days</label>
+            </value>
+            <value>
+                <fullName>C042 - Payable in 10 equal installments over 360 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C042 - Payable in 10 equal installments over 360 days</label>
+            </value>
+            <value>
+                <fullName>C043 - Payable in 10 equal installments over 540 days</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C043 - Payable in 10 equal installments over 540 days</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

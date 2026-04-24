@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Business_Case</fullName>
+    <active>true</active>
+    <label>Master Business Case</label>
+    <picklistValues>
+        <picklist>Agreement_Availability_Status__c</picklist>
+        <values>
+            <fullName>Available</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Available</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Region__c</picklist>
+        <values>
+            <fullName>Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>South</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Active %2F Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Active %2F Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Active 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Quetta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revised</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revised Quetta</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Supplier_Name__c</picklist>
+        <values>
+            <fullName>A - Boule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AV - AlphaVenus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B - Boule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CPART - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSERV - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DM - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DSERV - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DYM - Dymind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ER - Erba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>F - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HW - Headway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INST - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LOC - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NV - Nova</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OR - OCD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PART - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PKG - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RB - Erba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>S - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>STA - Stago</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>U - VitalScientific</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YHLO - YHLO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ZYB - ZYBIO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Technology__c</picklist>
+        <values>
+            <fullName>ABG - Arterial Blood Gas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CC - Clinical Chemistry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COAG - Coagulation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ELCT - Electrolyte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ELT - Electrolyte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HM - Heamatology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IMA - Immunoassay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POC - Point of Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UBT - Urea Breath Test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>URIN - Urine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>XRAY - Xray</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
