@@ -19,7 +19,11 @@
       "PowerShell(sf data export bulk --query \"SELECT Id, SAP_Customer_Number__c FROM Account WHERE SAP_Customer_Number__c != null\" --output-file \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\Imports\\\\Account_SAP.csv\" --target-org PartialSB --wait 10 2>&1)",
       "PowerShell(sf data export bulk --query \"SELECT Id, Invoice_Customer_Code__c FROM Invoice__c WHERE Invoice_Customer_Code__c != null\" --output-file \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\Imports\\\\Invoice_CustomerCode.csv\" --target-org PartialSB --wait 10 2>&1)",
       "PowerShell(sf data update bulk --file \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\Imports\\\\Invoice_FunctionalAccount_update.csv\" --sobject Invoice__c --target-org PartialSB --wait 15 2>&1 | Where-Object { $_ -match \"record|success|fail|complete|status\" } | Select-Object -Last 8)",
-      "PowerShell(sf data export bulk --query \"SELECT Id, AG_OG__c, DGroup__c FROM Invoice_Line_Item__c\" --output-file \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\Imports\\\\LineItems_DGroup_check.csv\" --target-org PartialSB --wait 10 2>&1)"
+      "PowerShell(sf data export bulk --query \"SELECT Id, AG_OG__c, DGroup__c FROM Invoice_Line_Item__c\" --output-file \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\Imports\\\\LineItems_DGroup_check.csv\" --target-org PartialSB --wait 10 2>&1)",
+      "Bash(grep -c \"^    //\" \"d:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseSnapshotService.cls\")",
+      "Bash(grep -n \"^    //\" \"d:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseSnapshotService.cls\")",
+      "Bash(grep -c \"^\\\\s*//\" \"d:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseSnapshotService.cls\")",
+      "Bash(grep -n \"^\\\\s*//\" \"d:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseSnapshotService.cls\")"
     ]
   }
 }

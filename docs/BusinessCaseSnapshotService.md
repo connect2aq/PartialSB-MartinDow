@@ -154,6 +154,9 @@ Starts at 100, deducts:
 | `bulkCalculateYTDSales(bcIds, months)` | Single aggregate SOQL then in-memory YTD accumulation |
 | `bulkCalculateTotalSalesTillDate(bcIds, months)` | Single raw SOQL then in-memory cumulative sum per BC+month |
 | `verifyManualBusinessCaseAssignments()` | Debug utility — checks 100 already-assigned invoices against the matching logic |
+| `assignInvoicesForCustomer(customerCode)` | Assigns unassigned Reagent invoices for one customer; thin wrapper around the list version |
+| `assignInvoicesForCustomerList(customerCodes)` | Bulk assignment for a list of customer codes — 3 SOQL queries total |
+| `assignInvoicesFromTrackingSheet()` | Runs assignment for all 93 customers from the Mar 2026 tracking sheet |
 
 ---
 
@@ -174,6 +177,54 @@ public class InvoiceMonthData {
 
 ---
 
+## Per-Customer Invoice Assignment
+
+A second assignment path exists for targeting specific customers without running the full ETL.
+
+### `assignInvoicesForCustomerList(List<String> customerCodes)`
+
+Processes any number of customer codes in **3 SOQL queries total**:
+
+1. Individual BCs where `Machine_Installation__r.bill_to_account__r.SAP_Customer_Number__c IN customerSet`
+2. Master BCs where `Customer_Numbera__c IN customerSet`
+3. Unassigned Reagent invoices where `Invoice_Customer_Code__c IN customerSet`
+
+Builds two in-memory maps:
+- `individualMap`: `customerCode → (AG_OG pattern → first Individual BC)`
+- `masterMap`: `customerCode → (AG_OG pattern → first Master BC)`
+
+For each unassigned invoice:
+1. **Master BC wins** — if a Master BC exists for the matching customer + AG_OG pattern, the invoice is linked there.
+2. **Standalone Individual BC** — only used when no Master BC matched. These are BCs with `Master_Business_Case__c = NULL`, mirroring the filter in `assignBusinessCasesToInvoices`.
+
+> **Note (to verify in testing):** Each invoice is linked to exactly one BC — never simultaneously to both an Individual and a Master BC.
+
+Returns `Map<String, Integer>` of `customerCode → invoices linked`.
+
+### `assignInvoicesForCustomer(String customerCode)`
+
+Thin wrapper — calls the list version with a single-element list.
+
+### `assignInvoicesFromTrackingSheet()`
+
+Hardcodes all 93 customer codes from  
+`Imports/Tracking sheet for Reagent Rental of Machines - Mar 2026.xlsx` (Data sheet, column R)  
+and delegates to `assignInvoicesForCustomerList`.
+
+**How to run from Developer Console:**
+```apex
+Map<String, Integer> results = BusinessCaseSnapshotService.assignInvoicesFromTrackingSheet();
+System.debug(results);
+```
+
+**Or for a single customer:**
+```apex
+Integer count = BusinessCaseSnapshotService.assignInvoicesForCustomer('3020000084');
+System.debug('Invoices linked: ' + count);
+```
+
+---
+
 ## Important Caveats / Known Issues
 
 1. **`Avg_YTD_Sales_Per_Month__c` uses the runtime month, not the snapshot month.** When backfilling historical snapshots, this field will be wrong.
@@ -182,7 +233,7 @@ public class InvoiceMonthData {
 
 3. **`determineDefaultSnapshotMonth` has a hardcoded fallback of `2024-04-01`.** This was intentional at implementation time ("most invoice data is from that timeframe") but will age out.
 
-4. **`assignMasterBusinessCasesToInvoices` runs a redundant query** into `childbuinesscases` and a for-loop that does nothing.
+4. ~~`assignMasterBusinessCasesToInvoices` dead code~~ — removed in cleanup pass.
 
 5. **Snapshots are only ever inserted, never updated.** The duplicate-check key (`BCId_MonthFormatted`) prevents re-creation, but if data changes (new invoices for an old month), the snapshot is stale unless manually deleted and re-run.
 

@@ -1,0 +1,228 @@
+﻿External_Id__c,Account_Name__c,Active__c,Asset_Level__c,Asset_Name__c,Competitor_Asset__c,Consequence_Of_Failure__c,Delivered_Date__c,Description__c,Digital_Asset_Status__c,InActive_Date__c,Install_Date__c,IsInternal__c,Manufacture_Date__c,Price__c,Product_Code__c,Product_Description__c,Product_Family__c,Purchase_Date__c,Quantity__c,Reminder_Date__c,SAP_Account_No__c,Search__c,Serial_Number__c,Status_Reason__c,Status__c,StockKeepingUnit__c,Usage_End_Date__c,Uuid__c,Agreement_Availability_Status__c,Agreement_Date__c,Approval_Date__c,Invalid__c,Issue_Date__c,Remarks__c,AccountId__c,AssetProvidedById__c,AssetServicedById__c,ContactId__c,Customer_Order__c,Opportunity_Products__c,Opportunity__c,Parent_Asset__c,Product__c,Quote__c,RootAssetId__c,Sales_Area__c,Ship_To_Account__c
+,,false,,,false,,,,,,,false,,,,,,,1,,,--,,,Initial Assessment,,,,,,,false,,,001d5000005iYzQAAU,,,003d5000002pmPdAAI,,,,,a03Q800000bSA2NIAW,,,a0NQ8000007jxW9MAI,001d5000005iYzQAAU
+,,false,,,false,,,,,,,false,,,,,,,1,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qI2DVIA0,,,,a0MQ8000005NiALMA0,,,,a03Q800000bX7SvIAK,,,a0NQ8000007kUn3MAE,001Q800000qI2DVIA0
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,,,,,,,,false,,,001Q800000qI2DVIA0,,,,,,,,,,,,001Q800000qI2DVIA0
+,,false,,,false,,,,,,,false,,,,,,,,2026-04-30,,--,,,Demo,,,,,,,false,,,,,,,,,,,,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,,,,,,,,false,,,,,,,,,,,,,,,
+,,true,,,false,,,Swelab Alfa plus standard,,,2022-10-12,false,,,,,,,1,,,--,118193,,Invoiced/Sold,,,,,,,false,,,,,,,,,,,,,,,001Q800000s2RLCIA2
+,,true,,,false,,,,,,2025-09-01,false,,,,,,,1,,,--,22-5006,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,12345,,,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,"Installed in Ibadat University Lab, Rawalpindi.",,,2025-10-04,false,,,,,,,1,,,--,25-47317,,Invoiced/Sold,,,,,,,false,,,001Q800000qgC5RIAU,,,,,,,,a03Q800000bX7SvIAK,,,a0NQ8000007qfeQMAQ,001Q800000qgC5RIAU
+,,true,,,false,,,Installed in Khaleej Diagnostic Center.,,,2025-09-29,false,,,,,,,1,,,--,127708,,Invoiced/Sold,,,,,,,false,,,001Q800000uK2TiIAK,,,,,,,,a03Q800000bX7yZIAS,,,a0NQ8000007qfeQMAQ,001Q800000reAF3IAM
+,,true,,,false,,,Installed in Reliance Medical Center. Replaced Medonic Sampler.,,,2025-09-05,false,,,,,,,1,,,--,127706,,Invoiced/Sold,,,,,,,false,,,001Q800000uK2TiIAK,,,,,,,,a03Q800000bX7yZIAS,,,a0NQ8000007qfeQMAQ,001Q800000uK2TiIAK
+,,true,,,false,,,"Installed in Al Sarfraz Foundation Lab, Rawalpindi.",,,2025-10-03,false,,,,,,,1,,,--,,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX7SvIAK,,,a0NQ8000007qfeQMAQ,001Q800000qfzWWIAY
+,,true,,,false,,,,,,,false,,,,,,,3,,,--,,,Invoiced/Sold,,,,,,,false,,,,,,,,,a06Q800000XrHSlIAN,,a03Q800000bX8QmIAK,a08Q800000nO790IAC,,,
+,,true,,,false,,,"Installed in Arslan Diagnostic Lab, Dheri Wattan, Bhimber, AJK. (c/o Innovative Health Care Solutions)",,,2025-10-15,false,,,,,,,1,,,--,126125,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX7yYIAS,,,a0NQ8000007qfeQMAQ,001Q800000qfzWWIAY
+,,true,,,false,,,,,,,false,,,,,,,,,,--,127804,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,1,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfzWEIAY,,,,a0MQ8000008vJ9NMAU,,,,a03Q800000bX8QFIA0,,,a0NQ8000008g9gbMAA,001Q800000qfzWEIAY
+,,false,,,false,,,,,,,false,,,,,,,1,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfzWEIAY,,,,a0MQ8000008vJ9NMAU,,,,a03Q800000bX8QEIA0,,,a0NQ8000008g9gbMAA,001Q800000qfzWEIAY
+,,false,,,false,,,,,,,false,,,,,,,1,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfzWEIAY,,,,a0MQ8000008vJ9NMAU,,,,a03Q800000bX8CpIAK,,,a0NQ8000008g9gbMAA,001Q800000qfzWEIAY
+,,true,,,false,,,,,,,false,,,,,,,,2026-04-01,,--,,,RR,,,,,,,false,,,001Q800000qgC8QIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000074,,true,,,false,,,,,,,false,,,,,,,,,,--,E0672-41-300621,,RR,,,,,,,false,,,001Q800000qgC8QIAU,,,,,,,,a03Q800000bX8BSIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,P078240080C,,RR,,,,,,,false,,,001Q800000qgC7kIAE,,,,,,,,a03Q800000bX8C3IAK,,,,
+3002000033,,true,,,false,,,,,,,false,,,,,,,,,,--,30006238,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000037,,true,,,false,,,,,,,false,,,,,,,,,,--,30006243,,RR,,,,,,,false,,,001Q800000qfzWEIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000079,,true,,,false,,,,,,,false,,,,,,,,,,--,P072230210C,,RR,,,,,,,false,,,001Q800000qgC8BIAU,,,,,,,,a03Q800000bX8C3IAK,,,,
+3002000101,,true,,,false,,,,,,,false,,,,,,,,,,--,1613,,RR,,,,,,,false,,,001Q800000qgC8BIAU,,,,,,,,a03Q800000bX8FFIA0,,,,
+3002000075,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00093322,,RR,,,,,,,false,,,001Q800000qgC8HIAU,,,,,,,,a03Q800000bX888IAC,,,,
+3002000023,,true,,,false,,,,,,,false,,,,,,,,,,--,30004829,,RR,,,,,,,false,,,001Q800000qfwObIAI,,,,,,,,a03Q800000bX8CwIAK,,,,
+Demo # 8300050626,,true,,,false,,,,,,,false,,,,,,,,2026-04-01,,--,TE11042147005,,RR,,,,,,,false,,,001Q800000qfwOXIAY,,,,,,,,a03Q800000bX7yZIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,1746,,RR,,,,,,,false,,,001Q800000xkh9eIAA,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,3.24E+11,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8L9IAK,,,,
+3002000008,,false,,,false,,,,,,,false,,,,,,,,,,--,#PP13230140C,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8C9IAK,,,,
+3002000012,,false,,,false,,,,,,,false,,,,,,,,,,--,22-5015,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+3002000102,,true,,,false,,,,,,,false,,,,,,,,,,--,1614,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,20-4085,,RR,,,,,,,false,,,001Q800000qfwOXIAY,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX7yZIAS,,,,
+3002000027,,true,,,false,,,,,,,false,,,,,,,,,,--,36001565,,RR,,,,,,,false,,,001Q800000qfzWZIAY,,,,,,,,a03Q800000bX8CuIAK,,,,
+3002000004,,true,,,false,,,,,,,false,,,,,,,,,,--,104282,,RR,,,,,,,false,,,001Q800000qfwNLIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000014,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00093122,,RR,,,,,,,false,,,001Q800000qgC6vIAE,,,,,,,,a03Q800000bX888IAC,,,,
+3002000025,,false,,,false,,,,,,,false,,,,,,,,,,--,36000907,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8CuIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8FFIA0,,,,
+3002000002,,true,,,false,,,,,,,false,,,,,,,,,,--,21-5017,,RR,,,,,,,false,,,001Q800000qfwOLIAY,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00152044,,RR,,,,,,,false,,,001Q800000qgC7XIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000009,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00092922,,RR,,,,,,,false,,,001Q800000qgC8AIAU,,,,,,,,a03Q800000bX888IAC,,,,
+3002000034,,true,,,false,,,,,,,false,,,,,,,,,,--,30006181,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+E-mail forwarded to Mr. Asim & Mr. Abdul Khalid for CAPEX appropriation requested because demo performed from 3200 Plant Lahore (mail attached),,true,,,false,,,,,,,false,,,,,,,,,,--,IA00096724,,RR,,,,,,,false,,,001Q800000qgC8GIAU,,,,,,,,a03Q800000bX888IAC,,,,
+3002000095,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8RIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00176348,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000012,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfwOcIAI,,,,,,,,a03Q800000bX889IAC,,,,
+3002000040,,true,,,false,,,,,,,false,,,,,,,,,,--,56-71-160517,,RR,,,,,,,false,,,001Q800000qfwOcIAI,,,,,,,,a03Q800000bX8BRIA0,,,,
+3002000060,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00081331,,RR,,,,,,,false,,,001Q800000qfzWZIAY,,,,,,,,a03Q800000bX89bIAC,,,,
+AR#300091,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfzWZIAY,,,,,,,,a03Q800000bWuXmIAK,,,,
+3002000043,,false,,,false,,,,,,,false,,,,,,,,,,--,5782-2-202302,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8BYIA0,,,,
+3002000043,,false,,,false,,,,,,,false,,,,,,,,,,--,4286-2-202208,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8BYIA0,,,,
+3002000010,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00093222,,RR,,,,,,,false,,,001Q800000qfwOHIAY,,,,,,,,a03Q800000bX888IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,DM11052437004,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8JFIA0,,,,
+3002000003,,true,,,false,,,,,,,false,,,,,,,,,,--,21-4087,,RR,,,,,,,false,,,001Q800000qgC3RIAU,,,,,,,,a03Q800000bWuXmIAK,,,,
+3002000090,,true,,,false,,,,,,,false,,,,,,,,,,--,30006326,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000013,,false,,,false,,,,,,,false,,,,,,,,,,--,ID00026724,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000024,,true,,,false,,,,,,,false,,,,,,,,,,--,30006173,,RR,,,,,,,false,,,001Q800000qfzWeIAI,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000039,,false,,,false,,,,,,,false,,,,,,,,,,--,121495,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000064,,false,,,false,,,,,,,false,,,,,,,,,,--,121496,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000050,,false,,,false,,,,,,,false,,,,,,,,,,--,122531,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000051,,false,,,false,,,,,,,false,,,,,,,,,,--,123197,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000069,,false,,,false,,,,,,,false,,,,,,,,,,--,121497,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000021,,true,,,false,,,,,,,false,,,,,,,,,,--,30006248,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfzWkIAI,,,,,,,,a03Q800000bX8BXIA0,,,,
+3002000061,,true,,,false,,,,,,,false,,,,,,,,,,--,27-x2-130818,,RR,,,,,,,false,,,001Q800000qgC8NIAU,,,,,,,,a03Q800000bX8BXIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5MIAU,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000094,,true,,,false,,,,,,,false,,,,,,,,,,--,DM11052408003,,RR,,,,,,,false,,,001Q800000qgC8JIAU,,,,,,,,a03Q800000bX8JFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8JIAU,,,,,,,,a03Q800000bX8C3IAK,,,,
+AR#300141,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00175747,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000017,,false,,,false,,,,,,,false,,,,,,,,,,--,22-5023,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+3002000106,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00175547,,RR,,,,,,,false,,,001Q800000qgC8EIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000011,,false,,,false,,,,,,,false,,,,,,,,,,--,22-5016,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+3002000026,,true,,,false,,,,,,,false,,,,,,,,,,--,36001150,,RR,,,,,,,false,,,001Q800000qgC8EIAU,,,,,,,,a03Q800000bX8CuIAK,,,,
+3002000109,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00093734,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX89bIAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000100,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00147046,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX888IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000xkh9dIAA,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00146946,,RR,,,,,,,false,,,001Q800000xkh9dIAA,,,,,,,,a03Q800000bX888IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00176648,,RR,,,,,,,false,,,001Q800000qfzX6IAI,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000035,,false,,,false,,,,,,,false,,,,,,,,,,--,30006187,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000020,,true,,,false,,,,,,,false,,,,,,,,,,--,30006249,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000082,,true,,,false,,,,,,,false,,,,,,,,,,--,122534,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000085,,true,,,false,,,,,,,false,,,,,,,,,,--,E0848-11-140423,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX8BTIA0,,,,
+3002000086,,true,,,false,,,,,,,false,,,,,,,,,,--,10477-1-202306,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX8BUIA0,,,,
+3002000084,,true,,,false,,,,,,,false,,,,,,,,,,--,6909-2-202305,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX8BYIA0,,,,
+3002000083,,true,,,false,,,,,,,false,,,,,,,,,,--,23-46854,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX7SvIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfzWHIAY,,,,,,,,a03Q800000bX8BYIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,ID000949341,,RR,,,,,,,false,,,001Q800000qgC7HIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+On demo (800053123) since 18 august 22,,true,,,false,,,,,,,false,,,,,,,,,,--,898-1-202110,,RR,,,,,,,false,,,001Q800000qgC5hIAE,,,,,,,,a03Q800000bX8BVIA0,,,,
+12- 7-24 demo 8300051872,,true,,,false,,,,,,,false,,,,,,,,,,--,897-1-202110,,RR,,,,,,,false,,,001Q800000qgC5hIAE,,,,,,,,a03Q800000bX8BVIA0,,,,
+3002000042,,true,,,false,,,,,,,false,,,,,,,,,,--,106-X2-260419,,RR,,,,,,,false,,,001Q800000qgC5hIAE,,,,,,,,a03Q800000bX8BXIA0,,,,
+3002000049,,true,,,false,,,,,,,false,,,,,,,,,,--,202-X2-120520,,RR,,,,,,,false,,,001Q800000qgC5hIAE,,,,,,,,a03Q800000bX8BXIA0,,,,
+3002000030,,false,,,false,,,,,,,false,,,,,,,,,,--,0034-X2-230818,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX8BXIA0,,,,
+3002000019,,false,,,false,,,,,,,false,,,,,,,,,,--,ID00026524,,Inactive,,,,,,,false,,,,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000022,,true,,,false,,,,,,,false,,,,,,,,,,--,30006240,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000058,,true,,,false,,,,,,,false,,,,,,,,,,--,8657,,RR,,,,,,,false,,,001Q800000qgC5hIAE,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,127707,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfzWgIAI,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,24-5006,,RR,,,,,,,false,,,001Q800000qgC5JIAU,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,123216,,RR,,,,,,,false,,,001Q800000qgC5JIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000087,,true,,,false,,,,,,,false,,,,,,,,,,--,30006188,,RR,,,,,,,false,,,001Q800000qgC8TIAU,,,,,,,,a03Q800000bX8CvIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,30006408,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000029,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00030225,,RR,,,,,,,false,,,001Q800000qgC7FIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,24-5048,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+3002000077,,true,,,false,,,,,,,false,,,,,,,,,,--,39-X2-100918,,RR,,,,,,,false,,,001Q800000qfzWaIAI,,,,,,,,a03Q800000bX8BXIA0,,,,
+3002000059,,true,,,false,,,,,,,false,,,,,,,,,,--,30004998,,RR,,,,,,,false,,,001Q800000qfwOYIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000069,,true,,,false,,,,,,,false,,,,,,,,,,--,1588,,RR,,,,,,,false,,,001Q800000qgC8UIAU,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,,,,,,,,false,,,,,,,,,,,a03Q800000bX889IAC,,,,
+3002000041,,true,,,false,,,,,,,false,,,,,,,,,,--,120754,,RR,,,,,,,false,,,001Q800000qgC5IIAU,,,,,,,,a03Q800000bX7yZIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,C1420046,,RR,,,,,,,false,,,001Q800000qgC5IIAU,,,,,,,,a03Q800000bX7yZIAS,,,,
+3002000096,,true,,,false,,,,,,,false,,,,,,,,,,--,8673,,RR,,,,,,,false,,,001Q800000qgC5IIAU,,,,,,,,a03Q800000bX8HtIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5IIAU,,,,,,,,a03Q800000bX8HtIAK,,,,
+3002000017,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfwNZIAY,,,,,,,,a03Q800000bX889IAC,,,,
+3002000099,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00175847,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000036,,true,,,false,,,,,,,false,,,,,,,,,,--,30006183,,RR,,,,,,,false,,,001Q800000qfzWeIAI,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000052,,true,,,false,,,,,,,false,,,,,,,,,,--,123019,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000053,,true,,,false,,,,,,,false,,,,,,,,,,--,123108,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000054,,true,,,false,,,,,,,false,,,,,,,,,,--,123109,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000055,,true,,,false,,,,,,,false,,,,,,,,,,--,123200,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000056,,true,,,false,,,,,,,false,,,,,,,,,,--,123217,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5PIAU,,,,,,,,a03Q800000bX7yZIAS,,,,
+3002000028,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00096624,,RR,,,,,,,false,,,001Q800000qfwOVIAY,,,,,,,,a03Q800000bX888IAC,,,,
+3002000078,,true,,,false,,,,,,,false,,,,,,,,,,--,30004151,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+3002000089,,true,,,false,,,,,,,false,,,,,,,,,,--,30006362,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,2024070199,,RR,,,,,,,false,,,001Q800000qfwOWIAY,,,,,,,,a03Q800000bX8KtIAK,,,,
+3002000104,,true,,,false,,,,,,,false,,,,,,,,,,--,P078240140C,,RR,,,,,,,false,,,001Q800000qfwOWIAY,,,,,,,,a03Q800000bX8C3IAK,,,,
+3002000098,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00093422,,RR,,,,,,,false,,,001Q800000qfwOKIAY,,,,,,,,a03Q800000bX888IAC,,,,
+3002000105,,true,,,false,,,,,,,false,,,,,,,,,,--,24-5018,,RR,,,,,,,false,,,001Q800000qfwNlIAI,,,,,,,,a03Q800000bX889IAC,,,,
+3002000081,,true,,,false,,,,,,,false,,,,,,,,,,--,24-4068,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000097,,true,,,false,,,,,,,false,,,,,,,,,,--,IA00146846,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX888IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000076,,true,,,false,,,,,,,false,,,,,,,,,,--,24-4078,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,FC10330839,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX8JDIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,24-4077,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,123120,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,23-4166,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,FC10330939,,RR,,,,,,,false,,,001Q800000qgC5GIAU,,,,,,,,a03Q800000bX8JDIA0,,,,
+3002000001,,true,,,false,,,,,,,false,,,,,,,,,,--,22-5003,,RR,,,,,,,false,,,001Q800000qfwOaIAI,,,,,,,,a03Q800000bX889IAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,DM11052437001,,RR,,,,,,,false,,,001Q800000qfwOaIAI,,,,,,,,a03Q800000bX8JFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,24-5032,,RR,,,,,,,false,,,001Q800000rdctMIAQ,,,,,,,,a03Q800000bX889IAC,,,,
+3002000108,,true,,,false,,,,,,,false,,,,,,,,,,--,ID00082632,,RR,,,,,,,false,,,001Q800000qfzWXIAY,,,,,,,,a03Q800000bX89bIAC,,,,
+3002000018,,true,,,false,,,,,,,false,,,,,,,,2026-04-01,,--,22-5026,,RR,,,,,,,false,,,001Q800000qfwOJIAY,,,,,,,,a03Q800000bX889IAC,,,,
+3002000103,,true,,,false,,,,,,,false,,,,,,,,,,--,3279-2-202108,,RR,,,,,,,false,,,001Q800000qfwOJIAY,,,,,,,,a03Q800000bX8BYIA0,,,,
+3002000093,,true,,,false,,,,,,,false,,,,,,,,,,--,TE11042147003,,RR,,,,,,,false,,,001Q800000qfzWOIAY,,,,,,,,a03Q800000bX83CIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8CwIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8FGIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC86IAE,,,,,,,,a03Q800000bX8BYIA0,,,,
+3002000091,,true,,,false,,,,,,,false,,,,,,,,,,--,1590,,RR,,,,,,,false,,,001Q800000qgC7IIAU,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8GIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8GIAU,,,,,,,,a03Q800000bX8JDIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,,,,,,,,,a03Q800000bX8BYIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfwOYIAY,,,,,,,,a03Q800000bX8JFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qfwOYIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8GIAU,,,,,,,,a03Q800000bX89bIAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,RR,,,,,,,false,,,001Q800000qgC8FIAU,,,,,,,,a03Q800000bX8C3IAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,1746,,RR,,,,,,,false,,,001Q800000qfzWrIAI,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,2025-11-18,,--,9272-2-202405,,RR,,,,,,,false,,,001Q800000qgC3HIAU,,,,,,,,a03Q800000bX8BYIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,2025-11-18,,--,127708,,Invoiced/Sold,,,,,,,false,,,001Q800000uK2TiIAK,,,,,,,,a03Q800000bX7yZIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,2,,,,,,,,,false,,,,,,,a0MQ8000009QEF3MAO,,,,a03Q800000bX87hIAC,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,1,,,,,,,,,false,,,,,,,a0MQ8000009QEF3MAO,,,,a03Q800000bX87hIAC,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,1614,,RR,,,,,,,false,,,001Q800000qbiSLIAY,,,,,,,,a03Q800000bX8FFIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,25-1604,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWSIAY,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,1253808002701,,,,,,,,,false,,,,,,,,,,,a03Q800000bX8FEIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,2025-12-01,,--,8923-2-202401,,Invoiced/Sold,,,,,,,false,,,001Q800000qgC5RIAU,,,,,,,,a03Q800000bX8BYIA0,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,1,,,,,,,,,false,,,,,,,a0MQ800000A8MyTMAV,,,,a03Q800000bX89JIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwObIAI,,,,a0MQ8000009c8FYMAY,,,,a03Q800000bX888IAC,,,,001Q800000qfwObIAI
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q80000193TUPIA2,,,,a0MQ8000007yQurMAE,,,,a03Q800000bX8LBIA0,,,,001Q80000193TUPIA2
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800001Aw77jIAB,,,,a0MQ800000AKrqPMAT,,,,a03Q800000bX8HwIAK,,,,001Q800001Aw77jIAB
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800001Aw77jIAB,,,,a0MQ800000AKrqPMAT,,,,a03Q800000bX8HxIAK,,,,001Q800001Aw77jIAB
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800001Aw77jIAB,,,,a0MQ800000AKrqPMAT,,,,a03Q800000bWzlVIAS,,,,001Q800001Aw77jIAB
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfzWXIAY,,,,a0MQ800000AKzoDMAT,,,,a03Q800000bX889IAC,,,,001Q800000qfzWXIAY
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX87vIAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX880IAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX883IAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX881IAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX882IAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX8AAIA0,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX886IAC,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000rJ5bmIAC,,,,a0MQ800000ATmgDMAT,,,,a03Q800000bX8JDIA0,,,,001Q800000rJ5bmIAC
+,,false,,,false,,,,,,,false,,,,,,,,,,--,1,,,,,,,,,false,,,,,,,a0MQ800000B3cnBMAR,,,,a03Q800000bWuX7IAK,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000B2DndMAF,,,,a03Q800000bWuXmIAK,,,,001Q800000qgC5GIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000B2DndMAF,,,,a03Q800000bX7yYIAS,,,,001Q800000qgC5GIAU
+,,true,,,false,,,,,,,false,,,,,,,,2025-12-30,,--,128456,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC7GIAU,,,,a0MQ800000BpjrBMAR,,,,a03Q800000bX83CIAS,,,,001Q800000qgC7GIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000BOfenMAD,,,,a03Q800000bX8BYIA0,,,,001Q800000qgC5GIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC8QIAU,,,,a0MQ800000Bpo2rMAB,,,,a03Q800000bX7SvIAK,,,,001Q800000qgC8QIAU
+,,true,,,false,,,,,,,false,,,,,,,,2026-01-06,,--,1412070006110,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX8FEIA0,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,16-7421,,Invoiced/Sold,,,,,,,false,,,001Q800000reAF3IAM,,,,,,,,a03Q800000bSA2NIAW,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,126305,,Invoiced/Sold,,,,,,,false,,,001Q800000reAF3IAM,,,,,,,,a03Q800000bX7yZIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,2026-01-26,,--,ID0025535A,,Demo,,,,,,,false,,,001Q800001KITcDIAX,,,,,,,,a03Q800000bX89bIAC,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC8TIAU,,,,a0MQ800000D80OMMAZ,,,,a03Q800000bX889IAC,,,,001Q800000qgC8TIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000xBKvtIAG,,,,a0MQ800000DhGLNMA3,,,,a03Q800000bX8BVIA0,,,,001Q800000xBKvtIAG
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q80000193TUPIA2,,,,a0MQ800000Dh9QNMAZ,,,,a03Q800000bX8BVIA0,,,,001Q80000193TUPIA2
+15002668,,true,,,false,,,,,,,false,,,,,,,,,,--,E0672-41-300621,,RR,,,,,,,false,,,001Q800000qgC8QIAU,,,,,,,,a03Q800000bX8BSIA0,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800001LktctIAB,,,,a0MQ800000DXFyUMAX,,,,a03Q800000bX8JFIA0,,,,001Q800001LktctIAB
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOaIAI,,,,a0MQ800000F6HtZMAV,,,,a03Q800000bX8JFIA0,,,,001Q800000qfwOaIAI
+,,false,,,false,,,,,,,false,,,,,,,,,,--,128458,,,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000uK2TiIAK,,,,a0MQ800000FPLF7MAP,,,,a03Q800000bX7yZIAS,,,,001Q800000uK2TiIAK
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800001RHGwLIAX,,,,a0MQ800000FZ7vdMAD,,,,a03Q800000bX7yYIAS,,,,001Q800001RHGwLIAX
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC6rIAE,,,,a0MQ800000FPUa9MAH,,,,a03Q800000bX89bIAC,,,,001Q800000qgC6rIAE
+,,true,,,false,,,,,,,false,,,,,,,,,,--,10-7447,,Invoiced/Sold,,,,,,,false,,,001Q800000rsfPRIAY,,,,,,,,a03Q800000bSA2NIAW,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,25-1603,,Invoiced/Sold,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bWuXmIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,5804-2-203302,,Invoiced/Sold,,,,,,,false,,,001Q800000qgC5RIAU,,,,,,,,a03Q800000bX8BYIA0,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOLIAY,,,,a0MQ800000Evpk5MAB,,,,a03Q800000bX8BYIA0,,,,001Q800000qfwOLIAY
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOLIAY,,,,a0MQ800000Evpk5MAB,,,,a03Q800000bX8L2IAK,,,,001Q800000qfwOLIAY
+,,true,,,false,,,,,,,false,,,,,,,,2026-03-10,,--,25-47831,,Demo,,,,,,,false,,,001Q800000qfzWWIAY,,,,,,,,a03Q800000bX7SvIAK,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,123021,,Invoiced/Sold,,,,,,,false,,,001Q8000010Yy65IAC,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,true,,,false,,,,,,,false,,,,,,,,,,--,12-5048,,Invoiced/Sold,,,,,,,false,,,001Q800000quqfVIAQ,,,,,,,,a03Q800000bX7SvIAK,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000GOCDJMA5,,,,a03Q800000bX89aIAC,,,,001Q800000qgC5GIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000GOCDJMA5,,,,a03Q800000bWavgIAC,,,,001Q800000qgC5GIAU
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC5GIAU,,,,a0MQ800000GOCDJMA5,,,,a03Q800000bX8BYIA0,,,,001Q800000qgC5GIAU
+,,true,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qgC8QIAU,,,,a0MQ800000HUGlVMAX,,,,a03Q800000bWasyIAC,,,,001Q800000qgC8QIAU
+,,true,,,false,,,,,,,false,,,,,,,,,,--,126054,,RR,,,,,,,false,,,001Q800000qfwOYIAY,,,,,,,,a03Q800000bX7yYIAS,,,,
+3002000093,,true,,,false,,,,,,,false,,,,,,,,,,--,TE11042147003,,RR,,,,,,,false,,,001Q800000qfzWOIAY,,,,,,,,a03Q800000bX83CIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,122534,,,,,,,,,false,,,,,,,,,,,a03Q800000bX7yYIAS,,,,
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOYIAY,,,,a0MQ800000IvhfNMAR,,,,a03Q800000bX889IAC,,,,001Q800000qfwOYIAY
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOYIAY,,,,a0MQ800000IvhfNMAR,,,,a03Q800000bWavgIAC,,,,001Q800000qfwOYIAY
+,,false,,,false,,,,,,,false,,,,,,,,,,--,,,Initial Assessment,,,,,,,false,,,001Q800000qfwOYIAY,,,,a0MQ800000IvhfNMAR,,,,a03Q800000bX89aIAC,,,,001Q800000qfwOYIAY
+,,true,,,false,,,,,,,false,,,,,,,,2026-04-30,,--,1111,,Demo,,,,,,,false,,,001Q800000qgC61IAE,,,,a0MQ800000JgPQUMA3,,,,a03Q800000bX8JGIA0,,,,001Q800000qgC61IAE
