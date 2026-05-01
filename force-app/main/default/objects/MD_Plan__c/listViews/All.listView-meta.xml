@@ -6,6 +6,7 @@
     <columns>End_Date_Calculated__c</columns>
     <columns>Approval_Status__c</columns>
     <columns>RECORDTYPE</columns>
+    <columns>CREATEDBY_USER</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -22,12 +22,12 @@
                 <td align="right">{!oi.Quantity__c}</td>
                 <td align="right">
                     <!-- Currency formatting will follow org/locale settings -->
-                    <apex:outputText value="{0, number, currency}">
+                    <apex:outputText value="PKR {0, number, ###,##0.00}">
                         <apex:param value="{!oi.Market_Price__c}" />
                     </apex:outputText>
                 </td>
                 <td align="right">
-                    <apex:outputText value="{0, number, currency}">
+                    <apex:outputText value="PKR {0, number, ###,##0.00}">
                         <apex:param value="{!oi.GST_Per_Unit__c}" />
                     </apex:outputText>
                 </td>

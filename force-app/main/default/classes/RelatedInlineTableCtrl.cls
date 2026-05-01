@@ -11,7 +11,7 @@ public with sharing class RelatedInlineTableCtrl {
         @AuraEnabled public List<RowError> rowErrors;
     }
 
-    @AuraEnabled(cacheable=false)
+    @AuraEnabled(cacheable=true)
     public static List<Map<String, Object>> getRecords(String objectApiName,
                                                        List<String> fieldApiNames,
                                                        String whereClause,

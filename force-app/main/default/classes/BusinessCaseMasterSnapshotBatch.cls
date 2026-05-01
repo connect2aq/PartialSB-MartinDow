@@ -53,7 +53,7 @@ public class BusinessCaseMasterSnapshotBatch implements Database.Batchable<SObje
                             Machine_Installation__r.bill_to_account__r.Country_Code__c
                     FROM Business_Cases__r 
                     WHERE RecordType.Name = 'Individual Business Case' and (Status__c like '%Active%' or Status__c like '%Revised%' or Status__c like '%New%')
-                   // LIMIT 1
+                    LIMIT 1
                 )
             FROM Business_Case__c
             WHERE RecordType.Name = 'Master Business Case'

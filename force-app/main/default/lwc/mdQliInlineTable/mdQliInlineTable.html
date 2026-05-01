@@ -1,12 +1,51 @@
 <template>
     <lightning-card title="Client Proposal Line Items">
-        <div class="slds-p-around_x-small slds-grid slds-gutters">
-            <!-- <div class="slds-col">
-                <lightning-button label="Get Latest" onclick={handleRefresh}></lightning-button>
-            </div> -->
+
+        <!-- Card header actions -->
+        <div slot="actions" class="slds-grid slds-gutters_xx-small">
+            <div class="slds-col">
+                <lightning-button
+                    label="Export CSV"
+                    icon-name="utility:download"
+                    onclick={handleExportCsv}
+                    title="Export current grid — edit in Excel then re-import">
+                </lightning-button>
+            </div>
+            <div class="slds-col">
+                <lightning-button
+                    label="Import CSV"
+                    icon-name="utility:upload"
+                    variant="neutral"
+                    onclick={handleImportCsvClick}
+                    title="Re-import an exported CSV to update existing rows">
+                </lightning-button>
+            </div>
+            <div class="slds-col">
+                <lightning-button
+                    label="Import New Items"
+                    icon-name="utility:add"
+                    variant="brand"
+                    onclick={handleNewItemsCsvClick}
+                    title="Upload a CSV with Material Numbers — details auto-resolved from catalog">
+                </lightning-button>
+            </div>
+            <!-- Hidden file input: existing CSV (update/insert) -->
+            <input
+                type="file"
+                accept=".csv"
+                class="slds-hide"
+                data-id="csvFileInput"
+                onchange={handleFileChange}>
+            <!-- Hidden file input: new items only -->
+            <input
+                type="file"
+                accept=".csv"
+                class="slds-hide"
+                data-id="newItemsFileInput"
+                onchange={handleNewItemsFileChange}>
         </div>
 
-        <!-- <lightning-datatable
+        <c-md-qli-data-table
             key-field="Id"
             data={rows}
             columns={columns}
@@ -15,16 +54,283 @@
             hide-checkbox-column
             onsave={handleSave}
             oncancel={handleCancel}>
-        </lightning-datatable> -->
-        <c-md-qli-data-table
-    key-field="Id"
-    data={rows}
-    columns={columns}
-    draft-values={draftValues}
-    errors={tableErrors}
-    hide-checkbox-column
-    onsave={handleSave}
-    oncancel={handleCancel}>
-</c-md-qli-data-table>
+        </c-md-qli-data-table>
+
+        <!-- ── Modal 1: Export / Re-import CSV (update existing) ────────────── -->
+        <template if:true={showCsvModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
+                <div class="slds-modal__container csv-modal-container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={handleCsvModalClose}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-modal__title">Import CSV — Preview &amp; Validation</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={hasCsvErrors}>
+                            <div class="slds-scoped-notification slds-media slds-media_center slds-scoped-notification_dark slds-m-bottom_small" role="status">
+                                <div class="slds-media__figure slds-scoped-notification__figure">
+                                    <lightning-icon icon-name="utility:error" alternative-text="error" variant="inverse" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-heading_small slds-m-bottom_xx-small">Validation Errors — fix in CSV and re-upload</p>
+                                    <ul class="slds-list_dotted">
+                                        <template for:each={csvErrors} for:item="err">
+                                            <li key={err}>{err}</li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="slds-grid slds-gutters_small slds-m-bottom_small">
+                            <template if:true={csvUpdateCount}>
+                                <div class="slds-col slds-grow-none">
+                                    <span class="slds-badge slds-badge_lightest">
+                                        <lightning-icon icon-name="utility:edit" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                        {csvUpdateCount} row(s) will be <strong>updated</strong>
+                                    </span>
+                                </div>
+                            </template>
+                            <template if:true={csvInsertCount}>
+                                <div class="slds-col slds-grow-none">
+                                    <span class="slds-badge slds-badge_lightest">
+                                        <lightning-icon icon-name="utility:add" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                        {csvInsertCount} row(s) will be <strong>inserted</strong>
+                                    </span>
+                                </div>
+                            </template>
+                            <template if:true={hasCsvErrors}>
+                                <div class="slds-col slds-grow-none">
+                                    <span class="slds-badge slds-badge_lightest slds-text-color_error">
+                                        {csvErrorCount} row(s) skipped (errors)
+                                    </span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                            <em>Discounts</em> and <em>Total Price</em> are formula fields — exported for reference only, ignored on import.
+                        </p>
+
+                        <template if:true={hasCsvPreviewRows}>
+                            <div class="csv-preview-scroll">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_col-bordered csv-preview-table">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th scope="col"><div class="slds-truncate">#</div></th>
+                                            <th scope="col"><div class="slds-truncate">Action</div></th>
+                                            <th scope="col"><div class="slds-truncate">Material No.</div></th>
+                                            <th scope="col"><div class="slds-truncate">Description</div></th>
+                                            <th scope="col"><div class="slds-truncate">Qty</div></th>
+                                            <th scope="col"><div class="slds-truncate">Unit Price</div></th>
+                                            <th scope="col"><div class="slds-truncate">Adj Type</div></th>
+                                            <th scope="col"><div class="slds-truncate">Adj Value</div></th>
+                                            <th scope="col"><div class="slds-truncate">Per Kit</div></th>
+                                            <th scope="col"><div class="slds-truncate">Per Test</div></th>
+                                            <th scope="col"><div class="slds-truncate">Discounts*</div></th>
+                                            <th scope="col"><div class="slds-truncate">Total Price*</div></th>
+                                            <th scope="col"><div class="slds-truncate">Status</div></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={csvPreviewRows} for:item="row">
+                                            <tr key={row._rowNum}>
+                                                <td>{row._rowNum}</td>
+                                                <td>
+                                                    <template if:true={row._isUpdate}>
+                                                        <span class="action-badge action-update">Update</span>
+                                                    </template>
+                                                    <template if:false={row._isUpdate}>
+                                                        <span class="action-badge action-insert">Insert</span>
+                                                    </template>
+                                                </td>
+                                                <td>{row.Material_Number__c}</td>
+                                                <td>{row.Material_Description__c}</td>
+                                                <td>{row.Quantity__c}</td>
+                                                <td>{row.UnitPrice__c}</td>
+                                                <td>{row.Price_Adjustment_Type__c}</td>
+                                                <td>{row.Price_Adjustment_Value__c}</td>
+                                                <td>{row.Per_Kit__c}</td>
+                                                <td>{row.Per_Test__c}</td>
+                                                <td class="slds-text-color_weak">{row.Discounts__c}</td>
+                                                <td class="slds-text-color_weak">{row.TotalPrice__c}</td>
+                                                <td>
+                                                    <template if:true={row._hasError}>
+                                                        <span class="slds-text-color_error" title={row._errorMsg}>&#x2716; {row._errorMsg}</span>
+                                                    </template>
+                                                    <template if:false={row._hasError}>
+                                                        <span class="slds-text-color_success">&#x2714; OK</span>
+                                                    </template>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">* Read-only formula fields — ignored on import</p>
+                        </template>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" onclick={handleCsvModalClose}></lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            label={importButtonLabel}
+                            disabled={isImportDisabled}
+                            onclick={handleConfirmImport}
+                            class="slds-m-left_x-small">
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- ── Modal 2: Import New Items (material lookup from catalog) ──────── -->
+        <template if:true={showNewItemsModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
+                <div class="slds-modal__container csv-modal-container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={handleNewItemsModalClose}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-modal__title">Import New Items — Material Lookup</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+
+                        <!-- Resolving spinner -->
+                        <template if:true={isResolvingMaterials}>
+                            <div class="slds-align_absolute-center slds-p-around_large">
+                                <lightning-spinner alternative-text="Looking up materials..." size="medium"></lightning-spinner>
+                                <p class="slds-m-top_medium slds-text-color_weak">Looking up material details from catalog…</p>
+                            </div>
+                        </template>
+
+                        <template if:false={isResolvingMaterials}>
+
+                            <!-- Validation / lookup errors -->
+                            <template if:true={hasNewItemsErrors}>
+                                <div class="slds-scoped-notification slds-media slds-media_center slds-scoped-notification_dark slds-m-bottom_small" role="status">
+                                    <div class="slds-media__figure slds-scoped-notification__figure">
+                                        <lightning-icon icon-name="utility:error" alternative-text="error" variant="inverse" size="small"></lightning-icon>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-heading_small slds-m-bottom_xx-small">Issues Found</p>
+                                        <ul class="slds-list_dotted">
+                                            <template for:each={newItemsErrors} for:item="err">
+                                                <li key={err}>{err}</li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <!-- Summary badges -->
+                            <div class="slds-grid slds-gutters_small slds-m-bottom_small">
+                                <template if:true={newItemsValidCount}>
+                                    <div class="slds-col slds-grow-none">
+                                        <span class="slds-badge slds-badge_lightest">
+                                            <lightning-icon icon-name="utility:check" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                            {newItemsValidCount} item(s) resolved &amp; ready to insert
+                                        </span>
+                                    </div>
+                                </template>
+                                <template if:true={newItemsErrorCount}>
+                                    <div class="slds-col slds-grow-none">
+                                        <span class="slds-badge slds-badge_lightest slds-text-color_error">
+                                            {newItemsErrorCount} item(s) not found / invalid
+                                        </span>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                                CSV only needs <strong>Material Number</strong> and <strong>Quantity</strong>.
+                                Description and Unit Price are auto-resolved from the material catalog.
+                                Unit Price in CSV overrides the catalog price if provided.
+                            </p>
+
+                            <!-- Preview table -->
+                            <template if:true={hasNewItemsPreviewRows}>
+                                <div class="csv-preview-scroll">
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_col-bordered csv-preview-table">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th scope="col"><div class="slds-truncate">#</div></th>
+                                                <th scope="col"><div class="slds-truncate">Material No.</div></th>
+                                                <th scope="col"><div class="slds-truncate">Description (resolved)</div></th>
+                                                <th scope="col"><div class="slds-truncate">Qty</div></th>
+                                                <th scope="col"><div class="slds-truncate">Unit Price</div></th>
+                                                <th scope="col"><div class="slds-truncate">Adj Type</div></th>
+                                                <th scope="col"><div class="slds-truncate">Adj Value</div></th>
+                                                <th scope="col"><div class="slds-truncate">Per Kit</div></th>
+                                                <th scope="col"><div class="slds-truncate">Per Test</div></th>
+                                                <th scope="col"><div class="slds-truncate">Status</div></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={newItemsPreviewRows} for:item="row">
+                                                <tr key={row._rowNum}>
+                                                    <td>{row._rowNum}</td>
+                                                    <td>{row.Material_Number__c}</td>
+                                                    <td>
+                                                        <template if:true={row._resolved}>
+                                                            <span class="resolved-text">{row.Material_Description__c}</span>
+                                                        </template>
+                                                        <template if:false={row._resolved}>
+                                                            <span class="slds-text-color_weak">—</span>
+                                                        </template>
+                                                    </td>
+                                                    <td>{row.Quantity__c}</td>
+                                                    <td>
+                                                        {row.UnitPrice__c}
+                                                        <template if:true={row._pricedFromCatalog}>
+                                                            <span class="catalog-tag">catalog</span>
+                                                        </template>
+                                                    </td>
+                                                    <td>{row.Price_Adjustment_Type__c}</td>
+                                                    <td>{row.Price_Adjustment_Value__c}</td>
+                                                    <td>{row.Per_Kit__c}</td>
+                                                    <td>{row.Per_Test__c}</td>
+                                                    <td>
+                                                        <template if:true={row._hasError}>
+                                                            <span class="slds-text-color_error" title={row._errorMsg}>&#x2716; {row._errorMsg}</span>
+                                                        </template>
+                                                        <template if:false={row._hasError}>
+                                                            <span class="slds-text-color_success">&#x2714; Resolved</span>
+                                                        </template>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </template>
+
+                        </template>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" onclick={handleNewItemsModalClose}></lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            label={newItemsImportButtonLabel}
+                            disabled={isNewItemsImportDisabled}
+                            onclick={handleConfirmNewItems}
+                            class="slds-m-left_x-small">
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
     </lightning-card>
 </template>

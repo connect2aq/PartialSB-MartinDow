@@ -4,10 +4,11 @@
     <columns>NAME</columns>
     <columns>API_Name__c</columns>
     <columns>API_URL__c</columns>
-    <columns>Request_Method__c</columns>
-    <columns>Request_Body__c</columns>
     <columns>Response_Message__c</columns>
+    <columns>Request_Body__c</columns>
     <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>User_Agent__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -165,8 +165,8 @@
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts>
-        <searchResultsAdditionalFields>Assign_Error_Codes__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>AccountId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assign_Error_Codes__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ContactId__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Category__c</searchResultsAdditionalFields>
     </searchLayouts>

@@ -1,0 +1,60 @@
+/* Widen the CSV modal beyond the default SLDS 50rem */
+.csv-modal-container {
+    max-width: 95vw;
+    width: 1050px;
+}
+
+/* Scrollable preview so tall CSVs don't overflow the screen */
+.csv-preview-scroll {
+    max-height: 380px;
+    overflow: auto;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+}
+
+/* Compact font for the dense preview table */
+.csv-preview-table {
+    font-size: 0.78rem;
+    white-space: nowrap;
+}
+
+/* Action badge shared styles */
+.action-badge {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.action-update {
+    background: #e8f4fd;
+    color: #0070d2;
+    border: 1px solid #0070d2;
+}
+
+.action-insert {
+    background: #e3f5e1;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+/* Resolved description text */
+.resolved-text {
+    color: #1a1a1a;
+    font-style: italic;
+}
+
+/* Small "catalog" tag shown next to prices auto-filled from the material catalog */
+.catalog-tag {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 0 4px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    background: #f4f6f9;
+    color: #706e6b;
+    border: 1px solid #c9c7c5;
+    vertical-align: middle;
+}

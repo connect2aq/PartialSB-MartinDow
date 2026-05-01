@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Material_Numbers__c</fullName>
     <externalId>false</externalId>
-    <formula>Asset_Number__r.Material_Number__c</formula>
+    <formula>Machine_Installation__r.Material_Number__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Material Numbers</label>
     <required>false</required>

@@ -39,13 +39,13 @@
             <div class="slds-m-around_medium">
                 <div class="slds-box slds-theme_shade slds-p-around_medium">
                     <h3 class="slds-text-heading_small slds-m-bottom_small">Event Description:</h3>
-                    <p class="slds-text-body_regular">{eventDescription}</p>
+                    <p class="slds-text-body_regular">{eventDescriptionText}</p>
                 </div>
             </div>
         </template>
 
         <!-- Checkout Remarks Modal (existing) -->
-        <template if:true={showModal}>
+        <template if:true={showRemarksModal}>
             <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
                 <div class="slds-modal__container">
                     <header class="slds-modal__header">
@@ -76,7 +76,8 @@
                     </div>
                     <footer class="slds-modal__footer">
                         <button class="slds-button slds-button_neutral" onclick={handleCancelRemarks}>Cancel</button>
-                        <button class="slds-button slds-button_brand" onclick={handleSaveRemarks}>Save</button>
+                        <button class="slds-button slds-button_brand" onclick={handleSaveRemarksAndCheckout}>Save</button>
+
                     </footer>
                 </div>
             </section>

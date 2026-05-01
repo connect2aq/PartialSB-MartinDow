@@ -3,15 +3,6 @@
     <fullName>bill_to_account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Bill To Account</label>
-    <lookupFilter>
-        <active>true</active>
-        <filterItems>
-            <field>Account.RecordType.DeveloperName</field>
-            <operation>equals</operation>
-            <value>Functional_Account</value>
-        </filterItems>
-        <isOptional>false</isOptional>
-    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Machine Installations</relationshipLabel>
     <relationshipName>Machine_Installations</relationshipName>

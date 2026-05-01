@@ -8,6 +8,10 @@
     <columns>SAP_Account_No_Bill_To__c</columns>
     <columns>Opportunity__c</columns>
     <columns>Product__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>StockKeepingUnit__c</columns>
+    <columns>Technology__c</columns>
+    <columns>Asset_Name__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

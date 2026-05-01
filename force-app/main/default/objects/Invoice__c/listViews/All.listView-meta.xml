@@ -9,7 +9,7 @@
     <columns>Related_Sales_Order__c</columns>
     <columns>Related_Quotation__c</columns>
     <columns>CREATED_DATE</columns>
-    <columns>LAST_UPDATE</columns>
+    <columns>Functional_Account__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

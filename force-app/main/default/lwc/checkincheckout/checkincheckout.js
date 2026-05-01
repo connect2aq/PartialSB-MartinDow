@@ -1,341 +1,325 @@
-import { LightningElement, api, track, wire } from 'lwc';
+// comments in English only
+import { LightningElement, api, wire, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import getEventDescription from '@salesforce/apex/EventLocationUpdateController.getEventDescription';
+
+// Apex
+import getEventStatusSimple from '@salesforce/apex/EventLocationUpdateController.getEventStatusSimple';
 import updateEventLocation from '@salesforce/apex/EventLocationUpdateController.updateEventLocation';
 import updateEventRemarks from '@salesforce/apex/EventLocationUpdateController.updateEventRemarks';
-import getEventDescription from '@salesforce/apex/EventLocationUpdateController.getEventDescription';
-import markEventNotCompleted from '@salesforce/apex/EventLocationUpdateController.markEventNotCompleted';
-import getEventStatusSimple from '@salesforce/apex/EventLocationUpdateController.getEventStatusSimple';
-// NEW: fetch current remarks to prefill
 import getEventRemarks from '@salesforce/apex/EventLocationUpdateController.getEventRemarks';
+import markEventNotCompleted from '@salesforce/apex/EventLocationUpdateController.markEventNotCompleted';
+import { NavigationMixin } from 'lightning/navigation';
+export default class EventAttendance extends NavigationMixin(LightningElement) {
+    // ============ inputs ============
+    _recordId;
 
-import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
-import EVENT_OBJECT from '@salesforce/schema/Event';
-import INCOMPLETE_REASON_FIELD from '@salesforce/schema/Event.Incomplete_Visit_Reason__c';
+    @api
+    get recordId() {
+        return this._recordId;
+    }
+set recordId(value) {
+    const normalized = value || '';
+    if (normalized === this._recordId) return;
+    this._recordId = normalized;
 
-import { getRecordNotifyChange } from 'lightning/uiRecordApi';
+    // comments in English only
+    // Force refresh LDS wire when recordId changes
 
-// --- Static fallback so the dropdown always opens ---
-const STATIC_REASON_OPTIONS = [
-    { label: 'Customer Unavailable', value: 'Customer Unavailable' },
-    { label: 'Meeting Rescheduled', value: 'Meeting Rescheduled' },
-    { label: 'Emergency / Urgent Issue', value: 'Emergency / Urgent Issue' },
-    { label: 'Travel / Logistics Issue', value: 'Travel / Logistics Issue' },
-    { label: 'Manager Cancelled', value: 'Manager Cancelled' },
-    { label: 'Other', value: 'Other' }
-];
+    this.stateLoaded = false;
+    this.isCheckedIn = false;
+    this.isCheckedOut = false;
+    this.isNotCompleted = false;
+    this.getEventStatusSimple(true);
+    this.loadEventDescription();
+}
 
-export default class CheckInComponent extends LightningElement {
-    _recordId; // Event record Id
-
-    @track latitude;
-    @track longitude;
-    @track locationCaptured = false;
-
-    @track showCheckInDescription = false;
-    @track showModal = false; // Checkout remarks modal
+    // ============ ui state ============
+    @track showRemarksModal = false;
     @track remarksText = '';
-    @track eventDescription = '';
+    @track isSaving = false;
+    @track isPrefilling = false;
+    @track showCheckInDescription = false;
+    @track stateLoaded = false;
+    @track eventDescriptionText = '';
+    
 
-    // Not Completed modal state
-    @track showNotCompletedModal = false;
-    @track selectedReason = '';
-    @track notCompletedDescription = '';
-    @track reasonOptions = STATIC_REASON_OPTIONS; // default options available immediately
-    @track savingNotCompleted = false;
-
-    // Button state tracking
+    // server-driven flags
     @track isCheckedIn = false;
     @track isCheckedOut = false;
     @track isNotCompleted = false;
-    @track stateLoaded = false; // Track if state is loaded
 
-    // Dynamic picklist (Reason)
-    recordTypeId;
+    // ========= helper: central refresh after any mutation =========
+// comments in English only
+// comments in English only
 
-    @api get recordId() {
-        return this._recordId;
+async loadEventDescription() {
+    try {
+        this.eventDescriptionText = await getEventDescription({ eventId: this.recordId }) || '';
+    } catch (e) {
+        this.eventDescriptionText = '';
+        const msg = e?.body?.message || e?.message || 'Failed to load event description.';
+        this.toast('Error', msg, 'error');
+        // console.error('getEventDescription error:', JSON.stringify(e));
+    }
+}
+
+
+
+
+refreshRecordUI(delayMs = 1500) {
+    // Notify LDS-backed components first
+    try {
+        getRecordNotifyChange([{ recordId: this.recordId }]);
+    } catch (e) {
+        // no-op
     }
 
-    set recordId(value) {
-        value = value || '';
-        if (value === this.recordId) return;
-        this._recordId = value;
-        this.getEventStatusSimple();
-    }
+    // Soft reload the same record page after a delay
+    try {
+        // wait so the server commit finishes and fields are visible on reload
+        setTimeout(() => {
+            this[NavigationMixin.Navigate](
+                {
+                    type: 'standard__recordPage',
+                    attributes: {
+                        recordId: this.recordId,
+                        objectApiName: 'Event', // change if your object is custom e.g., 'Event__c'
+                        actionName: 'view'
+                    }
+                },
+                true // replace = true (don’t add a new history entry)
+            );
 
-    // Get default record type for Event
-    @wire(getObjectInfo, { objectApiName: EVENT_OBJECT })
-    wiredObj({ data }) {
-        if (data) {
-            this.recordTypeId = data.defaultRecordTypeId;
-        }
-    }
+            // OPTIONAL ultra-safe fallback: hard reload shortly after soft navigate.
+            // Uncomment if your org still shows stale UI sometimes.
+            // setTimeout(() => { window.location.reload(); }, 400);
 
-    // Try to load picklist values; if it fails, we keep static list
-    @wire(getPicklistValues, { recordTypeId: '$recordTypeId', fieldApiName: INCOMPLETE_REASON_FIELD })
-    wiredReasonValues({ data }) {
-        if (data && data.values?.length) {
-            this.reasonOptions = data.values.map(v => ({ label: v.label, value: v.value }));
-        }
+        }, delayMs);
+    } catch (e) {
+        // no-op
     }
+}
 
-    async getEventStatusSimple() {
+
+
+    // ========= server: status (cache-busted) =========
+    async getEventStatusSimple(bust = false) {
         try {
-            const data = await getEventStatusSimple({ eventId: this.recordId });
-            if (data) {
-                this.isCheckedIn = data.hasCheckIn || false;
-                this.isCheckedOut = data.hasCheckOut || false;
-                this.isNotCompleted = data.isNotCompleted || false;
+            const params = bust
+                ? { eventId: this.recordId, nonce: Date.now() }
+                : { eventId: this.recordId, nonce: null };
 
-                // Show description if already checked in
+            const data = await getEventStatusSimple(params);
+            if (data) {
+                this.isCheckedIn = !!data.hasCheckIn;
+                this.isCheckedOut = !!data.hasCheckOut;
+                this.isNotCompleted = !!data.isNotCompleted;
+
                 if (this.isCheckedIn && !this.isCheckedOut && !this.isNotCompleted) {
-                    this.loadEventDescription();
                     this.showCheckInDescription = true;
                 }
             }
         } catch (ex) {
             // eslint-disable-next-line no-console
-            console.error('Error loading event status:', ex.message);
+            console.error('Error loading event status:', ex?.message);
         } finally {
-            this.stateLoaded = true; // Still mark as loaded to enable buttons
+            this.stateLoaded = true;
         }
     }
 
-    // ======= Button State Getters =======
-    get isCheckInDisabled() {
-        if (!this.stateLoaded) return true;
-        return this.isCheckedIn || this.isCheckedOut || this.isNotCompleted;
-    }
+    // ========= button disabled (pure flags) =========
+get isCheckInDisabled() {
+    if (!this.recordId) return true;
+    if (this.isSaving || this.isPrefilling) return true;
+    if (!this.stateLoaded) return false;
+    return this.isCheckedIn || this.isCheckedOut || this.isNotCompleted;
+}
 
-    get isCheckOutDisabled() {
-        if (!this.stateLoaded) return true;
-        return !this.isCheckedIn || this.isCheckedOut || this.isNotCompleted;
-    }
+get isCheckOutDisabled() {
+    if (!this.recordId) return true;
+    if (this.isSaving || this.isPrefilling) return true;
+    if (!this.stateLoaded) return true;
+    return !this.isCheckedIn || this.isCheckedOut || this.isNotCompleted;
+}
 
     get isNotCompletedDisabled() {
-        if (!this.stateLoaded) return true;
+        if (!this.recordId) return true;
+        if (!this.stateLoaded) return false;
         return this.isCheckedOut || this.isNotCompleted;
     }
-
-    // ======= Check-In / Check-Out =======
-    handleCheckIn() {
-        // Get location and show description as you already had
-        this.getLocation(true);
-        this.loadEventDescription();
-        this.showCheckInDescription = true;
+// comments in English only
+getGeoErrorMessage(error, actionLabel) {
+    if (!error || typeof error.code === 'undefined') {
+        return `Failed to get current location for ${actionLabel}.`;
     }
+
+    if (error.code === 1) {
+        return 'Location permission denied. Please allow location access and try again.';
+    }
+    if (error.code === 2) {
+        return 'Location unavailable. Please turn on GPS/Location Services and try again.';
+    }
+    if (error.code === 3) {
+        return 'Location request timed out. Please move to an open area and try again.';
+    }
+
+    return `Failed to get current location for ${actionLabel}.`;
+}
+
+    // ========= handlers =========
+handleCheckIn() {
+    if (!navigator.geolocation) {
+        this.toast('Error', 'Geolocation is not supported by this browser.', 'error');
+        return;
+    }
+
+    // comments in English only
+    // Prevent double clicks while a request is already running
+    if (this.isSaving) {
+        return;
+    }
+
+    this.isSaving = true;
+
+    const options = {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 15000 // 15 seconds
+    };
+
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            const latitude = pos.coords.latitude;
+            const longitude = pos.coords.longitude;
+
+            this.saveLocation({ latitude, longitude, isCheckIn: true })
+                .finally(() => {
+                    this.isSaving = false;
+                });
+        },
+        (error) => {
+            const msg = this.getGeoErrorMessage(error, 'check-in');
+            this.toast('Error', msg, 'error');
+            this.isSaving = false;
+        },
+        options
+    );
+}
+
 
     async handleCheckOut() {
-        // 1) Capture location (existing behavior)
-        this.getLocation(false);
-
-        // 2) Prefill remarks from server BEFORE opening modal
-        //    If it errors, we just continue with empty string
+        this.isPrefilling = true;
         try {
-            const current = await getEventRemarks({ eventId: this.recordId });
-            // Safely set to empty string if null/undefined
-            this.remarksText = current || '';
+            const existing = await getEventRemarks({ eventId: this.recordId });
+            this.remarksText = existing || '';
         } catch (e) {
             this.remarksText = '';
+        } finally {
+            this.isPrefilling = false;
         }
-
-        // 3) Open modal (now textarea shows the current remarks)
-        this.showModal = true;
+        this.showRemarksModal = true;
     }
 
-    // Get device location and update record via Apex
-    getLocation(isCheckIn) {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    this.latitude = position.coords.latitude;
-                    this.longitude = position.coords.longitude;
-                    this.locationCaptured = true;
-                    this.updateLocation(this.latitude, this.longitude, isCheckIn);
-                },
-                (error) => {
-                    this.locationCaptured = false;
-                    let errorMessage = 'Unable to access device location.';
-                    if (error.code === error.PERMISSION_DENIED) {
-                        errorMessage = 'Permission to access location was denied.';
-                    } else if (error.code === error.POSITION_UNAVAILABLE) {
-                        errorMessage = 'Location information is unavailable.';
-                    } else if (error.code === error.TIMEOUT) {
-                        errorMessage = 'The request to get user location timed out.';
-                    } else if (error.code === error.UNKNOWN_ERROR) {
-                        errorMessage = 'An unknown error occurred while accessing location.';
-                    }
-                    this.dispatchEvent(new ShowToastEvent({ title: 'Error', message: errorMessage, variant: 'error' }));
-                }
-            );
-        } else {
-            this.locationCaptured = false;
-            this.dispatchEvent(new ShowToastEvent({
-                title: 'Error',
-                message: 'Geolocation is not supported by this browser.',
-                variant: 'error'
-            }));
-        }
-    }
-
-    updateLocation(latitude, longitude, isCheckIn) {
-        if (!this.locationCaptured) return;
-
-        updateEventLocation({ eventId: this.recordId, lat: latitude, lon: longitude, isCheckIn })
-            .then(() => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Success',
-                    message: isCheckIn ? 'Check-in location saved successfully.' : 'Check-out location saved successfully.',
-                    variant: 'success'
-                }));
-                if (isCheckIn) {
-                    this.isCheckedIn = true;
-                } else {
-                    this.isCheckedOut = true;
-                }
-            })
-            .catch((error) => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Error',
-                    message: error?.body?.message || 'Failed to update location.',
-                    variant: 'error'
-                }));
-            });
-    }
-
-    // ======= Checkout Remarks =======
-    handleRemarksChange(event) {
-        this.remarksText = event.target.value;
-    }
-
-    handleSaveRemarks() {
-        if (this.remarksText.length > 255) {
-            this.dispatchEvent(new ShowToastEvent({
-                title: 'Error',
-                message: 'Remarks cannot exceed 255 characters.',
-                variant: 'error'
-            }));
-            return;
-        }
-
-        updateEventRemarks({ eventId: this.recordId, remarks: this.remarksText })
-            .then(() => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Remarks saved successfully.',
-                    variant: 'success'
-                }));
-                this.closeModal();
-            })
-            .catch((error) => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Error',
-                    message: error?.body?.message || 'Failed to save remarks.',
-                    variant: 'error'
-                }));
-            });
+    handleRemarksChange(evt) {
+        this.remarksText = evt.target.value || '';
     }
 
     handleCancelRemarks() {
-        this.closeModal();
-    }
-
-    closeModal() {
-        this.showModal = false;
+        this.showRemarksModal = false;
         this.remarksText = '';
     }
 
-    // ======= Not Completed flow =======
-    openNotCompletedModal() {
-        if (!this.reasonOptions || this.reasonOptions.length === 0) {
-            this.reasonOptions = STATIC_REASON_OPTIONS;
+    async handleSaveRemarksAndCheckout() {
+        this.isSaving = true;
+        try {
+            if (this.remarksText && this.remarksText.trim().length > 0) {
+                await updateEventRemarks({
+                    eventId: this.recordId,
+                    remarks: this.remarksText.trim()
+                });
+            }
+            if (!navigator.geolocation) {
+                this.isSaving = false;
+                this.toast('Error', 'Geolocation is not supported by this browser.', 'error');
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                async pos => {
+                    const latitude = pos.coords.latitude;
+                    const longitude = pos.coords.longitude;
+                    try {
+                        await this.saveLocation({ latitude, longitude, isCheckIn: false });
+                        this.showRemarksModal = false;
+                        this.remarksText = '';
+                    } catch (e) {
+                        // handled in saveLocation
+                    } finally {
+                        this.isSaving = false;
+                    }
+                },
+                () => {
+                    this.isSaving = false;
+                    this.toast('Error', 'Failed to get current location for check-out.', 'error');
+                },
+                { enableHighAccuracy: true, maximumAge: 0 }
+            );
+        } catch (e) {
+            this.isSaving = false;
+            this.toast('Error', 'Failed to save remarks.', 'error');
         }
-        this.showNotCompletedModal = true;
     }
 
-    closeNotCompletedModal() {
-        this.showNotCompletedModal = false;
-        this.selectedReason = '';
-        this.notCompletedDescription = '';
+async handleNotCompleted() {
+    try {
+        await markEventNotCompleted({ eventId: this.recordId });
+
+        // Optimistic local flip so buttons react immediately
+        this.isNotCompleted = true;
+
+        this.toast('Success', 'Marked as Not Completed.', 'success');
+
+        // Centralized refresh: LDS + cache-busted status
+        this.refreshRecordUI();
+    } catch (e) {
+        this.toast('Error', 'Failed to mark as Not Completed.', 'error');
     }
+}
 
-    handleReasonChange(event) {
-        this.selectedReason = event.detail.value;
-    }
-
-    handleNcDescriptionChange(event) {
-        this.notCompletedDescription = event.target.value;
-    }
-
-    get disableNcSave() {
-        return !this.selectedReason || this.savingNotCompleted;
-    }
-
-    handleSaveNotCompleted() {
-        if (!this.recordId) {
-            this.dispatchEvent(new ShowToastEvent({
-                title: 'Error',
-                message: 'No recordId found.',
-                variant: 'error'
-            }));
-            return;
-        }
-
-        this.savingNotCompleted = true;
-
-        markEventNotCompleted({
-            eventId: this.recordId,
-            reason: this.selectedReason,
-            descriptionText: this.notCompletedDescription || ''
-        })
-            .then(() => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Marked as Not Completed.',
-                    variant: 'success'
-                }));
-                this.isNotCompleted = true;
-
-                // Refresh current state using the same imperative method
-                this.getEventStatusSimple();
-
-                try {
-                    getRecordNotifyChange([{ recordId: this.recordId }]);
-                } catch (e) { /* ignore */ }
-                this.closeNotCompletedModal();
-            })
-            .catch(error => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Error',
-                    message: error?.body?.message || 'Failed to mark as Not Completed.',
-                    variant: 'error'
-                }));
-            })
-            .finally(() => {
-                this.savingNotCompleted = false;
+    // ========= shared save =========
+    async saveLocation({ latitude, longitude, isCheckIn }) {
+        try {
+            await updateEventLocation({
+                eventId: this.recordId,
+                lat: latitude,
+                lon: longitude,
+                isCheckIn: isCheckIn
             });
-    }
 
-    // ======= Description loader =======
-    loadEventDescription() {
-        getEventDescription({ eventId: this.recordId })
-            .then(result => {
-                this.eventDescription = result;
-            })
-            .catch(() => {
-                this.eventDescription = 'Error loading description';
-            });
-    }
+            // Optimistic flip so UI reacts instantly
+            if (isCheckIn) {
+                this.isCheckedIn = true;
+                this.showCheckInDescription = true;
+            } else {
+                this.isCheckedOut = true;
+            }
 
-    // ======= Helpers =======
-    get googleMapsLink() {
-        if (this.latitude && this.longitude) {
-            return `https://www.google.com/maps?q=${this.latitude},${this.longitude}`;
+            this.toast(
+                'Success',
+                isCheckIn ? 'Check-in location saved successfully.' : 'Check-out location saved successfully.',
+                'success'
+            );
+
+            // Centralized refresh: LDS + fresh server status (cache-busted)
+            this.refreshRecordUI();
+        } catch (e) {
+            this.toast('Error', 'Failed to save event location.', 'error');
+            // rethrow if you want upstream handling
         }
-        return '';
     }
 
-    get remainingCharacters() {
-        return 255 - this.remarksText.length;
+    // ========= utils =========
+    toast(title, message, variant) {
+        this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
     }
 }

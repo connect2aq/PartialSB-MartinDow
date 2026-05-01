@@ -129,6 +129,11 @@
                 <default>false</default>
                 <label>3330 - Agility – 3PWH</label>
             </value>
+            <value>
+                <fullName>3326 - Medical Device</fullName>
+                <default>false</default>
+                <label>3326 - Medical Device</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

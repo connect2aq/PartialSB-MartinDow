@@ -1,130 +1,133 @@
+// comments in English only
 public with sharing class EventLocationUpdateController {
 
+    // NOTE: Adjust field API names if different in your org.
+    // Assumed fields on Event:
+    //  - Status__c (Picklist: includes 'Not Completed')
+    //  - Check_In_Date_Time__c (DateTime)
+    //  - Check_Out_Date_Time__c (DateTime)
+    //  - Check_In_Location__c (Geolocation)  -> use ...__Latitude__s / ...__Longitude__s
+    //  - Check_Out_Location__c (Geolocation) -> use ...__Latitude__s / ...__Longitude__s
+    //  - Remarks__c (Long Text Area), optional
+
     @AuraEnabled(cacheable=true)
-    public static String getEventDescription(Id eventId) {
-        try {
-            Event e = [SELECT Id, Description FROM Event WHERE Id = :eventId LIMIT 1];
-            return e.Description != null ? e.Description : 'No description available';
-        } catch (Exception ex) {
-            return 'Error loading description';
+    public static Map<String, Boolean> getEventStatusSimple(Id eventId, Long nonce) {
+        // 'nonce' is intentionally unused; it only busts the platform's cache.
+        if (eventId == null) {
+            return new Map<String, Boolean>{
+                'hasCheckIn' => false,
+                'hasCheckOut' => false,
+                'isNotCompleted' => false
+            };
         }
+
+        Event rec = [
+            SELECT  Status__c,
+                    Check_In_Date_Time__c,
+                    Check_Out_Date_Time__c,
+                    Check_In_Location__Latitude__s,
+                    Check_In_Location__Longitude__s,
+                    Check_Out_Location__Latitude__s,
+                    Check_Out_Location__Longitude__s
+            FROM Event
+            WHERE Id = :eventId
+            LIMIT 1
+        ];
+
+        Boolean hasCheckIn = (rec.Check_In_Date_Time__c != null)
+                             || (rec.Check_In_Location__Latitude__s != null && rec.Check_In_Location__Longitude__s != null);
+        Boolean hasCheckOut = (rec.Check_Out_Date_Time__c != null)
+                              || (rec.Check_Out_Location__Latitude__s != null && rec.Check_Out_Location__Longitude__s != null);
+        Boolean isNotCompleted = (rec.Status__c == 'Not Completed');
+
+        return new Map<String, Boolean>{
+            'hasCheckIn' => hasCheckIn,
+            'hasCheckOut' => hasCheckOut,
+            'isNotCompleted' => isNotCompleted
+        };
     }
 
-    // NEW: Fetch current remarks for prefill in modal
+    @AuraEnabled
+    public static void updateEventLocation(Id eventId, Decimal lat, Decimal lon, Boolean isCheckIn) {
+        if (eventId == null || lat == null || lon == null || isCheckIn == null) {
+            throw new AuraHandledException('Invalid parameters.');
+        }
+
+        Event upd = new Event();
+        upd.Id = eventId;
+
+        if (isCheckIn) {
+            // Set geolocation components
+            upd.put('Check_In_Location__Latitude__s', lat);
+            upd.put('Check_In_Location__Longitude__s', lon);
+            // Stamp Date/Time
+            upd.put('Check_In_Date_Time__c', System.now());
+        } else {
+            upd.put('Check_Out_Location__Latitude__s', lat);
+            upd.put('Check_Out_Location__Longitude__s', lon);
+            upd.put('Check_Out_Date_Time__c', System.now());
+        }
+
+        update upd;
+    }
+
+    @AuraEnabled
+    public static void updateEventRemarks(Id eventId, String remarks) {
+        if (eventId == null) {
+            throw new AuraHandledException('Invalid parameters.');
+        }
+        Event upd = new Event(
+            Id = eventId
+        );
+        // Adjust API name if your Remarks field is different
+        upd.put('Remarks__c', remarks);
+        update upd;
+    }
+
     @AuraEnabled(cacheable=true)
     public static String getEventRemarks(Id eventId) {
-        try {
-            Event e = [SELECT Id, Remarks__c FROM Event WHERE Id = :eventId LIMIT 1];
-            return e.Remarks__c == null ? '' : e.Remarks__c;
-        } catch (Exception ex) {
-            // Return empty so UI still opens gracefully
-            return '';
-        }
+        if (eventId == null) return null;
+        Event rec = [
+            SELECT Remarks__c
+            FROM Event
+            WHERE Id = :eventId
+            LIMIT 1
+        ];
+        return (String)rec.get('Remarks__c');
     }
+    // comments in English only
+@AuraEnabled
+public static void markEventNotCompleted(Id eventId) {
+    if (eventId == null) {
+        throw new AuraHandledException('Invalid parameters.');
+    }
+    // Update only the fields needed for "Not Completed" state
+    Event upd = new Event(
+        Id = eventId
+    );
+    upd.put('Status__c', 'Not Completed');
+    // (Optional) clear checkout fields if your business rule needs it:
+    // upd.put('Check_Out_Date_Time__c', null);
+    // upd.put('Check_Out_Location__Latitude__s', null);
+    // upd.put('Check_Out_Location__Longitude__s', null);
 
-    // Added cacheable=true earlier for wire/imperative usage
+    update upd;
+}
     @AuraEnabled(cacheable=true)
-    public static Map<String, Boolean> getEventStatusSimple(Id eventId) {
-        Map<String, Boolean> result = new Map<String, Boolean>();
-        try {
-            Event e = [
-                SELECT Id,
-                       Check_In_Location__Latitude__s,
-                       Check_In_Location__Longitude__s,
-                       Check_Out_Location__Latitude__s,
-                       Check_Out_Location__Longitude__s,
-                       Status__c
-                FROM Event
-                WHERE Id = :eventId
-                LIMIT 1
-            ];
-
-            Boolean hasCheckIn = (e.Check_In_Location__Latitude__s != null &&
-                                  e.Check_In_Location__Longitude__s != null);
-
-            Boolean hasCheckOut = (e.Check_Out_Location__Latitude__s != null &&
-                                   e.Check_Out_Location__Longitude__s != null);
-
-            Boolean isNotCompleted = (e.Status__c == 'Not Completed');
-
-            result.put('hasCheckIn', hasCheckIn);
-            result.put('hasCheckOut', hasCheckOut);
-            result.put('isNotCompleted', isNotCompleted);
-
-            System.debug('Event Status Check - CheckIn: ' + hasCheckIn + ', CheckOut: ' + hasCheckOut + ', NotCompleted: ' + isNotCompleted);
-        } catch (Exception ex) {
-            System.debug('Error in getEventStatusSimple: ' + ex.getMessage());
-            result.put('hasCheckIn', false);
-            result.put('hasCheckOut', false);
-            result.put('isNotCompleted', false);
-        }
-        return result;
+public static String getEventDescription(Id eventId) {
+    if (eventId == null) {
+        return '';
     }
 
-    @AuraEnabled
-    public static String updateEventLocation(Id eventId, Double lat, Double lon, Boolean isCheckIn) {
-        try {
-            Event e = [
-                SELECT Id,
-                       Check_In_Location__Latitude__s, Check_In_Location__Longitude__s,
-                       Check_Out_Location__Latitude__s, Check_Out_Location__Longitude__s
-                FROM Event
-                WHERE Id = :eventId
-                LIMIT 1
-            ];
+    Event e = [
+        SELECT Description
+        FROM Event
+        WHERE Id = :eventId
+        LIMIT 1
+    ];
 
-            if (isCheckIn) {
-                e.Check_In_Location__Latitude__s = lat;
-                e.Check_In_Location__Longitude__s = lon;
-            } else {
-                e.Check_Out_Location__Latitude__s = lat;
-                e.Check_Out_Location__Longitude__s = lon;
-            }
+    return e.Description;
+}
 
-            update e;
-            return 'Event location updated successfully!';
-        } catch (Exception ex) {
-            throw new AuraHandledException('Error updating event location: ' + ex.getMessage());
-        }
-    }
 
-    @AuraEnabled
-    public static String updateEventRemarks(Id eventId, String remarks) {
-        try {
-            Event e = [SELECT Id, Remarks__c FROM Event WHERE Id = :eventId LIMIT 1];
-            e.Remarks__c = remarks;
-            update e;
-            return 'Event remarks updated successfully!';
-        } catch (Exception ex) {
-            throw new AuraHandledException('Error updating event remarks: ' + ex.getMessage());
-        }
-    }
-
-    @AuraEnabled
-    public static String markEventNotCompleted(Id eventId, String reason, String descriptionText) {
-        try {
-            Event e = new Event(
-                Id = eventId,
-                Incomplete_Visit_Reason__c = reason,
-                Description__c = descriptionText,
-                Status__c = 'Not Completed'
-            );
-            update e;
-            return 'Marked as Not Completed';
-        } catch (Exception ex) {
-            throw new AuraHandledException('Error marking as Not Completed: ' + ex.getMessage());
-        }
-    }
-
-    public class EventStatusWrapper {
-        @AuraEnabled public Boolean hasCheckIn { get; set; }
-        @AuraEnabled public Boolean hasCheckOut { get; set; }
-        @AuraEnabled public Boolean isNotCompleted { get; set; }
-
-        public EventStatusWrapper() {
-            this.hasCheckIn = false;
-            this.hasCheckOut = false;
-            this.isNotCompleted = false;
-        }
-    }
 }

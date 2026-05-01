@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Salesforce DX": {
+      "command": "sf-mcp-server",
+      "args": [
+        "--orgs",
+        "PartialSB",
+        "--toolsets",
+        "orgs,metadata,data,users"
+      ]
+    }
+  }
+}

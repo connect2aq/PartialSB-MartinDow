@@ -9,5 +9,15 @@
     <columns>Stage__c</columns>
     <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Close_Won_Or_Close_Lost__c</field>
+        <operation>equals</operation>
+        <value>Close Won</value>
+    </filters>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Close_Opportunity</value>
+    </filters>
     <label>All</label>
 </ListView>

@@ -12,6 +12,7 @@
         <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage">
             <property name="childObjectApiName" type="String" label="Child Object API Name" default="MD_Quote_Line_Item__c"/>
             <property name="parentLookupFieldApiName" type="String" label="Parent Lookup Field API Name" default="QuoteId__c"/>
+            <property name="parentObjectApiName" type="String" label="Parent Object API Name (e.g. MD_Quote__c)" default=""/>
             <property name="fieldApiNames" type="String" label="Field API Names (comma-separated)" default="Name,Material_Number__c,Material_Description__c,Quantity__c,UnitPrice__c,Price_Adjustment_Type__c,Price_Adjustment_Value__c,Per_Kit__c,Per_Test__c,Discounts__c,TotalPrice__c"/>
             <property name="limitSize" type="Integer" label="Max Rows" default="200"/>
             <property name="columnsJson" type="String" label="Columns JSON (optional)"/>

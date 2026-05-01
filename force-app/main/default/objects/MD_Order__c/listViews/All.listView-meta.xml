@@ -5,7 +5,10 @@
     <columns>Account__c</columns>
     <columns>Sum_of_Actual_Unit_Cost__c</columns>
     <columns>RECORDTYPE</columns>
+    <columns>External_Order_ID__c</columns>
     <columns>Status__c</columns>
+    <columns>Address_Line_1_Bill_to__c</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
