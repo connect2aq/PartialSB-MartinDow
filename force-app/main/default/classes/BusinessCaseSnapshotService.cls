@@ -798,7 +798,7 @@ public class BusinessCaseSnapshotService {
 
             // Core identifiers - using Business Case ID + Month instead of complex key
             snapshot.Business_Case__c = businessCase.Id;
-            snapshot.Snapshot_Month__c = snapshotMonth;
+            snapshot.Snapshot_Month__c = snapshotMonth.addMonths(1).addDays(-1);
             snapshot.Snapshot_Created_Date__c = Date.today();
             snapshot.Monthly_Commitments__c = businessCase.Monthly_Reagent_Commitment__c;
 
@@ -987,7 +987,7 @@ public class BusinessCaseSnapshotService {
 
         // Core identifiers - using Business Case ID + Month instead of complex key
         snapshot.Business_Case__c = businessCase.Id;
-        snapshot.Snapshot_Month__c = snapshotMonth;
+        snapshot.Snapshot_Month__c = snapshotMonth.addMonths(1).addDays(-1);
         snapshot.Snapshot_Created_Date__c = Date.today();
         snapshot.Monthly_Commitments__c = businessCase.Sum_of_Monthly_Reagent_Commitment__c;
 
@@ -1492,8 +1492,9 @@ public class BusinessCaseSnapshotService {
             FROM Invoice_Line_Item__c
             WHERE
                 Business_Case__c IN :businessCaseIds
-                AND Invoice__r.Invoice_Date__c >= :Date.newInstance(1900, 1, 1) // adjust lower bound if needed
+                AND Invoice__r.Invoice_Date__c >= :Date.newInstance(1900, 1, 1)
                 AND Invoice_Value__c != NULL
+                AND DGroup__c = 'Reagent'
             GROUP BY
                 Business_Case__c,
                 CALENDAR_YEAR(Invoice__r.Invoice_Date__c),
@@ -1543,6 +1544,7 @@ public class BusinessCaseSnapshotService {
             WHERE
                 Business_Case__c IN :businessCaseIds
                 AND Invoice_Value__c != NULL
+                AND DGroup__c = 'Reagent'
             GROUP BY
                 Business_Case__c,
                 CALENDAR_YEAR(Invoice__r.Invoice_Date__c),
@@ -1617,7 +1619,8 @@ public class BusinessCaseSnapshotService {
             WHERE
                 Business_Case__c IN :businessCaseIds
                 AND Invoice_Value__c != NULL
-                AND Invoice__r.Invoice_Date__c <= :Date.today() // broad upper bound
+                AND DGroup__c = 'Reagent'
+                AND Invoice__r.Invoice_Date__c <= :Date.today()
         ];
 
         if (allInvoices.isEmpty()) {
@@ -1907,5 +1910,340 @@ public class BusinessCaseSnapshotService {
             '3020001809', '3020001811', '3020001814'
         };
         return assignInvoicesForCustomerList(customerCodes);
+    }
+
+    // =========================================================================
+    // CUSTOMER-CENTRIC SNAPSHOT PROCESSING
+    // =========================================================================
+
+    /**
+     * Process missing historical snapshots for a customer (normal incremental run).
+     */
+    public static void processSnapshotsForCustomer(String customerCode) {
+        processSnapshotsForCustomer(customerCode, false);
+    }
+
+    /**
+     * Process historical snapshots for a customer.
+     * forceRecalculate = false : only creates snapshots for months not yet snapshotted (incremental).
+     * forceRecalculate = true  : recalculates ALL months from Agreement Date and updates existing
+     *                            snapshot records in place — use after fixing invoice data.
+     * Writes Agreement_Date__c back to the BC if missing, using the first invoice date.
+     * Never processes the current month — only completed months.
+     */
+    public static void processSnapshotsForCustomer(String customerCode, Boolean forceRecalculate) {
+        if (String.isBlank(customerCode)) return;
+
+        Date currentMonthStart  = Date.today().toStartOfMonth();
+        Date lastCompletedMonth = currentMonthStart.addMonths(-1);
+
+        List<Business_Case__c> masterBCs     = queryMasterBCsForCustomer(customerCode);
+        List<Business_Case__c> individualBCs = queryIndividualBCsForCustomer(customerCode);
+
+        List<Business_Case__c> allBCs = new List<Business_Case__c>();
+        allBCs.addAll(masterBCs);
+        allBCs.addAll(individualBCs);
+        if (allBCs.isEmpty()) return;
+
+        Set<Id> bcIds = new Set<Id>();
+        for (Business_Case__c bc : allBCs) bcIds.add(bc.Id);
+
+        Map<Id, Date> firstInvoiceDates  = getFirstInvoiceDates(bcIds);
+        backfillAgreementDates(allBCs, firstInvoiceDates);
+
+        Map<Id, Date> lastSnapshotMonths = forceRecalculate
+            ? new Map<Id, Date>()
+            : getLastSnapshotMonths(bcIds);
+
+        Set<Id> masterBCIds = new Set<Id>();
+        for (Business_Case__c bc : masterBCs) masterBCIds.add(bc.Id);
+
+        Map<Id, List<Date>> bcToMonths      = new Map<Id, List<Date>>();
+        Set<Date>           allMonthsNeeded = new Set<Date>();
+
+        for (Business_Case__c bc : allBCs) {
+            Date startDate = bc.Agreement_Date__c;
+            if (startDate == null) continue;
+
+            Date startMonth  = startDate.toStartOfMonth();
+            Date lastSnap    = lastSnapshotMonths.get(bc.Id);
+            // toStartOfMonth() handles both old (1st) and new (last-day) stored formats
+            Date processFrom = (lastSnap == null) ? startMonth : lastSnap.toStartOfMonth().addMonths(1);
+
+            if (processFrom > lastCompletedMonth) continue;
+
+            List<Date> months = generateMonthRange(processFrom, lastCompletedMonth);
+            bcToMonths.put(bc.Id, months);
+            allMonthsNeeded.addAll(months);
+        }
+
+        if (bcToMonths.isEmpty()) return;
+
+        Map<String, InvoiceAggregationResult> invoiceMap = bulkAggregateInvoiceData(bcIds, allMonthsNeeded);
+        Map<String, Decimal>                  ytdMap     = bulkCalculateYTDSales(bcIds, allMonthsNeeded);
+        Map<String, Decimal>                  totalMap   = bulkCalculateTotalSalesTillDate(bcIds, allMonthsNeeded);
+
+        // When recalculating, map existing snapshot Ids so we UPDATE instead of INSERT
+        Map<String, Id> existingSnapshotIds = new Map<String, Id>();
+        if (forceRecalculate) {
+            for (Business_Case_Sales_Snapshot__c snap : [
+                SELECT Id, Business_Case__c, Snapshot_Month__c
+                FROM Business_Case_Sales_Snapshot__c
+                WHERE Business_Case__c IN :bcIds
+            ]) {
+                String key = snap.Business_Case__c + '_' + snap.Snapshot_Month__c.toStartOfMonth().format();
+                existingSnapshotIds.put(key, snap.Id);
+            }
+        }
+
+        Map<Id, Business_Case__c> bcMap = new Map<Id, Business_Case__c>();
+        for (Business_Case__c bc : allBCs) bcMap.put(bc.Id, bc);
+
+        List<Business_Case_Sales_Snapshot__c> toInsert = new List<Business_Case_Sales_Snapshot__c>();
+        List<Business_Case_Sales_Snapshot__c> toUpdate = new List<Business_Case_Sales_Snapshot__c>();
+
+        for (Id bcId : bcToMonths.keySet()) {
+            Business_Case__c bc       = bcMap.get(bcId);
+            Boolean          isMaster = masterBCIds.contains(bcId);
+
+            for (Date month : bcToMonths.get(bcId)) {
+                String                   key = bcId + '_' + month.format();
+                InvoiceAggregationResult inv = invoiceMap.containsKey(key) ? invoiceMap.get(key) : new InvoiceAggregationResult();
+                Decimal ytd   = ytdMap.containsKey(key)   ? ytdMap.get(key)   : 0;
+                Decimal total = totalMap.containsKey(key) ? totalMap.get(key) : 0;
+
+                try {
+                    Business_Case_Sales_Snapshot__c snap = isMaster
+                        ? createSnapshotForMasterBusinessCase(bc, month, inv, ytd, total)
+                        : createSnapshotForBusinessCase(bc, month, inv, ytd, total);
+
+                    if (snap != null) {
+                        if (forceRecalculate && existingSnapshotIds.containsKey(key)) {
+                            snap.Id = existingSnapshotIds.get(key);
+                            toUpdate.add(snap);
+                        } else {
+                            toInsert.add(snap);
+                        }
+                    }
+                } catch (Exception e) { }
+            }
+        }
+
+        if (!toInsert.isEmpty()) Database.insert(toInsert, false);
+        if (!toUpdate.isEmpty()) Database.update(toUpdate, false);
+    }
+
+    /**
+     * Dashboard query: returns a unified list of snapshot data for a customer and date range.
+     * Historical months (before current month) come from the snapshot table.
+     * Current month is queried live from Invoice_Line_Item__c and returned as unsaved snapshot objects.
+     */
+    public static List<Business_Case_Sales_Snapshot__c> getSnapshotsForDashboard(
+        String customerCode,
+        Date   filterStartDate,
+        Date   filterEndDate
+    ) {
+        if (String.isBlank(customerCode) || filterStartDate == null || filterEndDate == null) {
+            return new List<Business_Case_Sales_Snapshot__c>();
+        }
+
+        Date currentMonthStart = Date.today().toStartOfMonth();
+        List<Business_Case_Sales_Snapshot__c> results = new List<Business_Case_Sales_Snapshot__c>();
+
+        Set<Id> bcIds = getBCIdsForCustomer(customerCode);
+        if (bcIds.isEmpty()) return results;
+
+        // Historical portion — snapshot table
+        if (filterStartDate < currentMonthStart) {
+            Date histStartMonth = filterStartDate.toStartOfMonth();
+            Date histEndMonth   = (filterEndDate < currentMonthStart ? filterEndDate : currentMonthStart.addDays(-1)).toStartOfMonth();
+
+            results.addAll([
+                SELECT Id, Business_Case__c, Snapshot_Month__c,
+                       Total_Reagent_Sales__c, YTD_Sales__c, Total_Reagent_Sales_Till_Date__c,
+                       Target_Sales__c, Performance_Status__c, Contract_Months_Elapsed__c,
+                       Avg_Reagent_Sales_Per_Month__c, Avg_YTD_Sales_Per_Month__c,
+                       Deficit_Cost_Covered__c, Margin_Percent_Snapshot__c,
+                       Margin_On_Reagent_Sale__c, Margin_till_Date__c, Payback_Remaining__c,
+                       Business_Case_Name__c, Business_Case_Status__c, Machine_Status__c,
+                       Customer_Code__c, Customer_Name__c, Vendor__c, Technology__c,
+                       Region__c, Machine_Count__c, Source_Invoice_Count__c,
+                       Monthly_Commitments__c, Material_Number__c, Material_Description__c,
+                       Snapshot_Created_Date__c, Processing_Status__c
+                FROM Business_Case_Sales_Snapshot__c
+                WHERE Business_Case__c IN :bcIds
+                AND   Snapshot_Month__c >= :histStartMonth
+                AND   Snapshot_Month__c <= :histEndMonth
+                ORDER BY Business_Case__c, Snapshot_Month__c ASC
+            ]);
+        }
+
+        // Current month — live query
+        if (filterEndDate >= currentMonthStart) {
+            results.addAll(buildLiveSnapshots(customerCode, currentMonthStart));
+        }
+
+        return results;
+    }
+
+    // ── Private Helpers ───────────────────────────────────────────────────────
+
+    private static List<Business_Case__c> queryMasterBCsForCustomer(String customerCode) {
+        return [
+            SELECT Id, Name, Agreement_Date__c, Status__c, Quantity__c,
+                   Customer_Numbera__c, Customer_Namea__c, Vendor__c, Technologyaa__c,
+                   Material_Number__c, Material_Descriptionsa__c,
+                   Sum_of_Monthly_Reagent_Commitment__c, Sum_of_Unit_Cost__c, Margin_Percent__c,
+                   (SELECT Id, Region__c,
+                           Machine_Installation__r.Diagnostic_Machine__r.Vendor__c,
+                           Machine_Installation__r.Diagnostic_Machine__r.Technology__c,
+                           Machine_Installation__r.Status__c,
+                           Machine_Installation__r.bill_to_account__r.Province__c,
+                           Machine_Installation__r.bill_to_account__r.City__c,
+                           Machine_Installation__r.bill_to_account__r.AddressLine_1__c,
+                           Machine_Installation__r.bill_to_account__r.Postal_Code__c,
+                           Machine_Installation__r.bill_to_account__r.Country_Code__c
+                    FROM Business_Cases__r LIMIT 1)
+            FROM Business_Case__c
+            WHERE RecordType.Name = 'Master Business Case'
+            AND Customer_Numbera__c = :customerCode
+            AND (Status__c LIKE '%Active%' OR Status__c LIKE '%Revised%' OR Status__c LIKE '%New%')
+        ];
+    }
+
+    private static List<Business_Case__c> queryIndividualBCsForCustomer(String customerCode) {
+        return [
+            SELECT Id, Name, Agreement_Date__c, Status__c, Quantity__c,
+                   Customer_Number__c, Supplier_Name__c, Technology__c,
+                   Monthly_Reagent_Commitment__c, Unit_Cost__c, Margin_Percent__c,
+                   Region__c, Machine_Type__c,
+                   Machine_Installation__r.SAP_Account_No_Bill_To__c,
+                   Machine_Installation__r.bill_to_account__r.SAP_Customer_Number__c,
+                   Machine_Installation__r.bill_to_account__r.Name,
+                   Machine_Installation__r.bill_to_account__r.Province__c,
+                   Machine_Installation__r.bill_to_account__r.City__c,
+                   Machine_Installation__r.bill_to_account__r.AddressLine_1__c,
+                   Machine_Installation__r.bill_to_account__r.Postal_Code__c,
+                   Machine_Installation__r.bill_to_account__r.Country_Code__c,
+                   Machine_Installation__r.Diagnostic_Machine__r.Vendor__c,
+                   Machine_Installation__r.Diagnostic_Machine__r.Technology__c,
+                   Machine_Installation__r.Material_Number__c,
+                   Machine_Installation__r.Status__c,
+                   Asset_Number__c,
+                   Asset_Number__r.Ship_To_Account__c,
+                   Asset_Number__r.Ship_To_Account__r.SAP_Customer_Number__c,
+                   Asset_Number__r.Ship_To_Account__r.Name,
+                   Asset_Number__r.Ship_To_Account__r.Province__c,
+                   Asset_Number__r.Ship_To_Account__r.City__c,
+                   Asset_Number__r.Ship_To_Account__r.AddressLine_1__c,
+                   Asset_Number__r.Ship_To_Account__r.Addess_Line_2__c,
+                   Asset_Number__r.Ship_To_Account__r.Postal_Code__c,
+                   Asset_Number__r.Ship_To_Account__r.Country_Code__c
+            FROM Business_Case__c
+            WHERE Is_Master__c = FALSE
+            AND Master_Business_Case__c = NULL
+            AND Machine_Installation__r.bill_to_account__r.SAP_Customer_Number__c = :customerCode
+            AND (Status__c LIKE '%Active%' OR Status__c LIKE '%Revised%' OR Status__c LIKE '%New%')
+        ];
+    }
+
+    private static Map<Id, Date> getFirstInvoiceDates(Set<Id> bcIds) {
+        Map<Id, Date> result = new Map<Id, Date>();
+        for (AggregateResult ar : [
+            SELECT Business_Case__c bcId, MIN(Invoice__r.Invoice_Date__c) firstDate
+            FROM Invoice_Line_Item__c
+            WHERE Business_Case__c IN :bcIds
+            AND Invoice__r.Invoice_Date__c != NULL
+            AND DGroup__c = 'Reagent'
+            GROUP BY Business_Case__c
+        ]) {
+            result.put((Id) ar.get('bcId'), (Date) ar.get('firstDate'));
+        }
+        return result;
+    }
+
+    private static Map<Id, Date> getLastSnapshotMonths(Set<Id> bcIds) {
+        Map<Id, Date> result = new Map<Id, Date>();
+        for (AggregateResult ar : [
+            SELECT Business_Case__c bcId, MAX(Snapshot_Month__c) lastMonth
+            FROM Business_Case_Sales_Snapshot__c
+            WHERE Business_Case__c IN :bcIds
+            GROUP BY Business_Case__c
+        ]) {
+            result.put((Id) ar.get('bcId'), (Date) ar.get('lastMonth'));
+        }
+        return result;
+    }
+
+    private static List<Date> generateMonthRange(Date startMonth, Date endMonth) {
+        List<Date> months   = new List<Date>();
+        Date       current  = startMonth.toStartOfMonth();
+        Date       rangeEnd = endMonth.toStartOfMonth();
+        while (current <= rangeEnd) {
+            months.add(current);
+            current = current.addMonths(1);
+        }
+        return months;
+    }
+
+    private static void backfillAgreementDates(List<Business_Case__c> allBCs, Map<Id, Date> firstInvoiceDates) {
+        List<Business_Case__c> toUpdate = new List<Business_Case__c>();
+        for (Business_Case__c bc : allBCs) {
+            if (bc.Agreement_Date__c == null && firstInvoiceDates.containsKey(bc.Id)) {
+                bc.Agreement_Date__c = firstInvoiceDates.get(bc.Id);
+                toUpdate.add(new Business_Case__c(Id = bc.Id, Agreement_Date__c = firstInvoiceDates.get(bc.Id)));
+            }
+        }
+        if (!toUpdate.isEmpty()) update toUpdate;
+    }
+
+    private static Set<Id> getBCIdsForCustomer(String customerCode) {
+        Set<Id> ids = new Set<Id>();
+        for (Business_Case__c bc : [
+            SELECT Id
+            FROM Business_Case__c
+            WHERE (RecordType.Name = 'Master Business Case' AND Customer_Numbera__c = :customerCode)
+            OR    (Is_Master__c = FALSE AND Master_Business_Case__c = NULL
+                   AND Machine_Installation__r.bill_to_account__r.SAP_Customer_Number__c = :customerCode)
+        ]) {
+            ids.add(bc.Id);
+        }
+        return ids;
+    }
+
+    private static List<Business_Case_Sales_Snapshot__c> buildLiveSnapshots(String customerCode, Date month) {
+        List<Business_Case__c> masterBCs     = queryMasterBCsForCustomer(customerCode);
+        List<Business_Case__c> individualBCs = queryIndividualBCsForCustomer(customerCode);
+
+        List<Business_Case__c> allBCs = new List<Business_Case__c>();
+        allBCs.addAll(masterBCs);
+        allBCs.addAll(individualBCs);
+        if (allBCs.isEmpty()) return new List<Business_Case_Sales_Snapshot__c>();
+
+        Set<Id> bcIds     = new Set<Id>();
+        Set<Id> masterIds = new Set<Id>();
+        for (Business_Case__c bc : allBCs)  bcIds.add(bc.Id);
+        for (Business_Case__c bc : masterBCs) masterIds.add(bc.Id);
+
+        Set<Date> months = new Set<Date>{ month };
+
+        Map<String, InvoiceAggregationResult> invoiceMap = bulkAggregateInvoiceData(bcIds, months);
+        Map<String, Decimal>                  ytdMap     = bulkCalculateYTDSales(bcIds, months);
+        Map<String, Decimal>                  totalMap   = bulkCalculateTotalSalesTillDate(bcIds, months);
+
+        List<Business_Case_Sales_Snapshot__c> live = new List<Business_Case_Sales_Snapshot__c>();
+        for (Business_Case__c bc : allBCs) {
+            String                   key = bc.Id + '_' + month.format();
+            InvoiceAggregationResult inv = invoiceMap.containsKey(key) ? invoiceMap.get(key) : new InvoiceAggregationResult();
+            Decimal ytd   = ytdMap.containsKey(key)   ? ytdMap.get(key)   : 0;
+            Decimal total = totalMap.containsKey(key) ? totalMap.get(key) : 0;
+            try {
+                Business_Case_Sales_Snapshot__c snap = masterIds.contains(bc.Id)
+                    ? createSnapshotForMasterBusinessCase(bc, month, inv, ytd, total)
+                    : createSnapshotForBusinessCase(bc, month, inv, ytd, total);
+                if (snap != null) live.add(snap);
+            } catch (Exception e) { }
+        }
+        return live;
     }
 }
