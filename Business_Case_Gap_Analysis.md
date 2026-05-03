@@ -365,15 +365,15 @@ All 137 non-master BCs that have a Customer Number assigned:
 
 | # | Action | Owner | Priority |
 |---|---|---|---|
-| 1 | **Create 5 missing Accounts** — customers 3020000114, 3020000314, 3020000776, 3020000987, 3020001659 have no Account in SF; Account must exist before BC can be created | Salesforce Admin | 🔴 High |
-| 2 | **Create 64 missing non-master BCs** in MDProd for all groups in Section 1 (44 where Account exists; remaining 5 after Action 1 is done) | Salesforce Admin | 🔴 High |
-| 3 | **Fix Technology Code for Biocare Labs** (row 33, customer 3020000998) — Technology Code is blank in the Excel | Tracking Sheet Owner | 🔴 High |
+| 1 | **Create 5 missing Accounts** — customers 3020000114, 3020000314, 3020000776, 3020000987, 3020001659 have no Account in SF; Account must exist before BC can be created | Martin Dow | 🔴 High |
+| 2 | **Create 64 missing non-master BCs** in MDProd for all groups in Section 1 (44 where Account exists; remaining 5 after Action 1 is done) | Martin Dow | 🔴 High |
+| 3 | **Fix Technology Code for Biocare Labs** (row 33, customer 3020000998) — Technology Code is blank in the Excel | Martin Dow | 🔴 High |
 | 4 | **Link 6 orphaned BCs to their master** — BCN-000000260, BCN-000000249, BCN-000000285, BCN-000000274, BCN-000000297 each have an existing master; update `Master_Business_Case__c` field (Section 9) | Salesforce Admin | 🟡 Medium |
 | 5 | **Create master BC for SICHN ER/COAG** (cust 3020001175) — BCN-000000164 and BCN-000000165 are a pair with no master; create one and link both (Section 9) | Salesforce Admin | 🟡 Medium |
-| 6 | **Add Customer No.** to 3 Excel rows missing column R (rows 184, 186, 187) | Tracking Sheet Owner | 🟡 Medium |
+| 6 | **Add Customer No.** to 3 Excel rows missing column R (rows 184, 186, 187) | Martin Dow | 🟡 Medium |
 | 7 | **Fix 25 incomplete BCs** in SF with no Customer Number (Section 2) | Salesforce Admin | 🟡 Medium |
 | 8 | **Review SF extra BCs** — BCN-000000173 (STA/COAG, cust 3020000170) and BCN-000000254 (HW/UBT, cust 3020001399) have no corresponding Excel row | Salesforce Admin | 🟢 Low |
-| 9 | **Review BCN-000000277** — tagged as `B - Boule` in SF (customer 3020000209); all other Boule BCs use `A - Boule` — confirm if correct | Salesforce Admin | 🟢 Low |
+| 9 | **Review BCN-000000277** — tagged as `B - Boule` in SF (customer 3020000209); all other Boule BCs use `A - Boule` — confirm if correct | Martin Dow | 🟢 Low |
 
 ---
 
