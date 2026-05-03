@@ -48,78 +48,114 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 
 ### 1.1 Groups With Zero BCs in SF (Completely Missing) — 49 records
 
-`Account Exists` checked against `Account.SAP_Customer_Number__c` in MDProd. Rows marked **N** need an Account created first before a BC can be created.
+- **Account** checked against `Account.SAP_Customer_Number__c` in MDProd.
+- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
+- `--` means no serial number in the Excel row; that field must be populated before the asset can be verified.
 
-| # | Customer No. | Customer Name | Supplier | Tech | SAP Asset No. | Status | Account Exists |
-|---|---|---|---|---|---|---|---|
-| 1 | 3020000114 | DHO Nawabshah Through HS Medical Nawab Shah | DYM | HM | — | Active | **N** |
-| 2 | 3020000125 | Minhaj Lab Lahore | E | CC | — | Closed | Y |
-| 3 | 3020000135 | Al-Khidmat Welfare Society | ER | URIN | — | New Active | Y |
-| 4 | 3020000176 | Attock Hospital (Through Humanity Care Diagnostic) | YHLO | IMA | — | Active | Y |
-| 5 | 3020000206 | Mughal Lab Lahore | YHLO | IMA | — | New Active | Y |
-| 6 | 3020000314 | Hashmani Hospital | YHLO | IMA | — | Closed | **N** |
-| 7 | 3020000379 | SASIM Sehwan through Z.A.M Traders & Co. | A | HM | — | Active | Y |
-| 8 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
-| 9 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
-| 10 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
-| 11 | 3020000515 | DHQ Hospital (Allied Hospital-II) | E | CC | — | New Active | Y |
-| 12 | 3020000580 | Ali Medical Center Islamabad | STA | COAG | 3002000102 | Active | Y |
-| 13 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active | Y |
-| 14 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active | Y |
-| 15 | 3020000645 | Makhdoom Diagnostic Center MDC | OR | IMA | — | Active | Y |
-| 16 | 3020000647 | Alamgir Welfare Trust Int. | ZYB | URIN | — | Active | Y |
-| 17 | 3020000664 | NHS | E | CC | — | Active | Y |
-| 18 | 3020000664 | NHS | OR | IMA | — | Active | Y |
-| 19 | 3020000664 | NHS Sharah-e-Qaideen | YHLO | IMA | — | Active | Y |
-| 20 | 3020000678 | Saifee Hospital, Karachi | ZYB | URIN | — | New Active | Y |
-| 21 | 3020000685 | Ibn-E-Sina | YHLO | IMA | — | Active | Y |
-| 22 | 3020000776 | The Medical Lab Lahore | ER | URIN | 3002000030 | Closed | **N** |
-| 23 | 3020000811 | Hopes Diagnostics | ER | ELCT | — | Active | Y |
-| 24 | 3020000811 | Hopes Diagnostics | ER | URIN | — | Active | Y |
-| 25 | 3020000811 | Hopes Diagnostics | STA | COAG | — | Closed | Y |
-| 26 | 3020000896 | Sahiwal Teaching Hospital | A | HM | — | New Active | Y |
-| 27 | 3020000960 | Arif Memorial Hospital | STA | COAG | 3002000114 | Active | Y |
-| 28 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000115 | Active | Y |
-| 29 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000105 | Active | Y |
-| 30 | 3020000979 | Med Care Hospital | OR | IMA | — | Active | Y |
-| 31 | 3020000979 | Medcare International Hospital Gujranwala | YHLO | IMA | — | Closed | Y |
-| 32 | 3020000987 | Peshawar Fertility & IVF Center | YHLO | IMA | 3002000099 | Active | **N** |
-| 33 | 3020000998 | Biocare Labs (Private) Limited | YHLO | *(missing)* | 3002000072 | New | Y |
-| 34 | 3020001074 | Karachi Institute of Heart Diseases (KIHD) | A | HM | — | Active | Y |
-| 35 | 3020001083 | Noor Lab Quetta | YHLO | IMA | 3002000009 | Closed 1 | Y |
-| 36 | 3020001086 | GAMCA (Express Medical Center) | OR | IMA | 3002000121 | Active | Y |
-| 37 | 3020001102 | GAMCA (Venus Diagnostic Center) | OR | IMA | — | Active | Y |
-| 38 | 3020001115 | Al-Khidmat Mashal Medical | DYM | HM | — | New Active | Y |
-| 39 | 3020001115 | Al Khidmat Hospital Karachi | STA | URIN | — | New | Y |
-| 40 | 3020001124 | Punjab Inst. of Cardiology | OR | IMA | 3002000080 | Active | Y |
-| 41 | 3020001124 | Punjab Institute of Cardiology Lahore | STA | COAG | — | New Active | Y |
-| 42 | 3020001131 | Metlab-Shahmir Enterprises | YHLO | IMA | — | Active | Y |
-| 43 | 3020001174 | Sky Blue Lab Karachi | ER | ELCT | — | Active | Y |
-| 44 | 3020001175 | (SICHN) Sindh Inst. of Child Health and Neonatology | YHLO | IMA | — | Closed | Y |
-| 45 | 3020001357 | Healthway Laboratories | YHLO | IMA | 3002000100 | Active | Y |
-| 46 | 3020001399 | Rehman Medical Institute (Pvt) Ltd | HW | ELCT | — | New | Y |
-| 47 | 3020001659 | Imran Idress Hospital / Test Zone | YHLO | IMA | — | Closed | **N** |
-| 48 | 3020001748 | Fatima Jinnah Inst. of Chest Disease (Jamal Brothers) | ER | ELCT | — | Active | Y |
-| 49 | 3020001814 | Al Khidmat Razi Hospital | STA | COAG | 3002000112 | Active | Y |
+| # | Customer No. | Customer Name | Supplier | Tech | Machine Serial No. | Status | Account | Asset |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 3020000114 | DHO Nawabshah Through HS Medical Nawab Shah | DYM | HM | DM11052437004 | Active | **N** | Y |
+| 2 | 3020000125 | Minhaj Lab Lahore | E | CC | -- | Closed | Y | -- |
+| 3 | 3020000135 | Al-Khidmat Welfare Society | ER | URIN | -- | New Active | Y | -- |
+| 4 | 3020000176 | Attock Hospital (Through Humanity Care Diagnostic) | YHLO | IMA | -- | Active | Y | -- |
+| 5 | 3020000206 | Mughal Lab Lahore | YHLO | IMA | -- | New Active | Y | -- |
+| 6 | 3020000314 | Hashmani Hospital | YHLO | IMA | -- | Closed | **N** | -- |
+| 7 | 3020000379 | SASIM Sehwan through Z.A.M Traders & Co. | A | HM | -- | Active | Y | -- |
+| 8 | 3020000393 | Faisalabad Medical University | A | HM | -- | New Active | Y | -- |
+| 9 | 3020000393 | Faisalabad Medical University | A | HM | -- | New Active | Y | -- |
+| 10 | 3020000393 | Faisalabad Medical University | A | HM | -- | New Active | Y | -- |
+| 11 | 3020000515 | DHQ Hospital (Allied Hospital-II) | E | CC | -- | New Active | Y | -- |
+| 12 | 3020000580 | Ali Medical Center Islamabad | STA | COAG | 1614 | Active | Y | Y |
+| 13 | 3020000633 | Children's Hospital Multan | OR | IMA | -- | New Active | Y | -- |
+| 14 | 3020000633 | Children's Hospital Multan | OR | IMA | -- | New Active | Y | -- |
+| 15 | 3020000645 | Makhdoom Diagnostic Center MDC | OR | IMA | 30006408 | Active | Y | Y |
+| 16 | 3020000647 | Alamgir Welfare Trust Int. | ZYB | URIN | 324100000639 | Active | Y | **N** |
+| 17 | 3020000664 | NHS | E | CC | 25-5206 | Active | Y | **N** |
+| 18 | 3020000664 | NHS | OR | IMA | 30005087 | Active | Y | **N** |
+| 19 | 3020000664 | NHS Sharah-e-Qaideen | YHLO | IMA | -- | Active | Y | -- |
+| 20 | 3020000678 | Saifee Hospital, Karachi | ZYB | URIN | -- | New Active | Y | -- |
+| 21 | 3020000685 | Ibn-E-Sina | YHLO | IMA | -- | Active | Y | -- |
+| 22 | 3020000776 | The Medical Lab Lahore | ER | URIN | 0034-X2-230818 | Closed | **N** | Y |
+| 23 | 3020000811 | Hopes Diagnostics | ER | ELCT | -- | Active | Y | -- |
+| 24 | 3020000811 | Hopes Diagnostics | ER | URIN | -- | Active | Y | -- |
+| 25 | 3020000811 | Hopes Diagnostics | STA | COAG | -- | Closed | Y | -- |
+| 26 | 3020000896 | Sahiwal Teaching Hospital | A | HM | 128455 | New Active | Y | **N** |
+| 27 | 3020000960 | Arif Memorial Hospital | STA | COAG | 1736 | Active | Y | **N** |
+| 28 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 24-5048 | Active | Y | Y |
+| 29 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 24-5018 | Active | Y | Y |
+| 30 | 3020000979 | Med Care Hospital | OR | IMA | 30006181 | Active | Y | Y |
+| 31 | 3020000979 | Medcare International Hospital Gujranwala | YHLO | IMA | -- | Closed | Y | -- |
+| 32 | 3020000987 | Peshawar Fertility & IVF Center | YHLO | IMA | ID00175847 | Active | **N** | Y |
+| 33 | 3020000998 | Biocare Labs (Private) Limited | YHLO | *(Tech missing)* | iA00093422 | New | Y | Y |
+| 34 | 3020001074 | Karachi Institute of Heart Diseases (KIHD) | A | HM | 127707 | Active | Y | Y |
+| 35 | 3020001083 | Noor Lab Quetta | YHLO | IMA | IA00092922 | Closed 1 | Y | Y |
+| 36 | 3020001086 | GAMCA (Express Medical Center) | OR | IMA | 30006374 | Active | Y | **N** |
+| 37 | 3020001102 | GAMCA (Venus Diagnostic Center) | OR | IMA | 30006409 | Active | Y | **N** |
+| 38 | 3020001115 | Al-Khidmat Mashal Medical | DYM | HM | DM11052437003 | New Active | Y | **N** |
+| 39 | 3020001115 | Al Khidmat Hospital Karachi | STA | URIN | -- | New | Y | -- |
+| 40 | 3020001124 | Punjab Inst. of Cardiology | OR | IMA | 30006375 | Active | Y | **N** |
+| 41 | 3020001124 | Punjab Institute of Cardiology Lahore | STA | COAG | -- | New Active | Y | -- |
+| 42 | 3020001131 | Metlab-Shahmir Enterprises | YHLO | IMA | -- | Active | Y | -- |
+| 43 | 3020001174 | Sky Blue Lab Karachi | ER | ELCT | 5867-2-202302 | Active | Y | **N** |
+| 44 | 3020001175 | (SICHN) Sindh Inst. of Child Health and Neonatology | YHLO | IMA | -- | Closed | Y | -- |
+| 45 | 3020001357 | Healthway Laboratories | YHLO | IMA | IA00147046 | Active | Y | Y |
+| 46 | 3020001399 | Rehman Medical Institute (Pvt) Ltd | HW | ELCT | 2024070199 | New | Y | Y |
+| 47 | 3020001659 | Imran Idress Hospital / Test Zone | YHLO | IMA | IA00096724 | Closed | **N** | Y |
+| 48 | 3020001748 | Fatima Jinnah Inst. of Chest Disease (Jamal Brothers) | ER | ELCT | 9254-2-202402 | Active | Y | **N** |
+| 49 | 3020001814 | Al Khidmat Razi Hospital | STA | COAG | 1746 | Active | Y | Y |
 
-> **5 customers have no Account in SF** (rows 1, 6, 22, 32, 47 — marked **N**). An Account must be created for these before a Business Case can be created.
-> **Note row #33:** Customer 3020000998 (Biocare Labs) has no Technology Code in column F — this must also be filled in the Excel before a BC can be created.
+> **5 customers have no Account** (rows 1, 6, 22, 32, 47 — **N**): 3020000114, 3020000314, 3020000776, 3020000987, 3020001659. Account must be created before BC can be created.
+> **11 rows where Asset does not exist in SF** (rows 16–18, 26–27, 36–40, 43, 48 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
+> **Note row #33:** Customer 3020000998 (Biocare Labs) — Technology Code is blank in Excel col F; must be filled before BC can be created.
 
-### 1.2 Groups With Partial BCs in SF (Some Missing) — 15 records
+### 1.2 Groups With Partial BCs in SF (Some Missing) — 11 groups / 36 rows
 
-| Customer No. | Customer Name | Supplier | Tech | Excel | SF | Missing | Existing BCs |
-|---|---|---|---|---|---|---|---|
-| 3020000084 | SICVD | A | HM | 6 | 5 | **1** | BCN-000000267, BCN-000000266, BCN-000000264, BCN-000000261, BCN-000000259 |
-| 3020000084 | SICVD | YHLO | IMA | 4 | 3 | **1** | BCN-000000269, BCN-000000260, BCN-000000263 |
-| 3020000206 | Mughal Diagnostics | A | HM | 2 | 1 | **1** | BCN-000000288 |
-| 3020000206 | Mughal Diagnostics | OR | IMA | 2 | 1 | **1** | BCN-000000234 |
-| 3020000515 | DHQ / Faisalabad Medical Univ. (Allied) | A | HM | 3 | 1 | **2** | BCN-000000180 |
-| 3020000633 | The Children Hospital / Children's Hospital Multan | E | CC | 2 | 1 | **1** | BCN-000000275 |
-| 3020000736 | Lady Aitchison Hospital | A | HM | 2 | 1 | **1** | BCN-000000226 |
-| 3020001224 | SOMH-FFH (Shaukat Umar Memorial / Fauji Foundation) | E | CC | 2 | 1 | **1** | BCN-000000272 |
-| 3020001511 | Indus Hospital | E | CC | 3 | 1 | **2** | BCN-000000215 |
-| 3020001511 | Indus Hospital | ER | ELCT | 3 | 2 | **1** | BCN-000000214, BCN-000000216 |
-| 3020001748 | Quetta / Jamal Brothers | YHLO | IMA | 7 | 4 | **3** | BCN-000000205, BCN-000000202, BCN-000000187, BCN-000000273 |
+- **Account** checked against `Account.SAP_Customer_Number__c` in MDProd. All customers in this section have confirmed accounts (Y) — each already has at least one BC in SF.
+- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
+- **Group Missing** = number of BCs still missing for that customer/supplier/tech group.
+- `--` means no serial number in the Excel row; asset cannot be verified.
+
+| # | CustNo | Customer Name | Sup | Tech | Machine Serial No. | Status | Acct | Asset | Group Missing | Existing BCs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Baldia-Karachi | YHLO | IMA | IA00146846 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
+| 2 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Hyderabad | YHLO | IMA | FC10330839 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
+| 3 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | YHLO | IMA | FC10330939 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
+| 4 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | YHLO | IMA | -- | Active | Y | -- | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
+| 5 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Baldia-Karachi | A | HM | 123213 | Active | Y | **N** | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 6 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Hyderabad | A | HM | 121497 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 7 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Sukkur | A | HM | 123120 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 8 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | A | HM | 121496 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 9 | 3020000084 | SICVD, Larkana | A | HM | -- | Active | Y | -- | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 10 | 3020000084 | SICVD, Nawabshah | A | HM | -- | Active | Y | -- | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
+| 11 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | A | HM | 126054 | Active | Y | Y | 1 | BCN-000000288 |
+| 12 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | OR | IMA | 30006183 | Active | Y | Y | 1 | BCN-000000234 |
+| 13 | 3020000206 | Mughal Diagnostics | OR | IMA | -- | Closed | Y | -- | 1 | BCN-000000234 |
+| 14 | 3020000515 | Faisalabad Medical University (Allied to be changed) | A | HM | 104282 | Active | Y | Y | 2 | BCN-000000180 |
+| 15 | 3020000515 | DHQ Hospital (Allied Hospital-II) | A | HM | 116957 | New Active | Y | **N** | 2 | BCN-000000180 |
+| 16 | 3020000515 | DHQ Hospital (Allied Hospital-II) | A | HM | 117576 | New Active | Y | **N** | 2 | BCN-000000180 |
+| 17 | 3020000633 | The Children Hospital & The Institute Multan | E | CC | 22-5026 | Active | Y | Y | 1 | BCN-000000275 |
+| 18 | 3020000633 | Children's Hospital Multan | E | CC | -- | New | Y | -- | 1 | BCN-000000275 |
+| 19 | 3020000736 | Lady Aitchison Hospital | A | HM | 123216 | Active | Y | Y | 1 | BCN-000000226 |
+| 20 | 3020000736 | Lady Aitchison Hospital | A | HM | 125199 | New | Y | **N** | 1 | BCN-000000226 |
+| 21 | 3020001224 | SOMH-FFH (Shaukat Umar Memorial Hospital – Fauji Foundation) | E | CC | 24-5032 | Closed | Y | Y | 1 | BCN-000000272 |
+| 22 | 3020001224 | SOMH-FFH (Shaukat Umar Memorial Hospital – Fauji Foundation) | E | CC | -- | Revised | Y | -- | 1 | BCN-000000272 |
+| 23 | 3020001511 | Indus Hospital & Health Network | ER | ELCT | *(26 serials — see note)* | Active | Y | **MULTI** | 1 | BCN-000000214 BCN-000000216 |
+| 24 | 3020001511 | Indus Hospital | ER | ELCT | 6909-2-202305 | Active | Y | Y | 1 | BCN-000000214 BCN-000000216 |
+| 25 | 3020001511 | Indus Hospital | E | CC | 23-46854 | Active | Y | Y | 2 | BCN-000000215 |
+| 26 | 3020001511 | Public Welfare Sheikh Zayed (The Indus Hospital) | E | CC | 25-47705 | New | Y | **N** | 2 | BCN-000000215 |
+| 27 | 3020001511 | Indus Hospital Health Network (SUI Campus) | ER | ELCT | -- | New | Y | -- | 1 | BCN-000000214 BCN-000000216 |
+| 28 | 3020001748 | Gillani Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00175747 | Active | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 29 | 3020001748 | City International Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00176348 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 30 | 3020001748 | Harmon Lab Quetta (Through Jamal Brothers) | YHLO | IMA | ID00093734 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 31 | 3020001748 | Sultan Tareen Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00082632 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 32 | 3020001748 | Dr. Najma Ghaffar Hospital (Through Jamal Brothers) | YHLO | IMA | ID00093734 | Active | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 33 | 3020001748 | Dawood Lab (Through Jamal Brothers) | YHLO | IMA | -- | Active | Y | -- | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 34 | 3020001511 | Welfare Hospital Sui (The Indus Hospital) | E | CC | -- | New | Y | -- | 2 | BCN-000000215 |
+| 35 | 3020001748 | M. Khan Lab (Through Jamal Brothers) | YHLO | IMA | -- | Active | Y | -- | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
+| 36 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | A | HM | 126055 | Active | Y | **N** | 1 | BCN-000000288 |
+
+> **6 rows where Asset does not exist in SF** (rows 5, 15, 16, 20, 26, 36 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
+> **Row 23 (Indus Hospital ER/ELCT):** Excel cell contains 26 serial numbers concatenated — asset check requires splitting each individually. Flagged as **MULTI**; verify manually.
 
 **Subtotal missing from partial groups: 15**
 
@@ -161,11 +197,14 @@ The following groups have **more** non-master BCs in SF than rows in Excel.
 
 3 rows in the B-Cases sheet have no value in column R (Customer No.) and cannot be matched to any SF record:
 
-| Excel Row | Customer Name | Supplier | Tech | SAP Asset No. | Status |
-|---|---|---|---|---|---|
-| Row 184 | Haemophilia Treatment Center (Molicular Concern) | STA | COAG | — | Closed |
-| Row 186 | Tmmergara Clinical Labs – Through JMS | OR | IMA | — | Closed |
-| Row 187 | Taj Hematology and Healthcare Center | OR | IMA | — | Closed |
+- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
+- `--` means no serial number in the Excel row; asset cannot be verified.
+
+| Excel Row | Customer Name | Supplier | Tech | Machine Serial No. | Status | Asset |
+|---|---|---|---|---|---|---|
+| Row 184 | Haemophilia Treatment Center (Molicular Concern) | STA | COAG | -- | Closed | -- |
+| Row 186 | Tmmergara Clinical Labs – Through JMS | OR | IMA | -- | Closed | -- |
+| Row 187 | Taj Hematology and Healthcare Center | OR | IMA | -- | Closed | -- |
 
 > **Action needed:** Populate the Customer No. in the tracking sheet for these 3 rows, then create corresponding BCs in SF.
 
