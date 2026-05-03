@@ -402,6 +402,168 @@ All 137 non-master BCs that have a Customer Number assigned:
 
 ---
 
+## Section 10: Master Business Cases — Full Hierarchy
+
+Master BCs (`Is_Master__c = true`) group individual non-master BCs when the **same customer** has **more than one machine** from the **same supplier** with the **same technology**.
+
+### Counts
+
+| Metric | Count |
+|---|---|
+| Total Master BCs in MDProd | 22 |
+| Total Non-Master BCs | 162 |
+| Non-Master BCs linked to a Master | 64 |
+| Non-Master BCs with no Master (standalone) | 98 |
+
+### 10.1 All Master BCs and Their Children
+
+| Master BC | Vendor | Tech | Customer No. | Customer Name | Status | Children |
+|---|---|---|---|---|---|---|
+| BCN-000000320 | OR | IMA | 3020000477 | Aga Khan Hospital & Medical College | Revised | 4 |
+| BCN-000000321 | YHLO | IMA | 3020000491 | Al Khidmat Diagnostic Center Faisalabad | New | 2 |
+| BCN-000000322 | YHLO | IMA | 3020001748 | Jamal Brothers Enterprises | Active | 4 |
+| BCN-000000323 | OR | IMA | 3020001748 | Jamal Brothers Enterprises | Revised Quetta | 9 |
+| BCN-000000324 | ER | ELCT | 3020001511 | Indus Hospital & Health Network | New | 2 |
+| BCN-000000325 | ER | URIN | 3020001552 | MHK Enterprises | New | 2 |
+| BCN-000000326 | ER | URIN | 3020001552 | MHK Enterprises | Active | 2 |
+| BCN-000000327 | A | HM | 3020001067 | National Institute of Cardiovascular Diseases (NICVD) | Revised | 2 |
+| BCN-000000328 | STA | COAG | 3020001067 | National Institute of Cardiovascular Diseases (NICVD) | Active | 2 |
+| BCN-000000329 | OR | IMA | 3020000547 | V-Med Inter Trade | Active | 2 |
+| BCN-000000330 | A | HM | 3020000166 | Quaid-e-Azam Medical College (QAMC) | Active | 5 |
+| BCN-000000331 | A | HM | 3020000084 | Sindh Institute of Cardiovascular Diseases (SICVD) | Active | 5 |
+| BCN-000000332 | E | CC | 3020000084 | Sindh Institute of Cardiovascular Diseases (SICVD) | Active | 4 |
+| BCN-000000333 | YHLO | IMA | 3020000084 | Sindh Institute of Cardiovascular Diseases (SICVD) | New Active | 2 |
+| BCN-000000334 | YHLO | IMA | 3020001280 | Test Zone | New | 2 |
+| BCN-000000335 | OR | IMA | 3020000439 | Al Maisarah Dialysis & Diabetes Trust | Revised | 2 |
+| BCN-000000336 | E | CC | 3020000692 | Patients Welfare Foundation | Revised | 2 |
+| BCN-000000337 | OR | IMA | 3020000917 | Liaquat University of Medical & Health Sciences | Revised | 2 |
+| BCN-000000338 | ER | ELCT | 3020001255 | Jafaria Disaster Cell (JDC) Welfare | Closed | 2 |
+| BCN-000000339 | A | HM | 3020001382 | Ojal Enterprises (Liaquat University Hospital) | Closed | 5 |
+| BCN-000000340 | E | CC | 3020001047 | North Mehran Diagnostic Centre | Revised | 2 |
+| BCN-000000342 | — | — | — | *(no data — empty record)* | Active | 0 |
+
+### 10.2 Detailed Master → Child Mapping
+
+**BCN-000000320** — OR / IMA — Aga Khan Hospital (3020000477) — *Revised*
+- BCN-000000167 · OR/IMA · Revised
+- BCN-000000168 · OR/IMA · Revised
+- BCN-000000291 · OR/IMA · Closed
+- BCN-000000292 · OR/IMA · Closed
+
+**BCN-000000321** — YHLO / IMA — Al Khidmat Diagnostic Center Faisalabad (3020000491) — *New*
+- BCN-000000171 · YHLO/IMA · Active
+- BCN-000000177 · YHLO/IMA · New
+
+**BCN-000000322** — YHLO / IMA — Jamal Brothers Enterprises (3020001748) — *Active*
+- BCN-000000187 · YHLO/IMA · Active
+- BCN-000000202 · YHLO/IMA · Active
+- BCN-000000205 · YHLO/IMA · Active
+- BCN-000000273 · YHLO/IMA · Active
+
+**BCN-000000323** — OR / IMA — Jamal Brothers Enterprises (3020001748) — *Revised Quetta*
+- BCN-000000196 · OR/IMA · Revised Quetta
+- BCN-000000227 · OR/IMA · Revised Quetta
+- BCN-000000251 · OR/IMA · Revised Quetta
+- BCN-000000252 · OR/IMA · Active
+- BCN-000000253 · OR/IMA · Active
+- BCN-000000278 · OR/IMA · Revised Quetta
+- BCN-000000309 · OR/IMA · Closed Quetta
+- BCN-000000315 · OR/IMA · Closed Quetta
+- BCN-000000318 · OR/IMA · Closed Quetta
+
+**BCN-000000324** — ER / ELCT — Indus Hospital & Health Network (3020001511) — *New*
+- BCN-000000214 · ER/ELCT · Active
+- BCN-000000216 · ER/ELCT · New
+
+**BCN-000000325** — ER / URIN — MHK Enterprises (3020001552) — *New*
+- BCN-000000220 · ER/URIN · New
+- BCN-000000221 · ER/URIN · New
+
+**BCN-000000326** — ER / URIN — MHK Enterprises (3020001552) — *Active*
+- BCN-000000218 · ER/URIN · Active
+- BCN-000000219 · ER/URIN · Active
+
+**BCN-000000327** — A / HM — NICVD (3020001067) — *Revised*
+- BCN-000000236 · A/HM · Active
+- BCN-000000237 · A/HM · Revised
+
+**BCN-000000328** — STA / COAG — NICVD (3020001067) — *Active*
+- BCN-000000238 · STA/COAG · Active
+- BCN-000000239 · STA/COAG · Active
+
+**BCN-000000329** — OR / IMA — V-Med Inter Trade (3020000547) — *Active*
+- BCN-000000242 · OR/IMA · Active
+- BCN-000000243 · OR/IMA · Active
+
+**BCN-000000330** — A / HM — QAMC (3020000166) — *Active*
+- BCN-000000244 · A/HM · Active
+- BCN-000000245 · A/HM · Active
+- BCN-000000246 · A/HM · Active
+- BCN-000000247 · A/HM · Active
+- BCN-000000248 · A/HM · Active
+
+**BCN-000000331** — A / HM — SICVD (3020000084) — *Active*
+- BCN-000000259 · A/HM · Active
+- BCN-000000261 · A/HM · Active
+- BCN-000000264 · A/HM · Active
+- BCN-000000266 · A/HM · Active
+- BCN-000000267 · A/HM · Active
+
+**BCN-000000332** — E / CC — SICVD (3020000084) — *Active*
+- BCN-000000258 · E/CC · Active
+- BCN-000000262 · E/CC · Active
+- BCN-000000265 · E/CC · Active
+- BCN-000000268 · E/CC · Active
+
+**BCN-000000333** — YHLO / IMA — SICVD (3020000084) — *New Active*
+- BCN-000000263 · YHLO/IMA · New Active
+- BCN-000000269 · YHLO/IMA · New Active
+
+**BCN-000000334** — YHLO / IMA — Test Zone (3020001280) — *New*
+- BCN-000000284 · YHLO/IMA · New
+- BCN-000000289 · YHLO/IMA · New
+
+**BCN-000000335** — OR / IMA — Al Maisarah Dialysis & Diabetes Trust (3020000439) — *Revised*
+- BCN-000000174 · OR/IMA · Revised
+- BCN-000000293 · OR/IMA · Closed
+
+**BCN-000000336** — E / CC — Patients Welfare Foundation (3020000692) — *Revised*
+- BCN-000000188 · E/CC · Revised
+- BCN-000000295 · E/CC · Closed
+
+**BCN-000000337** — OR / IMA — Liaquat University of Medical & Health Sciences (3020000917) — *Revised*
+- BCN-000000192 · OR/IMA · Revised
+- BCN-000000296 · OR/IMA · Closed
+
+**BCN-000000338** — ER / ELCT — Jafaria Disaster Cell (JDC) Welfare (3020001255) — *Closed*
+- BCN-000000300 · ER/ELCT · Closed
+- BCN-000000301 · ER/ELCT · Closed
+
+**BCN-000000339** — A / HM — Ojal Enterprises / Liaquat University Hospital (3020001382) — *Closed*
+- BCN-000000304 · A/HM · Closed
+- BCN-000000305 · A/HM · Closed
+- BCN-000000306 · A/HM · Closed
+- BCN-000000307 · A/HM · Closed
+- BCN-000000308 · A/HM · Closed
+
+**BCN-000000340** — E / CC — North Mehran Diagnostic Centre (3020001047) — *Revised*
+- BCN-000000240 · E/CC · Revised
+- BCN-000000312 · E/CC · Closed
+
+**BCN-000000342** — *(empty master — no vendor, no technology, no customer, no children)* — *Active*
+- *(no children linked)*
+
+### 10.3 Observations & Issues
+
+| # | Observation | Detail | Action |
+|---|---|---|---|
+| 1 | **Duplicate masters for same group** | BCN-000000325 and BCN-000000326 are both `ER / URIN / 3020001552` (MHK Enterprises) — two master BCs exist for the same customer+supplier+tech | Review and merge into one master |
+| 2 | **Empty master BC** | BCN-000000342 has no vendor, no technology, no customer, and no children | Delete this record |
+| 3 | **98 standalone non-master BCs** | These have no master because each represents a single machine (one machine = no grouping needed). This is correct behaviour. | No action needed |
+| 4 | **Missing children for new BCs** | Once the 79 missing non-master BCs (Section 1) are created, masters will need to be created for any customer+supplier+tech group that will have 2+ machines | Create master BCs when linking multiple children |
+
+---
+
 ## Appendix: Analysis Methodology
 
 - **Excel source:** `Imports/Updated_Business_Cases.xlsx`, sheet `B-Cases`
