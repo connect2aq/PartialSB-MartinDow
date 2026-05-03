@@ -48,59 +48,62 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 
 ### 1.1 Groups With Zero BCs in SF (Completely Missing) — 49 records
 
-| # | Customer No. | Customer Name | Supplier | Tech | SAP Asset No. | Status |
-|---|---|---|---|---|---|---|
-| 1 | 3020000114 | DHO Nawabshah Through HS Medical Nawab Shah | DYM | HM | — | Active |
-| 2 | 3020000125 | Minhaj Lab Lahore | E | CC | — | Closed |
-| 3 | 3020000135 | Al-Khidmat Welfare Society | ER | URIN | — | New Active |
-| 4 | 3020000176 | Attock Hospital (Through Humanity Care Diagnostic) | YHLO | IMA | — | Active |
-| 5 | 3020000206 | Mughal Lab Lahore | YHLO | IMA | — | New Active |
-| 6 | 3020000314 | Hashmani Hospital | YHLO | IMA | — | Closed |
-| 7 | 3020000379 | SASIM Sehwan through Z.A.M Traders & Co. | A | HM | — | Active |
-| 8 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active |
-| 9 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active |
-| 10 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active |
-| 11 | 3020000515 | DHQ Hospital (Allied Hospital-II) | E | CC | — | New Active |
-| 12 | 3020000580 | Ali Medical Center Islamabad | STA | COAG | 3002000102 | Active |
-| 13 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active |
-| 14 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active |
-| 15 | 3020000645 | Makhdoom Diagnostic Center MDC | OR | IMA | — | Active |
-| 16 | 3020000647 | Alamgir Welfare Trust Int. | ZYB | URIN | — | Active |
-| 17 | 3020000664 | NHS | E | CC | — | Active |
-| 18 | 3020000664 | NHS | OR | IMA | — | Active |
-| 19 | 3020000664 | NHS Sharah-e-Qaideen | YHLO | IMA | — | Active |
-| 20 | 3020000678 | Saifee Hospital, Karachi | ZYB | URIN | — | New Active |
-| 21 | 3020000685 | Ibn-E-Sina | YHLO | IMA | — | Active |
-| 22 | 3020000776 | The Medical Lab Lahore | ER | URIN | 3002000030 | Closed |
-| 23 | 3020000811 | Hopes Diagnostics | ER | ELCT | — | Active |
-| 24 | 3020000811 | Hopes Diagnostics | ER | URIN | — | Active |
-| 25 | 3020000811 | Hopes Diagnostics | STA | COAG | — | Closed |
-| 26 | 3020000896 | Sahiwal Teaching Hospital | A | HM | — | New Active |
-| 27 | 3020000960 | Arif Memorial Hospital | STA | COAG | 3002000114 | Active |
-| 28 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000115 | Active |
-| 29 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000105 | Active |
-| 30 | 3020000979 | Med Care Hospital | OR | IMA | — | Active |
-| 31 | 3020000979 | Medcare International Hospital Gujranwala | YHLO | IMA | — | Closed |
-| 32 | 3020000987 | Peshawar Fertility & IVF Center | YHLO | IMA | 3002000099 | Active |
-| 33 | 3020000998 | Biocare Labs (Private) Limited | YHLO | *(missing)* | 3002000072 | New |
-| 34 | 3020001074 | Karachi Institute of Heart Diseases (KIHD) | A | HM | — | Active |
-| 35 | 3020001083 | Noor Lab Quetta | YHLO | IMA | 3002000009 | Closed 1 |
-| 36 | 3020001086 | GAMCA (Express Medical Center) | OR | IMA | 3002000121 | Active |
-| 37 | 3020001102 | GAMCA (Venus Diagnostic Center) | OR | IMA | — | Active |
-| 38 | 3020001115 | Al-Khidmat Mashal Medical | DYM | HM | — | New Active |
-| 39 | 3020001115 | Al Khidmat Hospital Karachi | STA | URIN | — | New |
-| 40 | 3020001124 | Punjab Inst. of Cardiology | OR | IMA | 3002000080 | Active |
-| 41 | 3020001124 | Punjab Institute of Cardiology Lahore | STA | COAG | — | New Active |
-| 42 | 3020001131 | Metlab-Shahmir Enterprises | YHLO | IMA | — | Active |
-| 43 | 3020001174 | Sky Blue Lab Karachi | ER | ELCT | — | Active |
-| 44 | 3020001175 | (SICHN) Sindh Inst. of Child Health and Neonatology | YHLO | IMA | — | Closed |
-| 45 | 3020001357 | Healthway Laboratories | YHLO | IMA | 3002000100 | Active |
-| 46 | 3020001399 | Rehman Medical Institute (Pvt) Ltd | HW | ELCT | — | New |
-| 47 | 3020001659 | Imran Idress Hospital / Test Zone | YHLO | IMA | — | Closed |
-| 48 | 3020001748 | Fatima Jinnah Inst. of Chest Disease (Jamal Brothers) | ER | ELCT | — | Active |
-| 49 | 3020001814 | Al Khidmat Razi Hospital | STA | COAG | 3002000112 | Active |
+`Account Exists` checked against `Account.SAP_Customer_Number__c` in MDProd. Rows marked **N** need an Account created first before a BC can be created.
 
-> **Note row #33:** Customer 3020000998 (Biocare Labs) has no Technology Code in column F — this must be filled in the Excel before a BC can be created.
+| # | Customer No. | Customer Name | Supplier | Tech | SAP Asset No. | Status | Account Exists |
+|---|---|---|---|---|---|---|---|
+| 1 | 3020000114 | DHO Nawabshah Through HS Medical Nawab Shah | DYM | HM | — | Active | **N** |
+| 2 | 3020000125 | Minhaj Lab Lahore | E | CC | — | Closed | Y |
+| 3 | 3020000135 | Al-Khidmat Welfare Society | ER | URIN | — | New Active | Y |
+| 4 | 3020000176 | Attock Hospital (Through Humanity Care Diagnostic) | YHLO | IMA | — | Active | Y |
+| 5 | 3020000206 | Mughal Lab Lahore | YHLO | IMA | — | New Active | Y |
+| 6 | 3020000314 | Hashmani Hospital | YHLO | IMA | — | Closed | **N** |
+| 7 | 3020000379 | SASIM Sehwan through Z.A.M Traders & Co. | A | HM | — | Active | Y |
+| 8 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
+| 9 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
+| 10 | 3020000393 | Faisalabad Medical University | A | HM | — | New Active | Y |
+| 11 | 3020000515 | DHQ Hospital (Allied Hospital-II) | E | CC | — | New Active | Y |
+| 12 | 3020000580 | Ali Medical Center Islamabad | STA | COAG | 3002000102 | Active | Y |
+| 13 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active | Y |
+| 14 | 3020000633 | Children's Hospital Multan | OR | IMA | — | New Active | Y |
+| 15 | 3020000645 | Makhdoom Diagnostic Center MDC | OR | IMA | — | Active | Y |
+| 16 | 3020000647 | Alamgir Welfare Trust Int. | ZYB | URIN | — | Active | Y |
+| 17 | 3020000664 | NHS | E | CC | — | Active | Y |
+| 18 | 3020000664 | NHS | OR | IMA | — | Active | Y |
+| 19 | 3020000664 | NHS Sharah-e-Qaideen | YHLO | IMA | — | Active | Y |
+| 20 | 3020000678 | Saifee Hospital, Karachi | ZYB | URIN | — | New Active | Y |
+| 21 | 3020000685 | Ibn-E-Sina | YHLO | IMA | — | Active | Y |
+| 22 | 3020000776 | The Medical Lab Lahore | ER | URIN | 3002000030 | Closed | **N** |
+| 23 | 3020000811 | Hopes Diagnostics | ER | ELCT | — | Active | Y |
+| 24 | 3020000811 | Hopes Diagnostics | ER | URIN | — | Active | Y |
+| 25 | 3020000811 | Hopes Diagnostics | STA | COAG | — | Closed | Y |
+| 26 | 3020000896 | Sahiwal Teaching Hospital | A | HM | — | New Active | Y |
+| 27 | 3020000960 | Arif Memorial Hospital | STA | COAG | 3002000114 | Active | Y |
+| 28 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000115 | Active | Y |
+| 29 | 3020000979 | Medcare International Hospital Gujranwala | E | CC | 3002000105 | Active | Y |
+| 30 | 3020000979 | Med Care Hospital | OR | IMA | — | Active | Y |
+| 31 | 3020000979 | Medcare International Hospital Gujranwala | YHLO | IMA | — | Closed | Y |
+| 32 | 3020000987 | Peshawar Fertility & IVF Center | YHLO | IMA | 3002000099 | Active | **N** |
+| 33 | 3020000998 | Biocare Labs (Private) Limited | YHLO | *(missing)* | 3002000072 | New | Y |
+| 34 | 3020001074 | Karachi Institute of Heart Diseases (KIHD) | A | HM | — | Active | Y |
+| 35 | 3020001083 | Noor Lab Quetta | YHLO | IMA | 3002000009 | Closed 1 | Y |
+| 36 | 3020001086 | GAMCA (Express Medical Center) | OR | IMA | 3002000121 | Active | Y |
+| 37 | 3020001102 | GAMCA (Venus Diagnostic Center) | OR | IMA | — | Active | Y |
+| 38 | 3020001115 | Al-Khidmat Mashal Medical | DYM | HM | — | New Active | Y |
+| 39 | 3020001115 | Al Khidmat Hospital Karachi | STA | URIN | — | New | Y |
+| 40 | 3020001124 | Punjab Inst. of Cardiology | OR | IMA | 3002000080 | Active | Y |
+| 41 | 3020001124 | Punjab Institute of Cardiology Lahore | STA | COAG | — | New Active | Y |
+| 42 | 3020001131 | Metlab-Shahmir Enterprises | YHLO | IMA | — | Active | Y |
+| 43 | 3020001174 | Sky Blue Lab Karachi | ER | ELCT | — | Active | Y |
+| 44 | 3020001175 | (SICHN) Sindh Inst. of Child Health and Neonatology | YHLO | IMA | — | Closed | Y |
+| 45 | 3020001357 | Healthway Laboratories | YHLO | IMA | 3002000100 | Active | Y |
+| 46 | 3020001399 | Rehman Medical Institute (Pvt) Ltd | HW | ELCT | — | New | Y |
+| 47 | 3020001659 | Imran Idress Hospital / Test Zone | YHLO | IMA | — | Closed | **N** |
+| 48 | 3020001748 | Fatima Jinnah Inst. of Chest Disease (Jamal Brothers) | ER | ELCT | — | Active | Y |
+| 49 | 3020001814 | Al Khidmat Razi Hospital | STA | COAG | 3002000112 | Active | Y |
+
+> **5 customers have no Account in SF** (rows 1, 6, 22, 32, 47 — marked **N**). An Account must be created for these before a Business Case can be created.
+> **Note row #33:** Customer 3020000998 (Biocare Labs) has no Technology Code in column F — this must also be filled in the Excel before a BC can be created.
 
 ### 1.2 Groups With Partial BCs in SF (Some Missing) — 15 records
 
@@ -350,17 +353,49 @@ All 137 non-master BCs that have a Customer Number assigned:
 
 | # | Action | Owner | Priority |
 |---|---|---|---|
-| 1 | **Create 64 missing non-master BCs** in MDProd for all groups in Section 1 | Salesforce Admin | 🔴 High |
-| 2 | **Fix Technology Code for Biocare Labs** (row 33, customer 3020000998) — Technology Code is blank in the Excel | Tracking Sheet Owner | 🔴 High |
-| 3 | **Add Customer No.** to 3 Excel rows missing column R (rows 184, 186, 187) | Tracking Sheet Owner | 🟡 Medium |
-| 4 | **Fix 25 incomplete BCs** in SF with no Customer Number (Section 2) | Salesforce Admin | 🟡 Medium |
-| 5 | **Review duplicate BCs** — customer 3020001748 (Quetta/Jamal Brothers) has 10 OR/IMA BCs for 9+ Excel rows | Business Team | 🟡 Medium |
-| 6 | **Review SF extra BCs** — BCN-000000173 (STA/COAG, cust 3020000170) and BCN-000000254 (HW/UBT, cust 3020001399) have no corresponding Excel row | Salesforce Admin | 🟢 Low |
-| 7 | **Review BCN-000000277** — tagged as `B - Boule` in SF (customer 3020000209); all other Boule BCs use `A - Boule` — confirm if correct | Salesforce Admin | 🟢 Low |
+| 1 | **Create 5 missing Accounts** — customers 3020000114, 3020000314, 3020000776, 3020000987, 3020001659 have no Account in SF; Account must exist before BC can be created | Salesforce Admin | 🔴 High |
+| 2 | **Create 64 missing non-master BCs** in MDProd for all groups in Section 1 (44 where Account exists; remaining 5 after Action 1 is done) | Salesforce Admin | 🔴 High |
+| 3 | **Fix Technology Code for Biocare Labs** (row 33, customer 3020000998) — Technology Code is blank in the Excel | Tracking Sheet Owner | 🔴 High |
+| 4 | **Link 6 orphaned BCs to their master** — BCN-000000260, BCN-000000249, BCN-000000285, BCN-000000274, BCN-000000297 each have an existing master; update `Master_Business_Case__c` field (Section 9) | Salesforce Admin | 🟡 Medium |
+| 5 | **Create master BC for SICHN ER/COAG** (cust 3020001175) — BCN-000000164 and BCN-000000165 are a pair with no master; create one and link both (Section 9) | Salesforce Admin | 🟡 Medium |
+| 6 | **Add Customer No.** to 3 Excel rows missing column R (rows 184, 186, 187) | Tracking Sheet Owner | 🟡 Medium |
+| 7 | **Fix 25 incomplete BCs** in SF with no Customer Number (Section 2) | Salesforce Admin | 🟡 Medium |
+| 8 | **Review SF extra BCs** — BCN-000000173 (STA/COAG, cust 3020000170) and BCN-000000254 (HW/UBT, cust 3020001399) have no corresponding Excel row | Salesforce Admin | 🟢 Low |
+| 9 | **Review BCN-000000277** — tagged as `B - Boule` in SF (customer 3020000209); all other Boule BCs use `A - Boule` — confirm if correct | Salesforce Admin | 🟢 Low |
 
 ---
 
-## Section 9: Master Business Cases — Full Hierarchy
+## Section 9: Non-Master BCs That Should Be Linked to a Master But Are Not
+
+These are non-master BCs that belong to a group where **2 or more BCs exist** for the same Customer + Supplier + Technology — they should all be linked to a master BC, but are not.
+
+**Total orphaned BCs in multi-BC groups: 7**
+
+| BC Number | Customer No. | Supplier | Tech | Status | Expected Master | Action |
+|---|---|---|---|---|---|---|
+| BCN-000000260 | 3020000084 (SICVD) | YHLO | IMA | New Active | BCN-000000333 | Link to BCN-000000333 |
+| BCN-000000249 | 3020000166 (QAMC) | A | HM | New | BCN-000000330 | Link to BCN-000000330 |
+| BCN-000000165 | 3020001175 (SICHN) | ER | COAG | New | *(no master exists)* | Create master, then link both |
+| BCN-000000164 | 3020001175 (SICHN) | ER | COAG | New | *(no master exists)* | Create master, then link both |
+| BCN-000000285 | 3020001280 (Test Zone) | YHLO | IMA | New | BCN-000000334 | Link to BCN-000000334 |
+| BCN-000000274 | 3020001280 (Test Zone) | YHLO | IMA | Active | BCN-000000334 | Link to BCN-000000334 |
+| BCN-000000297 | 3020001748 (Jamal Brothers) | OR | IMA | Closed Quetta | BCN-000000323 | Link to BCN-000000323 |
+
+### Detail per group
+
+**SICVD — YHLO / IMA (3020000084):** Master BCN-000000333 exists and has 2 of 3 children linked. BCN-000000260 is missing the link.
+
+**QAMC — A / HM (3020000166):** Master BCN-000000330 exists and has 5 of 6 children linked. BCN-000000249 is missing the link.
+
+**SICHN — ER / COAG (3020001175):** No master BC exists at all. BCN-000000165 and BCN-000000164 are both standalone with no master — a new master BC must be created and both linked to it.
+
+**Test Zone — YHLO / IMA (3020001280):** Master BCN-000000334 exists and has 2 of 4 children linked. BCN-000000285 and BCN-000000274 are missing the link.
+
+**Jamal Brothers — OR / IMA (3020001748):** Master BCN-000000323 exists and has 9 of 10 children linked. BCN-000000297 is missing the link.
+
+---
+
+## Section 10: Master Business Cases — Full Hierarchy
 
 Master BCs (`Is_Master__c = true`) group individual non-master BCs when the **same customer** has **more than one machine** from the **same supplier** with the **same technology**.
 
