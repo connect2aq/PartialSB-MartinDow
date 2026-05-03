@@ -4188,7 +4188,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Force re-render of multi-select dropdowns
     Promise.resolve().then(() => {
       const multiSelects = this.template.querySelectorAll(
-        "c-multi-select-dropdown"
+        "c-b-multi-select-dropdown"
       );
       multiSelects.forEach((dropdown) => {
         // If the custom component has a reset or clear method, call it
