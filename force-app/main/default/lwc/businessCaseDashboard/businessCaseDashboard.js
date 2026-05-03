@@ -1714,7 +1714,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     const link = document.createElement('a');
     link.href = dataUri;
     link.target = '_self';
-    link.download = `PerformanceSummary_${new Date().toISOString().slice(0,10)}.xml`;
+    link.download = `PerformanceSummary_${new Date().toISOString().slice(0,10)}.xls`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
