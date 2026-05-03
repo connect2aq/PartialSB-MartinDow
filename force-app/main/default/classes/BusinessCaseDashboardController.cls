@@ -1,231 +1,5 @@
 public with sharing class BusinessCaseDashboardController {
     /**
-     * Get all business case data from snapshots only (Snapshot-Only Architecture)
-     * This method now uses purely snapshot data for consistent performance and single source of truth
-     */
-    // @AuraEnabled(cacheable=true)
-    // public static List<SnapshotWrapper> getSnapshotData() {
-    //     try {
-    //         // System.debug(
-    //         //     '>>>>BusinessCaseDashboardController-->getSnapshotData'
-    //         // );
-    //         List<SnapshotWrapper> wrappers = new List<SnapshotWrapper>();
-
-    //         Map<Id, Date> bcToLatestMonth = new Map<Id, Date>();
-
-    //         for (AggregateResult ar : [
-    //             SELECT Business_Case__c bc, MAX(Snapshot_Month__c) maxMonth
-    //             FROM Business_Case_Sales_Snapshot__c
-    //             WHERE
-    //                 Processing_Status__c = 'Completed'
-    //                 AND Business_Case__r.Is_Master__c = FALSE
-    //                 AND (Business_Case__r.Status__c LIKE '%Active%'
-    //                 OR Business_Case__r.Status__c LIKE '%Revised%'
-    //                 OR Business_Case__r.Status__c LIKE '%New%')
-    //             GROUP BY Business_Case__c
-    //         ]) {
-    //             bcToLatestMonth.put(
-    //                 (Id) ar.get('bc'),
-    //                 (Date) ar.get('maxMonth')
-    //             );
-    //         }
-
-    //         List<Business_Case_Sales_Snapshot__c> snapshots = [
-    //             SELECT
-    //                 Id,
-    //                 Business_Case__c,
-    //                 Business_Case_Name__c,
-    //                 Business_Case_Status__c,
-    //                 Machine_Status__c,
-    //                 Customer_Code__c,
-    //                 Customer_Name__c,
-    //                 Vendor__c,
-    //                 Technology__c,
-    //                 Region__c,
-    //                 Material_Number__c,
-    //                 Material_Description__c,
-    //                 Customer_Province__c,
-    //                 Customer_City__c,
-    //                 Customer_AddressLine1__c,
-    //                 Customer_AddressLine2__c,
-    //                 Customer_Postal_Code__c,
-    //                 Customer_Country__c,
-    //                 Ship_To_Customer_Number__c,
-    //                 Ship_To_Customer_Name__c,
-    //                 Ship_To_Province__c,
-    //                 Ship_To_City__c,
-    //                 Ship_To_AddressLine1__c,
-    //                 Ship_To_Address_Line_2__c,
-    //                 Ship_To_Postal_Code__c,
-    //                 Ship_To_Country__c,
-    //                 Snapshot_Month__c,
-    //                 Total_Reagent_Sales__c,
-    //                 Target_Sales__c,
-    //                 Machine_Count__c,
-    //                 Per_Machine_Sales__c,
-    //                 Source_Invoice_Count__c,
-    //                 YTD_Sales__c,
-    //                 Total_Reagent_Sales_Till_Date__c,
-    //                 Contract_Months_Elapsed__c,
-    //                 Avg_Reagent_Sales_Per_Month__c,
-    //                 Performance_Status__c,
-    //                 Deficit_Cost_Covered__c,
-    //                 Margin_Percent_Snapshot__c,
-    //                 Margin_On_Reagent_Sale__c,
-    //                 Payback_Remaining__c,
-    //                 Data_Quality_Score__c,
-    //                 Processing_Status__c,
-    //                 Snapshot_Created_Date__c,
-    //                 Monthly_Commitments__c,
-    //                 Business_Case__r.Unit_Cost__c
-    //             FROM Business_Case_Sales_Snapshot__c
-    //             WHERE
-    //                 Processing_Status__c = 'Completed'
-    //                 AND Business_Case__r.Is_Master__c = FALSE
-    //                 AND (Business_Case__r.Status__c LIKE '%Active%'
-    //                 OR Business_Case__r.Status__c LIKE '%Revised%'
-    //                 OR Business_Case__r.Status__c LIKE '%New%')
-    //             ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC
-    //         ];
-
-    //         // System.debug(
-    //         //     '>>>>BusinessCaseDashboardController-->getSnapshotData-->snapshots: ' +
-    //         //     snapshots.size()
-    //         // );
-
-    //         List<Business_Case_Sales_Snapshot__c> filteredSnapshots = new List<Business_Case_Sales_Snapshot__c>();
-
-    //         for (Business_Case_Sales_Snapshot__c s : snapshots) {
-    //             if (
-    //                 bcToLatestMonth.containsKey(s.Business_Case__c) &&
-    //                 s.Snapshot_Month__c ==
-    //                 bcToLatestMonth.get(s.Business_Case__c)
-    //             ) {
-    //                 filteredSnapshots.add(s);
-    //             }
-    //         }
-    //         // System.debug(
-    //         //     '>>>>BusinessCaseDashboardController-->getSnapshotData-->filteredSnapshots: ' +
-    //         //     filteredSnapshots.size()
-    //         // );
-    //         snapshots = filteredSnapshots;
-
-    //         System.debug(
-    //             '🔍 Total snapshots after filtering to latest month: ' +
-    //             snapshots.size()
-    //         );
-
-    //         // ADDITIONAL FILTER: Keep only the most recent snapshot per Business Case
-    //         // (in case there are multiple snapshots for the same month)
-    //         Map<Id, Business_Case_Sales_Snapshot__c> latestSnapshotPerBC = new Map<Id, Business_Case_Sales_Snapshot__c>();
-
-    //         for (Business_Case_Sales_Snapshot__c s : snapshots) {
-    //             if (!latestSnapshotPerBC.containsKey(s.Business_Case__c)) {
-    //                 // First snapshot for this BC
-    //                 latestSnapshotPerBC.put(s.Business_Case__c, s);
-    //             } else {
-    //                 // Compare Snapshot_Created_Date__c to keep the latest
-    //                 Business_Case_Sales_Snapshot__c existing = latestSnapshotPerBC.get(
-    //                     s.Business_Case__c
-    //                 );
-    //                 if (
-    //                     s.Snapshot_Created_Date__c >
-    //                     existing.Snapshot_Created_Date__c
-    //                 ) {
-    //                     latestSnapshotPerBC.put(s.Business_Case__c, s);
-    //                 }
-    //             }
-    //         }
-
-    //         // Replace snapshots with deduplicated list
-    //         snapshots = latestSnapshotPerBC.values();
-
-    //         System.debug(
-    //             '🔍 Unique Business Cases after deduplication: ' +
-    //             snapshots.size()
-    //         );
-
-    //         // Process ALL snapshots to create wrapper objects for risk management
-    //         for (Business_Case_Sales_Snapshot__c snapshot : snapshots) {
-    //             SnapshotWrapper wrapper = new SnapshotWrapper();
-
-    //             // Core Business Case information from snapshot
-    //             wrapper.businessCaseId = snapshot.Business_Case__c;
-    //             wrapper.businessCaseName = snapshot.Business_Case_Name__c;
-    //             wrapper.businessCaseStatus = snapshot.Business_Case_Status__c;
-    //             wrapper.customerCode = snapshot.Customer_Code__c;
-    //             wrapper.customerName = snapshot.Customer_Name__c;
-    //             wrapper.vendor = snapshot.Vendor__c;
-    //             wrapper.technology = snapshot.Technology__c;
-    //             wrapper.region = snapshot.Region__c;
-    //             wrapper.materialNumber = snapshot.Material_Number__c;
-    //             wrapper.materialDescription = snapshot.Material_Description__c;
-    //             wrapper.machineStatus = snapshot.Machine_Status__c;
-
-    //             // Customer Address Information from snapshot
-    //             wrapper.customerProvince = snapshot.Customer_Province__c;
-    //             wrapper.customerCity = snapshot.Customer_City__c;
-    //             wrapper.customerAddressLine1 = snapshot.Customer_AddressLine1__c;
-    //             wrapper.customerAddressLine2 = snapshot.Customer_AddressLine2__c;
-    //             wrapper.customerPostalCode = snapshot.Customer_Postal_Code__c;
-    //             wrapper.customerCountry = snapshot.Customer_Country__c;
-
-    //             // Ship To Account Information from snapshot
-    //             wrapper.shipToCustomerNumber = snapshot.Ship_To_Customer_Number__c;
-    //             wrapper.shipToCustomerName = snapshot.Ship_To_Customer_Name__c;
-    //             wrapper.shipToProvince = snapshot.Ship_To_Province__c;
-    //             wrapper.shipToCity = snapshot.Ship_To_City__c;
-    //             wrapper.shipToAddressLine1 = snapshot.Ship_To_AddressLine1__c;
-    //             wrapper.shipToAddressLine2 = snapshot.Ship_To_Address_Line_2__c;
-    //             wrapper.shipToPostalCode = snapshot.Ship_To_Postal_Code__c;
-    //             wrapper.shipToCountry = snapshot.Ship_To_Country__c;
-
-    //             // Sales metrics from snapshot - all data comes from single source
-    //             wrapper.id = snapshot.Id;
-    //             wrapper.totalReagentSales = snapshot.Total_Reagent_Sales__c;
-    //             wrapper.targetSales = snapshot.Target_Sales__c;
-    //             wrapper.ytdSales = snapshot.YTD_Sales__c;
-    //             wrapper.totalReagentSalesTillDate = snapshot.Total_Reagent_Sales_Till_Date__c;
-    //             wrapper.marginOnReagentSale = snapshot.Margin_On_Reagent_Sale__c;
-    //             wrapper.paybackRemaining = snapshot.Payback_Remaining__c;
-    //             wrapper.machineCount = snapshot.Machine_Count__c;
-    //             wrapper.perMachineSales = snapshot.Per_Machine_Sales__c;
-    //             wrapper.contractMonthsElapsed = snapshot.Contract_Months_Elapsed__c;
-    //             wrapper.avgReagentSalesPerMonth = snapshot.Avg_Reagent_Sales_Per_Month__c;
-    //             wrapper.performanceStatus = snapshot.Performance_Status__c;
-    //             wrapper.deficitCostCovered = snapshot.Deficit_Cost_Covered__c;
-    //             wrapper.marginPercentSnapshot = snapshot.Margin_Percent_Snapshot__c;
-    //             wrapper.dataQualityScore = snapshot.Data_Quality_Score__c;
-    //             wrapper.snapshotMonth = snapshot.Snapshot_Month__c?.format();
-    //             wrapper.formattedMonth = formatMonthLabel(
-    //                 snapshot.Snapshot_Month__c
-    //             );
-    //             wrapper.investment = calculateInvestment(snapshot);
-
-    //             // Formatted fields for display
-    //             wrapper.formattedSales = formatCurrency(
-    //                 wrapper.totalReagentSales
-    //             );
-    //             wrapper.formattedTarget = formatCurrency(wrapper.targetSales);
-    //             wrapper.formattedAchievement = formatPercent(
-    //                 calculateAchievementPercent(
-    //                     wrapper.totalReagentSales,
-    //                     wrapper.targetSales
-    //                 )
-    //             );
-
-    //             wrappers.add(wrapper);
-    //         }
-
-    //         return wrappers;
-    //     } catch (Exception e) {
-    //         throw new AuraHandledException(
-    //             'Error retrieving business case data: ' + e.getMessage()
-    //         );
-    //     }
-    // }
-
-    /**
      * Get filter options for dropdowns
      */
     @AuraEnabled(cacheable=true)
@@ -379,10 +153,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c >= ' + formattedDateFrom;
                 }
 
-                System.debug(
-                    'getTotalFinancialPerformanceStats - Date From filter: ' +
-                    formattedDateFrom
-                );
             }
 
             // Date To Filter - Filter snapshots up to a specific date
@@ -411,10 +181,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
-                System.debug(
-                    'getTotalFinancialPerformanceStats - Date To filter: ' +
-                    formattedDateTo
-                );
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {
@@ -496,10 +262,6 @@ public with sharing class BusinessCaseDashboardController {
                 BusinessCaseStatus != 'All Business Case Statuses'
             ) {
                 String sbusinesscasestatus = '';
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->BusinessCaseStatus: ' +
-                //     BusinessCaseStatus
-                // );
                 sbusinesscasestatus = BusinessCaseStatus.trim();
 
                 if (String.isBlank(whereBCClause)) {
@@ -531,12 +293,6 @@ public with sharing class BusinessCaseDashboardController {
                 } else {
                     whereBCClause += ' AND (Status__c  LIKE \'%Active%\' OR Status__c LIKE \'%Revised%\' OR Status__c LIKE \'%New%\')';
                 }
-
-                //  if (String.isBlank(whereBCSClause)) {
-                //       whereBCSClause = ' WHERE (Business_Case__r.Status__c  LIKE \'%Active%\' OR Business_Case__r.Status__c LIKE \'%Revised%\' OR Business_Case__r.Status__c LIKE \'%New%\')';
-                //   } else {
-                //       whereBCSClause += ' AND (Business_Case__r.Status__c  LIKE \'%Active%\' OR Business_Case__r.Status__c LIKE \'%Revised%\' OR Business_Case__r.Status__c LIKE \'%New%\')';
-                //   }
             }
 
             if (
@@ -641,11 +397,8 @@ public with sharing class BusinessCaseDashboardController {
                 wheremasterClause += ' AND RecordType.Name = \'Master Business Case\'';
             }
             if (String.isBlank(whereBCClause)) {
-                //masterClause = ' WHERE RecordType.Name = \'Master Business Case\'';
             } else {
-                //masterClause = whereBCClause + ' AND RecordType.Name = \'Master Business Case\'';
             }
-            //String masterBCSClause = whereBCSClause + ' AND Business_Case__r.RecordType.Name = \'Master Business Case\'';
             if (String.isBlank(whereMasterBCSClause)) {
                 whereMasterBCSClause = ' WHERE Business_Case__r.RecordType.Name = \'Master Business Case\'';
             } else {
@@ -664,25 +417,13 @@ public with sharing class BusinessCaseDashboardController {
             } else {
                 whereBCSClause += ' AND Business_Case__r.Is_Master__c = false and Business_Case__r.Master_Business_Case__c = null';
             }
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->whereBCClause: ' +
-            //     whereBCClause
-            // );
             Integer rrcount = 0;
             String bcaggregatequery =
                 'Select SUM(Unit_Cost__c) totalInvestment from Business_Case__c ' +
                 whereBCClause;
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcaggregatequery: ' +
-                bcaggregatequery
-            );
             String bcaggregatequeryforquantity =
                 'Select Quantity__c from Business_Case__c ' +
                 whereBCClause;
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcaggregatequeryforquantity: ' +
-                bcaggregatequeryforquantity
-            );
             AggregateResult totalInvestmentAmount = Database.query(
                 bcaggregatequery
             );
@@ -691,7 +432,6 @@ public with sharing class BusinessCaseDashboardController {
             );
 
             FinancialOverviewPerformanceStats fstats = new FinancialOverviewPerformanceStats();
-            //AggregateResult totalInvestmentAmount = [Select SUM(Total_Unit_Cost__c) totalInvestment from Business_Case__c where Status__c != 'Closed'];
             if (totalInvestmentAmount != null) {
                 fstats.financialOverviewTotalInvestment = (Decimal) totalInvestmentAmount.get(
                     'totalInvestment'
@@ -711,31 +451,13 @@ public with sharing class BusinessCaseDashboardController {
                 }
             }
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->For Individual fstats.financialOverviewTotalInvestment: ' +
-            //     fstats.financialOverviewTotalInvestment
-            // );
-
-            // //Fetching Master Business Cases Total Investment
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->masterClause: ' +
-            //     wheremasterClause
-            // );
             String masterbcaggregatequery =
                 'Select SUM(Sum_of_Unit_Cost__c) totalInvestment from Business_Case__c ' +
                 wheremasterClause;
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->master bcaggregatequery: ' +
-                masterbcaggregatequery
-            );
 
             String masterbcaggregatequeryforquantity =
                 'Select Quantity__c from Business_Case__c ' +
                 wheremasterClause;
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->masterbcaggregatequeryforquantity: ' +
-                masterbcaggregatequeryforquantity
-            );
 
             AggregateResult totalMasterInvestmentAmount = Database.query(
                 masterbcaggregatequery
@@ -743,23 +465,12 @@ public with sharing class BusinessCaseDashboardController {
             List<Business_Case__c> masterbclistforquantity = Database.query(
                 masterbcaggregatequeryforquantity
             );
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->totalMasterInvestmentAmount: ' +
-            //     totalMasterInvestmentAmount
-            // );
             if (totalMasterInvestmentAmount != null) {
                 try {
                     if (
                         totalMasterInvestmentAmount.get('totalInvestment') !=
                         null
                     ) {
-                        // System.debug(
-                        //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->For Master fstats.financialOverviewTotalInvestment setting var '
-                        // );
-                        // System.debug(
-                        //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->For Master stats.financialOverviewTotalInvestment: ' +
-                        //     fstats.financialOverviewTotalInvestment
-                        // );
                         if (fstats.financialOverviewTotalInvestment == null) {
                             fstats.financialOverviewTotalInvestment = 0.00;
                         }
@@ -768,24 +479,10 @@ public with sharing class BusinessCaseDashboardController {
                             ((Decimal) totalMasterInvestmentAmount.get(
                                 'totalInvestment'
                             ));
-                        // System.debug(
-                        //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->For Master fstats.financialOverviewTotalInvestment: ' +
-                        //     fstats.financialOverviewTotalInvestment
-                        // );
                     }
                 } catch (Exception ee) {
-                    System.debug(
-                        '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->For Master fstats.financialOverviewTotalInvestment Exception: ' +
-                            ee.getMessage() +
-                            ' - ' +
-                            ee.getCause()
-                    );
                 }
             } else {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->totalMasterInvestmentAmount else: ' +
-                //     totalMasterInvestmentAmount
-                // );
             }
             if(masterbclistforquantity.size() > 0)
             {
@@ -810,10 +507,6 @@ public with sharing class BusinessCaseDashboardController {
             Date firstdayofthismonth = Date.today().toStartOfMonth();
             Datetime fdt = DateTime.newInstance(firstdayofthismonth, Time.newInstance(0,0,0,0));
             String firstday = fdt.format('yyyy-MM-dd');
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->firstdayofthismonth: ' +
-                firstday
-            );
             if(String.isNotBlank(whereBCSClause))
             {
                 whereBCSClause = whereBCSClause + ' AND Snapshot_Month__c < '+firstday+'';
@@ -822,29 +515,15 @@ public with sharing class BusinessCaseDashboardController {
                 whereBCSClause = ' WHERE Snapshot_Month__c < '+firstday+'';
             }
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->whereBCSClause: ' +
-                whereBCSClause
-            );
-           
-
-
             String bcsnapshotquery =
                 'SELECT Id,Total_Reagent_Sales_Till_Date__c,Total_Reagent_Sales__c,Business_Case__c,YTD_Sales__c,Margin_till_Date__c FROM Business_Case_Sales_Snapshot__c ' +
                 whereBCSClause +
                 ' order by Snapshot_Month__c desc';
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcsnapshotquery: ' +
-                bcsnapshotquery
-            );
 
             List<Business_Case_Sales_Snapshot__c> bcsnapshot = Database.query(
                 bcsnapshotquery
             );
 
-            System.debug('>>>>Query returned snapshots: ' + bcsnapshot.size());
-
-            //List<Business_Case_Sales_Snapshot__c> bcsnapshot = [SELECT Id,Total_Reagent_Sales_Till_Date__c,Total_Reagent_Sales__c,Business_Case__c FROM Business_Case_Sales_Snapshot__c order by CreatedDate desc];
             if (bcsnapshot != null) {
                 Map<Id, Business_Case_Sales_Snapshot__c> latestchildbyParent = new Map<Id, Business_Case_Sales_Snapshot__c>();
 
@@ -860,23 +539,12 @@ public with sharing class BusinessCaseDashboardController {
                         );
                     }
                 }
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->latestchildbyParent: ' +
-                //     latestchildbyParent
-                // );
                 Decimal totalSales = 0.00;
                  Decimal totalMargin = 0;
 
                 for (
                     Business_Case_Sales_Snapshot__c snapshot : latestchildbyParent.values()
                 ) {
-                    // System.debug(
-                    //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Total_Reagent_Sales_Till_Date__c: ' +
-                    //         snapshot.Business_Case__c +
-                    //         ' - ' +
-                    //         snapshot.Total_Reagent_Sales_Till_Date__c
-                    // );
-
                     totalSales += (snapshot.Total_Reagent_Sales_Till_Date__c !=
                         null
                         ? snapshot.Total_Reagent_Sales_Till_Date__c
@@ -885,10 +553,6 @@ public with sharing class BusinessCaseDashboardController {
                         ? snapshot.Margin_till_Date__c
                         : 0);
                 }
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->totalSales: ' +
-                    totalSales
-                );
                 if (totalSales > 0) {
                     fstats.financialOverviewTotalSales = totalSales;
                 } else {
@@ -906,36 +570,14 @@ public with sharing class BusinessCaseDashboardController {
                 fstats.financialOverviewTotalMargin = 0.00;
             }
 
-             
-
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Individual fstats.financialOverviewTotalSales: ' +
-            //     fstats.financialOverviewTotalSales
-            // );
-
             //For Master Business Case Sales Snapshot
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->whereMasterBCSClause: ' +
-            //     whereMasterBCSClause
-            // );
             String masterbcsnapshotquery =
                 'SELECT Id,Total_Reagent_Sales_Till_Date__c,Total_Reagent_Sales__c,Business_Case__c,YTD_Sales__c,Margin_till_Date__c FROM Business_Case_Sales_Snapshot__c ' +
                 whereMasterBCSClause +
                 ' order by Snapshot_Month__c desc';
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->masterbcsnapshotquery: ' +
-                masterbcsnapshotquery
-            );
 
             List<Business_Case_Sales_Snapshot__c> masterbcsnapshot = Database.query(
                 masterbcsnapshotquery
-            );
-
-            System.debug(
-                '>>>>Master query returned snapshots: ' +
-                masterbcsnapshot.size()
             );
 
             if (masterbcsnapshot != null) {
@@ -955,22 +597,11 @@ public with sharing class BusinessCaseDashboardController {
                         );
                     }
                 }
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->masterlatestchildbyParent: ' +
-                //     masterlatestchildbyParent
-                // );
                 Decimal totalSales = 0.00;
                  Decimal totalMargin = 0;
                 for (
                     Business_Case_Sales_Snapshot__c snapshot : masterlatestchildbyParent.values()
                 ) {
-                    // System.debug(
-                    //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Master Total_Reagent_Sales_Till_Date__c: ' +
-                    //         snapshot.Business_Case__c +
-                    //         ' - ' +
-                    //         snapshot.Total_Reagent_Sales_Till_Date__c
-                    // );
-
                     totalSales += (snapshot.Total_Reagent_Sales_Till_Date__c !=
                         null
                         ? snapshot.Total_Reagent_Sales_Till_Date__c
@@ -979,10 +610,6 @@ public with sharing class BusinessCaseDashboardController {
                         ? snapshot.Margin_till_Date__c
                         : 0);
                 }
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Master totalSales: ' +
-                    totalSales
-                );
                 if (totalSales > 0) {
                     fstats.financialOverviewTotalSales =
                         fstats.financialOverviewTotalSales + totalSales;
@@ -994,83 +621,10 @@ public with sharing class BusinessCaseDashboardController {
                 
             }
 
-            // String bcsnapshotcostrecoveryquery =
-            //     'SELECT SUM(Margin_On_Reagent_Sale__c) totalMargin FROM Business_Case_Sales_Snapshot__c ' +
-            //     whereBCSClause +
-            //     ' ';
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcsnapshotcostrecoveryquery: ' +
-            //     bcsnapshotcostrecoveryquery
-            // );
-
-            // AggregateResult bcsnapshotcostcovery = Database.query(
-            //     bcsnapshotcostrecoveryquery
-            // );
-
-            // System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats--> bcsnapshotcostcovery Query returned snapshots: ' + bcsnapshotcostcovery);
-
-            // Decimal totalMargin = 0;
-
-            // if (bcsnapshotcostcovery != null) 
-            // {
-            //     if(bcsnapshotcostcovery.get(
-            //         'totalMargin'
-            //     ) != null)
-            //     {
-            //         totalMargin = totalMargin +( (Decimal) bcsnapshotcostcovery.get(
-            //         'totalMargin'
-            //         ));
-            //     }
-                
-            // } 
-
-            // String bcmastersnapshotcostrecoveryquery =
-            //     'SELECT SUM(Margin_On_Reagent_Sale__c) totalMargin FROM Business_Case_Sales_Snapshot__c ' +
-            //     whereMasterBCSClause +
-            //     ' ';
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcmastersnapshotcostrecoveryquery: ' +
-            //     bcmastersnapshotcostrecoveryquery
-            // );
-
-            // AggregateResult bcmastersnapshotcostcovery = Database.query(
-            //     bcmastersnapshotcostrecoveryquery
-            // );
-
-            // System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->bcmastersnapshotcostcovery Query returned snapshots: ' + bcmastersnapshotcostcovery);
-
-            // if (bcmastersnapshotcostcovery != null) 
-            // {
-            //     if(bcmastersnapshotcostcovery.get('totalMargin') != null)
-            //     {
-            //         totalMargin = totalMargin +( (Decimal) bcmastersnapshotcostcovery.get(
-            //             'totalMargin'
-            //         ));
-            //     }
-                
-            // } 
-            // if(totalMargin > 0)
-            // {
-            //     fstats.financialOverviewTotalMargin = totalMargin;
-            // }
-            // else{
-            //     fstats.financialOverviewTotalMargin = 0.00;
-            // }
-             System.debug(
-                    '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats.financialOverviewTotalMargin : ' +
-                    fstats.financialOverviewTotalMargin
-                );
             if (
-                fstats.financialOverviewTotalInvestment > 0 
-                // &&
-                // fstats.financialOverviewTotalSales > 0
-            ) 
+                fstats.financialOverviewTotalInvestment > 0
+            )
             {
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats.costRecovery if: ' +
-                    (fstats.financialOverviewTotalMargin /
-                    fstats.financialOverviewTotalInvestment) * 100
-                );
                 if(fstats.financialOverviewTotalMargin > 0)
                 {
                     fstats.costRecovery = formatPercent(
@@ -1081,110 +635,14 @@ public with sharing class BusinessCaseDashboardController {
                 else{
                     fstats.costRecovery = formatPercent(0.00);
                 }
-                // fstats.costRecovery = formatPercent(
-                //         (fstats.financialOverviewTotalSales /
-                //         fstats.financialOverviewTotalInvestment) * 100
-                //     );
-                
             } else {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats.costRecovery: 0'
-                // );
                 fstats.costRecovery = formatPercent(0.00);
             }
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats: ' +
-                fstats
-            );
             return fstats;
         } catch (Exception e) {
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Exception: ' +
-                e.getMessage()
-            );
             return null;
         }
     }
-
-    // //Get Total Investment of all Business Cases
-    // @AuraEnabled(cacheable=true)
-    // public static FinancialOverviewPerformanceStats getTotalFinancialPerformanceStats()
-    // {
-    //   try
-    //   {
-    //     FinancialOverviewPerformanceStats fstats = new FinancialOverviewPerformanceStats();
-    //     AggregateResult totalInvestmentAmount = [Select SUM(Total_Unit_Cost__c) totalInvestment from Business_Case__c where Status__c != 'Closed'];
-    //     if(totalInvestmentAmount != null )
-    //     {
-    //       fstats.financialOverviewTotalInvestment = (Decimal)totalInvestmentAmount.get('totalInvestment');
-    //     }
-    //     else
-    //     {
-    //       fstats.financialOverviewTotalInvestment = 0.00;
-    //     }
-
-    //     //Total_Reagent_Sales_Till_Date__c
-    //     List<Business_Case_Sales_Snapshot__c> bcsnapshot = [SELECT Id,Total_Reagent_Sales_Till_Date__c,Total_Reagent_Sales__c,Business_Case__c FROM Business_Case_Sales_Snapshot__c order by CreatedDate desc ];
-    //     if(bcsnapshot != null)
-    //     {
-    //       Map<Id,Business_Case_Sales_Snapshot__c> latestchildbyParent = new Map<Id,Business_Case_Sales_Snapshot__c>();
-
-    //       for(Business_Case_Sales_Snapshot__c snapshot: bcsnapshot)
-    //       {
-    //         if(!latestchildbyParent.containsKey(snapshot.Business_Case__c))
-    //         {
-    //           latestchildbyParent.put(snapshot.Business_Case__c,snapshot);
-    //         }
-    //       }
-
-    //       Decimal totalSales = 0.00;
-
-    //       for(Business_Case_Sales_Snapshot__c snapshot: latestchildbyParent.values())
-    //       {
-    //         totalSales += (snapshot.Total_Reagent_Sales__c != null ? snapshot.Total_Reagent_Sales__c : 0);
-    //       }
-
-    //       if(totalSales > 0 )
-    //       {
-    //         fstats.financialOverviewTotalSales = totalSales;
-    //       }
-    //       else
-    //       {
-    //         fstats.financialOverviewTotalSales = 0.00;
-    //       }
-
-    //     }
-    //     else
-    //     {
-    //       fstats.financialOverviewTotalSales = 0.00;
-    //     }
-
-    //     if(fstats.financialOverviewTotalInvestment > 0 && fstats.financialOverviewTotalSales > 0)
-    //     {
-    //        System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats.costRecovery if: '+(
-    //           fstats.financialOverviewTotalSales / fstats.financialOverviewTotalInvestment
-    //         ) * 100);
-    //       fstats.costRecovery = formatPercent(
-    //         (
-    //           fstats.financialOverviewTotalSales / fstats.financialOverviewTotalInvestment
-    //         ) * 100
-    //       );
-
-    //     }
-    //     else
-    //     {
-    //      System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats.costRecovery: 0');
-    //       fstats.costRecovery = formatPercent(0.00) ;
-    //     }
-    //     System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->fstats: '+fstats);
-    //     return fstats;
-    //   }
-    //   catch(Exception e)
-    //   {
-    //     System.debug('>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->Exception: '+e.getMessage());
-    //     return null;
-    //   }
-    // }
 
     /**
      * Get summary metrics for dashboard cards
@@ -1324,12 +782,6 @@ public with sharing class BusinessCaseDashboardController {
         Decimal investment = snapshot.Business_Case__r.Unit_Cost__c != null
             ? snapshot.Business_Case__r.Unit_Cost__c
             : 0;
-        System.debug(
-            '🔍 Investment for BC ' +
-                snapshot.Business_Case_Name__c +
-                ': ' +
-                investment
-        );
         return investment;
     }
 
@@ -1363,13 +815,8 @@ public with sharing class BusinessCaseDashboardController {
         String BusinessCaseName
     ) {
         try {
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise'
-            );
 
             String whereBCClause = ' WHERE RecordType.Name = \'Individual Business Case\'';
-            //String whereMasterBCClause = ' WHERE RecordType.Name = \'Master Business Case\'';
-
             if (!String.isBlank(Region) && Region != 'All Regions') {
                 if (String.isBlank(whereBCClause)) {
                     whereBCClause = ' WHERE Region__c = \'' + Region + '\'';
@@ -1403,10 +850,6 @@ public with sharing class BusinessCaseDashboardController {
                 BusinessCaseStatus != 'All Business Case Statuses'
             ) {
                 String sbusinesscasestatus = '';
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->getTotalFinancialPerformanceStats-->BusinessCaseStatus: ' +
-                    BusinessCaseStatus
-                );
                 sbusinesscasestatus = BusinessCaseStatus.trim();
 
                 if (String.isBlank(whereBCClause)) {
@@ -1461,26 +904,14 @@ public with sharing class BusinessCaseDashboardController {
                 }
             }
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->whereBCCClause: ' +
-                whereBCClause
-            );
 
             String bccquery =
                 'Select Id,Name,Machine_Installation__c,Customer_Number__c,Region__c,Status__c,Machine_Installation__r.Status__c,Master_Business_Case__c,Master_Business_Case__r.Name from Business_Case__c ' +
                 whereBCClause;
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->bccquery: ' +
-                bccquery
-            );
 
             List<Business_Case__c> businessCasesList = Database.query(bccquery);
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->businessCasesList: ' +
-                businessCasesList.size()
-            );
 
             // Extract Machine_Installation__c IDs
             List<Id> machineIds = new List<Id>();
@@ -1498,43 +929,26 @@ public with sharing class BusinessCaseDashboardController {
                 '\'' +
                 ')';
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->Machine IDs: ' +
-                machineIdsString
-            );
 
             List<MachineStatusCount> machinestatuscount = new List<MachineStatusCount>();
             List<Machine_Installation__c> listofmachines = new List<Machine_Installation__c>();
             Map<String, Integer> statusCountMap = new Map<String, Integer>();
             List<MachineStatusCount> listofmachinestatuscount = new List<MachineStatusCount>();
 
-            //listofmachines = [Select Id,Name,Status__c,Material_Number__c from Machine_Installation__c where Status__c != 'Invoiced/Sold'];
             String machinequery =
                 'Select Id,Name,Status__c,Material_Number__c from Machine_Installation__c where Status__c != \'Invoiced/Sold\' and Id in ' +
                 machineIdsString +
                 '';
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->machinequery: ' +
-                machinequery
-            );
 
             listofmachines = Database.query(machinequery);
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->listofmachines size: ' +
-                listofmachines.size()
-            );
 
             List<String> listofstatuses = getPicklistValues(
                 'Machine_Installation__c',
                 'Status__c'
             );
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->listofstatuses size: ' +
-                listofstatuses.size()
-            );
 
             if (listofstatuses.size() > 0) {
                 if (listofmachines.size() > 0) {
@@ -1575,20 +989,8 @@ public with sharing class BusinessCaseDashboardController {
                 msc.count = 0;
                 listofmachinestatuscount.add(msc);
             }
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->listofmachinestatuscount size: ' +
-            //     listofmachinestatuscount.size()
-            // );
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->listofmachinestatuscount : ' +
-                listofmachinestatuscount
-            );
             return listofmachinestatuscount;
         } catch (Exception e) {
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->Exception: ' +
-                e.getMessage()
-            );
             return null;
         }
     }
@@ -1610,13 +1012,8 @@ public with sharing class BusinessCaseDashboardController {
         try 
         {
             List<MachineStatusListResp> listofmachinesobj = new List<MachineStatusListResp>();
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated'
-            );
 
             String whereBCClause = ' WHERE RecordType.Name = \'Individual Business Case\'';
-            //String whereMasterBCClause = ' WHERE RecordType.Name = \'Master Business Case\'';
-
             if (!String.isBlank(Region) && Region != 'All Regions') {
                 if (String.isBlank(whereBCClause)) {
                     whereBCClause = ' WHERE Region__c = \'' + Region + '\'';
@@ -1650,10 +1047,6 @@ public with sharing class BusinessCaseDashboardController {
                 BusinessCaseStatus != 'All Business Case Statuses'
             ) {
                 String sbusinesscasestatus = '';
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->BusinessCaseStatus: ' +
-                    BusinessCaseStatus
-                );
                 sbusinesscasestatus = BusinessCaseStatus.trim();
 
                 if (String.isBlank(whereBCClause)) {
@@ -1708,26 +1101,14 @@ public with sharing class BusinessCaseDashboardController {
                 }
             }
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->whereBCCClause: ' +
-                whereBCClause
-            );
 
             String bccquery =
                 'Select Id,Name,Machine_Installation__c,Customer_Number__c,Region__c,Status__c,Machine_Installation__r.Status__c,Master_Business_Case__c,Master_Business_Case__r.Name from Business_Case__c ' +
                 whereBCClause;
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->bccquery: ' +
-                bccquery
-            );
 
             List<Business_Case__c> businessCasesList = Database.query(bccquery);
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->businessCasesList: ' +
-                businessCasesList.size()
-            );
 
             // Extract Machine_Installation__c IDs
             List<Id> machineIds = new List<Id>();
@@ -1755,43 +1136,26 @@ public with sharing class BusinessCaseDashboardController {
                 '\'' +
                 ')';
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->Machine IDs: ' +
-                machineIdsString
-            );
 
             List<MachineStatusCount> machinestatuscount = new List<MachineStatusCount>();
             List<Machine_Installation__c> listofmachines = new List<Machine_Installation__c>();
             Map<String, Integer> statusCountMap = new Map<String, Integer>();
             List<MachineStatusCount> listofmachinestatuscount = new List<MachineStatusCount>();
 
-            //listofmachines = [Select Id,Name,Status__c,Material_Number__c from Machine_Installation__c where Status__c != 'Invoiced/Sold'];
             String machinequery =
                 'Select Id,Name,Status__c,Material_Number__c from Machine_Installation__c where Status__c != \'Invoiced/Sold\' and Id in ' +
                 machineIdsString +
                 '';
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->machinequery: ' +
-                machinequery
-            );
 
             listofmachines = Database.query(machinequery);
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->listofmachines size: ' +
-                listofmachines.size()
-            );
 
             List<String> listofstatuses = getPicklistValues(
                 'Machine_Installation__c',
                 'Status__c'
             );
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->listofstatuses size: ' +
-                listofstatuses.size()
-            );
 
             if (listofstatuses.size() > 0) {
                 if (listofmachines.size() > 0) {
@@ -1832,30 +1196,14 @@ public with sharing class BusinessCaseDashboardController {
                 msc.count = 0;
                 listofmachinestatuscount.add(msc);
             }
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->getMachineCountStatuswise-->listofmachinestatuscount size: ' +
-            //     listofmachinestatuscount.size()
-            // );
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->listofmachinestatuscount : ' +
-                listofmachinestatuscount
-            );
 
             MachineStatusCountwiseResp responseObj = new MachineStatusCountwiseResp();
             responseObj.machineStatusCount = listofmachinestatuscount;
             responseObj.machineStatusListResp = listofmachinesobj;
 
-             System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->responseObj : ' +
-                responseObj
-            );
 
             return responseObj;
         } catch (Exception e) {
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->getMachineCountStatuswiseUpdated-->Exception: ' +
-                e.getMessage()
-            );
             return null;
         }
     }
@@ -1939,7 +1287,6 @@ public with sharing class BusinessCaseDashboardController {
                 FROM Business_Case_Sales_Snapshot__c
                 WHERE Processing_Status__c = 'Completed'
                 ORDER BY Snapshot_Month__c DESC
-                //LIMIT 2000
             ];
 
             List<Business_Case__c> listofbusinesscases = [
@@ -2065,36 +1412,12 @@ public with sharing class BusinessCaseDashboardController {
                     }
                 }
 
-                // Collect customers (avoid duplicates by using map)
-                // if (
-                //   String.isNotBlank(snapshot.Customer_Code__c) &&
-                //   String.isNotBlank(snapshot.Customer_Name__c)
-                // )
-                // {
-                //   if(!customerMap.containsKey(snapshot.Customer_Code__c))
-                //   {
-
-                //     customerMap.put(snapshot.Customer_Code__c, snapshot.Customer_Name__c);
-                //   }
-
-                // }
-
                 // Collect regions
                 if (String.isNotBlank(snapshot.Region__c)) {
                     if (!regionSet.contains(snapshot.Region__c)) {
                         regionSet.add(snapshot.Region__c);
                     }
                 }
-
-                // // Collect Business Cases
-                // if (String.isNotBlank(snapshot.Business_Case__r.Name))
-                // {
-                //   if(!businessCaseSet.contains(snapshot.Business_Case__r.Name))
-                //   {
-                //     businessCaseSet.add(snapshot.Business_Case__r.Name);
-                //   }
-
-                // }
 
                 // Collect suppliers/vendors
                 if (String.isNotBlank(snapshot.Vendor__c)) {
@@ -2117,13 +1440,7 @@ public with sharing class BusinessCaseDashboardController {
                     }
                 }
                 machineStatusList.sort();
-                // System.debug(
-                //     'Machine Status picklist values: ' + machineStatusList
-                // );
             } catch (Exception e) {
-                // System.debug(
-                //     'Error getting Machine Status picklist: ' + e.getMessage()
-                // );
                 // Fallback to known values if picklist access fails
                 machineStatusList = new List<String>{
                     'Active',
@@ -2148,15 +1465,7 @@ public with sharing class BusinessCaseDashboardController {
                     }
                 }
                 businessCaseStatusList.sort();
-                // System.debug(
-                //     'Business Case Status picklist values: ' +
-                //     businessCaseStatusList
-                // );
             } catch (Exception e) {
-                System.debug(
-                    'Error getting Business Case Status picklist: ' +
-                    e.getMessage()
-                );
                 // Fallback to known values if picklist access fails
                 businessCaseStatusList = new List<String>{
                     'Active',
@@ -2175,13 +1484,7 @@ public with sharing class BusinessCaseDashboardController {
                     }
                 }
                 commitmentStatusList.sort();
-                // System.debug(
-                //     'Machine Status picklist values: ' + commitmentStatusList
-                // );
             } catch (Exception e) {
-                System.debug(
-                    'Error getting Machine Status picklist: ' + e.getMessage()
-                );
                 // Fallback to known values if picklist access fails
                 commitmentStatusList = new List<String>{
                     'Behind',
@@ -2228,21 +1531,6 @@ public with sharing class BusinessCaseDashboardController {
             options.performanceStatuses = commitmentStatusList;
             options.businessCases = businessCaseList;
 
-            System.debug(
-                'Final filter options - customers: ' +
-                    options.customers.size() +
-                    ' values'
-            );
-            System.debug(
-                'Final filter options - Machine Statuses: ' +
-                    options.machineStatuses.size() +
-                    ' values'
-            );
-            System.debug(
-                'Final filter options - Business Case Statuses: ' +
-                    options.businessCaseStatuses.size() +
-                    ' values'
-            );
 
             return options;
         } catch (Exception e) {
@@ -2339,10 +1627,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c >= ' + formattedDateFrom;
                 }
 
-                System.debug(
-                    'Date From filter applied: Snapshot_Month__c >= ' +
-                    formattedDateFrom
-                );
             }
 
             // Date To Filter - Filter snapshots up to a specific date
@@ -2363,10 +1647,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
-                System.debug(
-                    'Date To filter applied: Snapshot_Month__c <= ' +
-                    formattedDateTo
-                );
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {
@@ -2414,10 +1694,6 @@ public with sharing class BusinessCaseDashboardController {
                 BusinessCaseStatus != 'All Business Case Statuses'
             ) {
                 String sbusinesscasestatus = '';
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->BusinessCaseStatus: ' +
-                //     BusinessCaseStatus
-                // );
                 sbusinesscasestatus = BusinessCaseStatus.trim();
 
                 if (String.isBlank(whereBCClause)) {
@@ -2542,14 +1818,6 @@ public with sharing class BusinessCaseDashboardController {
                 ',Ship_To_Customer_Number__c,Monthly_Reagent_Commitment__c,Agreement_Date__c,RecordType.Name,Quantity__c  FROM Business_Case__c ' +
                 whereBCClause;
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->whereBCClause: ' +
-                whereBCClause
-            );
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->bcquery: ' +
-                bcquery
-            );
 
             List<Id> activeBusinessCases = new List<Id>();
             List<Business_Case__c> activeBusinessCasesObj = new List<Business_Case__c>();
@@ -2558,19 +1826,12 @@ public with sharing class BusinessCaseDashboardController {
                 activeBusinessCasesObj.add(bc);
             }
 
-            
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->activeBusinessCases: ' +
-            //     activeBusinessCases.size()
-            // );
-
             String bcmasterquery = 'SELECT Id,Name,Quantity__c,Status__c,Customer_Number__c,Customer_Name__c,Machine_Installation__r.SAP_Account_No_Ship_To__c,Machine_Installation__r.SAP_Account_No_Bill_To__c';
             bcmasterquery += ',Machine_Installation__r.Diagnostic_Machine__r.Vendor__c,Machine_Installation__r.Diagnostic_Machine__r.Technology__c,Region__c,';
             bcmasterquery += 'Machine_Installation__r.Material_Number__c,Machine_Installation__r.Material_Description__c,Machine_Installation__r.Status__c,';
             bcmasterquery += 'Bill_To_Address_Line_1__c,Bill_To_Address_Line_2__c,Bill_To_City__c,Ship_To_Address_Line_1__c,Ship_To_Address_Line_2__c,Ship_To_City__c,Ship_To_Postal_Code__c,Ship_To_Province__c,Ship_To_Customer_Name__c,Unit_Cost__c,Total_Unit_Cost__c';
             bcmasterquery += ',Ship_To_Customer_Number__c,Monthly_Reagent_Commitment__c,Agreement_Date__c,Customer_Numbera__c,Customer_Namea__c,Sum_of_Monthly_Reagent_Commitment__c,Material_Number__c,Material_Descriptionsa__c,Sum_of_Unit_Cost__c,RecordType.Name   ';
             bcmasterquery += ',Vendor__c,Technologyaa__c ';
-            // bcmasterquery += ' ,Bill_To_Address_Line_1__c,Bill_To_Address_Line_2__c,Bill_To_City__c,Ship_To_Address_Line_1__c,Ship_To_Address_Line_2__c,Ship_To_City__c,Ship_To_Postal_Code__c,Ship_To_Province__c,Ship_To_Customer_Name__c';
             bcmasterquery += ',(SELECT  Id,Name,Status__c,Account__c,Account__r.Province__c,Account__r.City__c,Account__r.AddressLine_1__c,Account__r.Addess_Line_2__c,Account__r.Postal_Code__c,Account__r.Country_Code__c,Customer_Number__c,';
             bcmasterquery += ' Customer_Name__c,Supplier_Name__c,Technology__c,Region__c,SAP_Material_Number__c,Machine_Type__c,Quantity__c,Monthly_Reagent_Commitment__c,Unit_Cost__c,Margin_Percent__c,Agreement_Date__c,Asset_Number__c,';
             bcmasterquery += ' Asset_Number__r.Status__c,Machine_Installation__r.Ship_To_Account__c,Machine_Installation__r.Ship_To_Account__r.SAP_Customer_Number__c,Machine_Installation__r.Ship_To_Account__r.Name,Machine_Installation__r.Ship_To_Account__r.Province__c,';
@@ -2583,24 +1844,11 @@ public with sharing class BusinessCaseDashboardController {
             
             bcmasterquery += ' FROM Business_Case__c ' + whereMasterClause;
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->whereMasterClause: ' +
-                whereMasterClause
-            );
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->bcmasterquery: ' +
-                bcmasterquery
-            );
 
             for (Business_Case__c bc : Database.query(bcmasterquery)) {
                 activeBusinessCases.add(bc.Id);
                 activeBusinessCasesObj.add(bc);
             }
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->activebusinesscases: ' +
-            //     activeBusinessCases.size()
-            // );
 
             Map<Id,Decimal> marginByBusinessCase = new Map<Id,Decimal>();
 
@@ -2616,7 +1864,6 @@ public with sharing class BusinessCaseDashboardController {
                 );
             }
 
-            System.debug('>>>>BusinessCaseDashboard-->GetSnapshotDataUpdated-->marginByBusinessCase: '+marginByBusinessCase);
 
             Map<Id, DateTime> parentToLatestChild = new Map<Id, DateTime>();
 
@@ -2633,17 +1880,6 @@ public with sharing class BusinessCaseDashboardController {
                     (DateTime) ar.get('latestDate')
                 );
             }
-
-           
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->parent child keySet: ' +
-            //     parentToLatestChild.keySet()
-            // );
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->whereBCSClause: ' +
-                whereBCSClause
-            );
 
             List<String> idList = new List<String>();
             for (Id value : parentToLatestChild.keySet()) {
@@ -2675,148 +1911,13 @@ public with sharing class BusinessCaseDashboardController {
                 ' and Processing_Status__c = \'Completed\' ';
             bscquery += ' ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC ';
 
-            System.debug(
-                '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->bscquery: ' +
-                bscquery
-            );
-
-            // List<Business_Case_Sales_Snapshot__c> latestChildren = [
-            //    Select Id,
-            //                       Business_Case__c,
-            //                       Business_Case_Name__c,
-            //                       Business_Case_Status__c,
-            //                       Machine_Status__c,
-            //                       Customer_Code__c,
-            //                       Customer_Name__c,
-            //                       Vendor__c,
-            //                       Technology__c,
-            //                       Region__c,
-            //                       Material_Number__c,
-            //                       Material_Description__c,
-            //                       Customer_Province__c,
-            //                       Customer_City__c,
-            //                       Customer_AddressLine1__c,
-            //                       Customer_AddressLine2__c,
-            //                       Customer_Postal_Code__c,
-            //                       Customer_Country__c,
-            //                       Ship_To_Customer_Number__c,
-            //                       Ship_To_Customer_Name__c,
-            //                       Ship_To_Province__c,
-            //                       Ship_To_City__c,
-            //                       Ship_To_AddressLine1__c,
-            //                       Ship_To_Address_Line_2__c,
-            //                       Ship_To_Postal_Code__c,
-            //                       Ship_To_Country__c,
-            //                       Snapshot_Month__c,
-            //                       Total_Reagent_Sales__c,
-            //                       Target_Sales__c,
-            //                       Machine_Count__c,
-            //                       Per_Machine_Sales__c,
-            //                       Source_Invoice_Count__c,
-            //                       YTD_Sales__c,
-            //                       Total_Reagent_Sales_Till_Date__c,
-            //                       Contract_Months_Elapsed__c,
-            //                       Avg_Reagent_Sales_Per_Month__c,
-            //                       Performance_Status__c,
-            //                       Deficit_Cost_Covered__c,
-            //                       Margin_Percent_Snapshot__c,
-            //                       Margin_On_Reagent_Sale__c,
-            //                       Payback_Remaining__c,
-            //                       Data_Quality_Score__c,
-            //                       Processing_Status__c,
-            //                       Snapshot_Created_Date__c,
-            //                       Monthly_Commitments__c,
-            //                       Business_Case__r.Total_Unit_Cost__c
-            //                   FROM Business_Case_Sales_Snapshot__c
-            //     WHERE Business_Case__c IN :parentToLatestChild.keySet() and Processing_Status__c = 'Completed'
-            //     ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC
-            // ];
 
             List<Business_Case_Sales_Snapshot__c> latestChildren = new List<Business_Case_Sales_Snapshot__c>();
 
             try {
                 latestChildren = Database.query(bscquery);
-                System.debug(
-                    '🔍 GetSnapshotDataUpdated - Query returned ' +
-                        latestChildren.size() +
-                        ' snapshots'
-                );
-                System.debug(
-                    '🔍 GetSnapshotDataUpdated - whereBCSClause: ' +
-                    whereBCSClause
-                );
-                System.debug(
-                    '🔍 GetSnapshotDataUpdated - bscquery: ' +
-                    bscquery
-                );
-
-                // Debug: Check for customer 3020001748 snapshots
-                Integer customer3020001748Count = 0;
-                for (Business_Case_Sales_Snapshot__c snap : latestChildren) {
-                    if (snap.Customer_Code__c == '3020001748') {
-                        customer3020001748Count++;
-                        System.debug(
-                            '📊 Customer 3020001748 snapshot found: BC=' +
-                                snap.Business_Case__c +
-                                ', Month=' +
-                                snap.Snapshot_Month__c +
-                                ', Sales=' +
-                                snap.Total_Reagent_Sales_Till_Date__c
-                        );
-                    }
-                }
-                System.debug(
-                    '🔍 Total snapshots for customer 3020001748: ' +
-                    customer3020001748Count
-                );
-
-                // If no snapshots found with date filter, check what dates exist for this customer
-                if (customer3020001748Count == 0 && DateTo != null) {
-                    System.debug(
-                        '🔍 Checking ALL snapshot dates for customer 3020001748 (without date filter)...'
-                    );
-                    List<Business_Case_Sales_Snapshot__c> allCustomerSnaps = [
-                        SELECT
-                            Id,
-                            Snapshot_Month__c,
-                            Business_Case__c,
-                            Total_Reagent_Sales_Till_Date__c
-                        FROM Business_Case_Sales_Snapshot__c
-                        WHERE
-                            Customer_Code__c = '3020001748'
-                            AND Processing_Status__c = 'Completed'
-                        ORDER BY Snapshot_Month__c ASC
-                        LIMIT 10
-                    ];
-                    System.debug(
-                        '🔍 Found ' +
-                            allCustomerSnaps.size() +
-                            ' total snapshots for customer 3020001748:'
-                    );
-                    for (
-                        Business_Case_Sales_Snapshot__c snap : allCustomerSnaps
-                    ) {
-                        System.debug(
-                            '  - Month: ' +
-                                snap.Snapshot_Month__c +
-                                ', BC: ' +
-                                snap.Business_Case__c +
-                                ', Sales: ' +
-                                snap.Total_Reagent_Sales_Till_Date__c
-                        );
-                    }
-                }
             } catch (Exception exc) {
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->Exception: ' +
-                    exc.getMessage()
-                );
             }
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->latestchildren size: ' +
-            //     latestChildren.size()
-            // );
 
             Map<Id, Business_Case_Sales_Snapshot__c> parentToChildMap = new Map<Id, Business_Case_Sales_Snapshot__c>();
 
@@ -2824,46 +1925,20 @@ public with sharing class BusinessCaseDashboardController {
                 Business_Case_Sales_Snapshot__c existing = parentToChildMap.get(
                     c.Business_Case__c
                 );
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->c: ' +
-                //     c
-                // );
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->existing: ' +
-                //     existing
-                // );
                 // If none stored yet OR this one is newer, keep this one
                 if (existing == null) {
-                    // System.debug(
-                    //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->existing is null: '
-                    // );
                     parentToChildMap.put(c.Business_Case__c, c);
                 } else {
                     if (c.LastModifiedDate > existing.LastModifiedDate) {
-                        System.debug(
-                            '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->existing is empty: '
-                        );
                         parentToChildMap.put(c.Business_Case__c, c);
                     }
                 }
             }
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->Parent to child map size: ' +
-            //     parentToChildMap.size()
-            // );
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->Parent to child map : ' +
-            //     parentToChildMap
-            // );
-
             AggregateResult investmentresult = [Select sum(Sum_of_Unit_Cost__c) totalsumcost,sum(Unit_Cost__c) totalcost from Business_Case__c where Id in :activeBusinessCases ];
-            System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->investmentresult: '+investmentresult);
 
             if(investmentresult != null)
             {
-                System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->totalsumcost: '+(Decimal)investmentresult.get('totalsumcost'));
-                System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->totalcost: '+(Decimal)investmentresult.get('totalcost'));
             }
             Decimal totalInvestment = 0;
             List<Business_Case_Sales_Snapshot__c> finalChildren = parentToChildMap.values();
@@ -2874,17 +1949,37 @@ public with sharing class BusinessCaseDashboardController {
                 Datetime currentDate = Datetime.now().addMonths(-1);
                 for (Integer i = 0; i < 6; i++) {
                     Date monthStart = Date.newInstance(currentDate.year(), currentDate.month(), 1).addMonths(-i);
-                    lastSixMonths.add(monthStart);
+                    Date monthEnd = monthStart.addMonths(1).addDays(-1); // last day of month — matches Snapshot_Month__c storage
+                    lastSixMonths.add(monthEnd);
                 }
+
+                // Dec 31 snapshot of last year for full-year YTD
+                Date lastYearDecEnd = Date.newInstance(currentDate.year() - 1, 12, 31);
+                Map<Id, Business_Case_Sales_Snapshot__c> lastYearSnapshotMap = new Map<Id, Business_Case_Sales_Snapshot__c>();
+                for (Business_Case_Sales_Snapshot__c s : [
+                    SELECT Id, Business_Case__c, YTD_Sales__c
+                    FROM Business_Case_Sales_Snapshot__c
+                    WHERE Business_Case__c IN :activeBusinessCases
+                    AND Snapshot_Month__c = :lastYearDecEnd
+                    AND Processing_Status__c = 'Completed'
+                ]) {
+                    lastYearSnapshotMap.put(s.Business_Case__c, s);
+                }
+
+                // Dec 31 snapshot of the year before last for full-year YTD
+                Date lastToLastYearDecEnd = Date.newInstance(currentDate.year() - 2, 12, 31);
+                Map<Id, Business_Case_Sales_Snapshot__c> lastToLastYearSnapshotMap = new Map<Id, Business_Case_Sales_Snapshot__c>();
+                for (Business_Case_Sales_Snapshot__c s : [
+                    SELECT Id, Business_Case__c, YTD_Sales__c
+                    FROM Business_Case_Sales_Snapshot__c
+                    WHERE Business_Case__c IN :activeBusinessCases
+                    AND Snapshot_Month__c = :lastToLastYearDecEnd
+                    AND Processing_Status__c = 'Completed'
+                ]) {
+                    lastToLastYearSnapshotMap.put(s.Business_Case__c, s);
+                }
+
             if (finalChildren.size() > 0) {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->final children size: ' +
-                //     finalChildren.size()
-                // );
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->final children : ' +
-                //     finalChildren
-                // );
                 List<SnapshotWrapper> wrappers = new List<SnapshotWrapper>();
                 // Process ALL snapshots to create wrapper objects for risk management
                 Date today = Date.today();
@@ -2894,7 +1989,6 @@ public with sharing class BusinessCaseDashboardController {
                     1
                 );
                 Date lastMonth = firstOfThisMonth.addMonths(-1);
-                // Date lastMonth = firstOfThisMonth;
                 Date m0 = Date.newInstance(
                     lastMonth.year(),
                     lastMonth.month(),
@@ -2911,10 +2005,6 @@ public with sharing class BusinessCaseDashboardController {
                     '  ' +
                     whereBCSClause +
                     ' and Processing_Status__c = \'Completed\' ';
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->riskStatusQuery: ' +
-                //     riskStatusQuery
-                // );
                 Map<Id, List<Business_Case_Sales_Snapshot__c>> snapsByBc = new Map<Id, List<Business_Case_Sales_Snapshot__c>>();
                 for (
                     Business_Case_Sales_Snapshot__c bsclastsix : Database.query(
@@ -2941,14 +2031,12 @@ public with sharing class BusinessCaseDashboardController {
                     ) {
                         if (s.Snapshot_Month__c != null) 
                         {
-                            System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->s.Snapshot_Month__c: '+s.Snapshot_Month__c);
                             if( s.Total_Reagent_Sales__c >= s.Monthly_Commitments__c)
                             {
                                 Date d = s.Snapshot_Month__c;
                                 months.add(
                                     Date.newInstance(d.year(), d.month(), 1)
                                 ); // normalize to first-of-month
-                                System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->smonths: '+months);
                             }
                             
                         }
@@ -2957,14 +2045,11 @@ public with sharing class BusinessCaseDashboardController {
                 }
 
                
-                System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->monthsPresentByBc: '+monthsPresentByBc);
-                System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->lastsixMonths: '+lastSixMonths);
 
             
 
                 for (Business_Case__c bcase : activeBusinessCasesObj) 
                 {
-                    System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->bcase: '+bcase);
                     SnapshotWrapper wrapper = new SnapshotWrapper();
 
                     wrapperCases.add(bcase.Id);
@@ -2979,32 +2064,33 @@ public with sharing class BusinessCaseDashboardController {
                         wrapper.customerName = bcase.Customer_Namea__c;
                         wrapper.vendor = bcase.Vendor__c;
                         wrapper.technology = bcase.Technologyaa__c;
-                        wrapper.region = bcase.Business_Cases__r[0].Region__c;
                         wrapper.materialNumber = bcase.Material_Number__c;
                         wrapper.materialDescription = bcase.Material_Descriptionsa__c;
-                        wrapper.machineStatus = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Status__c;
-                        wrapper.customerAddressLine1 = bcase.Business_Cases__r[0]
-                            .Bill_To_Address_Line_1__c;
-                        wrapper.customerAddressLine2 = bcase.Business_Cases__r[0]
-                            .Bill_To_Address_Line_2__c;
-                        wrapper.customerCity = bcase.Business_Cases__r[0]
-                            .Bill_To_City__c;
-
-                        wrapper.shipToCustomerNumber = bcase.Business_Cases__r[0]
-                            .Ship_To_Customer_Number__c;
-                        wrapper.shipToCustomerName = bcase.Business_Cases__r[0]
-                            .Ship_To_Customer_Name__c;
-                        wrapper.shipToProvince = bcase.Business_Cases__r[0]
-                            .Ship_To_Province__c;
-                        wrapper.shipToCity = bcase.Business_Cases__r[0]
-                            .Ship_To_City__c;
-                        wrapper.shipToAddressLine1 = bcase.Business_Cases__r[0]
-                            .Ship_To_Address_Line_1__c;
-                        wrapper.shipToAddressLine2 = bcase.Business_Cases__r[0]
-                            .Ship_To_Address_Line_2__c;
-                        wrapper.shipToPostalCode = bcase.Business_Cases__r[0]
-                            .Ship_To_Postal_Code__c;
+                        if (bcase.Business_Cases__r != null && !bcase.Business_Cases__r.isEmpty()) {
+                            wrapper.region = bcase.Business_Cases__r[0].Region__c;
+                            wrapper.machineStatus = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Status__c;
+                            wrapper.customerAddressLine1 = bcase.Business_Cases__r[0]
+                                .Bill_To_Address_Line_1__c;
+                            wrapper.customerAddressLine2 = bcase.Business_Cases__r[0]
+                                .Bill_To_Address_Line_2__c;
+                            wrapper.customerCity = bcase.Business_Cases__r[0]
+                                .Bill_To_City__c;
+                            wrapper.shipToCustomerNumber = bcase.Business_Cases__r[0]
+                                .Ship_To_Customer_Number__c;
+                            wrapper.shipToCustomerName = bcase.Business_Cases__r[0]
+                                .Ship_To_Customer_Name__c;
+                            wrapper.shipToProvince = bcase.Business_Cases__r[0]
+                                .Ship_To_Province__c;
+                            wrapper.shipToCity = bcase.Business_Cases__r[0]
+                                .Ship_To_City__c;
+                            wrapper.shipToAddressLine1 = bcase.Business_Cases__r[0]
+                                .Ship_To_Address_Line_1__c;
+                            wrapper.shipToAddressLine2 = bcase.Business_Cases__r[0]
+                                .Ship_To_Address_Line_2__c;
+                            wrapper.shipToPostalCode = bcase.Business_Cases__r[0]
+                                .Ship_To_Postal_Code__c;
+                        }
                         wrapper.monthCommitment = bcase.Sum_of_Monthly_Reagent_Commitment__c;
                         wrapper.investment = (bcase.Sum_of_Unit_Cost__c == null ? 0 : bcase.Sum_of_Unit_Cost__c);
                         totalInvestment += (bcase.Sum_of_Unit_Cost__c == null ? 0 : bcase.Sum_of_Unit_Cost__c);
@@ -3033,12 +2119,9 @@ public with sharing class BusinessCaseDashboardController {
                         totalInvestment += (bcase.Unit_Cost__c == null ? 0 : bcase.Unit_Cost__c);
                     }
 
-                    // wrapper.shipToCountry = case.Ship_To_Country__c;
-
                     Business_Case_Sales_Snapshot__c snapshot = parentToChildMap.get(
                         bcase.Id
                     );
-                    System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->snapshot: '+snapshot);
                     if (snapshot != null) 
                     {
                         wrapper.id = snapshot.Id;
@@ -3052,7 +2135,6 @@ public with sharing class BusinessCaseDashboardController {
                         wrapper.perMachineSales = snapshot.Per_Machine_Sales__c;
                         wrapper.contractMonthsElapsed = snapshot.Contract_Months_Elapsed__c;
                         wrapper.avgReagentSalesPerMonth = snapshot.Avg_Reagent_Sales_Per_Month__c;
-                        // wrapper.performanceStatus = snapshot.Performance_Status__c;
                         wrapper.deficitCostCovered = snapshot.Deficit_Cost_Covered__c;
                         wrapper.marginPercentSnapshot = snapshot.Margin_Percent_Snapshot__c;
                         wrapper.dataQualityScore = snapshot.Data_Quality_Score__c;
@@ -3064,13 +2146,11 @@ public with sharing class BusinessCaseDashboardController {
                         wrapper.avgYtdSales = snapshot.Avg_YTD_Sales_Per_Month__c;
                         wrapper.riskStatus = deriveRiskStatusFromLatestMonthsBulk(
                             bcase.Id,
-                            //snapshot.Snapshot_Month__c,
                             null,
                             bcase,
                             monthsPresentByBc
                         );
                         wrapper.marginTillDate = snapshot.Margin_till_Date__c;
-                        //wrapper.investment = calculateInvestment(snapshot);
 
                         // Formatted fields for display
                         wrapper.formattedSales = formatCurrency(
@@ -3103,7 +2183,6 @@ public with sharing class BusinessCaseDashboardController {
                                     {
                                         wrapper.performanceStatus = 'Behind';
                                     }
-                                    //wrapper.performanceStatus = 'Behind';
                                 } else {
                                     wrapper.performanceStatus = 'No Target Set';
                                 }
@@ -3122,7 +2201,6 @@ public with sharing class BusinessCaseDashboardController {
                                     {
                                         wrapper.performanceStatus = 'Behind';
                                     }
-                                    // wrapper.performanceStatus = 'Behind';
                                 } else {
                                     wrapper.performanceStatus = 'No Target Set';
                                 }
@@ -3130,7 +2208,7 @@ public with sharing class BusinessCaseDashboardController {
                                 wrapper.performanceStatus = 'No Target Set';
                             }
                         }
-                    } 
+                    }
                     else 
                     {
                         if(bcase.Quantity__c != null && String.isNotBlank(bcase.Quantity__c) && String.isNotEmpty(bcase.Quantity__c))
@@ -3172,12 +2250,17 @@ public with sharing class BusinessCaseDashboardController {
                         }
                     }
 
+                    Business_Case_Sales_Snapshot__c lastYearSnap = lastYearSnapshotMap.get(bcase.Id);
+                    wrapper.lastYearYtdSales = lastYearSnap != null ? lastYearSnap.YTD_Sales__c : 0;
+                    Business_Case_Sales_Snapshot__c lastToLastYearSnap = lastToLastYearSnapshotMap.get(bcase.Id);
+                    wrapper.lastToLastYearYtdSales = lastToLastYearSnap != null ? lastToLastYearSnap.YTD_Sales__c : 0;
+
                     Map<Date, Decimal> monthMap = new Map<Date, Decimal>();
                     for (Date m : lastSixMonths) {
                         monthMap.put(m, 0);
                     }
                     salesByMonth.put(bcase.Id, monthMap);
-                    
+
                     wrappers.add(wrapper);
                 }
 
@@ -3205,7 +2288,7 @@ public with sharing class BusinessCaseDashboardController {
                     for (Date m : lastSixMonths) 
                     {
                         Datetime newm = Datetime.newInstance(m, Time.newInstance(0, 0, 0, 0));
-                        String label = newm.format('MMM yyyy').replace(' ', '_'); 
+                        String label = newm.format('MMM yyyy');
                         Decimal value = salesbyMonth.containsKey(wr.businessCaseId)
                             ? salesbyMonth.get(wr.businessCaseId).get(m)
                             : 0;
@@ -3213,98 +2296,11 @@ public with sharing class BusinessCaseDashboardController {
                     }
 
                     wr.monthlySales = mSales;
-                    System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wr.monthlySales: '+wr.monthlySales);
                 }
-                //old code
-                // for (Business_Case_Sales_Snapshot__c snapshot : finalChildren)
-                // {
-                //   SnapshotWrapper wrapper = new SnapshotWrapper();
-
-                //   // Core Business Case information from snapshot
-                //   wrapper.businessCaseId = snapshot.Business_Case__c;
-                //   wrapper.businessCaseName = snapshot.Business_Case_Name__c;
-                //   wrapper.businessCaseStatus = snapshot.Business_Case_Status__c;
-                //   wrapper.customerCode = snapshot.Customer_Code__c;
-                //   wrapper.customerName = snapshot.Customer_Name__c;
-                //   wrapper.vendor = snapshot.Vendor__c;
-                //   wrapper.technology = snapshot.Technology__c;
-                //   wrapper.region = snapshot.Region__c;
-                //   wrapper.materialNumber = snapshot.Material_Number__c;
-                //   wrapper.materialDescription = snapshot.Material_Description__c;
-                //   wrapper.machineStatus = snapshot.Machine_Status__c;
-
-                //   // Customer Address Information from snapshot
-                //   wrapper.customerProvince = snapshot.Customer_Province__c;
-                //   wrapper.customerCity = snapshot.Customer_City__c;
-                //   wrapper.customerAddressLine1 = snapshot.Customer_AddressLine1__c;
-                //   wrapper.customerAddressLine2 = snapshot.Customer_AddressLine2__c;
-                //   wrapper.customerPostalCode = snapshot.Customer_Postal_Code__c;
-                //   wrapper.customerCountry = snapshot.Customer_Country__c;
-
-                //   // Ship To Account Information from snapshot
-                //   wrapper.shipToCustomerNumber = snapshot.Ship_To_Customer_Number__c;
-                //   wrapper.shipToCustomerName = snapshot.Ship_To_Customer_Name__c;
-                //   wrapper.shipToProvince = snapshot.Ship_To_Province__c;
-                //   wrapper.shipToCity = snapshot.Ship_To_City__c;
-                //   wrapper.shipToAddressLine1 = snapshot.Ship_To_AddressLine1__c;
-                //   wrapper.shipToAddressLine2 = snapshot.Ship_To_Address_Line_2__c;
-                //   wrapper.shipToPostalCode = snapshot.Ship_To_Postal_Code__c;
-                //   wrapper.shipToCountry = snapshot.Ship_To_Country__c;
-
-                //   // Sales metrics from snapshot - all data comes from single source
-                //   wrapper.id = snapshot.Id;
-                //   wrapper.totalReagentSales = snapshot.Total_Reagent_Sales__c;
-                //   wrapper.targetSales = snapshot.Target_Sales__c;
-                //   wrapper.ytdSales = snapshot.YTD_Sales__c;
-                //   wrapper.totalReagentSalesTillDate = snapshot.Total_Reagent_Sales_Till_Date__c;
-                //   wrapper.marginOnReagentSale = snapshot.Margin_On_Reagent_Sale__c;
-                //   wrapper.paybackRemaining = snapshot.Payback_Remaining__c;
-                //   wrapper.machineCount = snapshot.Machine_Count__c;
-                //   wrapper.perMachineSales = snapshot.Per_Machine_Sales__c;
-                //   wrapper.contractMonthsElapsed = snapshot.Contract_Months_Elapsed__c;
-                //   wrapper.avgReagentSalesPerMonth = snapshot.Avg_Reagent_Sales_Per_Month__c;
-                //   wrapper.performanceStatus = snapshot.Performance_Status__c;
-                //   wrapper.deficitCostCovered = snapshot.Deficit_Cost_Covered__c;
-                //   wrapper.marginPercentSnapshot = snapshot.Margin_Percent_Snapshot__c;
-                //   wrapper.dataQualityScore = snapshot.Data_Quality_Score__c;
-                //   wrapper.snapshotMonth = snapshot.Snapshot_Month__c?.format();
-                //   wrapper.formattedMonth = formatMonthLabel(snapshot.Snapshot_Month__c);
-                //   //wrapper.investment = calculateInvestment(snapshot);
-                //   wrapper.investment = snapshot.Business_Case__r.Total_Unit_Cost__c;
-
-                //   // Formatted fields for display
-                //   wrapper.formattedSales = formatCurrency(wrapper.totalReagentSales);
-                //   wrapper.formattedTarget = formatCurrency(wrapper.targetSales);
-                //   wrapper.formattedAchievement = formatPercent(
-                //     calculateAchievementPercent(
-                //       wrapper.totalReagentSales,
-                //       wrapper.targetSales
-                //     )
-                //   );
-
-                //   wrappers.add(wrapper);
-                // }
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wrappers size: ' +
-                //     wrappers.size()
-                // );
-                
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->totalInvestment: ' +
-                    totalInvestment
-                );
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wrappers: ' +
-                    wrappers
-                );
-                //Unit_Cost__c  * if(isblank( Quantity__c ),0,value(Quantity__c))
                 return wrappers;
             } 
             else 
             {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->final children is null: '
-                // );
                 List<SnapshotWrapper> wrappers = new List<SnapshotWrapper>();
                 // Process ALL snapshots to create wrapper objects for risk management
 
@@ -3312,45 +2308,42 @@ public with sharing class BusinessCaseDashboardController {
 
                 for (Business_Case__c bcase : activeBusinessCasesObj) 
                 {
-                    System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->bcase: '+bcase);
                     SnapshotWrapper wrapper = new SnapshotWrapper();
                     wrapper.businessCaseId = bcase.Id;
                     wrapper.businessCaseName = bcase.Name;
                     wrapper.businessCaseStatus = bcase.Status__c;
-                    //   wrapper.marginTillDate = marginByBusinessCase.containsKey(bcase.Id)
-                    //                         ? marginByBusinessCase.get(bcase.Id)
-                    //                         : 0;
                     if (bcase.RecordType.Name == 'Master Business Case') {
                         wrapper.customerCode = bcase.Customer_Numbera__c;
                         wrapper.customerName = bcase.Customer_Namea__c;
                         wrapper.vendor = bcase.Vendor__c;
                         wrapper.technology = bcase.Technologyaa__c;
-                        wrapper.region = bcase.Business_Cases__r[0].Region__c;
                         wrapper.materialNumber = bcase.Material_Number__c;
                         wrapper.materialDescription = bcase.Material_Descriptionsa__c;
-                        wrapper.machineStatus = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Status__c;
-                        wrapper.customerAddressLine1 = bcase.Business_Cases__r[0]
-                            .Bill_To_Address_Line_1__c;
-                        wrapper.customerAddressLine2 = bcase.Business_Cases__r[0]
-                            .Bill_To_Address_Line_2__c;
-                        wrapper.customerCity = bcase.Business_Cases__r[0]
-                            .Bill_To_City__c;
-
-                        wrapper.shipToCustomerNumber = bcase.Business_Cases__r[0]
-                            .Ship_To_Customer_Number__c;
-                        wrapper.shipToCustomerName = bcase.Business_Cases__r[0]
-                            .Ship_To_Customer_Name__c;
-                        wrapper.shipToProvince = bcase.Business_Cases__r[0]
-                            .Ship_To_Province__c;
-                        wrapper.shipToCity = bcase.Business_Cases__r[0]
-                            .Ship_To_City__c;
-                        wrapper.shipToAddressLine1 = bcase.Business_Cases__r[0]
-                            .Ship_To_Address_Line_1__c;
-                        wrapper.shipToAddressLine2 = bcase.Business_Cases__r[0]
-                            .Ship_To_Address_Line_2__c;
-                        wrapper.shipToPostalCode = bcase.Business_Cases__r[0]
-                            .Ship_To_Postal_Code__c;
+                        if (bcase.Business_Cases__r != null && !bcase.Business_Cases__r.isEmpty()) {
+                            wrapper.region = bcase.Business_Cases__r[0].Region__c;
+                            wrapper.machineStatus = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Status__c;
+                            wrapper.customerAddressLine1 = bcase.Business_Cases__r[0]
+                                .Bill_To_Address_Line_1__c;
+                            wrapper.customerAddressLine2 = bcase.Business_Cases__r[0]
+                                .Bill_To_Address_Line_2__c;
+                            wrapper.customerCity = bcase.Business_Cases__r[0]
+                                .Bill_To_City__c;
+                            wrapper.shipToCustomerNumber = bcase.Business_Cases__r[0]
+                                .Ship_To_Customer_Number__c;
+                            wrapper.shipToCustomerName = bcase.Business_Cases__r[0]
+                                .Ship_To_Customer_Name__c;
+                            wrapper.shipToProvince = bcase.Business_Cases__r[0]
+                                .Ship_To_Province__c;
+                            wrapper.shipToCity = bcase.Business_Cases__r[0]
+                                .Ship_To_City__c;
+                            wrapper.shipToAddressLine1 = bcase.Business_Cases__r[0]
+                                .Ship_To_Address_Line_1__c;
+                            wrapper.shipToAddressLine2 = bcase.Business_Cases__r[0]
+                                .Ship_To_Address_Line_2__c;
+                            wrapper.shipToPostalCode = bcase.Business_Cases__r[0]
+                                .Ship_To_Postal_Code__c;
+                        }
                         wrapper.monthCommitment = bcase.Sum_of_Monthly_Reagent_Commitment__c;
                         wrapper.investment = (bcase.Sum_of_Unit_Cost__c == null ? 0 : bcase.Sum_of_Unit_Cost__c);
                         totalInvestment += (bcase.Sum_of_Unit_Cost__c == null ? 0 : bcase.Sum_of_Unit_Cost__c);
@@ -3387,7 +2380,6 @@ public with sharing class BusinessCaseDashboardController {
                         }
                         
                     }
-                    // wrapper.shipToCountry = case.Ship_To_Country__c;
 
                     wrapper.riskStatus = deriveRiskStatusFromLatestMonthsBulk(
                         bcase.Id,
@@ -3452,7 +2444,7 @@ public with sharing class BusinessCaseDashboardController {
                     for (Date m : lastSixMonths) 
                     {
                         Datetime newm = Datetime.newInstance(m, Time.newInstance(0, 0, 0, 0));
-                        String label = newm.format('MMM yyyy').replace(' ', '_'); 
+                        String label = newm.format('MMM yyyy');
                         Decimal value = salesbyMonth.containsKey(wr.businessCaseId)
                             ? salesbyMonth.get(wr.businessCaseId).get(m)
                             : 0;
@@ -3460,30 +2452,13 @@ public with sharing class BusinessCaseDashboardController {
                     }
 
                     wr.monthlySales = mSales;
-                    System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wr.monthlySales: '+wr.monthlySales);
                 }
 
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wrappers size: ' +
-                //     wrappers.size()
-                // );
-                // totalInvestment += bcase.Unit_Cost__c;
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->wrappers: ' +
-                //     wrappers
-                // );
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->totalInvestment: ' +
-                    totalInvestment
-                );
-                //Unit_Cost__c  * if(isblank( Quantity__c ),0,value(Quantity__c))
                 return wrappers;
             }
 
-            //return null;
-        } catch (Exception e) 
+        } catch (Exception e)
         {
-            System.debug('>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->Exception: '+e.getMessage()+' | StackTrace: '+e.getStackTraceString()+' | '+e);
             return null;
         }
     }
@@ -3494,7 +2469,6 @@ public with sharing class BusinessCaseDashboardController {
         Business_Case__c bc,
         Map<Id, Set<Date>> monthsPresentByBc
     ) {
-        System.debug('>>>>BusinessCaseDashboardController-->deriveRiskStatusFromLatestMonthsBulk-->businessCaseId: '+businessCaseId);
         // Build month anchors: reference lastMonth as previous calendar month from today
         Date today = Date.today();
         Date firstOfThisMonth = Date.newInstance(
@@ -3509,7 +2483,6 @@ public with sharing class BusinessCaseDashboardController {
         Date m3 = m2.addMonths(-1);
         Date m4 = m3.addMonths(-1);
 
-        //Business_Case__c bc = bcById != null ? bcById.get(businessCaseId) : null;
         Set<Date> monthsPresent;
         if (monthsPresentByBc == null) {
             monthsPresent = new Set<Date>(); // no entry for this BC
@@ -3527,7 +2500,6 @@ public with sharing class BusinessCaseDashboardController {
                 snapshotMonthIfKnown.month(),
                 1
             );
-            System.debug('>>>>BusinessCaseDashboardController-->deriveRiskStatusFromLatestMonthsBulk-->norm: '+norm);
            
             if (norm == m0)
                 return 'Healthy';
@@ -3548,12 +2520,10 @@ public with sharing class BusinessCaseDashboardController {
                     agree.month(),
                     1
                 );
-                System.debug('>>>>BusinessCaseDashboardController-->deriveRiskStatusFromLatestMonthsBulk-->agreeNorm: '+agreeNorm);
                 if (agreeNorm == m0) {
                     return 'Warning';
                 }
             }
-            System.debug('>>>>BusinessCaseDashboardController-->deriveRiskStatusFromLatestMonthsBulk-->monthsPresent empty');
             return 'Critical';
         }
 
@@ -3567,7 +2537,6 @@ public with sharing class BusinessCaseDashboardController {
                 break;
             }
         }
-        System.debug('>>>>BusinessCaseDashboardController-->deriveRiskStatusFromLatestMonthsBulk-->missing:'+missing);
         if (missing == 0)
             return 'Healthy';
         if (missing == 1)
@@ -3620,10 +2589,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c >= ' + formattedDateFrom;
                 }
 
-                System.debug(
-                    'Date From filter applied: Snapshot_Month__c >= ' +
-                    formattedDateFrom
-                );
             }
 
             // Date To Filter - Filter snapshots up to a specific date
@@ -3644,10 +2609,6 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
-                System.debug(
-                    'Date To filter applied: Snapshot_Month__c <= ' +
-                    formattedDateTo
-                );
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {
@@ -3695,10 +2656,6 @@ public with sharing class BusinessCaseDashboardController {
                 BusinessCaseStatus != 'All Business Case Statuses'
             ) {
                 String sbusinesscasestatus = '';
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->BusinessCaseStatus: ' +
-                //     BusinessCaseStatus
-                // );
                 sbusinesscasestatus = BusinessCaseStatus.trim();
 
                 if (String.isBlank(whereBCClause)) {
@@ -3823,15 +2780,6 @@ public with sharing class BusinessCaseDashboardController {
                 ',Ship_To_Customer_Number__c,Monthly_Reagent_Commitment__c,Agreement_Date__c,RecordType.Name  FROM Business_Case__c ' +
                 whereBCClause;
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->whereBCClause: ' +
-            //     whereBCClause
-            // );
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->bcquery: ' +
-            //     bcquery
-            // );
-
             List<Id> activeBusinessCases = new List<Id>();
             List<Business_Case__c> activeBusinessCasesObj = new List<Business_Case__c>();
             for (Business_Case__c bc : Database.query(bcquery)) {
@@ -3839,17 +2787,11 @@ public with sharing class BusinessCaseDashboardController {
                 activeBusinessCasesObj.add(bc);
             }
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->activeBusinessCases: ' +
-            //     activeBusinessCases.size()
-            // );
-
             String bcmasterquery = 'SELECT Id,Name,Status__c,Customer_Number__c,Customer_Name__c,Machine_Installation__r.SAP_Account_No_Ship_To__c,Machine_Installation__r.SAP_Account_No_Bill_To__c';
             bcmasterquery += ',Machine_Installation__r.Diagnostic_Machine__r.Vendor__c,Machine_Installation__r.Diagnostic_Machine__r.Technology__c,Region__c,';
             bcmasterquery += 'Machine_Installation__r.Material_Number__c,Machine_Installation__r.Material_Description__c,Machine_Installation__r.Status__c,';
             bcmasterquery += 'Bill_To_Address_Line_1__c,Bill_To_Address_Line_2__c,Bill_To_City__c,Ship_To_Address_Line_1__c,Ship_To_Address_Line_2__c,Ship_To_City__c,Ship_To_Postal_Code__c,Ship_To_Province__c,Ship_To_Customer_Name__c,Unit_Cost__c,Total_Unit_Cost__c';
             bcmasterquery += ',Ship_To_Customer_Number__c,Monthly_Reagent_Commitment__c,Agreement_Date__c,Customer_Numbera__c,Customer_Namea__c,Sum_of_Monthly_Reagent_Commitment__c,Material_Number__c,Material_Descriptionsa__c,Sum_of_Unit_Cost__c,RecordType.Name   ';
-            // bcmasterquery += ' ,Bill_To_Address_Line_1__c,Bill_To_Address_Line_2__c,Bill_To_City__c,Ship_To_Address_Line_1__c,Ship_To_Address_Line_2__c,Ship_To_City__c,Ship_To_Postal_Code__c,Ship_To_Province__c,Ship_To_Customer_Name__c';
             bcmasterquery += ',(SELECT  Id,Name,Status__c,Account__c,Account__r.Province__c,Account__r.City__c,Account__r.AddressLine_1__c,Account__r.Addess_Line_2__c,Account__r.Postal_Code__c,Account__r.Country_Code__c,Customer_Number__c,';
             bcmasterquery += ' Customer_Name__c,Supplier_Name__c,Technology__c,Region__c,SAP_Material_Number__c,Machine_Type__c,Quantity__c,Monthly_Reagent_Commitment__c,Unit_Cost__c,Margin_Percent__c,Agreement_Date__c,Asset_Number__c,';
             bcmasterquery += ' Asset_Number__r.Status__c,Machine_Installation__r.Ship_To_Account__c,Machine_Installation__r.Ship_To_Account__r.SAP_Customer_Number__c,Machine_Installation__r.Ship_To_Account__r.Name,Machine_Installation__r.Ship_To_Account__r.Province__c,';
@@ -3861,24 +2803,10 @@ public with sharing class BusinessCaseDashboardController {
             bcmasterquery += ' FROM Business_Cases__r WHERE RecordType.Name = \'Individual Business Case\' and (Status__c like \'%Active%\' or Status__c like \'%Revised%\' or Status__c like \'%New%\') LIMIT 1 )';
             bcmasterquery += ' FROM Business_Case__c ' + whereMasterClause;
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->whereMasterClause: ' +
-            //     whereMasterClause
-            // );
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->bcmasterquery: ' +
-            //     bcmasterquery
-            // );
-
             for (Business_Case__c bc : Database.query(bcmasterquery)) {
                 activeBusinessCases.add(bc.Id);
                 activeBusinessCasesObj.add(bc);
             }
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->activebusinesscases: ' +
-            //     activeBusinessCases.size()
-            // );
 
             Map<Id, DateTime> parentToLatestChild = new Map<Id, DateTime>();
 
@@ -3895,15 +2823,6 @@ public with sharing class BusinessCaseDashboardController {
                     (DateTime) ar.get('latestDate')
                 );
             }
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->parent child keySet: ' +
-            //     parentToLatestChild.keySet()
-            // );
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->whereBCSClause: ' +
-            //     whereBCSClause
-            // );
 
             List<String> idList = new List<String>();
             for (Id value : activeBusinessCases) {
@@ -3935,43 +2854,13 @@ public with sharing class BusinessCaseDashboardController {
                 ' and Processing_Status__c = \'Completed\' ';
             bscquery += ' ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC ';
 
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->bscquery: ' +
-            //     bscquery
-            // );
-
             List<Business_Case_Sales_Snapshot__c> finalChildren = new List<Business_Case_Sales_Snapshot__c>();
 
             finalChildren = Database.query(bscquery);
-            System.debug(
-                '🔍 GetDetailedSnapshotDataUpdated - Query returned ' +
-                    finalChildren.size() +
-                    ' snapshots'
-            );
-            System.debug(
-                '🔍 GetDetailedSnapshotDataUpdated - whereBCSClause: ' +
-                whereBCSClause
-            );
-
-            
-
-            // System.debug(
-            //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->latestchildren size: ' +
-            //     latestChildren.size()
-            // );
 
             Map<Id,Business_Case__c> activeBusinessCasesMap = new Map<Id,Business_Case__c>(activeBusinessCasesObj);
 
             if (finalChildren.size() > 0) {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->final children size: ' +
-                //     finalChildren.size()
-                // );
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->final children : ' +
-                //     finalChildren
-                // );
-                
                 List<DetailedSnapshotWrapper> wrappers = new List<DetailedSnapshotWrapper>();
                 // Process ALL snapshots to create wrapper objects for risk management
                 Date today = Date.today();
@@ -3981,7 +2870,6 @@ public with sharing class BusinessCaseDashboardController {
                     1
                 );
                 Date lastMonth = firstOfThisMonth.addMonths(-1);
-                // Date lastMonth = firstOfThisMonth;
                 Date m0 = Date.newInstance(
                     lastMonth.year(),
                     lastMonth.month(),
@@ -3997,19 +2885,20 @@ public with sharing class BusinessCaseDashboardController {
                     Business_Case__c bcase = activeBusinessCasesMap.get(snapshot.Business_Case__c);
                     wrapper.businessCaseId = bcase.Id;
                     wrapper.businessCaseName = bcase.Name;
-                    // wrapper.businessCaseStatus = bcase.Status__c;
                     if (bcase.RecordType.Name == 'Master Business Case') {
                         wrapper.customerCode = bcase.Customer_Numbera__c;
                         wrapper.customerName = bcase.Customer_Namea__c;
-                        wrapper.supplier = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Diagnostic_Machine__r.Vendor__c;
-                        wrapper.technology = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Diagnostic_Machine__r.Technology__c;
-                        wrapper.region = bcase.Business_Cases__r[0].Region__c;
                         wrapper.materialNumber = bcase.Material_Number__c;
                         wrapper.materialDescription = bcase.Material_Descriptionsa__c;
                         wrapper.monthlyCommitment = bcase.Sum_of_Monthly_Reagent_Commitment__c;
-                        
+                        if (bcase.Business_Cases__r != null && !bcase.Business_Cases__r.isEmpty()) {
+                            wrapper.supplier = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Diagnostic_Machine__r.Vendor__c;
+                            wrapper.technology = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Diagnostic_Machine__r.Technology__c;
+                            wrapper.region = bcase.Business_Cases__r[0].Region__c;
+                        }
+
                     } else {
                         wrapper.customerCode = bcase.Customer_Number__c;
                         wrapper.customerName = bcase.Customer_Name__c;
@@ -4032,19 +2921,8 @@ public with sharing class BusinessCaseDashboardController {
                     wrappers.add(wrapper);
                 }
 
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->wrappers size: ' +
-                    wrappers.size()
-                );
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->wrappers: ' +
-                    wrappers
-                );
                 return wrappers;
             } else {
-                // System.debug(
-                //     '>>>>BusinessCaseDashboardController-->GetSnapshotDataUpdated-->final children is null: '
-                // );
                 List<DetailedSnapshotWrapper> wrappers = new List<DetailedSnapshotWrapper>();
                 // Process ALL snapshots to create wrapper objects for risk management
 
@@ -4055,20 +2933,20 @@ public with sharing class BusinessCaseDashboardController {
                     Business_Case__c bcase = activeBusinessCasesMap.get(snapshot.Business_Case__c);
                     wrapper.businessCaseId = bcase.Id;
                     wrapper.businessCaseName = bcase.Name;
-                    // wrapper.businessCaseStatus = bcase.Status__c;
                     if (bcase.RecordType.Name == 'Master Business Case') {
                         wrapper.customerCode = bcase.Customer_Numbera__c;
                         wrapper.customerName = bcase.Customer_Namea__c;
-                        wrapper.supplier = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Diagnostic_Machine__r.Vendor__c;
-                        wrapper.technology = bcase.Business_Cases__r[0]
-                            .Machine_Installation__r.Diagnostic_Machine__r.Technology__c;
-                        wrapper.region = bcase.Business_Cases__r[0].Region__c;
                         wrapper.materialNumber = bcase.Material_Number__c;
                         wrapper.materialDescription = bcase.Material_Descriptionsa__c;
-                        
                         wrapper.monthlyCommitment = bcase.Sum_of_Monthly_Reagent_Commitment__c;
-                        
+                        if (bcase.Business_Cases__r != null && !bcase.Business_Cases__r.isEmpty()) {
+                            wrapper.supplier = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Diagnostic_Machine__r.Vendor__c;
+                            wrapper.technology = bcase.Business_Cases__r[0]
+                                .Machine_Installation__r.Diagnostic_Machine__r.Technology__c;
+                            wrapper.region = bcase.Business_Cases__r[0].Region__c;
+                        }
+
                     } else {
                         wrapper.customerCode = bcase.Customer_Number__c;
                         wrapper.customerName = bcase.Customer_Name__c;
@@ -4077,29 +2955,18 @@ public with sharing class BusinessCaseDashboardController {
                         wrapper.region = bcase.Region__c;
                         wrapper.materialNumber = bcase.Machine_Installation__r.Material_Number__c;
                         wrapper.materialDescription = bcase.Machine_Installation__r.Material_Description__c;
-                        
+
                         wrapper.monthlyCommitment = bcase.Monthly_Reagent_Commitment__c;
                         
                     }
-                    // wrapper.shipToCountry = case.Ship_To_Country__c;
 
                     wrappers.add(wrapper);
                 }
 
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->wrappers size: ' +
-                    wrappers.size()
-                );
-                System.debug(
-                    '>>>>BusinessCaseDashboardController-->GetDetailedSnapshotDataUpdated-->wrappers: ' +
-                    wrappers
-                );
-                //Unit_Cost__c  * if(isblank( Quantity__c ),0,value(Quantity__c))
                 return wrappers;
             }
 
-            //return null;
-        } catch (Exception e) 
+        } catch (Exception e)
         {
             return null;
         }
@@ -4211,6 +3078,10 @@ public with sharing class BusinessCaseDashboardController {
         public Decimal ytdSales { get; set; }
         @AuraEnabled
         public Decimal avgYtdSales{get;set;}
+        @AuraEnabled
+        public Decimal lastYearYtdSales { get; set; }
+        @AuraEnabled
+        public Decimal lastToLastYearYtdSales { get; set; }
         @AuraEnabled
         public Decimal totalReagentSalesTillDate { get; set; }
         @AuraEnabled

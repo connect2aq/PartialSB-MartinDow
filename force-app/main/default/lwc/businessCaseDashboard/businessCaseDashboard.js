@@ -28,7 +28,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   // State Management
   @track isLoading = true;
   @track error = null;
-  @track activeTab = "commitment";
+  @track activeTab = "investment";
   @track showCustomerModal = false;
   @track selectedCustomerData = null;
   @track filtersLoaded = false;
@@ -165,7 +165,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   // Pagination
   @track currentPage = 1;
-  @track pageSize = 12;
+  @track pageSize = 50;
   @track totalRecords = 0;
    @track detailedCurrentPage = 1;
   @track detailedPageSize = 12;
@@ -295,6 +295,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   get hasSelectedCustomers() {
     return this.selectedCustomersCount > 0;
+  }
+
+  get selectedCustomerNames() {
+    if (!this.selectedCustomers || this.selectedCustomers.length === 0) return '';
+    return (this._customerOptions || [])
+      .filter(opt => opt.value && this.selectedCustomers.includes(opt.value))
+      .map(opt => opt.label)
+      .join(', ');
   }
 
   // Check if any client-side filters are active (require calculated data instead of wire data)
@@ -1559,7 +1567,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     this.regionalInvestmentData = this.aggregateByRegion();
     this.supplierInvestmentData = this.aggregateBySupplier();
     // this.customerInvestmentData = this.aggregateByCustomer();
-    this.customerInvestmentData = this.aggregateByCustomerBusinessCases();
+    this.customerInvestmentData = this.aggregateByCustomerBusinessCases().map((r, i) => ({ ...r, rowNumber: i + 1 }));
     this.regionalCommitmentData = this.aggregateCommitmentByRegion();
     this.supplierCommitmentData = this.aggregateCommitmentBySupplier();
     // this.customerCommitmentData = this.aggregateByCustomer();
@@ -1667,6 +1675,49 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+  }
+
+  exportPerformanceSummaryToExcel() {
+    const buildSheet = (columns, data) => {
+      const safeCols = (columns || []).filter(c => c.fieldName && c.label);
+      const headerRow = safeCols.map(c =>
+        `<Cell><Data ss:Type="String">${c.label.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</Data></Cell>`
+      ).join('');
+      const dataRows = (data || []).map(row => {
+        const cells = safeCols.map(c => {
+          let v = row[c.fieldName];
+          if (v === null || v === undefined) v = '';
+          v = String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+          return `<Cell><Data ss:Type="String">${v}</Data></Cell>`;
+        }).join('');
+        return `<Row>${cells}</Row>`;
+      }).join('');
+      return `<Table><Row>${headerRow}</Row>${dataRows}</Table>`;
+    };
+
+    const sheets = [
+      { name: 'Regional',  cols: this.regionalCommitmentColumns,  data: this.regionalCommitmentData  },
+      { name: 'Supplier',  cols: this.supplierCommitmentColumns,  data: this.supplierCommitmentData  },
+      { name: 'Customer',  cols: this.customerCommitmentColumns,  data: this.customerCommitmentData  }
+    ];
+
+    const worksheets = sheets.map(s =>
+      `<Worksheet ss:Name="${s.name}">${buildSheet(s.cols, s.data)}</Worksheet>`
+    ).join('');
+
+    const xml = `<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>` +
+      `<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"` +
+      ` xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">` +
+      worksheets + `</Workbook>`;
+
+    const dataUri = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(xml);
+    const link = document.createElement('a');
+    link.href = dataUri;
+    link.target = '_self';
+    link.download = `PerformanceSummary_${new Date().toISOString().slice(0,10)}.xlsx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   calculateFinancialOverview() {
@@ -1858,6 +1909,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           latestSnapshotMonth: null,
           ytdsales:0,
           avgYtdSales:0,
+          lastYearYtdsales:0,
+          lastToLastYearYtdsales:0,
           lastSixMonthlySales:{}
         });
       }
@@ -1890,6 +1943,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       console.log('>>>>aggregateByRegion-->grandTotalInvestment-->regionData.marginOnSales -->'+JSON.stringify(regionData.marginOnSales));
       regionData.ytdsales += record.ytdSales;
       regionData.avgYtdSales += record.avgYtdSales;
+      regionData.lastYearYtdsales += record.lastYearYtdSales || 0;
+      regionData.lastToLastYearYtdsales += record.lastToLastYearYtdSales || 0;
       // regionData.lastSixMonthlySales = record.monthlySales;
       if (record.monthlySales && typeof record.monthlySales === 'object') 
       {
@@ -1960,15 +2015,22 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (region.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(region.lastSixMonthlySales)) 
           {
-            const fieldKey = month; // e.g. "Oct_2025"
-            monthSalesFlat[fieldKey] = this.formatCurrency(value) ;
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
+
+        const lastMonthAvgRaw = (() => {
+          const vals = region.lastSixMonthlySales
+            ? Object.values(region.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
+            : [];
+          return vals.length > 0 ? vals.reduce((s, v) => s + Number(v), 0) / vals.length : 0;
+        })();
 
         var finalrecord = {
           ...region,
           ...monthSalesFlat,
-          machines: region.totalMachineCount, // Use the summed machine count
+          machines: region.totalMachineCount,
           formattedInvestment: this.formatCurrency(region.investment),
           formattedTotalSales: this.formatCurrency(region.totalSales),
           formattedPerMachineSales: this.formatCurrency(
@@ -1978,7 +2040,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           ),
           formattedMargin: this.formatCurrency(region.marginOnSales),
           formattedYtdSales: this.formatCurrency(region.ytdsales),
-          formattedAvgYtdSales: this.formatCurrency(region.avgYtdSales),
+          formattedLastYearYtdSales: this.formatCurrency(region.lastYearYtdsales),
+          formattedLastToLastYearYtdSales: this.formatCurrency(region.lastToLastYearYtdsales),
           costRecoveryPercent: this.formatPercent(
             this.safeCalculatePercent(region.totalSales, region.investment)
           ),
@@ -1995,7 +2058,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           formattedCommitment: this.formatCurrency(region.commitmentPerMonth),
           formattedAvgSales: this.formatCurrency(region.avgSalesPerMonth),
           performanceStatus: performanceStatus,
-          statusClass: this.getStatusClass(performanceStatus)
+          statusClass: this.getStatusClass(performanceStatus),
+          lastMonthAvg: this.formatCurrency(lastMonthAvgRaw),
+          lastMonthAvgCommitPercent: this.formatPercent(
+            this.safeCalculatePercent(lastMonthAvgRaw, region.commitmentPerMonth)
+          )
         };
         console.log('>>>>aggregateByRegion-->final record-->'+JSON.stringify(finalrecord));
         return finalrecord;
@@ -2020,6 +2087,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       marginOnSales: 0,
       ytdsales : 0,
       avgYtdSales:0,
+      lastYearYtdsales: 0,
+      lastToLastYearYtdsales: 0,
+      commitmentPerMonth: 0,
       lastSixMonthlySales: {},
       rowClass: "slds-text-title_bold slds-theme_shade"
     };
@@ -2034,6 +2104,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       grandTotal.marginOnSales += region.marginOnSales || 0;
       grandTotal.ytdsales += region.ytdsales || 0;
       grandTotal.avgYtdSales += region.avgYtdSales || 0;
+      grandTotal.lastYearYtdsales += region.lastYearYtdsales || 0;
+      grandTotal.lastToLastYearYtdsales += region.lastToLastYearYtdsales || 0;
+      grandTotal.commitmentPerMonth += region.commitmentPerMonth || 0;
 
       if (region.lastSixMonthlySales) 
       {
@@ -2046,7 +2119,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       }
     });
 
-    const totalrecord = 
+    const gtRegVals = Object.values(grandTotal.lastSixMonthlySales).filter(v => v !== null && !isNaN(v));
+    const gtRegLastMonthAvgRaw = gtRegVals.length > 0 ? gtRegVals.reduce((s, v) => s + Number(v), 0) / gtRegVals.length : 0;
+
+    const totalrecord =
       {
         ...grandTotal,
         machines: grandTotal.totalMachineCount,
@@ -2054,14 +2130,19 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         formattedTotalSales: this.formatCurrency(grandTotal.totalSales),
         formattedMargin: this.formatCurrency(grandTotal.marginOnSales),
         formattedYtdSales : this.formatCurrency(grandTotal.ytdsales),
-        formattedAvgYtdSales : this.formatCurrency(grandTotal.avgYtdSales),
+        formattedLastYearYtdSales: this.formatCurrency(grandTotal.lastYearYtdsales),
+        formattedLastToLastYearYtdSales: this.formatCurrency(grandTotal.lastToLastYearYtdsales),
         costRecoveryPercent: this.formatPercent(
           this.safeCalculatePercent(
             grandTotal.totalSales,
             grandTotal.investment
           )
         ),
-        investmentSharePercent: "100.00%"
+        investmentSharePercent: "100.00%",
+        lastMonthAvg: this.formatCurrency(gtRegLastMonthAvgRaw),
+        lastMonthAvgCommitPercent: this.formatPercent(
+          this.safeCalculatePercent(gtRegLastMonthAvgRaw, grandTotal.commitmentPerMonth)
+        )
       }
     ;
 
@@ -2102,11 +2183,13 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           latestSnapshotMonth: null,
           ytdsales:0,
           avgYtdSales:0,
+          lastYearYtdsales:0,
+          lastToLastYearYtdsales:0,
           lastSixMonthlySales:{}
         });
       }
 
-      
+
 
       const supplierData = supplierMap.get(supplier);
 
@@ -2138,8 +2221,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       //     record.vendor
       // );
       supplierData.marginOnSales += record.marginTillDate || 0;
-       supplierData.ytdsales += record.ytdSales;
+      supplierData.ytdsales += record.ytdSales;
       supplierData.avgYtdSales += record.avgYtdSales;
+      supplierData.lastYearYtdsales += record.lastYearYtdSales || 0;
+      supplierData.lastToLastYearYtdsales += record.lastToLastYearYtdSales || 0;
       supplierData.lastSixMonthlySales = record.monthlySales;
       // Track monthly targets and sales to calculate proper averages
       const monthKey = record.snapshotMonth || "Unknown";
@@ -2186,15 +2271,22 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (supplier.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(supplier.lastSixMonthlySales)) 
           {
-            const fieldKey = month; // e.g. "Oct_2025"
-            monthSalesFlat[fieldKey] = this.formatCurrency(value) ;
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
+
+        const supLastMonthAvgRaw = (() => {
+          const vals = supplier.lastSixMonthlySales
+            ? Object.values(supplier.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
+            : [];
+          return vals.length > 0 ? vals.reduce((s, v) => s + Number(v), 0) / vals.length : 0;
+        })();
 
         var finalrecord = {
           ...supplier,
           ...monthSalesFlat,
-          machines: supplier.totalMachineCount, // Use the summed machine count
+          machines: supplier.totalMachineCount,
           formattedInvestment: this.formatCurrency(supplier.investment),
           formattedTotalSales: this.formatCurrency(supplier.totalSales),
           formattedPerMachineSales: this.formatCurrency(
@@ -2204,7 +2296,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           ),
           formattedMargin: this.formatCurrency(supplier.marginOnSales),
           formattedYtdSales: this.formatCurrency(supplier.ytdsales),
-          formattedAvgYtdSales: this.formatCurrency(supplier.avgYtdSales),
+          formattedLastYearYtdSales: this.formatCurrency(supplier.lastYearYtdsales),
+          formattedLastToLastYearYtdSales: this.formatCurrency(supplier.lastToLastYearYtdsales),
           costRecoveryPercent: this.formatPercent(
             this.safeCalculatePercent(supplier.totalSales, supplier.investment)
           ),
@@ -2221,7 +2314,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           formattedCommitment: this.formatCurrency(supplier.commitmentPerMonth),
           formattedAvgSales: this.formatCurrency(supplier.avgSalesPerMonth),
           performanceStatus: performanceStatus,
-          statusClass: this.getStatusClass(performanceStatus)
+          statusClass: this.getStatusClass(performanceStatus),
+          lastMonthAvg: this.formatCurrency(supLastMonthAvgRaw),
+          lastMonthAvgCommitPercent: this.formatPercent(
+            this.safeCalculatePercent(supLastMonthAvgRaw, supplier.commitmentPerMonth)
+          )
         };
 
 
@@ -2244,6 +2341,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       marginOnSales: 0,
       ytdsales : 0,
       avgYtdSales:0,
+      lastYearYtdsales: 0,
+      lastToLastYearYtdsales: 0,
+      commitmentPerMonth: 0,
       lastSixMonthlySales: {},
       rowClass: "slds-text-title_bold slds-theme_shade"
     };
@@ -2255,6 +2355,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       grandTotal.marginOnSales += supplier.marginOnSales || 0;
       grandTotal.ytdsales += supplier.ytdsales || 0;
       grandTotal.avgYtdSales += supplier.avgYtdSales || 0;
+      grandTotal.lastYearYtdsales += supplier.lastYearYtdsales || 0;
+      grandTotal.lastToLastYearYtdsales += supplier.lastToLastYearYtdsales || 0;
+      grandTotal.commitmentPerMonth += supplier.commitmentPerMonth || 0;
 
       if (supplier.lastSixMonthlySales) 
       {
@@ -2267,7 +2370,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       }
     });
 
-    const totalrecord = 
+    const gtSupVals = Object.values(grandTotal.lastSixMonthlySales).filter(v => v !== null && !isNaN(v));
+    const gtSupLastMonthAvgRaw = gtSupVals.length > 0 ? gtSupVals.reduce((s, v) => s + Number(v), 0) / gtSupVals.length : 0;
+
+    const totalrecord =
       {
         ...grandTotal,
         machines: grandTotal.totalMachineCount,
@@ -2280,11 +2386,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
             grandTotal.investment
           )
         ),
-        investmentSharePercent: "100.00%"
-        ,
+        investmentSharePercent: "100.00%",
         formattedYtdSales : this.formatCurrency(grandTotal.ytdsales),
-        formattedAvgYtdSales : this.formatCurrency(grandTotal.avgYtdSales)
-        
+        formattedLastYearYtdSales: this.formatCurrency(grandTotal.lastYearYtdsales),
+        formattedLastToLastYearYtdSales: this.formatCurrency(grandTotal.lastToLastYearYtdsales),
+        lastMonthAvg: this.formatCurrency(gtSupLastMonthAvgRaw),
+        lastMonthAvgCommitPercent: this.formatPercent(
+          this.safeCalculatePercent(gtSupLastMonthAvgRaw, grandTotal.commitmentPerMonth)
+        )
       }
     ;
 
@@ -2483,14 +2592,19 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       const monthSalesFlat = {};
       if (region.lastSixMonthlySales) {
-        for (const [month, value] of Object.entries(region.lastSixMonthlySales)) 
+        for (const [month, value] of Object.entries(region.lastSixMonthlySales))
         {
-          const fieldKey = month; // e.g. "Oct_2025"
-          monthSalesFlat[fieldKey] = this.formatCurrency(value) ;
+          const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+          monthSalesFlat[fieldKey] = this.formatCurrency(value);
         }
       }
-	  
-	  
+
+      const monthlySalesValues = region.lastSixMonthlySales
+        ? Object.values(region.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
+        : [];
+      const lastMonthAvgValue = monthlySalesValues.length > 0
+        ? monthlySalesValues.reduce((sum, v) => sum + Number(v), 0) / monthlySalesValues.length
+        : 0;
 
       console.log('>>>>businessCaseDashboard-->aggregateCommitmentByRegion-->monthSalesFlat:  '+JSON.stringify(monthSalesFlat));
 
@@ -2522,10 +2636,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
          // allaveragesalespermonthsum
         ),
         allAvgSalesPerMonth : allaveragesalespermonthsum,
-        totalCommitment: region.totalCommitment
+        totalCommitment: region.totalCommitment,
+        lastMonthAvg: this.formatCurrency(lastMonthAvgValue)
         // performanceStatus: performanceStatus,
         // statusClass: this.getStatusClass(performanceStatus)
-        
+
       };
 
       console.log('>>>>businessCaseDashboard-->aggregateCommitmentByRegion-->result:  '+JSON.stringify(result));
@@ -2657,10 +2772,17 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         )
       };
 
-    for (const [monthLabel, value] of Object.entries(grandTotal.lastSixMonthlySales)) 
+    for (const [monthLabel, value] of Object.entries(grandTotal.lastSixMonthlySales))
     {
       totalrecord[monthLabel] = this.formatCurrency(value || 0);
     }
+
+    const gtMonthlySalesValues = Object.values(grandTotal.lastSixMonthlySales).filter(v => v !== null && !isNaN(v));
+    totalrecord.lastMonthAvg = this.formatCurrency(
+      gtMonthlySalesValues.length > 0
+        ? gtMonthlySalesValues.reduce((sum, v) => sum + Number(v), 0) / gtMonthlySalesValues.length
+        : 0
+    );
 
     console.log('>>>>businessCaseDashboard-->calculateCommitmentRegionGrandTotal-->totalrecord: '+JSON.stringify(totalrecord));
 
@@ -2799,12 +2921,19 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (supplier.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(supplier.lastSixMonthlySales)) 
           {
-            const fieldKey = month; // e.g. "Oct_2025"
-            monthSalesFlat[fieldKey] = this.formatCurrency(value) ;
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
 
         const supplierachievepercent = (supplier.avgMonthlySalesPerMonth / avgCommitmentPerMonth);
+
+        const supplierMonthVals = supplier.lastSixMonthlySales
+          ? Object.values(supplier.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
+          : [];
+        const supplierLastMonthAvg = supplierMonthVals.length > 0
+          ? supplierMonthVals.reduce((s, v) => s + Number(v), 0) / supplierMonthVals.length
+          : 0;
 
         return {
           supplier: supplier.supplier,
@@ -2829,8 +2958,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           performanceStatus: performanceStatus,
           statusClass: this.getStatusClass(performanceStatus),
           monthlycommitment: supplier.monthlycommitment,
+          lastMonthAvg: this.formatCurrency(supplierLastMonthAvg),
           ...monthSalesFlat
-          
         };
       })
       .concat(
@@ -2933,6 +3062,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     for (const [monthLabel, value] of Object.entries(grandTotal.lastSixMonthlySales)) {
       totalrecord[monthLabel] = this.formatCurrency(value || 0);
     }
+
+    const gtCSupVals = Object.values(grandTotal.lastSixMonthlySales).filter(v => v !== null && !isNaN(v));
+    totalrecord.lastMonthAvg = this.formatCurrency(
+      gtCSupVals.length > 0 ? gtCSupVals.reduce((s, v) => s + Number(v), 0) / gtCSupVals.length : 0
+    );
 
     return [totalrecord];
 
@@ -3037,19 +3171,20 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       //   ">>>>BusinessCaseDashboard.js-->aggregateByCustomer-->final customerData: " +
       //     JSON.stringify(customerData)
       // );
-      //old code
-      // Only count each business case once for machine count and investment
+      // Only count each business case once for machine count
       if (record.businessCaseId && record.machineCount > 0) {
         if (!customerData.businessCases.has(record.businessCaseId)) {
           customerData.businessCases.add(record.businessCaseId);
           customerData.totalMachineCount += record.machineCount || 0;
+        }
+      }
 
-          // Track unique investment per business case to avoid double counting
-          const investmentKey = `${record.businessCaseId}`;
-          if (!customerData.uniqueInvestments.has(investmentKey)) {
-            customerData.uniqueInvestments.add(investmentKey);
-            customerData.investment += record.investment || 0;
-          }
+      // Track investment per unique business case — independent of machineCount
+      if (record.businessCaseId) {
+        const investmentKey = `${record.businessCaseId}`;
+        if (!customerData.uniqueInvestments.has(investmentKey)) {
+          customerData.uniqueInvestments.add(investmentKey);
+          customerData.investment += record.investment || 0;
         }
       }
 
@@ -3246,6 +3381,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           marginOnSales: 0,
           commitmentPerMonth: 0,
           avgSalesPerMonth: 0,
+          ytdsales: 0,
+          lastYearYtdsales: 0,
+          lastToLastYearYtdsales: 0,
+          lastSixMonthlySales: {},
           uniqueInvestments: new Set(), // Track unique investments per business case
           monthlyTargets: new Map(), // Track targets per month
           monthlySales: new Map(), // Track sales per month
@@ -3330,19 +3469,20 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       //   ">>>>BusinessCaseDashboard.js-->aggregateByCustomer-->final customerData: " +
       //     JSON.stringify(customerData)
       // );
-      //old code
-      // Only count each business case once for machine count and investment
+      // Only count each business case once for machine count
       if (record.businessCaseId && record.machineCount > 0) {
         if (!customerData.businessCases.has(record.businessCaseId)) {
           customerData.businessCases.add(record.businessCaseId);
           customerData.totalMachineCount += record.machineCount || 0;
+        }
+      }
 
-          // Track unique investment per business case to avoid double counting
-          const investmentKey = `${record.businessCaseId}`;
-          if (!customerData.uniqueInvestments.has(investmentKey)) {
-            customerData.uniqueInvestments.add(investmentKey);
-            customerData.investment += record.investment || 0;
-          }
+      // Track investment per unique business case — independent of machineCount
+      if (record.businessCaseId) {
+        const investmentKey = `${record.businessCaseId}`;
+        if (!customerData.uniqueInvestments.has(investmentKey)) {
+          customerData.uniqueInvestments.add(investmentKey);
+          customerData.investment += record.investment || 0;
         }
       }
 
@@ -3350,6 +3490,21 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       // Use totalReagentSalesTillDate for cumulative sales from contract start (not monthly)
       customerData.totalSales += record.totalReagentSalesTillDate || 0;
       customerData.marginOnSales += record.marginTillDate || 0;
+      customerData.ytdsales += record.ytdSales || 0;
+      customerData.lastYearYtdsales += record.lastYearYtdSales || 0;
+      customerData.lastToLastYearYtdsales += record.lastToLastYearYtdSales || 0;
+
+      if (record.monthlySales && typeof record.monthlySales === 'object') {
+        Object.entries(record.monthlySales).forEach(([month, value]) => {
+          const numericValue = this.safeParseNumber(value);
+          if (!isNaN(numericValue)) {
+            if (!customerData.lastSixMonthlySales[month]) {
+              customerData.lastSixMonthlySales[month] = 0;
+            }
+            customerData.lastSixMonthlySales[month] += numericValue;
+          }
+        });
+      }
 
       // Track monthly targets and sales to calculate proper averages
       const monthKey = record.snapshotMonth || "Unknown";
@@ -3372,7 +3527,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       }
     });
 
-    return Array.from(customerMap.values()).map((customer) => {
+    return Array.from(customerMap.values())
+      .sort((a, b) => {
+        const codeA = (a.customerCode || '').toString();
+        const codeB = (b.customerCode || '').toString();
+        if (codeA !== codeB) return codeA.localeCompare(codeB);
+        return (a.vendor || '').localeCompare(b.vendor || '');
+      })
+      .map((customer) => {
       //    console.log('>>>>BusinessCaseDashboard.js-->aggregateByCustomer-->customer map customer: '+JSON.stringify(customer));
       // const targetValues = Array.from(customer.monthlyTargets.values());
       // customer.commitmentPerMonth =
@@ -3469,13 +3631,24 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         };
       }
 
+      const custLastMonthAvgRaw = (() => {
+        const vals = customer.lastSixMonthlySales
+          ? Object.values(customer.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
+          : [];
+        return vals.length > 0 ? vals.reduce((s, v) => s + Number(v), 0) / vals.length : 0;
+      })();
+
+      const monthSalesFlat = {};
+      if (customer.lastSixMonthlySales) {
+        for (const [month, value] of Object.entries(customer.lastSixMonthlySales)) {
+          monthSalesFlat[month.replace(' ', '_')] = this.formatCurrency(value);
+        }
+      }
+
       return {
         ...customer,
-        // businessCasesLinks: customer.businessCasesDetails.map((bc, idx, arr) => ({
-        //   ...bc,
-        //   isNotLast: idx < arr.length - 1
-        // })),
-        machines: customer.totalMachineCount, // Use the summed machine count
+        ...monthSalesFlat,
+        machines: customer.totalMachineCount,
         formattedInvestment: this.formatCurrency(customer.investment),
         formattedTotalSales: this.formatCurrency(customer.totalSales),
         formattedPerMachineSales: this.formatCurrency(
@@ -3484,6 +3657,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
             : 0
         ),
         formattedMargin: this.formatCurrency(customer.marginOnSales),
+        formattedYtdSales: this.formatCurrency(customer.ytdsales),
+        formattedLastYearYtdSales: this.formatCurrency(customer.lastYearYtdsales),
+        formattedLastToLastYearYtdSales: this.formatCurrency(customer.lastToLastYearYtdsales),
         costRecoveryPercent: this.formatPercent(
           this.safeCalculatePercent(customer.totalSales, customer.investment)
         ),
@@ -3498,6 +3674,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         ),
         formattedCommitment: this.formatCurrency(customer.commitmentPerMonth),
         formattedAvgSales: this.formatCurrency(customer.avgSalesPerMonth),
+        lastMonthAvg: this.formatCurrency(custLastMonthAvgRaw),
+        lastMonthAvgCommitPercent: this.formatPercent(
+          this.safeCalculatePercent(custLastMonthAvgRaw, customer.commitmentPerMonth)
+        ),
         performanceStatus: performanceStatus,
         // Risk Management Integration
         riskLevel: customerRiskData.riskLevel,
@@ -4727,8 +4907,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   }
 
   // Data table columns
-  get regionalInvestmentColumns() 
+  get regionalInvestmentColumns()
   {
+    const currentYear = new Date().getFullYear();
 
     const baseColumns = [
       {
@@ -4750,22 +4931,32 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
       {
-        label: "Total Reagent Sales Till Date",
+        label: "Total Sales",
         fieldName: "formattedTotalSales",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
-      //  formattedYtdSales: this.formatCurrency(region.ytdsales),
-          // formattedAvgYtdSales: this.formatCurrency(region.avgYtdSales),
       {
-        label: "YTD Sales",
-        fieldName: "formattedYtdSales",
+        label: "Monthly Commitment",
+        fieldName: "formattedCommitment",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
-       {
-        label: "Avg YTD Sales",
-        fieldName: "formattedAvgYtdSales",
+      {
+        label: `${currentYear - 2} YTD`,
+        fieldName: "formattedLastToLastYearYtdSales",
+        type: "text",
+        cellAttributes: { class: { fieldName: "rowClass" } }
+      },
+      {
+        label: `${currentYear - 1} YTD`,
+        fieldName: "formattedLastYearYtdSales",
+        type: "text",
+        cellAttributes: { class: { fieldName: "rowClass" } }
+      },
+      {
+        label: `${currentYear} YTD`,
+        fieldName: "formattedYtdSales",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
@@ -4775,12 +4966,6 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
-      // {
-      //   label: "Cost Recovery",
-      //   fieldName: "costRecoveryPercent",
-      //   type: "text",
-      //   cellAttributes: { class: { fieldName: "rowClass" } }
-      // },
       {
         label: "Investment Share",
         fieldName: "investmentSharePercent",
@@ -4789,31 +4974,43 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       }
     ];
 
-    
+
     console.log('regionalInvestmentColumns-->snapshotData: '+this.snapshotData.length);
 
     console.log('regionalInvestmentColumns-->snapshotData: '+JSON.stringify(this.snapshotData));
 
-    
+
 
     console.log('regionalInvestmentColumns-->filtered data: '+JSON.stringify(this.filteredData));
 
     if(this.snapshotData.length > 0)
     {
-      const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
+      const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {}).slice().reverse();
       console.log('regionalInvestmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,
-            fieldName: month.replace(' ', '_'),
+            label: month,                          // "Apr 2026" — no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
 
         console.log('regionalInvestmentColumns-->monthColumns: '+JSON.stringify(monthColumns));
 
-        var finalcolumns = [...baseColumns, ...monthColumns];
+        const regInvAvgCol = {
+          label: 'Last 6 Months Average',
+          fieldName: 'lastMonthAvg',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
 
-        
+        const regInvCommitPctCol = {
+          label: 'L6M Avg vs Commitment %',
+          fieldName: 'lastMonthAvgCommitPercent',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
+
+        var finalcolumns = [...baseColumns, ...monthColumns, regInvAvgCol, regInvCommitPctCol];
 
         console.log('regionalInvestmentColumns-->finalcolumns: '+JSON.stringify(finalcolumns));
 
@@ -4825,8 +5022,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     return baseColumns;
   }
 
-  get supplierInvestmentColumns() 
+  get supplierInvestmentColumns()
   {
+    const currentYear = new Date().getFullYear();
 
     const baseColumns = [
       {
@@ -4848,20 +5046,32 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
       {
-        label: "Total Reagent Sales Till Date",
+        label: "Total Sales",
         fieldName: "formattedTotalSales",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
       {
-        label: "YTD Sales",
-        fieldName: "formattedYtdSales",
+        label: "Monthly Commitment",
+        fieldName: "formattedCommitment",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
-       {
-        label: "Avg YTD Sales",
-        fieldName: "formattedAvgYtdSales",
+      {
+        label: `${currentYear - 2} YTD`,
+        fieldName: "formattedLastToLastYearYtdSales",
+        type: "text",
+        cellAttributes: { class: { fieldName: "rowClass" } }
+      },
+      {
+        label: `${currentYear - 1} YTD`,
+        fieldName: "formattedLastYearYtdSales",
+        type: "text",
+        cellAttributes: { class: { fieldName: "rowClass" } }
+      },
+      {
+        label: `${currentYear} YTD`,
+        fieldName: "formattedYtdSales",
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
@@ -4871,12 +5081,6 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         type: "text",
         cellAttributes: { class: { fieldName: "rowClass" } }
       },
-      // {
-      //   label: "Cost Recovery",
-      //   fieldName: "costRecoveryPercent",
-      //   type: "text",
-      //   cellAttributes: { class: { fieldName: "rowClass" } }
-      // },
       {
         label: "Investment Share",
         fieldName: "investmentSharePercent",
@@ -4889,26 +5093,38 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
     console.log('supplierInvestmentColumns-->snapshotData: '+JSON.stringify(this.snapshotData));
 
-    
+
 
     console.log('supplierInvestmentColumns-->filtered data: '+JSON.stringify(this.filteredData));
 
     if(this.snapshotData.length > 0)
     {
-      const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
+      const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {}).slice().reverse();
       console.log('supplierInvestmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,
-            fieldName: month.replace(' ', '_'),
+            label: month,                          // "Apr 2026" — no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
 
         console.log('supplierInvestmentColumns-->monthColumns: '+JSON.stringify(monthColumns));
 
-        var finalcolumns = [...baseColumns, ...monthColumns];
+        const supInvAvgCol = {
+          label: 'Last 6 Months Average',
+          fieldName: 'lastMonthAvg',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
 
-        
+        const supInvCommitPctCol = {
+          label: 'L6M Avg vs Commitment %',
+          fieldName: 'lastMonthAvgCommitPercent',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
+
+        var finalcolumns = [...baseColumns, ...monthColumns, supInvAvgCol, supInvCommitPctCol];
 
         console.log('supplierInvestmentColumns-->finalcolumns: '+JSON.stringify(finalcolumns));
 
@@ -4922,77 +5138,41 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   }
 
   get customerInvestmentColumns() {
-    return [
-      // Customer Identification
-      { label: "Customer Code", fieldName: "customerCode", type: "text" },
-      { label: "Customer Name", fieldName: "customerName", type: "text" },
-      { label: "Supplier", fieldName: "vendor", type: "text" },
-      { label: "Technology", fieldName: "technology", type: "text" },
-      { label: "Region", fieldName: "region", type: "text" },
+    const currentYear = new Date().getFullYear();
 
-      // Bill To Address (simplified)
-      { label: "Bill To City", fieldName: "city", type: "text" },
-      {
-        label: "Bill To Address Line 1",
-        fieldName: "addressLine1",
-        type: "text"
-      },
-      {
-        label: "Bill To Address Line 2",
-        fieldName: "addressLine2",
-        type: "text"
-      },
-
-      // Ship To Account (simplified)
-      {
-        label: "Ship To Customer Number",
-        fieldName: "shipToCustomerNumber",
-        type: "text"
-      },
-      {
-        label: "Ship To Customer Name",
-        fieldName: "shipToCustomerName",
-        type: "text"
-      },
-      { label: "Ship To City", fieldName: "shipToCity", type: "text" },
-      {
-        label: "Ship To Address Line 1",
-        fieldName: "shipToAddressLine1",
-        type: "text"
-      },
-      {
-        label: "Ship To Address Line 2",
-        fieldName: "shipToAddressLine2",
-        type: "text"
-      },
-
-      // Performance Metrics
-      { label: "Machines", fieldName: "machines", type: "number" },
-      { label: "Investment", fieldName: "formattedInvestment", type: "text" },
-      { label: "Total Sales", fieldName: "formattedTotalSales", type: "text" },
-      {
-        label: "Per Machine Sales",
-        fieldName: "formattedPerMachineSales",
-        type: "text"
-      },
-      { label: "Margin", fieldName: "formattedMargin", type: "text" },
-      {
-        label: "Cost Recovery",
-        fieldName: "costRecoveryPercent",
-        type: "text"
-      },
-      {
-        label: "Investment Share",
-        fieldName: "investmentSharePercent",
-        type: "text"
-      },
-      {
-        type: "action",
-        typeAttributes: {
-          rowActions: [{ label: "View Details", name: "view_details" }]
-        }
-      }
+    const baseColumns = [
+      { label: "#", fieldName: "rowNumber", type: "number", initialWidth: 60, cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Customer Number", fieldName: "customerCode", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Customer Name",   fieldName: "customerName", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Risk Level",      fieldName: "riskLevel",    type: "text", initialWidth: 110, cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Supplier",        fieldName: "vendor",       type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Machines",        fieldName: "machines",     type: "number", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Investment",      fieldName: "formattedInvestment", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Total Sales",     fieldName: "formattedTotalSales", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: "Monthly Commitment", fieldName: "formattedCommitment", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: `${currentYear - 2} YTD`, fieldName: "formattedLastToLastYearYtdSales", type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: `${currentYear - 1} YTD`, fieldName: "formattedLastYearYtdSales",       type: "text", cellAttributes: { class: { fieldName: "rowClass" } } },
+      { label: `${currentYear} YTD`,     fieldName: "formattedYtdSales",               type: "text", cellAttributes: { class: { fieldName: "rowClass" } } }
     ];
+
+    if (this.snapshotData.length > 0) {
+      const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {}).slice().reverse();
+      const monthColumns = monthKeys.map(month => ({
+        label: month,
+        fieldName: month.replace(' ', '_'),
+        type: 'text',
+        cellAttributes: { alignment: 'right' }
+      }));
+
+      return [
+        ...baseColumns,
+        ...monthColumns,
+        { label: 'Last 6 Months Average',    fieldName: 'lastMonthAvg',            type: 'text', cellAttributes: { alignment: 'right' } },
+        { label: 'L6M Avg vs Commitment %',  fieldName: 'lastMonthAvgCommitPercent', type: 'text', cellAttributes: { alignment: 'right' } }
+      ];
+    }
+
+    return baseColumns;
   }
 
   get regionalCommitmentColumns() 
@@ -5053,17 +5233,22 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
       console.log('regionalCommitmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,
-            fieldName: month.replace(' ', '_'),
+            label: month,                          // "Apr 2026" — no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
 
         console.log('regionalCommitmentColumns-->monthColumns: '+JSON.stringify(monthColumns));
 
-        var finalcolumns = [...baseColumns, ...monthColumns];
+        const avgColumn = {
+          label: 'Last 6 Months Average',
+          fieldName: 'lastMonthAvg',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
 
-        
+        var finalcolumns = [...baseColumns, ...monthColumns, avgColumn];
 
         console.log('regionalCommitmentColumns-->finalcolumns: '+JSON.stringify(finalcolumns));
 
@@ -5137,17 +5322,22 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
       console.log('supplierCommitmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,
-            fieldName: month.replace(' ', '_'),
+            label: month,                          // "Apr 2026" — no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
 
         console.log('supplierCommitmentColumns-->monthColumns: '+JSON.stringify(monthColumns));
 
-        var finalcolumns = [...baseColumns, ...monthColumns];
+        const supComAvgCol = {
+          label: 'Last 6 Months Average',
+          fieldName: 'lastMonthAvg',
+          type: 'text',
+          cellAttributes: { alignment: 'right' }
+        };
 
-        
+        var finalcolumns = [...baseColumns, ...monthColumns, supComAvgCol];
 
         console.log('supplierCommitmentColumns-->finalcolumns: '+JSON.stringify(finalcolumns));
 
