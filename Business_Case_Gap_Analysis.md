@@ -108,54 +108,27 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 > **11 rows where Asset does not exist in SF** (rows 16–18, 26–27, 36–40, 43, 48 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
 > **Note row #33:** Customer 3020000998 (Biocare Labs) — Technology Code is blank in Excel col F; must be filled before BC can be created.
 
-### 1.2 Groups With Partial BCs in SF (Some Missing) — 11 groups / 36 rows
+### 1.2 Groups With Partial BCs in SF (Some Missing) — 15 records
 
-- **Account** checked against `Account.SAP_Customer_Number__c` in MDProd. All customers in this section have confirmed accounts (Y) — each already has at least one BC in SF.
-- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
-- **Group Missing** = number of BCs still missing for that customer/supplier/tech group.
-- `--` means no serial number in the Excel row; asset cannot be verified.
+- All customers in this section have confirmed accounts (Y) — each already has at least one BC in SF.
+- **Machine Serials (Asset)** lists every serial number in the group from the Excel tracking sheet, with asset check in parentheses: Y = exists in `MD_Asset__c`, N = not found, -- = no serial in Excel.
 
-| # | CustNo | Customer Name | Sup | Tech | Machine Serial No. | Status | Acct | Asset | Group Missing | Existing BCs |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Baldia-Karachi | YHLO | IMA | IA00146846 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
-| 2 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Hyderabad | YHLO | IMA | FC10330839 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
-| 3 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | YHLO | IMA | FC10330939 | Active | Y | Y | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
-| 4 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | YHLO | IMA | -- | Active | Y | -- | 1 | BCN-000000269 BCN-000000260 BCN-000000263 |
-| 5 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Baldia-Karachi | A | HM | 123213 | Active | Y | **N** | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 6 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Hyderabad | A | HM | 121497 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 7 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) Sukkur | A | HM | 123120 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 8 | 3020000084 | SICVD (Sindh Inst. of Cardiovascular) TMK | A | HM | 121496 | Active | Y | Y | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 9 | 3020000084 | SICVD, Larkana | A | HM | -- | Active | Y | -- | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 10 | 3020000084 | SICVD, Nawabshah | A | HM | -- | Active | Y | -- | 1 | BCN-000000267 BCN-000000266 BCN-000000264 BCN-000000261 BCN-000000259 |
-| 11 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | A | HM | 126054 | Active | Y | Y | 1 | BCN-000000288 |
-| 12 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | OR | IMA | 30006183 | Active | Y | Y | 1 | BCN-000000234 |
-| 13 | 3020000206 | Mughal Diagnostics | OR | IMA | -- | Closed | Y | -- | 1 | BCN-000000234 |
-| 14 | 3020000515 | Faisalabad Medical University (Allied to be changed) | A | HM | 104282 | Active | Y | Y | 2 | BCN-000000180 |
-| 15 | 3020000515 | DHQ Hospital (Allied Hospital-II) | A | HM | 116957 | New Active | Y | **N** | 2 | BCN-000000180 |
-| 16 | 3020000515 | DHQ Hospital (Allied Hospital-II) | A | HM | 117576 | New Active | Y | **N** | 2 | BCN-000000180 |
-| 17 | 3020000633 | The Children Hospital & The Institute Multan | E | CC | 22-5026 | Active | Y | Y | 1 | BCN-000000275 |
-| 18 | 3020000633 | Children's Hospital Multan | E | CC | -- | New | Y | -- | 1 | BCN-000000275 |
-| 19 | 3020000736 | Lady Aitchison Hospital | A | HM | 123216 | Active | Y | Y | 1 | BCN-000000226 |
-| 20 | 3020000736 | Lady Aitchison Hospital | A | HM | 125199 | New | Y | **N** | 1 | BCN-000000226 |
-| 21 | 3020001224 | SOMH-FFH (Shaukat Umar Memorial Hospital – Fauji Foundation) | E | CC | 24-5032 | Closed | Y | Y | 1 | BCN-000000272 |
-| 22 | 3020001224 | SOMH-FFH (Shaukat Umar Memorial Hospital – Fauji Foundation) | E | CC | -- | Revised | Y | -- | 1 | BCN-000000272 |
-| 23 | 3020001511 | Indus Hospital & Health Network | ER | ELCT | *(26 serials — see note)* | Active | Y | **MULTI** | 1 | BCN-000000214 BCN-000000216 |
-| 24 | 3020001511 | Indus Hospital | ER | ELCT | 6909-2-202305 | Active | Y | Y | 1 | BCN-000000214 BCN-000000216 |
-| 25 | 3020001511 | Indus Hospital | E | CC | 23-46854 | Active | Y | Y | 2 | BCN-000000215 |
-| 26 | 3020001511 | Public Welfare Sheikh Zayed (The Indus Hospital) | E | CC | 25-47705 | New | Y | **N** | 2 | BCN-000000215 |
-| 27 | 3020001511 | Indus Hospital Health Network (SUI Campus) | ER | ELCT | -- | New | Y | -- | 1 | BCN-000000214 BCN-000000216 |
-| 28 | 3020001748 | Gillani Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00175747 | Active | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 29 | 3020001748 | City International Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00176348 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 30 | 3020001748 | Harmon Lab Quetta (Through Jamal Brothers) | YHLO | IMA | ID00093734 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 31 | 3020001748 | Sultan Tareen Hospital Quetta (Through Jamal Brothers) | YHLO | IMA | ID00082632 | Closed | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 32 | 3020001748 | Dr. Najma Ghaffar Hospital (Through Jamal Brothers) | YHLO | IMA | ID00093734 | Active | Y | Y | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 33 | 3020001748 | Dawood Lab (Through Jamal Brothers) | YHLO | IMA | -- | Active | Y | -- | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 34 | 3020001511 | Welfare Hospital Sui (The Indus Hospital) | E | CC | -- | New | Y | -- | 2 | BCN-000000215 |
-| 35 | 3020001748 | M. Khan Lab (Through Jamal Brothers) | YHLO | IMA | -- | Active | Y | -- | 3 | BCN-000000205 BCN-000000202 BCN-000000187 BCN-000000273 |
-| 36 | 3020000206 | Mughal Diagnostics & Research Labs/Cancer Care Hospital | A | HM | 126055 | Active | Y | **N** | 1 | BCN-000000288 |
+| Customer No. | Customer Name | Sup | Tech | Excel | SF | Missing | Existing BCs | Machine Serials (Asset) |
+|---|---|---|---|---|---|---|---|---|
+| 3020000084 | SICVD | YHLO | IMA | 4 | 3 | **1** | BCN-000000269, BCN-000000260, BCN-000000263 | IA00146846(Y), FC10330839(Y), FC10330939(Y), --(--) |
+| 3020000084 | SICVD | A | HM | 6 | 5 | **1** | BCN-000000267, BCN-000000266, BCN-000000264, BCN-000000261, BCN-000000259 | 123213(**N**), 121497(Y), 123120(Y), 121496(Y), --(--), --(--) |
+| 3020000206 | Mughal Diagnostics | A | HM | 2 | 1 | **1** | BCN-000000288 | 126054(Y), 126055(**N**) |
+| 3020000206 | Mughal Diagnostics | OR | IMA | 2 | 1 | **1** | BCN-000000234 | 30006183(Y), --(--) |
+| 3020000515 | DHQ / Faisalabad Medical Univ. (Allied) | A | HM | 3 | 1 | **2** | BCN-000000180 | 104282(Y), 116957(**N**), 117576(**N**) |
+| 3020000633 | The Children Hospital / Children's Hospital Multan | E | CC | 2 | 1 | **1** | BCN-000000275 | 22-5026(Y), --(--) |
+| 3020000736 | Lady Aitchison Hospital | A | HM | 2 | 1 | **1** | BCN-000000226 | 123216(Y), 125199(**N**) |
+| 3020001224 | SOMH-FFH (Shaukat Umar Memorial / Fauji Foundation) | E | CC | 2 | 1 | **1** | BCN-000000272 | 24-5032(Y), --(--) |
+| 3020001511 | Indus Hospital | E | CC | 3 | 1 | **2** | BCN-000000215 | 23-46854(Y), 25-47705(**N**), --(--) |
+| 3020001511 | Indus Hospital | ER | ELCT | 3 | 2 | **1** | BCN-000000214, BCN-000000216 | **MULTI**(see note), 6909-2-202305(Y), --(--) |
+| 3020001748 | Quetta / Jamal Brothers | YHLO | IMA | 7 | 4 | **3** | BCN-000000205, BCN-000000202, BCN-000000187, BCN-000000273 | ID00175747(Y), ID00176348(Y), ID00093734(Y), ID00082632(Y), ID00093734(Y), --(--), --(--) |
 
-> **6 rows where Asset does not exist in SF** (rows 5, 15, 16, 20, 26, 36 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
-> **Row 23 (Indus Hospital ER/ELCT):** Excel cell contains 26 serial numbers concatenated — asset check requires splitting each individually. Flagged as **MULTI**; verify manually.
+> **5 serials where Asset does not exist in SF** (**N**): 123213, 126055, 116957, 117576, 125199, 25-47705 — machine must be registered in `MD_Asset__c` before BC can be created.
+> **Indus Hospital ER/ELCT:** One Excel cell contains 26 serial numbers concatenated — flagged as **MULTI**; split and verify each serial individually in `MD_Asset__c`.
 
 **Subtotal missing from partial groups: 15**
 
