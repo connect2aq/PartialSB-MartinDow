@@ -23,7 +23,17 @@
       "Bash(grep -c \"^    //\" \"d:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseSnapshotService.cls\")",
       "Bash(grep -n \"^    //\" \"d:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseSnapshotService.cls\")",
       "Bash(grep -c \"^\\\\s*//\" \"d:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseSnapshotService.cls\")",
-      "Bash(grep -n \"^\\\\s*//\" \"d:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseSnapshotService.cls\")"
+      "Bash(grep -n \"^\\\\s*//\" \"d:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseSnapshotService.cls\")",
+      "Bash(grep -v \"^\\\\s*//\")",
+      "Bash(Select-String -Path \"D:\\\\aq\\\\ix\\\\MartinDow\\\\PartialSB-MartinDow\\\\force-app\\\\main\\\\default\\\\classes\\\\BusinessCaseDashboardController.cls\" -Pattern \"^\\\\s*//\")",
+      "Bash(Measure-Object)",
+      "Bash(Select-Object -ExpandProperty Count)",
+      "Bash(grep -c \"^\\\\s*//\" \"D:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseDashboardController.cls\")",
+      "Bash(grep -n \"^\\\\s*//\" \"D:/aq/ix/MartinDow/PartialSB-MartinDow/force-app/main/default/classes/BusinessCaseDashboardController.cls\")",
+      "Bash(grep -v \"//[A-Z]\")",
+      "Bash(grep -v \"//[a-z]\")",
+      "mcp__Salesforce_DX__deploy_metadata",
+      "mcp__Salesforce_DX__get_username"
     ]
   }
 }
