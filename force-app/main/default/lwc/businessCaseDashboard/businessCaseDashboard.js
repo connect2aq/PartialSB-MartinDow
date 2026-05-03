@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+﻿import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { refreshApex } from "@salesforce/apex";
@@ -84,10 +84,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       if (!this.chartJSLoaded) {
         await loadScript(this, ChartJS);
         this.chartJSLoaded = true;
-        // console.log("📈 Chart.js loaded successfully");
+        // console.log("ðŸ“ˆ Chart.js loaded successfully");
       }
     } catch (error) {
-      console.error("❌ Error loading Chart.js:", error);
+      console.error("âŒ Error loading Chart.js:", error);
       this.showToast("Error", "Failed to load Chart.js library", "error");
     }
   }
@@ -530,7 +530,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   wiredDetailedSnapshotResult;
 
   connectedCallback() {
-    // console.log("🚀 BusinessCaseDashboard component connected");
+    // console.log("ðŸš€ BusinessCaseDashboard component connected");
     // console.log("Initial filter options:", {
     //   monthOptions: this._monthOptions,
     //   customerOptions: this._customerOptions,
@@ -579,12 +579,12 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         criticalCustomers: 0
       };
 
-      // console.log("📋 Component initialized with empty data");
+      // console.log("ðŸ“‹ Component initialized with empty data");
     }
   }
 
   renderedCallback() {
-    // console.log("🎨 Component rendered - checking filter state:");
+    // console.log("ðŸŽ¨ Component rendered - checking filter state:");
     // console.log("filtersLoaded:", this.filtersLoaded);
     // console.log("Current filter options:", {
     //   monthOptions: this.monthOptions,
@@ -624,41 +624,41 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       //   JSON.stringify(this._monthOptions)
       // );
       // console.log(
-      //   "✅ Month options sample:",
+      //   "âœ… Month options sample:",
       //   JSON.stringify(this._monthOptions.slice(0, 3))
       // );
     } else {
-      // console.log("❌ Month options empty or undefined");
+      // console.log("âŒ Month options empty or undefined");
     }
     if (this._customerOptions && this._customerOptions.length > 0) {
       // console.log(
-      //   "✅ Customer options sample:",
+      //   "âœ… Customer options sample:",
       //   JSON.stringify(this._customerOptions.slice(0, 3))
       // );
     } else {
-      // console.log("❌ Customer options empty or undefined");
+      // console.log("âŒ Customer options empty or undefined");
     }
 
     // Test if combobox elements have options
     // Validate filter options are loaded
     if (this._monthOptions && this._monthOptions.length > 0) {
-      // console.log("🔄 Month options available");
+      // console.log("ðŸ”„ Month options available");
     }
     if (this._customerOptions && this._customerOptions.length > 0) {
-      // console.log("🔄 Customer options available");
+      // console.log("ðŸ”„ Customer options available");
     }
   }
 
   // @wire(getSnapshotData)
   // wiredSnapshots(result) {
-  //   console.log("📊 Snapshot Data Wire Method Called");
+  //   console.log("ðŸ“Š Snapshot Data Wire Method Called");
   //   console.log("Snapshot result:", result);
 
   //   this.wiredSnapshotResult = result;
   //   if (result.data) {
   //     try {
   //       console.log(
-  //         "✅ Snapshot data received:",
+  //         "âœ… Snapshot data received:",
   //         result.data?.length || 0,
   //         "records"
   //       );
@@ -668,16 +668,16 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   //       this.error = null;
   //       this.isLoading = false; // Ensure loading stops when data is received
   //     } catch (error) {
-  //       console.error("❌ Error processing snapshot data:", error);
+  //       console.error("âŒ Error processing snapshot data:", error);
   //       this.handleError("Error processing snapshot data", error);
   //       this.isLoading = false; // Ensure loading stops on error
   //     }
   //   } else if (result.error) {
-  //     console.error("❌ Error loading snapshot data:", result.error);
+  //     console.error("âŒ Error loading snapshot data:", result.error);
   //     this.handleError("Error loading snapshot data", result.error);
   //     this.isLoading = false; // Ensure loading stops on error
   //   } else {
-  //     console.log("⏳ Snapshot data loading...");
+  //     console.log("â³ Snapshot data loading...");
   //   }
   // }
 
@@ -708,7 +708,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         this.error = null;
         this.isLoading = false; // Ensure loading stops when data is received
       } catch (error) {
-        console.error("❌ Error processing snapshot data:", {
+        console.error("âŒ Error processing snapshot data:", {
           message: error.message,
           stack: error.stack,
           name: error.name
@@ -717,11 +717,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         this.isLoading = false; // Ensure loading stops on error
       }
     } else if (result.error) {
-      console.error("❌ Error loading snapshot data:", result.error);
+      console.error("âŒ Error loading snapshot data:", result.error);
       this.handleError("Error loading snapshot data", result.error);
       this.isLoading = false; // Ensure loading stops on error
     } else {
-      // console.log("⏳ Snapshot data loading...");
+      // console.log("â³ Snapshot data loading...");
     }
   }
 
@@ -747,7 +747,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         this.error = null;
         this.isLoading = false; // Ensure loading stops when data is received
       } catch (error) {
-        console.error("❌ Error processing snapshot data:", {
+        console.error("âŒ Error processing snapshot data:", {
           message: error.message,
           stack: error.stack,
           name: error.name
@@ -756,41 +756,41 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         this.isLoading = false; // Ensure loading stops on error
       }
     } else if (result.error) {
-      console.error("❌ Error loading snapshot data:", result.error);
+      console.error("âŒ Error loading snapshot data:", result.error);
       this.handleError("Error loading snapshot data", result.error);
       this.isLoading = false; // Ensure loading stops on error
     } else {
-      // console.log("⏳ Snapshot data loading...");
+      // console.log("â³ Snapshot data loading...");
     }
   }
 
 
   @wire(getEnhancedFilterOptions)
   wiredFilters(result) {
-    // console.log("🔍 Enhanced Filter Options Wire Method Called");
+    // console.log("ðŸ” Enhanced Filter Options Wire Method Called");
     // console.log("Filter result:", result);
 
     this.wiredFilterResult = result;
     if (result.data) {
       try {
-        // console.log("✅ Enhanced filter data received:", result.data);
+        // console.log("âœ… Enhanced filter data received:", result.data);
         // console.log(
         //   "Enhanced filter data structure:",
         //   JSON.stringify(result.data, null, 2)
         // );
         this.processEnhancedFilterOptions(result.data);
         this.error = null;
-        // console.log("✅ Enhanced filter options processed successfully");
+        // console.log("âœ… Enhanced filter options processed successfully");
         // Don't set isLoading to false here as other data might still be loading
       } catch (error) {
-        console.error("❌ Error processing enhanced filter options:", error);
+        console.error("âŒ Error processing enhanced filter options:", error);
         this.handleError("Error processing enhanced filter options", error);
       }
     } else if (result.error) {
-      console.error("❌ Error loading enhanced filter options:", result.error);
+      console.error("âŒ Error loading enhanced filter options:", result.error);
       this.handleError("Error loading enhanced filter options", result.error);
     } else {
-      // console.log("⏳ Enhanced filter options loading...");
+      // console.log("â³ Enhanced filter options loading...");
     }
   }
 
@@ -811,7 +811,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       this.isLoading = false; // Ensure loading stops on error
     } else {
       // Still loading, but let's ensure it doesn't stay loading forever
-      // console.log("⏳ Summary metrics loading...");
+      // console.log("â³ Summary metrics loading...");
     }
   }
 
@@ -857,7 +857,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       this.isLoading = false; // Ensure loading stops on error
     } else {
       // Still loading, but let's ensure it doesn't stay loading forever
-      // console.log("⏳ Summary metrics loading...");
+      // console.log("â³ Summary metrics loading...");
     }
   }
 
@@ -881,25 +881,25 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         this.machineStatusCountList = result.data.machineStatusListResp;
 
         console.log(
-          "✅wiredMachineStatus --> Machine status counts loaded:",
+          "âœ…wiredMachineStatus --> Machine status counts loaded:",
           this.machineStatusCounts
         );
         console.log(
-          "✅wiredMachineStatus --> Machine status counts list loaded:",
+          "âœ…wiredMachineStatus --> Machine status counts list loaded:",
           this.machineStatusCountList
         );
       } catch (error) {
-        console.error("❌ Error processing machine status counts:", error);
+        console.error("âŒ Error processing machine status counts:", error);
       }
     } else if (result.error) {
-      console.error("❌ Error loading machine status counts:", result.error);
+      console.error("âŒ Error loading machine status counts:", result.error);
     }
   }
 
   // ===== DATA PROCESSING =====
 
   processSnapshotData() {
-    // console.log("📊 Processing snapshot data...");
+    // console.log("ðŸ“Š Processing snapshot data...");
     // console.log(
     //   "Snapshot data received:",
     //   this.snapshotData?.length || 0,
@@ -907,7 +907,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // );
 
     if (!this.snapshotData || this.snapshotData.length === 0) {
-      // console.log("⚠️ No snapshot data available");
+      // console.log("âš ï¸ No snapshot data available");
       this.filteredData = [];
       this.filteredDetailedData=[];
       this.aggregateData();
@@ -919,7 +919,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     //   (record) => record.customerCode === "3020001237"
     // );
 
-    // console.log("🔍 Customer 3020001237 snapshot verification:");
+    // console.log("ðŸ” Customer 3020001237 snapshot verification:");
     // console.log(
     //   `Found ${customer3020001237Records.length} records for customer 3020001237`
     // );
@@ -936,14 +936,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     //     });
     //   });
     // } else {
-    //   console.log("� No records found for customer 3020001237");
+    //   console.log("ï¿½ No records found for customer 3020001237");
     //   console.log(
     //     "Expected snapshots: BCSS-0000575 (Feb), BCSS-0000576 (Mar), BCSS-0000577 (Apr)"
     //   );
     // }
 
     // console.log("First snapshot record sample:", this.snapshotData[0]);
-    // console.log("🔍 Detailed field analysis of first record:");
+    // console.log("ðŸ” Detailed field analysis of first record:");
     if (this.snapshotData[0]) {
       const firstRecord = this.snapshotData[0];
       Object.keys(firstRecord).forEach((key) => {
@@ -975,7 +975,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Add sample risk data for demonstration if no risk data exists
     this.addSampleRiskDataIfNeeded();
 
-    // console.log("📊 Snapshot data processing completed");
+    // console.log("ðŸ“Š Snapshot data processing completed");
     // console.log("Filtered data:", this.filteredData?.length || 0, "records");
     // console.log(
     //   "Regional investment data:",
@@ -1053,7 +1053,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   }
 
   processEnhancedFilterOptions(data) {
-    // console.log("🔧 Processing enhanced filter options with data:", data);
+    // console.log("ðŸ”§ Processing enhanced filter options with data:", data);
 
     // Process month options
     // console.log("Processing months:", data.months);
@@ -1067,7 +1067,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
     }
     this._monthOptions = [...monthArray];
-    // console.log("✅ Month options assigned:", this._monthOptions.length);
+    // console.log("âœ… Month options assigned:", this._monthOptions.length);
 
     // Process customer options
     // console.log("Processing customers:", data.customers);
@@ -1081,7 +1081,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
     }
     this._customerOptions = [...customerArray];
-    // console.log("✅ Customer options assigned:", this._customerOptions.length);
+    // console.log("âœ… Customer options assigned:", this._customerOptions.length);
 
     // Process region options
     // console.log("Processing regions:", data.regions);
@@ -1095,7 +1095,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
     }
     this._regionOptions = [...regionArray];
-    // console.log("✅ Region options assigned:", this._regionOptions.length);
+    // console.log("âœ… Region options assigned:", this._regionOptions.length);
 
     // Process business cases options
     // console.log("Processing business cases:", data.businessCases);
@@ -1110,7 +1110,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     }
     this._businessCaseOptions = [...businessCaseArray];
     // console.log(
-    //   "✅ Business Cases options assigned:",
+    //   "âœ… Business Cases options assigned:",
     //   this._businessCaseOptions.length
     // );
 
@@ -1126,7 +1126,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
     }
     this._supplierOptions = [...supplierArray];
-    // console.log("✅ Supplier options assigned:", this._supplierOptions.length);
+    // console.log("âœ… Supplier options assigned:", this._supplierOptions.length);
 
     // Process Business Case Status options (NEW)
     // console.log(
@@ -1146,7 +1146,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     }
     this._businessCaseStatusOptions = [...businessCaseStatusArray];
     // console.log(
-    //   "✅ Business Case Status options assigned:",
+    //   "âœ… Business Case Status options assigned:",
     //   this._businessCaseStatusOptions.length
     // );
 
@@ -1163,7 +1163,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     }
     this._machineStatusOptions = [...machineStatusArray];
     // console.log(
-    //   "✅ Machine Status options assigned:",
+    //   "âœ… Machine Status options assigned:",
     //   this._machineStatusOptions.length
     // );
 
@@ -1182,14 +1182,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     }
     this._commitmentStatusOptions = [...commitmentStatusesArray];
     // console.log(
-    //   "✅ Commitment Status options assigned:",
+    //   "âœ… Commitment Status options assigned:",
     //   this._commitmentStatusOptions.length
     // );
 
     // Mark filters as loaded and force re-render
     this.filtersLoaded = true;
-    // console.log("🎯 All enhanced filter options processed successfully");
-    // console.log("📋 Enhanced filter options summary:");
+    // console.log("ðŸŽ¯ All enhanced filter options processed successfully");
+    // console.log("ðŸ“‹ Enhanced filter options summary:");
     // console.log("  - Months:", this._monthOptions.length);
     // console.log("  - Customers:", this._customerOptions.length);
     // console.log("  - Regions:", this._regionOptions.length);
@@ -1391,7 +1391,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       // };
 
       // console.log(
-      //   "🔍 Customer filtering - complete analysis:",
+      //   "ðŸ” Customer filtering - complete analysis:",
       //   customerFilterResults
       // );
 
@@ -1408,7 +1408,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       if (duplicates.length > 0) 
       {
-        console.warn("⚠️ Found duplicate records after filtering:", {
+        console.warn("âš ï¸ Found duplicate records after filtering:", {
           duplicateCount: duplicates.length,
           examples: duplicates.slice(0, 2).map((r) => ({
             customerCode: r.customerCode,
@@ -1425,7 +1425,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       if (missingCustomers.length > 0) {
         console.warn(
-          "⚠️ Some selected customers missing from filtered results:",
+          "âš ï¸ Some selected customers missing from filtered results:",
           {
             missingCustomers,
             missingCount: missingCustomers.length,
@@ -1551,7 +1551,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     this.aggregateData();
 
     console.log(
-      "✅ Filters applied. Final filtered data:",
+      "âœ… Filters applied. Final filtered data:",
       this.filteredData.length,
       "records"
     );
@@ -1559,7 +1559,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   aggregateData() {
     // console.log(
-    //   "📈 Starting data aggregation with",
+    //   "ðŸ“ˆ Starting data aggregation with",
     //   this.filteredData?.length || 0,
     //   "filtered records"
     // );
@@ -1584,7 +1584,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Update total records for customer data pagination
     this.updateCustomerPagination();
 
-    // console.log("📈 Aggregation completed:");
+    // console.log("ðŸ“ˆ Aggregation completed:");
     // console.log(
     //   "- Regional F data:",
     //   this.regionalInvestmentData?.length || 0
@@ -1753,7 +1753,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
 
       console.log(
-        "🔧 VERSION CHECK: Using UPDATED code - NO machineCount filter for main tile"
+        "ðŸ”§ VERSION CHECK: Using UPDATED code - NO machineCount filter for main tile"
       );
 
       latestSnapshotPerBC.forEach((record) => 
@@ -1763,7 +1763,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         );
         // Count investment once per business case (include all business cases, not just those with machines)
         console.log(
-          `💰 Main Tile: BC ${record.businessCaseId} (${record.businessCaseName}): investment = ${record.investment}`
+          `ðŸ’° Main Tile: BC ${record.businessCaseId} (${record.businessCaseName}): investment = ${record.investment}`
         );
         
         totalInvestment += record.investment || 0;
@@ -1792,7 +1792,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         costRecovery: costRecovery
       };
 
-      console.log("📊 Financial Overview calculated from filtered data:", {
+      console.log("ðŸ“Š Financial Overview calculated from filtered data:", {
         totalInvestment,
         totalSales,
         totalMargin,
@@ -1801,7 +1801,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         uniqueBusinessCases: latestSnapshotPerBC.size
       });
     } catch (error) {
-      console.error("❌ Error in calculateFinancialOverview:", {
+      console.error("âŒ Error in calculateFinancialOverview:", {
         message: error.message,
         stack: error.stack
       });
@@ -1853,12 +1853,12 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       console.log('>>>>businessCaseDashboard-->calculateMachineStatusCountsFromFiltered-->filtered Data calculatedMachineStatusCounts: '+JSON.stringify(this.calculatedMachineStatusCounts));
 
-      // console.log("🔧 Machine Status Counts calculated from filtered data:", {
+      // console.log("ðŸ”§ Machine Status Counts calculated from filtered data:", {
       //   counts: this.calculatedMachineStatusCounts,
       //   recordsProcessed: this.filteredData.length
       // });
     } catch (error) {
-      console.error("❌ Error in calculateMachineStatusCountsFromFiltered:", {
+      console.error("âŒ Error in calculateMachineStatusCountsFromFiltered:", {
         message: error.message,
         stack: error.stack
       });
@@ -1877,7 +1877,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   aggregateByRegion() {
     console.log(
-      "🔍 [Investment Performance] aggregateByRegion - Starting with",
+      "ðŸ” [Investment Performance] aggregateByRegion - Starting with",
       this.filteredData.length,
       "records"
     );
@@ -1929,7 +1929,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
             regionData.uniqueInvestments.add(investmentKey);
             // regionData.investment += record.investment || 0;
             console.log(
-              `  💰 [Investment Performance] ${region}: Adding investment ${record.investment} for BC ${record.businessCaseId}`
+              `  ðŸ’° [Investment Performance] ${region}: Adding investment ${record.investment} for BC ${record.businessCaseId}`
             );
           }
         }
@@ -2015,7 +2015,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (region.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(region.lastSixMonthlySales)) 
           {
-            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" â€” must match column fieldName
             monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
@@ -2074,7 +2074,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     if (!regions || regions.length === 0) return [];
 
     console.log(
-      "🔍 [Investment Performance] Calculating grand total from",
+      "ðŸ” [Investment Performance] Calculating grand total from",
       regions.length,
       "regions"
     );
@@ -2098,7 +2098,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       grandTotal.totalMachineCount += region.totalMachineCount || 0;
       grandTotal.investment += region.investment || 0;
       console.log(
-        `  💰 [Investment Performance] ${region.region}: investment=${region.investment}`
+        `  ðŸ’° [Investment Performance] ${region.region}: investment=${region.investment}`
       );
       grandTotal.totalSales += region.totalSales || 0;
       grandTotal.marginOnSales += region.marginOnSales || 0;
@@ -2271,7 +2271,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (supplier.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(supplier.lastSixMonthlySales)) 
           {
-            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" â€” must match column fieldName
             monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
@@ -2409,7 +2409,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   aggregateCommitmentByRegion() 
   {
     console.log(
-      "🔍 [Commitment Performance] aggregateCommitmentByRegion - Starting with",
+      "ðŸ” [Commitment Performance] aggregateCommitmentByRegion - Starting with",
       this.filteredData.length,
       "records"
     );
@@ -2456,7 +2456,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
             regionData.uniqueInvestments.add(investmentKey);
             // regionData.investment += record.investment || 0;
             console.log(
-              `  💰 [Commitment Performance] ${region}: Adding investment ${record.investment} for BC ${record.businessCaseId}`
+              `  ðŸ’° [Commitment Performance] ${region}: Adding investment ${record.investment} for BC ${record.businessCaseId}`
             );
           }
         }
@@ -2519,7 +2519,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       // Debug specific region
       if (region === "South" && index < 5) {
-        // console.log(`🔍 DEBUG: South Region Record ${index + 1}:`, {
+        // console.log(`ðŸ” DEBUG: South Region Record ${index + 1}:`, {
         //   customerCode: record.customerCode,
         //   monthlySales: monthlySales,
         //   monthlyTarget: monthlyTarget,
@@ -2532,9 +2532,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     });
 
     // console.log(
-    //   "🔍 DEBUG: Region aggregation completed, processing results..."
+    //   "ðŸ” DEBUG: Region aggregation completed, processing results..."
     // );
-    // console.log("🔍 DEBUG: Number of regions found:", regionMap.size);
+    // console.log("ðŸ” DEBUG: Number of regions found:", regionMap.size);
 
     return Array.from(regionMap.values()).map((region) => {
       // Calculate proper averages for commitment analysis
@@ -2594,7 +2594,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       if (region.lastSixMonthlySales) {
         for (const [month, value] of Object.entries(region.lastSixMonthlySales))
         {
-          const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+          const fieldKey = month.replace(' ', '_'); // "Apr_2026" â€” must match column fieldName
           monthSalesFlat[fieldKey] = this.formatCurrency(value);
         }
       }
@@ -2647,7 +2647,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       // Debug results for specific regions
       if (region.region === "South") {
-        // console.log("🔍 DEBUG: South Region Final Result:", {
+        // console.log("ðŸ” DEBUG: South Region Final Result:", {
         //   region: result.region,
         //   recordCount: result.recordCount,
         //   salesArrayLength: region.allMonthlySales.length,
@@ -2673,7 +2673,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     if (!regions || regions.length === 0) return [];
 
     console.log(
-      "🔍 [Commitment Performance] Calculating grand total from",
+      "ðŸ” [Commitment Performance] Calculating grand total from",
       regions.length,
       "regions"
     );
@@ -2697,7 +2697,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       grandTotal.totalMachineCount += region.totalMachineCount || 0;
       grandTotal.investment += region.investment || 0;
       console.log(
-        `  💰 [Commitment Performance] ${region.region}: investment=${region.investment}`
+        `  ðŸ’° [Commitment Performance] ${region.region}: investment=${region.investment}`
       );
       grandTotal.allAvgSalesPerMonth.push(
         ...(region.allAvgSalesPerMonth || [])
@@ -2791,7 +2791,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   aggregateCommitmentBySupplier() 
   {
-    // console.log("🔍 DEBUG: Starting aggregateCommitmentBySupplier()");
+    // console.log("ðŸ” DEBUG: Starting aggregateCommitmentBySupplier()");
 
     const supplierMap = new Map();
 
@@ -2921,7 +2921,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         if (supplier.lastSixMonthlySales) {
           for (const [month, value] of Object.entries(supplier.lastSixMonthlySales)) 
           {
-            const fieldKey = month.replace(' ', '_'); // "Apr_2026" — must match column fieldName
+            const fieldKey = month.replace(' ', '_'); // "Apr_2026" â€” must match column fieldName
             monthSalesFlat[fieldKey] = this.formatCurrency(value);
           }
         }
@@ -3179,7 +3179,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         }
       }
 
-      // Track investment per unique business case — independent of machineCount
+      // Track investment per unique business case â€” independent of machineCount
       if (record.businessCaseId) {
         const investmentKey = `${record.businessCaseId}`;
         if (!customerData.uniqueInvestments.has(investmentKey)) {
@@ -3394,7 +3394,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
           // Preserve original performance status from database
           originalPerformanceStatus: record.performanceStatus,
           // Business case information
-          businessCaseId: record.businessCaseId,
+          businessCaseId: record.businessCaseId || businessCaseId,
           businessCaseName:
             record.businessCaseName ||
             record.Name ||
@@ -3477,7 +3477,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         }
       }
 
-      // Track investment per unique business case — independent of machineCount
+      // Track investment per unique business case â€” independent of machineCount
       if (record.businessCaseId) {
         const investmentKey = `${record.businessCaseId}`;
         if (!customerData.uniqueInvestments.has(investmentKey)) {
@@ -3631,6 +3631,15 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         };
       }
 
+      if (!customerRiskData) {
+        customerRiskData = {
+          riskLevel: "HEALTHY",
+          consecutiveFailedMonths: 0,
+          actionRequired: "Continue monitoring performance",
+          riskLevelClass: this.getRiskLevelClass("HEALTHY")
+        };
+      }
+
       const custLastMonthAvgRaw = (() => {
         const vals = customer.lastSixMonthlySales
           ? Object.values(customer.lastSixMonthlySales).filter(v => v !== null && !isNaN(v))
@@ -3776,14 +3785,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   // ===== OVERVIEW METRICS CALCULATION =====
 
   calculateOverviewMetrics() {
-    // console.log("📊 Calculating overview metrics from ALL data...");
+    // console.log("ðŸ“Š Calculating overview metrics from ALL data...");
     // console.log(
-    //   "📊 Calculating overview metrics from ALL data business cases: ..." +
+    //   "ðŸ“Š Calculating overview metrics from ALL data business cases: ..." +
     //     JSON.stringify(this.snapshotData)
     // );
 
     if (!this.snapshotData || this.snapshotData.length === 0) {
-      // console.log("⚠️ No snapshot data available for overview metrics");
+      // console.log("âš ï¸ No snapshot data available for overview metrics");
       // this.overviewMetrics = {
       //   totalCustomers: 0,
       //   onTrackCustomers: 0,
@@ -3809,7 +3818,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     const uniquebusinessCases = {};
     this.snapshotData.forEach((record) => {
       // console.log(
-      //   "📊 Calculating overview metrics from ALL data unique business cases: ..." +
+      //   "ðŸ“Š Calculating overview metrics from ALL data unique business cases: ..." +
       //     record.businessCaseId +
       //     " : " +
       //     record.performanceStatus
@@ -3917,7 +3926,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     };
 
     // console.log(
-    //   "✅ Overview metrics calculated:",
+    //   "âœ… Overview metrics calculated:",
     //   JSON.stringify(this.overviewMetrics)
     // );
   }
@@ -4988,8 +4997,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {}).slice().reverse();
       console.log('regionalInvestmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,                          // "Apr 2026" — no underscore
-            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
+            label: month,                          // "Apr 2026" â€” no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" â€” LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
@@ -5102,8 +5111,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {}).slice().reverse();
       console.log('supplierInvestmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,                          // "Apr 2026" — no underscore
-            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
+            label: month,                          // "Apr 2026" â€” no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" â€” LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
@@ -5233,8 +5242,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
       console.log('regionalCommitmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,                          // "Apr 2026" — no underscore
-            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
+            label: month,                          // "Apr 2026" â€” no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" â€” LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
@@ -5322,8 +5331,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       const monthKeys = Object.keys(this.snapshotData[0].monthlySales || {});
       console.log('supplierCommitmentColumns-->monthKeys: '+JSON.stringify(monthKeys));
       const monthColumns = monthKeys.map(month => ({
-            label: month,                          // "Apr 2026" — no underscore
-            fieldName: month.replace(' ', '_'),    // "Apr_2026" — LWC field key
+            label: month,                          // "Apr 2026" â€” no underscore
+            fieldName: month.replace(' ', '_'),    // "Apr_2026" â€” LWC field key
             type: 'text',
             cellAttributes: { alignment: 'right' }
         }));
@@ -5867,12 +5876,12 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
 
       // console.log(
-      //   "📈 Target vs Actual chart created successfully with",
+      //   "ðŸ“ˆ Target vs Actual chart created successfully with",
       //   trendData.months.length,
       //   "data points"
       // );
     } catch (error) {
-      console.error("❌ Error creating Target vs Actual chart:", error);
+      console.error("âŒ Error creating Target vs Actual chart:", error);
       this.showToast(
         "Error",
         "Failed to create Target vs Actual chart",
@@ -6012,9 +6021,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   // Initial risk analysis method for filtering purposes (uses all snapshot data)
   performInitialRiskAnalysis() {
-    // console.log("🔍 DEBUG: Starting performInitialRiskAnalysis");
+    // console.log("ðŸ” DEBUG: Starting performInitialRiskAnalysis");
     // console.log(
-    //   "🔍 DEBUG: Snapshot data length:",
+    //   "ðŸ” DEBUG: Snapshot data length:",
     //   this.snapshotData?.length || 0
     // );
 
@@ -6026,7 +6035,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     );
 
     // console.log(
-    //   "🔍 DEBUG: Customer monthly data size:",
+    //   "ðŸ” DEBUG: Customer monthly data size:",
     //   customerMonthlyData?.size || 0
     // );
 
@@ -6040,14 +6049,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         monthlyRecords
       );
       // console.log(
-      //   `🔍 DEBUG: Customer ${customerCode} risk profile:`,
+      //   `ðŸ” DEBUG: Customer ${customerCode} risk profile:`,
       //   riskProfile
       // );
       this.customerRiskAnalysis.set(customerCode, riskProfile);
     }
 
     // console.log(
-    //   "🔍 DEBUG: Final risk analysis size:",
+    //   "ðŸ” DEBUG: Final risk analysis size:",
     //   this.customerRiskAnalysis.size
     // );
   }
@@ -6091,7 +6100,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     );
 
     if (customer3020001237Records.length > 0) {
-      // console.log("🔍 DEBUG: All filtered records for customer 3020001237:");
+      // console.log("ðŸ” DEBUG: All filtered records for customer 3020001237:");
       customer3020001237Records.forEach((record, index) => {
         // console.log(`Record ${index + 1}:`, {
         //   customerCode: record.customerCode,
@@ -6105,7 +6114,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       });
     } else {
       // console.log(
-      //   "🚨 DEBUG: No filtered records found for customer 3020001237"
+      //   "ðŸš¨ DEBUG: No filtered records found for customer 3020001237"
       // );
 
       // Check if records exist in original snapshot data
@@ -6115,7 +6124,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
       if (originalRecords.length > 0) {
         // console.log(
-        //   "🔍 DEBUG: Original snapshot records for customer 3020001237 (before filtering):"
+        //   "ðŸ” DEBUG: Original snapshot records for customer 3020001237 (before filtering):"
         // );
         // originalRecords.forEach((record, index) => {
         // console.log(`Original Record ${index + 1}:`, {
@@ -6130,7 +6139,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         // });
       } else {
         // console.log(
-        //   "🚨 DEBUG: No records found for customer 3020001237 even in original snapshot data"
+        //   "ðŸš¨ DEBUG: No records found for customer 3020001237 even in original snapshot data"
         // );
       }
     }
@@ -6284,7 +6293,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // }
 
     // console.log('>>>>businessCaseDashboard-->groupDataByCustomerAndMonth-->sortedCustomerData: '+JSON.stringify(sortedCustomerData));
-    // 🔁 Convert to sorted monthly data per Business Case
+    // ðŸ” Convert to sorted monthly data per Business Case
     const sortedBusinessCaseData = new Map();
     let count = 0;
     for (const [businessCaseId, monthsMap] of businessCaseData.entries()) {
@@ -6293,7 +6302,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         (a, b) => new Date(a.month) - new Date(b.month)
       );
 
-      // ⚠️ Check if current month is missing → mark as warning
+      // âš ï¸ Check if current month is missing â†’ mark as warning
       const hasCurrentMonth = sortedMonths.some(
         (m) => m.month === currentMonth
       );
@@ -6336,7 +6345,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   calculateCustomerRiskProfile(customerCode, monthlyRecords) {
     // Debug logging for specific customer
     // if (customerCode === "3020001237") {
-    //   console.log("🔍 RISK ANALYSIS DEBUG for customer 3020001237:");
+    //   console.log("ðŸ” RISK ANALYSIS DEBUG for customer 3020001237:");
     //   console.log("Monthly records received:", monthlyRecords);
     //   console.log("Number of months:", monthlyRecords.length);
     //   monthlyRecords.forEach((record, index) => {
@@ -6357,7 +6366,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
     // Debug after sorting
     // if (customerCode === "3020001237") {
-    //   // console.log("📅 Sorted records for 3020001237:");
+    //   // console.log("ðŸ“… Sorted records for 3020001237:");
     //   sortedRecords.forEach((record, index) => {
     //     console.log(`Sorted Month ${index + 1}:`, {
     //       month: record.month,
@@ -6375,7 +6384,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Debug consecutive calculation
     // if (customerCode === "3020001237") {
     //   console.log(
-    //     "🚨 Consecutive failed months calculated:",
+    //     "ðŸš¨ Consecutive failed months calculated:",
     //     consecutiveFailedMonths
     //   );
     // }
@@ -6491,7 +6500,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     );
 
     // if (isDebugCustomer) {
-    //   console.log("🔍 CONSECUTIVE FAILED MONTHS DEBUG for 3020001237:");
+    //   console.log("ðŸ” CONSECUTIVE FAILED MONTHS DEBUG for 3020001237:");
     //   console.log("Input sorted records:", sortedRecords);
     // }
 
@@ -6511,13 +6520,13 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         consecutiveFailedMonths++;
         // if (isDebugCustomer) {
         //   console.log(
-        //     `  ➡️ Failed month detected, consecutive count now: ${consecutiveFailedMonths}`
+        //     `  âž¡ï¸ Failed month detected, consecutive count now: ${consecutiveFailedMonths}`
         //   );
         // }
       } else {
         // if (isDebugCustomer) {
         //   console.log(
-        //     `  ✅ Successful month found, stopping count at: ${consecutiveFailedMonths}`
+        //     `  âœ… Successful month found, stopping count at: ${consecutiveFailedMonths}`
         //   );
         // }
         // Stop counting when we hit a successful month
@@ -6527,7 +6536,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
     // if (isDebugCustomer) {
     //   console.log(
-    //     `🎯 Final consecutive failed months for 3020001237: ${consecutiveFailedMonths}`
+    //     `ðŸŽ¯ Final consecutive failed months for 3020001237: ${consecutiveFailedMonths}`
     //   );
     // }
 
@@ -6658,7 +6667,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   // ===== REGIONAL AND SUPPLIER RISK ANALYSIS =====
 
   calculateRegionalRiskProfile(regionName, monthlySales, monthlyTargets) {
-    // console.log(`🏢 Calculating risk profile for region: ${regionName}`);
+    // console.log(`ðŸ¢ Calculating risk profile for region: ${regionName}`);
 
     // Validate input arrays
     if (
@@ -6668,7 +6677,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       monthlyTargets.length === 0
     ) {
       // console.log(
-      //   `⚠️ No data available for region ${regionName}, defaulting to HEALTHY`
+      //   `âš ï¸ No data available for region ${regionName}, defaulting to HEALTHY`
       // );
       return {
         riskLevel: "HEALTHY",
@@ -6721,7 +6730,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       actionRequired = "Monitor regional performance closely";
     }
 
-    // console.log(`🏢 Region ${regionName} risk analysis:`, {
+    // console.log(`ðŸ¢ Region ${regionName} risk analysis:`, {
     //   riskLevel,
     //   consecutiveFailedMonths,
     //   actionRequired,
@@ -6738,7 +6747,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   }
 
   calculateSupplierRiskProfile(supplierName, monthlySales, monthlyTargets) {
-    // console.log(`🏭 Calculating risk profile for supplier: ${supplierName}`);
+    // console.log(`ðŸ­ Calculating risk profile for supplier: ${supplierName}`);
 
     // Validate input arrays
     if (
@@ -6748,7 +6757,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       monthlyTargets.length === 0
     ) {
       // console.log(
-      //   `⚠️ No data available for supplier ${supplierName}, defaulting to HEALTHY`
+      //   `âš ï¸ No data available for supplier ${supplierName}, defaulting to HEALTHY`
       // );
       return {
         riskLevel: "HEALTHY",
@@ -6801,7 +6810,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
       actionRequired = "Monitor supplier performance closely";
     }
 
-    // console.log(`🏭 Supplier ${supplierName} risk analysis:`, {
+    // console.log(`ðŸ­ Supplier ${supplierName} risk analysis:`, {
     //   riskLevel,
     //   consecutiveFailedMonths,
     //   actionRequired,
@@ -6820,15 +6829,15 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   getTrendDisplayText(trend) {
     switch (trend) {
       case "DECLINING":
-        return "📉 Declining";
+        return "ðŸ“‰ Declining";
       case "STABLE":
-        return "➡️ Stable";
+        return "âž¡ï¸ Stable";
       case "IMPROVING":
-        return "📈 Improving";
+        return "ðŸ“ˆ Improving";
       case "INSUFFICIENT_DATA":
-        return "❓ Unknown";
+        return "â“ Unknown";
       default:
-        return "❓ Unknown";
+        return "â“ Unknown";
     }
   }
 

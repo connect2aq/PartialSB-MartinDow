@@ -5,7 +5,7 @@ export default class BMultiSelectDropdown extends LightningElement {
       @api placeholder = "Select options";
       @api options = [];
     
-      _selectedValues = [];
+      @track _selectedValues = [];
     
       @api
       get selectedValues() {
@@ -168,10 +168,13 @@ export default class BMultiSelectDropdown extends LightningElement {
     
           newSelectedValues = Array.from(currentSelections);
         }
-    
+
+        // Update local state immediately so filteredOptions re-renders without waiting for parent
+        this._selectedValues = newSelectedValues;
+
         // Keep popover open for multi-select
         this.showPopover = true;
-    
+
         // Dispatch change event to parent with new values
         this.dispatchEvent(
           new CustomEvent("change", {

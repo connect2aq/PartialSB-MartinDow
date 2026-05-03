@@ -346,7 +346,7 @@
 </div>
 <!-- Table View -->
 <template if:true={isTableView}>
-<lightning-datatable                    key-field="businessCaseId"                    data={paginatedCustomerInvestmentData}                    columns={customerInvestmentColumns}                    hide-checkbox-column="true"                    onrowaction={handleCustomerRowAction}                  >
+<lightning-datatable                    key-field="rowNumber"                    data={paginatedCustomerInvestmentData}                    columns={customerInvestmentColumns}                    hide-checkbox-column="true"                    onrowaction={handleCustomerRowAction}                  >
 </lightning-datatable>
 </template>
 <!-- Card View -->
