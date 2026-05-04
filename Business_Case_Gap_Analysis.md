@@ -1,17 +1,7 @@
 # Business Case Gap Analysis
-**Last Updated:** 2026-05-04
-**Source:** `Imports/Updated_Business_Cases.xlsx` → Sheet: `B-Cases`
-**Target Org:** MDProd (`wajeeh@martindowproject.com.sfdc`) — **READ-ONLY**
-**Prepared by:** Claude Code (automated analysis)
 
----
-
-## Revision History
-
-| Date | Change |
-|---|---|
-| 2026-05-03 | Initial analysis — 191 Excel rows, 79 missing BCs identified, A vs B Boule discrepancy flagged |
-| 2026-05-04 | Re-run after Excel fixes — 200 rows, vendor codes corrected (B→A for Boule), missing count reduced to **64** |
+**Source:** `RR Tracking Excel Sheet (Updated_Business_Cases.xlsx)` 
+**Target Org:** Martin Dow Saleforce Production System
 
 ---
 
@@ -21,24 +11,42 @@ This report compares every row in the Excel tracking sheet against Business Case
 
 **Rule:** Every row in the tracking sheet should have exactly one corresponding `Business_Case__c` record with `Is_Master__c = false`.
 
-**Master Business Cases** (`Is_Master__c = true`) group individual cases where the same customer has more than one machine from the same supplier with the same technology. They are **excluded** from this analysis.
+**Master Business Cases** (`Is_Master__c = true`) group individual cases where the same customer has more than one machine from the same supplier with the same technology. 
 
-**Matching key used:** `Customer No. (col R)` + `Supplier Code (col B)` + `Technology Code (col F)`
 
 ---
 
 ## Count Summary
 
+### Totals
+
 | Metric | Count |
 |---|---|
 | Excel rows in B-Cases sheet | 200 |
-| Excel rows with a Customer No. | 197 |
-| Excel rows **without** Customer No. (unmatchable) | 3 |
+| Excel rows **without** Customer No. (unmatchable, rows 184/186/187) | 3 |
+| Excel rows **with** Customer No. | 197 |
 | SF non-master BCs total | 162 |
-| SF non-master BCs **with** Customer No. | 137 |
 | SF non-master BCs **without** Customer No. (incomplete data) | 25 |
-| **Total missing non-master BCs** | **64** |
-| Excel rows with zero SF BC match | 49 |
+| SF non-master BCs **with** Customer No. | 137 |
+
+### Breakdown of 197 Excel rows (with Customer No.)
+
+| Category | Count |
+|---|---|
+| Matched — Excel row has a corresponding SF BC | 133 |
+| Missing — groups with **zero** SF BCs (Section 1.1) | 49 |
+| Missing — gaps inside partial groups (Section 1.2) | 15 |
+| **Total** | **197** |
+
+> **64 total missing BCs** = 49 (completely absent groups) + 15 (missing slots in partial groups)
+
+### Breakdown of 137 SF BCs (with Customer No.)
+
+| Category | Count |
+|---|---|
+| Matched — SF BC has a corresponding Excel row | 133 |
+| Extra — SF has more BCs than Excel rows for that group (Section 3) | 4 |
+| **Total** | **137** |
 
 ---
 
