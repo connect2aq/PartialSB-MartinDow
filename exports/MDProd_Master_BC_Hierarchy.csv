@@ -85,8 +85,8 @@ MASTER,BCN-000000340,a0BQ800000O2ccrMAB,E,VitalScientific,CC,Clinical Chemistry,
 child,BCN-000000240,a0BQ800000O2aZ3MAJ,E,VitalScientific,CC,Clinical Chemistry,3020001047,,Revised,BCN-000000340
 child,BCN-000000312,a0BQ800000O2aaDMAR,E,VitalScientific,CC,Clinical Chemistry,3020001047,,Closed,BCN-000000340
 MASTER,BCN-000000342,a0BQ800000UmYR7MAN,,,,,,,Active,
-
---- NON-MASTER BCs WITH NO MASTER LINKED ---
+,,,,,,,,,,
+--- NON-MASTER BCs WITH NO MASTER LINKED ---,,,,,,,,,,
 Type,BC Number,Salesforce Id,Vendor Code,Vendor Name,Technology Code,Technology Name,Customer Number,Customer Name,Status,Parent Master BC
 orphan,BCN-000000004,a0BQ800000LhYtZMAV,,,,,,,Active,NONE
 orphan,BCN-000000006,a0BQ800000Lo4AnMAJ,,,,,,,New,NONE

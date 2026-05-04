@@ -1,0 +1,1258 @@
+[
+  {
+    "customer_no": "3020000013",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 19598746.34,
+    "rows": [
+      2
+    ]
+  },
+  {
+    "customer_no": "3020000022",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 4156187.42,
+    "rows": [
+      3
+    ]
+  },
+  {
+    "customer_no": "3020000072",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 213943.0,
+    "rows": [
+      4
+    ]
+  },
+  {
+    "customer_no": "3020000084",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 42132250.00000001,
+    "rows": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "customer_no": "3020000084",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 46451352.25,
+    "rows": [
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  {
+    "customer_no": "3020000084",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 8721000.0,
+    "rows": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  {
+    "customer_no": "3020000088",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 597600.0,
+    "rows": [
+      19
+    ]
+  },
+  {
+    "customer_no": "3020000114",
+    "supplier_code": "DYM",
+    "tech_code": "HM",
+    "excel_sum": 1235121.55,
+    "rows": [
+      20
+    ]
+  },
+  {
+    "customer_no": "3020000125",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 0.0,
+    "rows": [
+      21
+    ]
+  },
+  {
+    "customer_no": "3020000166",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 39960894.96,
+    "rows": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ]
+  },
+  {
+    "customer_no": "3020001814",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 3161900.0,
+    "rows": [
+      28
+    ]
+  },
+  {
+    "customer_no": "3020000190",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 0.0,
+    "rows": [
+      29
+    ]
+  },
+  {
+    "customer_no": "3020000206",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 2284000.0,
+    "rows": [
+      30,
+      200
+    ]
+  },
+  {
+    "customer_no": "3020000206",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 8799267.55,
+    "rows": [
+      31,
+      34
+    ]
+  },
+  {
+    "customer_no": "3020000206",
+    "supplier_code": "DYM",
+    "tech_code": "HM",
+    "excel_sum": 0.0,
+    "rows": [
+      32
+    ]
+  },
+  {
+    "customer_no": "3020000206",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1661053.0,
+    "rows": [
+      33
+    ]
+  },
+  {
+    "customer_no": "3020000209",
+    "supplier_code": "B",
+    "tech_code": "HM",
+    "excel_sum": 1262500.0,
+    "rows": [
+      35
+    ]
+  },
+  {
+    "customer_no": "3020000314",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      36
+    ]
+  },
+  {
+    "customer_no": "3020000386",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1576640.0,
+    "rows": [
+      37
+    ]
+  },
+  {
+    "customer_no": "3020000386",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 943495.4,
+    "rows": [
+      38
+    ]
+  },
+  {
+    "customer_no": "3020000394",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 1640327.8,
+    "rows": [
+      39
+    ]
+  },
+  {
+    "customer_no": "3020000439",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 5895450.279999999,
+    "rows": [
+      40,
+      41
+    ]
+  },
+  {
+    "customer_no": "3020000447",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 13933860.0,
+    "rows": [
+      42
+    ]
+  },
+  {
+    "customer_no": "3020000477",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 110001855.1,
+    "rows": [
+      43,
+      44,
+      45,
+      46
+    ]
+  },
+  {
+    "customer_no": "3020000491",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 2732918.0,
+    "rows": [
+      47,
+      48
+    ]
+  },
+  {
+    "customer_no": "3020000515",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 14951014.900000002,
+    "rows": [
+      49,
+      50,
+      51
+    ]
+  },
+  {
+    "customer_no": "3020000515",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 11816933.87,
+    "rows": [
+      52
+    ]
+  },
+  {
+    "customer_no": "3020000393",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 2725423.0,
+    "rows": [
+      53,
+      191,
+      192
+    ]
+  },
+  {
+    "customer_no": "3020000539",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1501047.6,
+    "rows": [
+      54
+    ]
+  },
+  {
+    "customer_no": "3020000547",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 22265615.12,
+    "rows": [
+      55,
+      56
+    ]
+  },
+  {
+    "customer_no": "3020000580",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 3089410.0,
+    "rows": [
+      57
+    ]
+  },
+  {
+    "customer_no": "3020000605",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 872400.0,
+    "rows": [
+      58
+    ]
+  },
+  {
+    "customer_no": "3020000633",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 10087208.59,
+    "rows": [
+      59
+    ]
+  },
+  {
+    "customer_no": "3020000633",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 16627034.43,
+    "rows": [
+      60,
+      61
+    ]
+  },
+  {
+    "customer_no": "3020000645",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 1686228.0,
+    "rows": [
+      62
+    ]
+  },
+  {
+    "customer_no": "3020000647",
+    "supplier_code": "ZYB",
+    "tech_code": "URIN",
+    "excel_sum": 844500.0,
+    "rows": [
+      63
+    ]
+  },
+  {
+    "customer_no": "3020000664",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 4376854.0,
+    "rows": [
+      64
+    ]
+  },
+  {
+    "customer_no": "3020000664",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 1700000.0,
+    "rows": [
+      65
+    ]
+  },
+  {
+    "customer_no": "3020000678",
+    "supplier_code": "ZYB",
+    "tech_code": "URIN",
+    "excel_sum": 543500.0,
+    "rows": [
+      66
+    ]
+  },
+  {
+    "customer_no": "3020000692",
+    "supplier_code": "ER",
+    "tech_code": "COAG",
+    "excel_sum": 1033300.0,
+    "rows": [
+      67
+    ]
+  },
+  {
+    "customer_no": "3020000692",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 6971183.0,
+    "rows": [
+      68,
+      69
+    ]
+  },
+  {
+    "customer_no": "3020000701",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 0.0,
+    "rows": [
+      70
+    ]
+  },
+  {
+    "customer_no": "3020000719",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 1575000.0,
+    "rows": [
+      71
+    ]
+  },
+  {
+    "customer_no": "3020000734",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 6007419.600000001,
+    "rows": [
+      72
+    ]
+  },
+  {
+    "customer_no": "3020000736",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 11561014.0,
+    "rows": [
+      73
+    ]
+  },
+  {
+    "customer_no": "3020000736",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 2973746.0,
+    "rows": [
+      74,
+      75
+    ]
+  },
+  {
+    "customer_no": "3020000753",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 1555085.11,
+    "rows": [
+      76
+    ]
+  },
+  {
+    "customer_no": "3020000764",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1592380.0,
+    "rows": [
+      77
+    ]
+  },
+  {
+    "customer_no": "3020000771",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 1422541.0,
+    "rows": [
+      78
+    ]
+  },
+  {
+    "customer_no": "3020000771",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1605015.0,
+    "rows": [
+      79
+    ]
+  },
+  {
+    "customer_no": "3020000776",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 0.0,
+    "rows": [
+      80
+    ]
+  },
+  {
+    "customer_no": "3020000811",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 112700.0,
+    "rows": [
+      81
+    ]
+  },
+  {
+    "customer_no": "3020000811",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 49500.0,
+    "rows": [
+      82
+    ]
+  },
+  {
+    "customer_no": "3020000811",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 216300.0,
+    "rows": [
+      83
+    ]
+  },
+  {
+    "customer_no": "3020000816",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 5860926.74,
+    "rows": [
+      84
+    ]
+  },
+  {
+    "customer_no": "3020000823",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 2091600.0,
+    "rows": [
+      85
+    ]
+  },
+  {
+    "customer_no": "3020000823",
+    "supplier_code": "DYM",
+    "tech_code": "HM",
+    "excel_sum": 295500.0,
+    "rows": [
+      86
+    ]
+  },
+  {
+    "customer_no": "3020000845",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 9408600.0,
+    "rows": [
+      87
+    ]
+  },
+  {
+    "customer_no": "3020000881",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 3244000.0,
+    "rows": [
+      88
+    ]
+  },
+  {
+    "customer_no": "3020000881",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 4179600.0,
+    "rows": [
+      89
+    ]
+  },
+  {
+    "customer_no": "3020000888",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      90
+    ]
+  },
+  {
+    "customer_no": "3020000888",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 1431049.21,
+    "rows": [
+      91
+    ]
+  },
+  {
+    "customer_no": "3020000917",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1642511.87,
+    "rows": [
+      92
+    ]
+  },
+  {
+    "customer_no": "3020000917",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 1541060.0,
+    "rows": [
+      93
+    ]
+  },
+  {
+    "customer_no": "3020000917",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 14725567.08,
+    "rows": [
+      94,
+      95
+    ]
+  },
+  {
+    "customer_no": "3020000936",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 11257131.0,
+    "rows": [
+      96
+    ]
+  },
+  {
+    "customer_no": "3020000943",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 2435409.69,
+    "rows": [
+      97
+    ]
+  },
+  {
+    "customer_no": "3020000960",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 1304728.84,
+    "rows": [
+      98
+    ]
+  },
+  {
+    "customer_no": "3020000979",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 9541337.9,
+    "rows": [
+      99,
+      100
+    ]
+  },
+  {
+    "customer_no": "3020000979",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 7008304.0,
+    "rows": [
+      101
+    ]
+  },
+  {
+    "customer_no": "3020000979",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      102
+    ]
+  },
+  {
+    "customer_no": "3020000987",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 2563000.0,
+    "rows": [
+      103
+    ]
+  },
+  {
+    "customer_no": "3020001019",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 0.0,
+    "rows": [
+      104
+    ]
+  },
+  {
+    "customer_no": "3020001042",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 10796715.0,
+    "rows": [
+      105
+    ]
+  },
+  {
+    "customer_no": "3020001042",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 2003250.0,
+    "rows": [
+      106
+    ]
+  },
+  {
+    "customer_no": "3020001047",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 2636991.2199999997,
+    "rows": [
+      107,
+      108
+    ]
+  },
+  {
+    "customer_no": "3020001067",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 32735672.0,
+    "rows": [
+      109,
+      111
+    ]
+  },
+  {
+    "customer_no": "3020001067",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 10887009.27,
+    "rows": [
+      110,
+      112
+    ]
+  },
+  {
+    "customer_no": "3020001074",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 779540.0,
+    "rows": [
+      113
+    ]
+  },
+  {
+    "customer_no": "3020001083",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      114
+    ]
+  },
+  {
+    "customer_no": "3020001092",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 368850.0,
+    "rows": [
+      115
+    ]
+  },
+  {
+    "customer_no": "3020000135",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 1241400.0,
+    "rows": [
+      116
+    ]
+  },
+  {
+    "customer_no": "3020001115",
+    "supplier_code": "STA",
+    "tech_code": "URIN",
+    "excel_sum": 0.0,
+    "rows": [
+      117
+    ]
+  },
+  {
+    "customer_no": "3020001124",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 9998644.8,
+    "rows": [
+      118
+    ]
+  },
+  {
+    "customer_no": "3020001124",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 19335600.0,
+    "rows": [
+      119
+    ]
+  },
+  {
+    "customer_no": "3020001131",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1025080.0,
+    "rows": [
+      120
+    ]
+  },
+  {
+    "customer_no": "3020001141",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 16272745.0,
+    "rows": [
+      121
+    ]
+  },
+  {
+    "customer_no": "3020001174",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 87100.0,
+    "rows": [
+      122
+    ]
+  },
+  {
+    "customer_no": "3020001175",
+    "supplier_code": "ER",
+    "tech_code": "COAG",
+    "excel_sum": 573391.0,
+    "rows": [
+      123
+    ]
+  },
+  {
+    "customer_no": "3020001175",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      124
+    ]
+  },
+  {
+    "customer_no": "3020001192",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 9510884.399999999,
+    "rows": [
+      125
+    ]
+  },
+  {
+    "customer_no": "3020001221",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 1387354.57,
+    "rows": [
+      126
+    ]
+  },
+  {
+    "customer_no": "3020001224",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 27319415.0,
+    "rows": [
+      127,
+      128
+    ]
+  },
+  {
+    "customer_no": "3020001230",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 571500.0,
+    "rows": [
+      129
+    ]
+  },
+  {
+    "customer_no": "3020001237",
+    "supplier_code": "DYM",
+    "tech_code": "HM",
+    "excel_sum": 1849740.0,
+    "rows": [
+      130
+    ]
+  },
+  {
+    "customer_no": "3020001237",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 8038455.0,
+    "rows": [
+      131
+    ]
+  },
+  {
+    "customer_no": "3020001238",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 758500.0,
+    "rows": [
+      132
+    ]
+  },
+  {
+    "customer_no": "3020001255",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 280000.0,
+    "rows": [
+      133,
+      134
+    ]
+  },
+  {
+    "customer_no": "3020001280",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 14876603.0,
+    "rows": [
+      135,
+      136,
+      137
+    ]
+  },
+  {
+    "customer_no": "3020001357",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 6824828.0,
+    "rows": [
+      138
+    ]
+  },
+  {
+    "customer_no": "3020001382",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 12825000.0,
+    "rows": [
+      139,
+      140,
+      141,
+      142,
+      143
+    ]
+  },
+  {
+    "customer_no": "3020001384",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 9859732.0,
+    "rows": [
+      144
+    ]
+  },
+  {
+    "customer_no": "3020001399",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 2752000.0,
+    "rows": [
+      145
+    ]
+  },
+  {
+    "customer_no": "3020001399",
+    "supplier_code": "HW",
+    "tech_code": "ELCT",
+    "excel_sum": 0.0,
+    "rows": [
+      146
+    ]
+  },
+  {
+    "customer_no": "3020001430",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 2005150.0,
+    "rows": [
+      147
+    ]
+  },
+  {
+    "customer_no": "3020001475",
+    "supplier_code": "NV",
+    "tech_code": "ABG",
+    "excel_sum": 1530000.0,
+    "rows": [
+      148
+    ]
+  },
+  {
+    "customer_no": "3020001479",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 183240.0,
+    "rows": [
+      149
+    ]
+  },
+  {
+    "customer_no": "3020001511",
+    "supplier_code": "ER",
+    "tech_code": "COAG",
+    "excel_sum": 834133.3333333333,
+    "rows": [
+      150
+    ]
+  },
+  {
+    "customer_no": "3020001511",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 8734133.333333332,
+    "rows": [
+      151,
+      152,
+      157
+    ]
+  },
+  {
+    "customer_no": "3020001511",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 587133.3333333333,
+    "rows": [
+      153
+    ]
+  },
+  {
+    "customer_no": "3020001511",
+    "supplier_code": "E",
+    "tech_code": "CC",
+    "excel_sum": 7052960.000000001,
+    "rows": [
+      154,
+      156,
+      190
+    ]
+  },
+  {
+    "customer_no": "3020001511",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 675000.0,
+    "rows": [
+      155
+    ]
+  },
+  {
+    "customer_no": "3020001552",
+    "supplier_code": "ER",
+    "tech_code": "URIN",
+    "excel_sum": 1678750.0,
+    "rows": [
+      158,
+      159,
+      160,
+      161
+    ]
+  },
+  {
+    "customer_no": "3020001552",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 3585000.0,
+    "rows": [
+      162
+    ]
+  },
+  {
+    "customer_no": "3020001659",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      163
+    ]
+  },
+  {
+    "customer_no": "3020001748",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 29425494.0,
+    "rows": [
+      164,
+      167,
+      168,
+      169,
+      182,
+      183,
+      197
+    ]
+  },
+  {
+    "customer_no": "3020001748",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 65124641.556130305,
+    "rows": [
+      165,
+      166,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177
+    ]
+  },
+  {
+    "customer_no": "3020001809",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 2491525.5,
+    "rows": [
+      178
+    ]
+  },
+  {
+    "customer_no": "3020001811",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 2026962.0,
+    "rows": [
+      179
+    ]
+  },
+  {
+    "customer_no": "3020001102",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 1116500.0,
+    "rows": [
+      180
+    ]
+  },
+  {
+    "customer_no": "3020001748",
+    "supplier_code": "ER",
+    "tech_code": "ELCT",
+    "excel_sum": 6717854.35,
+    "rows": [
+      181
+    ]
+  },
+  {
+    "customer_no": "",
+    "supplier_code": "STA",
+    "tech_code": "COAG",
+    "excel_sum": 0.0,
+    "rows": [
+      184
+    ]
+  },
+  {
+    "customer_no": "3020001086",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 999000.0,
+    "rows": [
+      185
+    ]
+  },
+  {
+    "customer_no": "",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 0.0,
+    "rows": [
+      186,
+      187
+    ]
+  },
+  {
+    "customer_no": "3020000896",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 4576272.0,
+    "rows": [
+      188
+    ]
+  },
+  {
+    "customer_no": "3020000379",
+    "supplier_code": "A",
+    "tech_code": "HM",
+    "excel_sum": 262500.0,
+    "rows": [
+      189
+    ]
+  },
+  {
+    "customer_no": "3020000685",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1068530.0,
+    "rows": [
+      193
+    ]
+  },
+  {
+    "customer_no": "3020000633",
+    "supplier_code": "OR",
+    "tech_code": "IMA",
+    "excel_sum": 6462518.43,
+    "rows": [
+      194,
+      195
+    ]
+  },
+  {
+    "customer_no": "3020001115",
+    "supplier_code": "DYM",
+    "tech_code": "HM",
+    "excel_sum": 185100.0,
+    "rows": [
+      196
+    ]
+  },
+  {
+    "customer_no": "3020000176",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 1461600.0,
+    "rows": [
+      198
+    ]
+  },
+  {
+    "customer_no": "3020000998",
+    "supplier_code": "YHLO",
+    "tech_code": "",
+    "excel_sum": 0.0,
+    "rows": [
+      199
+    ]
+  },
+  {
+    "customer_no": "3020000664",
+    "supplier_code": "YHLO",
+    "tech_code": "IMA",
+    "excel_sum": 673700.0,
+    "rows": [
+      201
+    ]
+  }
+]

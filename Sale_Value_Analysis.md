@@ -1,7 +1,6 @@
 # Sale Value Analysis Report
-**Generated:** 2026-05-04  
-**Source:** Excel `Imports/Updated_Business_Cases.xlsx` (Sheet: B-Cases, Col BB) vs ZSD Report (SAP ZSD data uploaded to `Invoice_Line_Item__c.Invoice_Value__c`)  
-**Match Criteria:** Customer No. + `DGroup__c = Reagent` + `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`  
+
+**Source:** Excel `RR Tracking Excel Sheet vs ZSD Report`
 **Tolerance:** ±1
 
 ---

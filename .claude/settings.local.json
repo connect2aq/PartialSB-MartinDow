@@ -33,7 +33,10 @@
       "Bash(grep -v \"//[A-Z]\")",
       "Bash(grep -v \"//[a-z]\")",
       "mcp__Salesforce_DX__deploy_metadata",
-      "mcp__Salesforce_DX__get_username"
+      "mcp__Salesforce_DX__get_username",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

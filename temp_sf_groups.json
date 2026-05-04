@@ -1,0 +1,2217 @@
+[
+  {
+    "customer_no": "3020001067",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 2878968.02
+  },
+  {
+    "customer_no": "3020000125",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 77000
+  },
+  {
+    "customer_no": "3020001357",
+    "ag_og": "YHLO-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 581000
+  },
+  {
+    "customer_no": "3020000823",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 2091600
+  },
+  {
+    "customer_no": "3020000811",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 112700
+  },
+  {
+    "customer_no": "3020000764",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 1265380
+  },
+  {
+    "customer_no": "3020000547",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001238",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 854300
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 101897
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 51679.66
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 15656423
+  },
+  {
+    "customer_no": "3020001552",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 1215000
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 113058
+  },
+  {
+    "customer_no": "3020001224",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001074",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 779540
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "ER-HM-REAG",
+    "sf_sum": 415254.35
+  },
+  {
+    "customer_no": "3020000491",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 561700
+  },
+  {
+    "customer_no": "3020000881",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 4179600
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 349852
+  },
+  {
+    "customer_no": "3020000823",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 295500
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 22500
+  },
+  {
+    "customer_no": "3020001131",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 635070
+  },
+  {
+    "customer_no": "3020001382",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 127152.56
+  },
+  {
+    "customer_no": "3020000135",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 861200
+  },
+  {
+    "customer_no": "3020001042",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 286500
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 146400
+  },
+  {
+    "customer_no": "3020000176",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 1068200
+  },
+  {
+    "customer_no": "3020001083",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 135000
+  },
+  {
+    "customer_no": "3020000209",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 1262500
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 56380
+  },
+  {
+    "customer_no": "3020001552",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 5847750
+  },
+  {
+    "customer_no": "3020000088",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001083",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 467450
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "ISEN-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 60000
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 192571
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 590200
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 2794803.54
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 765260
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 8727302.13
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 341010.12
+  },
+  {
+    "customer_no": "3020000447",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 8811650
+  },
+  {
+    "customer_no": "3020001047",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 3398840.49
+  },
+  {
+    "customer_no": "3020000379",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 4966600
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 9998644.8
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000776",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 278000
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 176300
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 318000
+  },
+  {
+    "customer_no": "3020000753",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 1555085.03
+  },
+  {
+    "customer_no": "3020001382",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 145168.81
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001280",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 528501.87
+  },
+  {
+    "customer_no": "3020001092",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 1653852
+  },
+  {
+    "customer_no": "3020001086",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 39000
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "NV-POC-CON",
+    "sf_sum": 1732211.72
+  },
+  {
+    "customer_no": "3020000547",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 20855788.12
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 83170
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 367040
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 1815776
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 129800
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000088",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 597600
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 42836
+  },
+  {
+    "customer_no": "3020001086",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 222500
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 330000
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 2863898.48
+  },
+  {
+    "customer_no": "3020001382",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 630000
+  },
+  {
+    "customer_no": "3020000816",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 7383459
+  },
+  {
+    "customer_no": "3020000701",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 197500
+  },
+  {
+    "customer_no": "3020000881",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 3244000
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 3768396.42
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 11442.6
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 531514.5
+  },
+  {
+    "customer_no": "3020000701",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 21847.46
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 32735672
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 1322192.4
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 1321360
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000013",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 16507260.45
+  },
+  {
+    "customer_no": "3020000072",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 129943
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 6171266
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 409135.62
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 5578186.12
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 25300
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 1128953
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "ER-ELCT-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000072",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 322163.94
+  },
+  {
+    "customer_no": "3020000072",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000647",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 879859.9
+  },
+  {
+    "customer_no": "3020000088",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 525000
+  },
+  {
+    "customer_no": "3020001047",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 585935.97
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 30000
+  },
+  {
+    "customer_no": "3020001475",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 1530000
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 183000
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 47705077.6
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 1629513.03
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 6608956.25
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 2258700
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 1758990
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 82355
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 13896286.5
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 1518804
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 3943317
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 2564406.4
+  },
+  {
+    "customer_no": "3020000764",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 327000
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 1358317.68
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 2185379.5
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 1080053
+  },
+  {
+    "customer_no": "3020000701",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 36679.68
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001131",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 390010
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 8440000
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 1580591.34
+  },
+  {
+    "customer_no": "3020000645",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 1382810
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 8313216.76
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 2967442
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 242200
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 1321900
+  },
+  {
+    "customer_no": "3020001221",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 268160
+  },
+  {
+    "customer_no": "3020001115",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 185100
+  },
+  {
+    "customer_no": "3020001102",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001047",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 138909.64
+  },
+  {
+    "customer_no": "3020001382",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 24225000
+  },
+  {
+    "customer_no": "3020000379",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 840000
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 7022959
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 5001100
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 25641.02
+  },
+  {
+    "customer_no": "3020001047",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 684012.1
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 29000
+  },
+  {
+    "customer_no": "3020001280",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 42450
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 12870
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "ZYB-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 828340
+  },
+  {
+    "customer_no": "3020000135",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 1241400
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000888",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 2919675
+  },
+  {
+    "customer_no": "3020000176",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 393400
+  },
+  {
+    "customer_no": "3020001552",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 3585000
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 1775447.38
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 181600
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 4797755.15
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 150000
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 79395
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 14000
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000447",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 5596310
+  },
+  {
+    "customer_no": "3020001019",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 973111.87
+  },
+  {
+    "customer_no": "3020000701",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 1081864.5
+  },
+  {
+    "customer_no": "3020001399",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 300000
+  },
+  {
+    "customer_no": "3020001102",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 737500
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 15180781.75
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 19708955.23
+  },
+  {
+    "customer_no": "3020000393",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 2725423.06
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 33837300
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000645",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 9648344
+  },
+  {
+    "customer_no": "3020000190",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 488838
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 4303856
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 55800
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 7500
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 12870
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 9408600
+  },
+  {
+    "customer_no": "3020001074",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 108135.79
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 8956336.83
+  },
+  {
+    "customer_no": "3020000647",
+    "ag_og": "ZYB-URIN-CON",
+    "sf_sum": 844500
+  },
+  {
+    "customer_no": "3020000816",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 2748578.19
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "DM-ELT-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 23000
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 40422250
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 543730
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 933500
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "ISEN-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 87605
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "YHLO-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001811",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 269962
+  },
+  {
+    "customer_no": "3020001552",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 21740
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 477172
+  },
+  {
+    "customer_no": "3020000013",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 4452160.51
+  },
+  {
+    "customer_no": "3020000539",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 329000
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 63635
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 27964513.8
+  },
+  {
+    "customer_no": "3020001357",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000209",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 1326440
+  },
+  {
+    "customer_no": "3020000088",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 298400
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 304000
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 932410
+  },
+  {
+    "customer_no": "3020001814",
+    "ag_og": "STA-COAG-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001357",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 1515095
+  },
+  {
+    "customer_no": "3020001384",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 7516585
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 105590
+  },
+  {
+    "customer_no": "3020001224",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 1160000
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 9916.11
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 233842
+  },
+  {
+    "customer_no": "3020000088",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 7221994
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 15361300
+  },
+  {
+    "customer_no": "3020000888",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000539",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 1522713.31
+  },
+  {
+    "customer_no": "3020000013",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 502212
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001092",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 999030
+  },
+  {
+    "customer_no": "3020000678",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001221",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 607200
+  },
+  {
+    "customer_no": "3020001399",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 366500
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 1584711.7
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 309438.1
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 557000
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000719",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 1372.03
+  },
+  {
+    "customer_no": "3020000888",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 420050.43
+  },
+  {
+    "customer_no": "3020000888",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 378100
+  },
+  {
+    "customer_no": "3020000580",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 3089410
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 211200
+  },
+  {
+    "customer_no": "3020000645",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 282000
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 10902378.2
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001280",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 13319403
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 19602
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 192000
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 51501803
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 739682
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 690360
+  },
+  {
+    "customer_no": "3020000114",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 490000
+  },
+  {
+    "customer_no": "3020000685",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 700290
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-BLK",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000998",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 794442.48
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 622460
+  },
+  {
+    "customer_no": "3020000816",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 49180.33
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 97943.97
+  },
+  {
+    "customer_no": "3020000719",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 1575000
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001224",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 30000
+  },
+  {
+    "customer_no": "3020000645",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 21418
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 52735
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "STA-COAG-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 1317340
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 2019863
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 551148.3
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 495000
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 1585608.56
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 2973746
+  },
+  {
+    "customer_no": "3020000701",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 199113.41
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001083",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 440600
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000960",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 65573.77
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 2326931.85
+  },
+  {
+    "customer_no": "3020001811",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 199500
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 1345413.48
+  },
+  {
+    "customer_no": "3020000987",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 304400
+  },
+  {
+    "customer_no": "3020000811",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 216300
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 112500
+  },
+  {
+    "customer_no": "3020001811",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 47000
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 38415524
+  },
+  {
+    "customer_no": "3020001074",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000605",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 573400
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 98093091.72
+  },
+  {
+    "customer_no": "3020000881",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001230",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 571500
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 824240
+  },
+  {
+    "customer_no": "3020001221",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 588373.52
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 482912.7
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 1849740
+  },
+  {
+    "customer_no": "3020001042",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 2502000
+  },
+  {
+    "customer_no": "3020001042",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "U-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 3411944.19
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 9354586.33
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 24691000
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 1728702
+  },
+  {
+    "customer_no": "3020001102",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 19500
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 1292643.33
+  },
+  {
+    "customer_no": "3020000734",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "ER-ELCT-PAR",
+    "sf_sum": 23000
+  },
+  {
+    "customer_no": "3020001814",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 3161900
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 24917754.68
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 1268506.3
+  },
+  {
+    "customer_no": "3020000491",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 2142295
+  },
+  {
+    "customer_no": "3020001102",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 359500
+  },
+  {
+    "customer_no": "3020001430",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 2567740
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001255",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 840000
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 3280503.32
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 13143415.79
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 212563.34
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 259700
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "NV-POC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 2325540
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 5905000
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 51800448.62
+  },
+  {
+    "customer_no": "3020001511",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 9545600
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 1612796.56
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 90000
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "DM-ELT-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "B-HM-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 9689600
+  },
+  {
+    "customer_no": "3020000734",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000125",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 193080
+  },
+  {
+    "customer_no": "3020000072",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 24590.17
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001124",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001221",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 221520
+  },
+  {
+    "customer_no": "3020000539",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 3292183.45
+  },
+  {
+    "customer_no": "3020001141",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 5962015
+  },
+  {
+    "customer_no": "3020001042",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 3245381
+  },
+  {
+    "customer_no": "3020001384",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 2343147
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001357",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 5309733
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 582000
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 174086.98
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "ER-COAG-REAG",
+    "sf_sum": 391694.81
+  },
+  {
+    "customer_no": "3020000888",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 86663
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 2952000
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 164939
+  },
+  {
+    "customer_no": "3020001224",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 21239631
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 6814699.67
+  },
+  {
+    "customer_no": "3020000845",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000736",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 4339020
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 115800
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 191039.79
+  },
+  {
+    "customer_no": "3020000734",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 7230550.4
+  },
+  {
+    "customer_no": "3020001042",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 326000
+  },
+  {
+    "customer_no": "3020001280",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 1557200
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 2966999.2
+  },
+  {
+    "customer_no": "3020001067",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001238",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 30500
+  },
+  {
+    "customer_no": "3020000394",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 1640327.8
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 9000
+  },
+  {
+    "customer_no": "3020000678",
+    "ag_og": "ZYB-URIN-CON",
+    "sf_sum": 543500
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 8260882.02
+  },
+  {
+    "customer_no": "3020000664",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 462500
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 1702970
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001047",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 878218.45
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 5897799.24
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 40272894.96
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "B-HM-REAG",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 65811.94
+  },
+  {
+    "customer_no": "3020000125",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000998",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 66700
+  },
+  {
+    "customer_no": "3020000685",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 368240
+  },
+  {
+    "customer_no": "3020001238",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 410400
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 3674316
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 7011000
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "DM-ELT-CONS",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001192",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 72000
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 914655
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 6307124
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "DM-ELT-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 2333006.2
+  },
+  {
+    "customer_no": "3020001083",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 154000
+  },
+  {
+    "customer_no": "3020000114",
+    "ag_og": "DYM-HM-REA",
+    "sf_sum": 1235121.55
+  },
+  {
+    "customer_no": "3020001748",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 195800
+  },
+  {
+    "customer_no": "3020001175",
+    "ag_og": "ER-COAG-CON",
+    "sf_sum": 181694.88
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 347660
+  },
+  {
+    "customer_no": "3020000633",
+    "ag_og": "S-CC-BLK",
+    "sf_sum": 336383.61
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 1512688.28
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 4576272
+  },
+  {
+    "customer_no": "3020001174",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 87100
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 752400
+  },
+  {
+    "customer_no": "3020000753",
+    "ag_og": "ISEN-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 148517.32
+  },
+  {
+    "customer_no": "3020000439",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000811",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 49500
+  },
+  {
+    "customer_no": "3020000605",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 299000
+  },
+  {
+    "customer_no": "3020001224",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001092",
+    "ag_og": "E-CC-REAG",
+    "sf_sum": 181085
+  },
+  {
+    "customer_no": "3020001237",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 8994815
+  },
+  {
+    "customer_no": "3020000515",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 272500
+  },
+  {
+    "customer_no": "3020000987",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 2258600
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 918600
+  },
+  {
+    "customer_no": "3020001399",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 2752000
+  },
+  {
+    "customer_no": "3020000072",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 468000
+  },
+  {
+    "customer_no": "3020001809",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 17720511.16
+  },
+  {
+    "customer_no": "3020000943",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 578679.16
+  },
+  {
+    "customer_no": "3020001086",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 737500
+  },
+  {
+    "customer_no": "3020000692",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 1441906.83
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 198200
+  },
+  {
+    "customer_no": "3020001092",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 1324600
+  },
+  {
+    "customer_no": "3020001092",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 6916403
+  },
+  {
+    "customer_no": "3020000547",
+    "ag_og": "OR-IMA-CON",
+    "sf_sum": 2498542
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "E-CC-REF",
+    "sf_sum": 55674
+  },
+  {
+    "customer_no": "3020000477",
+    "ag_og": "NV-ABG-CON",
+    "sf_sum": 34000
+  },
+  {
+    "customer_no": "3020000960",
+    "ag_og": "STA-COAG-CON",
+    "sf_sum": 1304728.44
+  },
+  {
+    "customer_no": "3020000896",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 885116.64
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "E-CC-PART",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000166",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 6834838.6
+  },
+  {
+    "customer_no": "3020000206",
+    "ag_og": "A-HM-REAG",
+    "sf_sum": 950000
+  },
+  {
+    "customer_no": "3020000022",
+    "ag_og": "D-CC-REAG",
+    "sf_sum": 60700
+  },
+  {
+    "customer_no": "3020000084",
+    "ag_og": "E-CC-REAG-M",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000936",
+    "ag_og": "YHLO-IMA-R",
+    "sf_sum": 951560
+  },
+  {
+    "customer_no": "3020000771",
+    "ag_og": "STA-COAG-PAR",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020001430",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 1224200
+  },
+  {
+    "customer_no": "3020000491",
+    "ag_og": "YHLO-IMA-C",
+    "sf_sum": 1698399
+  },
+  {
+    "customer_no": "3020000979",
+    "ag_og": "OR-IMA-REA",
+    "sf_sum": 5311616
+  },
+  {
+    "customer_no": "3020000386",
+    "ag_og": "E-CC-PART-M",
+    "sf_sum": 0
+  },
+  {
+    "customer_no": "3020000917",
+    "ag_og": "ER-URIN-CON",
+    "sf_sum": 115000
+  },
+  {
+    "customer_no": "3020001479",
+    "ag_og": "ER-ELCT-CON",
+    "sf_sum": 5630090
+  },
+  {
+    "customer_no": "3020000547",
+    "ag_og": "OR-IMA-PAR",
+    "sf_sum": 0
+  }
+]
