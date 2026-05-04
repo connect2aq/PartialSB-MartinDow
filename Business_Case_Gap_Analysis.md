@@ -57,10 +57,10 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 ### 1.1 Groups With Zero BCs in SF (Completely Missing) — 49 records
 
 - **Account** checked against `Account.SAP_Customer_Number__c` in MDProd.
-- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
-- `--` means no serial number in the Excel row; that field must be populated before the asset can be verified.
+- **Diagnostic Machine** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
+- `--` means no serial number in the Excel row; that field must be populated before the Diagnostic Machine can be verified.
 
-| # | Customer No. | Customer Name | Supplier | Tech | Machine Serial No. | Status | Account | Asset |
+| # | Customer No. | Customer Name | Supplier | Tech | Machine Serial No. | Status | Account | Diagnostic Machine |
 |---|---|---|---|---|---|---|---|---|
 | 1 | 3020000114 | DHO Nawabshah Through HS Medical Nawab Shah | DYM | HM | DM11052437004 | Active | **N** | Y |
 | 2 | 3020000125 | Minhaj Lab Lahore | E | CC | -- | Closed | Y | -- |
@@ -113,15 +113,15 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 | 49 | 3020001814 | Al Khidmat Razi Hospital | STA | COAG | 1746 | Active | Y | Y |
 
 > **5 customers have no Account** (rows 1, 6, 22, 32, 47 — **N**): 3020000114, 3020000314, 3020000776, 3020000987, 3020001659. Account must be created before BC can be created.
-> **11 rows where Asset does not exist in SF** (rows 16–18, 26–27, 36–40, 43, 48 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
+> **11 rows where Diagnostic Machine does not exist in SF** (rows 16–18, 26–27, 36–40, 43, 48 — **N**): Machine must be registered in `MD_Asset__c` before BC can be created.
 > **Note row #33:** Customer 3020000998 (Biocare Labs) — Technology Code is blank in Excel col F; must be filled before BC can be created.
 
 ### 1.2 Groups With Partial BCs in SF (Some Missing) — 15 records
 
 - All customers in this section have confirmed accounts (Y) — each already has at least one BC in SF.
-- **Machine Serials (Asset)** lists every serial number in the group from the Excel tracking sheet, with asset check in parentheses: Y = exists in `MD_Asset__c`, N = not found, -- = no serial in Excel.
+- **Machine Serials (Diagnostic Machine)** lists every serial number in the group from the Excel tracking sheet, with Diagnostic Machine check in parentheses: Y = exists in `MD_Asset__c`, N = not found, -- = no serial in Excel.
 
-| Customer No. | Customer Name | Sup | Tech | Excel | SF | Missing | Existing BCs | Machine Serials (Asset) |
+| Customer No. | Customer Name | Sup | Tech | Excel | SF | Missing | Existing BCs | Machine Serials (Diagnostic Machine) |
 |---|---|---|---|---|---|---|---|---|
 | 3020000084 | SICVD | YHLO | IMA | 4 | 3 | **1** | BCN-000000269, BCN-000000260, BCN-000000263 | IA00146846(Y), FC10330839(Y), FC10330939(Y), --(--) |
 | 3020000084 | SICVD | A | HM | 6 | 5 | **1** | BCN-000000267, BCN-000000266, BCN-000000264, BCN-000000261, BCN-000000259 | 123213(**N**), 121497(Y), 123120(Y), 121496(Y), --(--), --(--) |
@@ -135,7 +135,7 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 | 3020001511 | Indus Hospital | ER | ELCT | 3 | 2 | **1** | BCN-000000214, BCN-000000216 | **MULTI**(see note), 6909-2-202305(Y), --(--) |
 | 3020001748 | Quetta / Jamal Brothers | YHLO | IMA | 7 | 4 | **3** | BCN-000000205, BCN-000000202, BCN-000000187, BCN-000000273 | ID00175747(Y), ID00176348(Y), ID00093734(Y), ID00082632(Y), ID00093734(Y), --(--), --(--) |
 
-> **5 serials where Asset does not exist in SF** (**N**): 123213, 126055, 116957, 117576, 125199, 25-47705 — machine must be registered in `MD_Asset__c` before BC can be created.
+> **5 serials where Diagnostic Machine does not exist in SF** (**N**): 123213, 126055, 116957, 117576, 125199, 25-47705 — machine must be registered in `MD_Asset__c` before BC can be created.
 > **Indus Hospital ER/ELCT:** One Excel cell contains 26 serial numbers concatenated — flagged as **MULTI**; split and verify each serial individually in `MD_Asset__c`.
 
 **Subtotal missing from partial groups: 15**
@@ -178,10 +178,10 @@ The following groups have **more** Individual BCs in SF than rows in Excel.
 
 3 rows in the B-Cases sheet have no value in column R (Customer No.) and cannot be matched to any SF record:
 
-- **Asset** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
-- `--` means no serial number in the Excel row; asset cannot be verified.
+- **Diagnostic Machine** checked against `MD_Asset__c.Serial_Number__c` using Machine Serial No. (Excel col I).
+- `--` means no serial number in the Excel row; Diagnostic Machine cannot be verified.
 
-| Excel Row | Customer Name | Supplier | Tech | Machine Serial No. | Status | Asset |
+| Excel Row | Customer Name | Supplier | Tech | Machine Serial No. | Status | Diagnostic Machine |
 |---|---|---|---|---|---|---|
 | Row 184 | Haemophilia Treatment Center (Molicular Concern) | STA | COAG | -- | Closed | -- |
 | Row 186 | Tmmergara Clinical Labs – Through JMS | OR | IMA | -- | Closed | -- |
