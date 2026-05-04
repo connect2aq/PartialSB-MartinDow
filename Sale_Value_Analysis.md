@@ -7,6 +7,21 @@
 
 ## Summary
 
+### What is a Business Case Group?
+
+The Excel tracking sheet (`B-Cases`) has **200 rows**. Multiple rows can belong to the same customer buying the same product from the same supplier — for example, a hospital may have 3 machines from the same supplier under the same technology, giving 3 separate rows.
+
+For the sales value comparison, rows are **grouped** by the unique combination of:
+- **Customer No.** (Col R)
+- **Supplier Code** (Col B)
+- **Technology Code** (Col F)
+
+The sales values (Col BB — *Total Reagent Sales till date Actual*) of all rows sharing the same combination are **summed** to give one total per group. This is then compared against the sum of `Invoice_Value__c` from the ZSD Report for the matching customer + `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`.
+
+200 Excel rows → **132 unique (Customer, Supplier, Technology) groups**
+
+### Counts
+
 | Category | Count |
 |---|---|
 | Total Business Case Groups (Excel) | 132 |
