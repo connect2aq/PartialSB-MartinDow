@@ -18,6 +18,8 @@ For the sales value comparison, rows are **grouped** by the unique combination o
 
 The sales values (Col BB — *Total Reagent Sales till date Actual*) of all rows sharing the same combination are **summed** to give one total per group. This is then compared against the sum of `Invoice_Value__c` from the ZSD Report for the matching customer + `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`.
 
+> **Inclusion / Exclusion note:** Invoice line items where `AG_OG__c` ends in `-INS*` (instrument sales) are already excluded by the `DGroup__c = 'Reagent'` filter, ensuring that instrument costs do not inflate the sales figures. Parts records, however, are included in the comparison as they fall within the reagent sales category.
+
 200 Excel rows → **132 unique (Customer, Supplier, Technology) groups**
 
 ### Counts
