@@ -1,6 +1,6 @@
 # Sale Value Analysis Report
 **Generated:** 2026-05-04  
-**Source:** Excel `Imports/Updated_Business_Cases.xlsx` (Sheet: B-Cases, Col BB) vs Salesforce PartialSB `Invoice_Line_Item__c.Invoice_Value__c`  
+**Source:** Excel `Imports/Updated_Business_Cases.xlsx` (Sheet: B-Cases, Col BB) vs ZSD Report (SAP ZSD data uploaded to `Invoice_Line_Item__c.Invoice_Value__c`)  
 **Match Criteria:** Customer No. + `DGroup__c = Reagent` + `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`  
 **Tolerance:** ±1
 
@@ -13,10 +13,10 @@
 | Total Business Case Groups (Excel) | 132 |
 | Matched (within ±1) | 60 |
 | Mismatched | 63 |
-| Not Found in Salesforce | 9 |
+| Not Found in ZSD Report | 9 |
 
 **Total Excel Sales Value:** PKR 880,306,740.29  
-**Total Salesforce Sales Value (matched customers):** PKR 977,190,897.49  
+**Total ZSD Sales Value (matched customers):** PKR 977,190,897.49  
 **Total Difference:** PKR 96,884,157.20
 
 ---
@@ -25,7 +25,7 @@
 
 **Count: 60**
 
-| # | Customer No. | Supplier Code | Tech Code | Excel Sum (PKR) | SF Sum (PKR) | Diff | SF AG_OG(s) |
+| # | Customer No. | Supplier Code | Tech Code | Excel Sum (PKR) | ZSD Sum (PKR) | Diff | ZSD AG_OG(s) |
 |---|---|---|---|---|---|---|---|
 | 1 | 3020000088 | STA | COAG | 597,600.00 | 597,600.00 | 0.00 | STA-COAG-CON |
 | 2 | 3020000114 | DYM | HM | 1,235,121.55 | 1,235,121.55 | 0.00 | DYM-HM-REA |
@@ -96,7 +96,7 @@
 
 > Sorted by absolute difference (largest gap first).
 
-| # | Customer No. | Supplier Code | Tech Code | Excel Sum (PKR) | SF Sum (PKR) | Diff (SF − Excel) | SF AG_OG(s) |
+| # | Customer No. | Supplier Code | Tech Code | Excel Sum (PKR) | ZSD Sum (PKR) | Diff (ZSD − Excel) | ZSD AG_OG(s) |
 |---|---|---|---|---|---|---|---|
 | 1 | 3020000477 | OR | IMA | 110,001,855.10 | 126,361,605.52 | 16,359,750.42 | OR-IMA-CON, OR-IMA-PAR, OR-IMA-REA |
 | 2 | 3020001124 | STA | COAG | 19,335,600.00 | 33,837,300.00 | 14,501,700.00 | STA-COAG-CON |
@@ -164,11 +164,11 @@
 
 ---
 
-## 3. Business Cases Not Found in Salesforce
+## 3. Business Cases Not Found in ZSD Report
 
 **Count: 9**
 
-These business case triplets (Customer No. + Supplier Code + Tech Code) have no matching `Invoice_Line_Item__c` records in Salesforce where `DGroup__c = Reagent` and `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`.
+These business case triplets (Customer No. + Supplier Code + Tech Code) have no matching records in the ZSD Report where `DGroup__c = Reagent` and `AG_OG__c LIKE [SupplierCode]-[TechCode]-%`.
 
 | # | Customer No. | Supplier Code | Tech Code | Excel Sum (PKR) | Excel Row(s) |
 |---|---|---|---|---|---|
