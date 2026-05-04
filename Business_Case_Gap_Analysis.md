@@ -25,9 +25,9 @@ This report compares every row in the Excel tracking sheet against Business Case
 | Excel rows in B-Cases sheet | 200 |
 | Excel rows **without** Customer No. (unmatchable, rows 184/186/187) | 3 |
 | Excel rows **with** Customer No. | 197 |
-| SF non-master BCs total | 162 |
-| SF non-master BCs **without** Customer No. (incomplete data) | 25 |
-| SF non-master BCs **with** Customer No. | 137 |
+| SF Individual BCs total | 162 |
+| SF Individual BCs **without** Customer No. (incomplete data) | 25 |
+| SF Individual BCs **with** Customer No. | 137 |
 
 ### Breakdown of 197 Excel rows (with Customer No.)
 
@@ -142,9 +142,9 @@ Groups where the Excel tracking sheet has more records than exist in MDProd.
 
 ---
 
-## Section 2: SF Non-Master BCs Without Customer Number
+## Section 2: SF Individual BCs Without Customer Number
 
-25 non-master BCs exist in MDProd but have no `Customer_Number__c` populated — they cannot be matched to any Excel row. These are likely incomplete or pending assignment:
+25 Individual BCs exist in MDProd but have no `Customer_Number__c` populated — they cannot be matched to any Excel row. These are likely incomplete or pending assignment:
 
 BCN-000000347, BCN-000000343, BCN-000000344, BCN-000000345,
 BCN-000000342, BCN-000000341, BCN-000000338, BCN-000000337,
@@ -160,7 +160,7 @@ BCN-000000182
 
 ## Section 3: SF BCs Exceeding Excel Count
 
-The following groups have **more** non-master BCs in SF than rows in Excel.
+The following groups have **more** Individual BCs in SF than rows in Excel.
 
 | Customer No. | Supplier | Tech | Excel | SF | Extra | BC Numbers |
 |---|---|---|---|---|---|---|
@@ -223,9 +223,9 @@ The following groups have **more** non-master BCs in SF than rows in Excel.
 
 ---
 
-## Section 7: Existing Non-Master BCs in MDProd (Full List)
+## Section 7: Existing Individual BCs in MDProd (Full List)
 
-All 137 non-master BCs that have a Customer Number assigned:
+All 137 Individual BCs that have a Customer Number assigned:
 
 | BC Number | Vendor | Technology | Customer No. | Customer Name | Status |
 |---|---|---|---|---|---|
@@ -374,7 +374,7 @@ All 137 non-master BCs that have a Customer Number assigned:
 | # | Action | Owner | Priority |
 |---|---|---|---|
 | 1 | **Create 5 missing Accounts** — customers 3020000114, 3020000314, 3020000776, 3020000987, 3020001659 have no Account in SF; Account must exist before BC can be created | Martin Dow | 🔴 High |
-| 2 | **Create 64 missing non-master BCs** in MDProd for all groups in Section 1 (44 where Account exists; remaining 5 after Action 1 is done) | Martin Dow | 🔴 High |
+| 2 | **Create 64 missing Individual BCs** in MDProd for all groups in Section 1 (44 where Account exists; remaining 5 after Action 1 is done) | Martin Dow | 🔴 High |
 | 3 | **Fix Technology Code for Biocare Labs** (row 33, customer 3020000998) — Technology Code is blank in the Excel | Martin Dow | 🔴 High |
 | 4 | **Link 6 orphaned BCs to their master** — BCN-000000260, BCN-000000249, BCN-000000285, BCN-000000274, BCN-000000297 each have an existing master; update `Master_Business_Case__c` field (Section 9) | Salesforce Admin | 🟡 Medium |
 | 5 | **Create master BC for SICHN ER/COAG** (cust 3020001175) — BCN-000000164 and BCN-000000165 are a pair with no master; create one and link both (Section 9) | Salesforce Admin | 🟡 Medium |
@@ -385,9 +385,9 @@ All 137 non-master BCs that have a Customer Number assigned:
 
 ---
 
-## Section 9: Non-Master BCs That Should Be Linked to a Master But Are Not
+## Section 9: Individual BCs That Should Be Linked to a Master But Are Not
 
-These are non-master BCs that belong to a group where **2 or more BCs exist** for the same Customer + Supplier + Technology — they should all be linked to a master BC, but are not.
+These are Individual BCs that belong to a group where **2 or more BCs exist** for the same Customer + Supplier + Technology — they should all be linked to a master BC, but are not.
 
 **Total orphaned BCs in multi-BC groups: 7**
 
@@ -417,16 +417,16 @@ These are non-master BCs that belong to a group where **2 or more BCs exist** fo
 
 ## Section 10: Master Business Cases — Full Hierarchy
 
-Master BCs (`Is_Master__c = true`) group individual non-master BCs when the **same customer** has **more than one machine** from the **same supplier** with the **same technology**.
+Master BCs (`Is_Master__c = true`) group Individual BCs when the **same customer** has **more than one machine** from the **same supplier** with the **same technology**.
 
 ### Counts
 
 | Metric | Count |
 |---|---|
 | Total Master BCs in MDProd | 22 |
-| Total Non-Master BCs | 162 |
-| Non-Master BCs linked to a Master | 64 |
-| Non-Master BCs with no Master (standalone) | 98 |
+| Total Individual BCs | 162 |
+| Individual BCs linked to a Master | 64 |
+| Individual BCs with no Master (standalone) | 98 |
 
 ### 9.1 All Master BCs and Their Children
 
@@ -572,8 +572,8 @@ Master BCs (`Is_Master__c = true`) group individual non-master BCs when the **sa
 |---|---|---|---|
 | 1 | **Duplicate masters for same group** | BCN-000000325 and BCN-000000326 are both `ER / URIN / 3020001552` (MHK Enterprises) — two master BCs for same customer+supplier+tech | Review and merge into one master |
 | 2 | **Empty master BC** | BCN-000000342 has no vendor, no technology, no customer, and no children | Delete this record |
-| 3 | **98 standalone non-master BCs** | These have no master because each represents a single machine — correct behaviour | No action needed |
-| 4 | **New masters needed** | Once the 64 missing non-master BCs are created, master BCs will be needed for any customer+supplier+tech group that will have 2+ machines | Create master BCs when linking multiple children |
+| 3 | **98 standalone Individual BCs** | These have no master because each represents a single machine — correct behaviour | No action needed |
+| 4 | **New masters needed** | Once the 64 missing Individual BCs are created, master BCs will be needed for any customer+supplier+tech group that will have 2+ machines | Create master BCs when linking multiple children |
 
 ---
 
