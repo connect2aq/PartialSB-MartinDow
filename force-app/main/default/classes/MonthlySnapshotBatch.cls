@@ -142,23 +142,31 @@ public class MonthlySnapshotBatch implements Database.Batchable<String>, Databas
             System.debug('Failed to write log record: ' + e.getMessage());
         }
 
-        // ── Email admin if there were errors ─────────────────────────────────
-        if (!errors.isEmpty() && String.isNotBlank(adminEmail)) {
+        // ── Email admin on every run (success or failure) ─────────────────────
+        if (String.isNotBlank(adminEmail)) {
             try {
-                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-                mail.setToAddresses(new List<String>{ adminEmail });
-                mail.setSubject('Monthly Snapshot Batch — ' + failed + ' error(s) on ' + Date.today().format());
-                mail.setPlainTextBody(
-                    'Monthly Snapshot Batch completed with errors.\n\n' +
+                String subject = errors.isEmpty()
+                    ? 'Monthly Snapshot Batch — Completed successfully on ' + Date.today().format()
+                    : 'Monthly Snapshot Batch — ' + failed + ' error(s) on ' + Date.today().format();
+
+                String body =
+                    'Monthly Snapshot Batch run summary.\n\n' +
                     'Run Date      : ' + Date.today().format() + '\n' +
+                    'Status        : ' + status + '\n' +
                     'Force Recalc  : ' + forceRecalculate + '\n' +
                     'Processed     : ' + processed + '\n' +
                     'Failed        : ' + failed + '\n' +
                     'Snapshots     : ' + totalSnapshotsWritten + '\n' +
-                    'Invoices      : ' + invoicesAssigned + '\n\n' +
-                    '--- Errors ---\n' +
-                    String.join(errors, '\n')
-                );
+                    'Invoices      : ' + invoicesAssigned;
+
+                if (!errors.isEmpty()) {
+                    body += '\n\n--- Errors ---\n' + String.join(errors, '\n');
+                }
+
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                mail.setToAddresses(new List<String>{ adminEmail });
+                mail.setSubject(subject);
+                mail.setPlainTextBody(body);
                 Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
             } catch (Exception e) {
                 System.debug('Failed to send admin email: ' + e.getMessage());
