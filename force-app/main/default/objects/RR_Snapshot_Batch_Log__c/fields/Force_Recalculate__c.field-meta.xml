@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Force_Recalculate__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Force Recalculate</label>
+    <required>false</required>
+    <type>Checkbox</type>
+</CustomField>
