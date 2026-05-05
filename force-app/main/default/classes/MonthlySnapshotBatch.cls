@@ -75,18 +75,29 @@ public class MonthlySnapshotBatch implements Database.Batchable<String>, Databas
         }
 
         // Verification 1: snapshots created/updated today
-        Map<String, Integer> snapsByCustomer = new Map<String, Integer>();
+        Map<Id, Integer> snapsByBCId = new Map<Id, Integer>();
         for (AggregateResult ar : [
-            SELECT Business_Case__r.Customer_Number__c cust, COUNT(Id) cnt
+            SELECT Business_Case__c bcId, COUNT(Id) cnt
             FROM Business_Case_Sales_Snapshot__c
             WHERE LastModifiedDate = TODAY
-            GROUP BY Business_Case__r.Customer_Number__c
-            ORDER BY Business_Case__r.Customer_Number__c
+            GROUP BY Business_Case__c
         ]) {
-            snapsByCustomer.put(
-                (String) ar.get('cust'),
-                (Integer) ar.get('cnt')
-            );
+            snapsByBCId.put((Id) ar.get('bcId'), (Integer) ar.get('cnt'));
+        }
+
+        Map<Id, String> bcCustomerMap = new Map<Id, String>();
+        for (Business_Case__c caseRec : [
+            SELECT Id, Customer_Number__c
+            FROM Business_Case__c
+            WHERE Id IN :snapsByBCId.keySet()
+        ]) {
+            bcCustomerMap.put(caseRec.Id, caseRec.Customer_Number__c);
+        }
+
+        Map<String, Integer> snapsByCustomer = new Map<String, Integer>();
+        for (Id caseId : snapsByBCId.keySet()) {
+            String code = bcCustomerMap.containsKey(caseId) ? bcCustomerMap.get(caseId) : String.valueOf(caseId);
+            snapsByCustomer.put(code, snapsByBCId.get(caseId));
         }
         System.debug('--- Snapshots written today: ' + snapsByCustomer.size() + ' customers ---');
         System.debug(snapsByCustomer);
