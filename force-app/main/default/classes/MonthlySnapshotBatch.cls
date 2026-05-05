@@ -66,12 +66,38 @@ public class MonthlySnapshotBatch implements Database.Batchable<String>, Databas
     }
 
     public void finish(Database.BatchableContext bc) {
-        System.debug(
-            'MonthlySnapshotBatch finished — processed: ' + processed +
-            ', failed: ' + failed
-        );
+        System.debug('=== MonthlySnapshotBatch Complete ===');
+        System.debug('Customers processed: ' + processed + ' | Failed: ' + failed);
+
         if (!errors.isEmpty()) {
-            System.debug('Errors:\n' + String.join(errors, '\n'));
+            System.debug('--- Errors ---');
+            System.debug(String.join(errors, '\n'));
         }
+
+        // Verification 1: snapshots created/updated today
+        Map<String, Integer> snapsByCustomer = new Map<String, Integer>();
+        for (AggregateResult ar : [
+            SELECT Business_Case__r.Customer_Number__c cust, COUNT(Id) cnt
+            FROM Business_Case_Sales_Snapshot__c
+            WHERE LastModifiedDate = TODAY
+            GROUP BY Business_Case__r.Customer_Number__c
+            ORDER BY Business_Case__r.Customer_Number__c
+        ]) {
+            snapsByCustomer.put(
+                (String) ar.get('cust'),
+                (Integer) ar.get('cnt')
+            );
+        }
+        System.debug('--- Snapshots written today: ' + snapsByCustomer.size() + ' customers ---');
+        System.debug(snapsByCustomer);
+
+        // Verification 2: invoices assigned today
+        Integer invoicesAssigned = [
+            SELECT COUNT()
+            FROM Invoice_Line_Item__c
+            WHERE Business_Case__c != NULL
+                AND LastModifiedDate = TODAY
+        ];
+        System.debug('--- Invoices assigned/updated today: ' + invoicesAssigned + ' ---');
     }
 }
