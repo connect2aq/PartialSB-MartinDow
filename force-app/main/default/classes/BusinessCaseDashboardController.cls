@@ -2044,9 +2044,8 @@ public with sharing class BusinessCaseDashboardController {
                 String riskStatusQuery =
                     'Select Snapshot_Month__c,Business_Case__c,Monthly_Commitments__c,Total_Reagent_Sales__c from Business_Case_Sales_Snapshot__c WHERE Business_Case__c IN ' +
                     idListStr +
-                    '  ' +
-                    whereBCSClause +
-                    ' and Processing_Status__c = \'Completed\' ';
+                    bcsExtraConditions +
+                    ' AND Processing_Status__c = \'Completed\' ';
                 Map<Id, List<Business_Case_Sales_Snapshot__c>> snapsByBc = new Map<Id, List<Business_Case_Sales_Snapshot__c>>();
                 for (
                     Business_Case_Sales_Snapshot__c bsclastsix : Database.query(
