@@ -119,7 +119,8 @@ public with sharing class BusinessCaseDashboardController {
         String CommitmentStatus,
         String RiskStatus,
         String SearchCustomer,
-        String BusinessCaseName
+        String BusinessCaseName,
+        String SnapshotMonth
     ) {
         try {
             String whereBCClause = '';
@@ -181,6 +182,24 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
+            }
+
+            // SnapshotMonth Filter - exact month equality (overrides date range)
+            if (!String.isBlank(SnapshotMonth)) {
+                Date parsedSnapshotMonth = Date.valueOf(SnapshotMonth);
+                String formattedMonth = parsedSnapshotMonth.year() + '-' +
+                    String.valueOf(parsedSnapshotMonth.month()).leftPad(2, '0') + '-' +
+                    String.valueOf(parsedSnapshotMonth.day()).leftPad(2, '0');
+                if (String.isBlank(whereBCSClause)) {
+                    whereBCSClause = ' WHERE Snapshot_Month__c = ' + formattedMonth;
+                } else {
+                    whereBCSClause += ' AND Snapshot_Month__c = ' + formattedMonth;
+                }
+                if (String.isBlank(whereMasterBCSClause)) {
+                    whereMasterBCSClause = ' WHERE Snapshot_Month__c = ' + formattedMonth;
+                } else {
+                    whereMasterBCSClause += ' AND Snapshot_Month__c = ' + formattedMonth;
+                }
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {
@@ -1007,7 +1026,8 @@ public with sharing class BusinessCaseDashboardController {
         String CommitmentStatus,
         String RiskStatus,
         String SearchCustomer,
-        String BusinessCaseName
+        String BusinessCaseName,
+        String SnapshotMonth
     ) {
         try 
         {
@@ -1597,7 +1617,8 @@ public with sharing class BusinessCaseDashboardController {
         String CommitmentStatus,
         String RiskStatus,
         String SearchCustomer,
-        String BusinessCaseName
+        String BusinessCaseName,
+        String SnapshotMonth
     ) {
         try {
             String whereBCClause = '';
@@ -1647,6 +1668,19 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
+            }
+
+            // SnapshotMonth Filter - exact month equality (overrides date range)
+            if (!String.isBlank(SnapshotMonth)) {
+                Date parsedSnapshotMonth = Date.valueOf(SnapshotMonth);
+                String formattedMonth = parsedSnapshotMonth.year() + '-' +
+                    String.valueOf(parsedSnapshotMonth.month()).leftPad(2, '0') + '-' +
+                    String.valueOf(parsedSnapshotMonth.day()).leftPad(2, '0');
+                if (String.isBlank(whereBCSClause)) {
+                    whereBCSClause = ' WHERE Snapshot_Month__c = ' + formattedMonth;
+                } else {
+                    whereBCSClause += ' AND Snapshot_Month__c = ' + formattedMonth;
+                }
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {
@@ -2557,8 +2591,9 @@ public with sharing class BusinessCaseDashboardController {
         String CommitmentStatus,
         String RiskStatus,
         String SearchCustomer,
-        String BusinessCaseName
-    ) 
+        String BusinessCaseName,
+        String SnapshotMonth
+    )
     {
         try 
         {
@@ -2609,6 +2644,19 @@ public with sharing class BusinessCaseDashboardController {
                         ' AND Snapshot_Month__c <= ' + formattedDateTo;
                 }
 
+            }
+
+            // SnapshotMonth Filter - exact month equality (overrides date range)
+            if (!String.isBlank(SnapshotMonth)) {
+                Date parsedSnapshotMonth = Date.valueOf(SnapshotMonth);
+                String formattedMonth = parsedSnapshotMonth.year() + '-' +
+                    String.valueOf(parsedSnapshotMonth.month()).leftPad(2, '0') + '-' +
+                    String.valueOf(parsedSnapshotMonth.day()).leftPad(2, '0');
+                if (String.isBlank(whereBCSClause)) {
+                    whereBCSClause = ' WHERE Snapshot_Month__c = ' + formattedMonth;
+                } else {
+                    whereBCSClause += ' AND Snapshot_Month__c = ' + formattedMonth;
+                }
             }
 
             if (!String.isBlank(Region) && Region != 'All Regions') {

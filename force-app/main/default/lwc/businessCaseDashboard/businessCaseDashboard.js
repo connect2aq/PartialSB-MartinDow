@@ -174,6 +174,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   // Filters
   @track selectedMonth = "";
   @track selectedMonthYear = "";
+  @track selectedSnapshotMonth = "";
   @track selectedDateFrom = "";
   @track selectedDateTo = "";
   @track selectedCustomer = "";
@@ -565,7 +566,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Default Month/Year filter to current month
     const today = new Date();
     this.selectedMonthYear = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
-    this.setMonthYearDates(this.selectedMonthYear);
+    this.setMonthYearDates(this.selectedMonthYear); // sets selectedSnapshotMonth
 
     // Initialize with "All Customers" selected
     this.selectedCustomers = [];
@@ -716,7 +717,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     CommitmentStatus: "",
     RiskStatus: "",
     SearchCustomer: "",
-    BusinessCaseName: ""
+    BusinessCaseName: "",
+    SnapshotMonth: "$selectedSnapshotMonth"
   })
   wiredSnapshots(result) 
   {
@@ -761,7 +763,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     CommitmentStatus: "",
     RiskStatus: "",
     SearchCustomer: "",
-    BusinessCaseName: ""
+    BusinessCaseName: "",
+    SnapshotMonth: "$selectedSnapshotMonth"
   })
   wiredDetailedSnapshots(result) {
     this.wiredDetailedSnapshotResult = result;
@@ -850,7 +853,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     CommitmentStatus: "",
     RiskStatus: "$selectedRiskStatus",
     SearchCustomer: "",
-    BusinessCaseName: ""
+    BusinessCaseName: "",
+    SnapshotMonth: "$selectedSnapshotMonth"
   })
   wiredFinancialSummaryResult(result) 
   {
@@ -896,7 +900,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     CommitmentStatus: "",
     RiskStatus: "",
     SearchCustomer: "",
-    BusinessCaseName: ""
+    BusinessCaseName: "",
+    SnapshotMonth: "$selectedSnapshotMonth"
   })
   wiredMachineStatus(result) {
     if (result.data) {
@@ -4033,10 +4038,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   setMonthYearDates(monthYear) {
     if (!monthYear) return;
     const [year, month] = monthYear.split('-').map(Number);
-    const pad = n => String(n).padStart(2, '0');
-    const lastDay = new Date(year, month, 0).getDate();
-    this.selectedDateFrom = `${year}-${pad(month)}-01`;
-    this.selectedDateTo = `${year}-${pad(month)}-${pad(lastDay)}`;
+    this.selectedSnapshotMonth = `${year}-${String(month).padStart(2, '0')}-01`;
   }
 
   handleMonthYearChange(event) {
