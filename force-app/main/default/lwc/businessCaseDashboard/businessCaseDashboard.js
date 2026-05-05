@@ -1765,43 +1765,15 @@ export default class BusinessCaseDashboard extends NavigationMixin(
         }
       });
 
-      // this.filteredDetailedData.forEach((record)=>
-      // {
-      //   totalMargin += record.marginOnSales || 0;
-      // });
-
-      // console.log('>>>>businessCase-->calculateFinancialOverview-->filteredDetailedData: '+JSON.stringify(this.filteredDetailedData));
-
       // Now calculate totals from latest snapshots only
       let totalInvestment = 0;
       let totalSales = 0;
       let totalMargin = 0;
 
-       this.filteredDetailedData.forEach((record)=>
-      {
-        totalMargin += record.marginOnSales || 0;
-      });
-
-      console.log(
-        "ðŸ”§ VERSION CHECK: Using UPDATED code - NO machineCount filter for main tile"
-      );
-
-      latestSnapshotPerBC.forEach((record) => 
-      {
-          console.log(
-          '>>>>businessCase-->calculateFinancialOverview-->record: '+JSON.stringify(record)
-        );
-        // Count investment once per business case (include all business cases, not just those with machines)
-        console.log(
-          `ðŸ’° Main Tile: BC ${record.businessCaseId} (${record.businessCaseName}): investment = ${record.investment}`
-        );
-        
+      latestSnapshotPerBC.forEach((record) => {
         totalInvestment += record.investment || 0;
-
-        // Use cumulative sales from latest snapshot
         totalSales += record.totalReagentSalesTillDate || 0;
-
-        
+        totalMargin += record.marginTillDate || 0;
       });
 
       console.log(
