@@ -231,14 +231,14 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     const currentMonth = today.getMonth() + 1;
     for (let i = 0; i < 24; i++) {
       let year = currentYear;
-      let month = currentMonth - i;
+      let month = currentMonth - 1 - i; // start from last month
       while (month <= 0) {
         month += 12;
         year -= 1;
       }
       const value = `${year}-${String(month).padStart(2, '0')}`;
       const label = new Date(year, month - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      options.push({ label: i === 0 ? `${label} (Current)` : label, value });
+      options.push({ label, value });
     }
     return options;
   }
@@ -563,9 +563,10 @@ export default class BusinessCaseDashboard extends NavigationMixin(
     // Initialize component with empty data to prevent blank page
     this.initializeEmptyData();
 
-    // Default Month/Year filter to current month
+    // Default Month/Year filter to last month (snapshots are stored end-of-month, current month not yet available)
     const today = new Date();
-    this.selectedMonthYear = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+    const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    this.selectedMonthYear = `${lastMonth.getFullYear()}-${String(lastMonth.getMonth() + 1).padStart(2, '0')}`;
     this.setMonthYearDates(this.selectedMonthYear); // sets selectedSnapshotMonth
 
     // Initialize with "All Customers" selected
@@ -3959,7 +3960,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   handleRefresh() {
     this.selectedMonth = "";
     const today = new Date();
-    this.selectedMonthYear = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+    const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    this.selectedMonthYear = `${lastMonth.getFullYear()}-${String(lastMonth.getMonth() + 1).padStart(2, '0')}`;
     this.setMonthYearDates(this.selectedMonthYear);
     this.selectedCustomer = "";
     this.selectedCustomers = []; // Clear multi-select customers
