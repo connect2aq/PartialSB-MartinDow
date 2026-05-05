@@ -1937,12 +1937,20 @@ public with sharing class BusinessCaseDashboardController {
             bscquery += ' Margin_On_Reagent_Sale__c,Payback_Remaining__c,Data_Quality_Score__c,Processing_Status__c,Snapshot_Created_Date__c,';
             bscquery += ' Monthly_Commitments__c,Business_Case__r.Unit_Cost__c,LastModifiedDate,Avg_YTD_Sales_Per_Month__c,Margin_till_Date__c,Business_Case__r.Sum_of_Unit_Cost__c   ';
             bscquery += '  FROM Business_Case_Sales_Snapshot__c ';
+            // whereBCSClause may start with WHERE when built standalone — convert to AND
+            // since this query already has WHERE Business_Case__c IN (...)
+            String bcsExtraConditions = '';
+            if (String.isNotBlank(whereBCSClause)) {
+                String trimmed = whereBCSClause.trim();
+                bcsExtraConditions = trimmed.startsWithIgnoreCase('WHERE ')
+                    ? ' AND ' + trimmed.substring(6).trim()
+                    : ' ' + trimmed;
+            }
             bscquery +=
                 ' WHERE Business_Case__c IN ' +
                 idListStr +
-                '  ' +
-                whereBCSClause +
-                ' and Processing_Status__c = \'Completed\' ';
+                bcsExtraConditions +
+                ' AND Processing_Status__c = \'Completed\' ';
             bscquery += ' ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC ';
 
 
@@ -2894,12 +2902,20 @@ public with sharing class BusinessCaseDashboardController {
             bscquery += ' Margin_On_Reagent_Sale__c,Payback_Remaining__c,Data_Quality_Score__c,Processing_Status__c,Snapshot_Created_Date__c,';
             bscquery += ' Monthly_Commitments__c,Business_Case__r.Unit_Cost__c,LastModifiedDate,Avg_YTD_Sales_Per_Month__c   ';
             bscquery += '  FROM Business_Case_Sales_Snapshot__c ';
+            // whereBCSClause may start with WHERE when built standalone — convert to AND
+            // since this query already has WHERE Business_Case__c IN (...)
+            String bcsDetailedExtraConditions = '';
+            if (String.isNotBlank(whereBCSClause)) {
+                String trimmedDetail = whereBCSClause.trim();
+                bcsDetailedExtraConditions = trimmedDetail.startsWithIgnoreCase('WHERE ')
+                    ? ' AND ' + trimmedDetail.substring(6).trim()
+                    : ' ' + trimmedDetail;
+            }
             bscquery +=
                 ' WHERE Business_Case__c IN ' +
                 idListStr +
-                '  ' +
-                whereBCSClause +
-                ' and Processing_Status__c = \'Completed\' ';
+                bcsDetailedExtraConditions +
+                ' AND Processing_Status__c = \'Completed\' ';
             bscquery += ' ORDER BY Snapshot_Month__c DESC, Snapshot_Created_Date__c DESC ';
 
             List<Business_Case_Sales_Snapshot__c> finalChildren = new List<Business_Case_Sales_Snapshot__c>();
