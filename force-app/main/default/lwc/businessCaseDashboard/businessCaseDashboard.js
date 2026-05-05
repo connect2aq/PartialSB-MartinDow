@@ -4038,7 +4038,8 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   setMonthYearDates(monthYear) {
     if (!monthYear) return;
     const [year, month] = monthYear.split('-').map(Number);
-    this.selectedSnapshotMonth = `${year}-${String(month).padStart(2, '0')}-01`;
+    const lastDay = new Date(year, month, 0); // day-0 of next month = last day of selected month
+    this.selectedSnapshotMonth = `${lastDay.getFullYear()}-${String(lastDay.getMonth() + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}`;
   }
 
   handleMonthYearChange(event) {
