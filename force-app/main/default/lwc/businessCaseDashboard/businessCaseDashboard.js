@@ -173,6 +173,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   // Filters
   @track selectedMonth = "";
+  @track selectedMonthYear = "";
   @track selectedDateFrom = "";
   @track selectedDateTo = "";
   @track selectedCustomer = "";
@@ -220,6 +221,25 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   // Filter Options - Getters for reactivity
   get monthOptions() {
     return this._monthOptions;
+  }
+
+  get monthYearOptions() {
+    const options = [];
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1;
+    for (let i = 0; i < 24; i++) {
+      let year = currentYear;
+      let month = currentMonth - i;
+      while (month <= 0) {
+        month += 12;
+        year -= 1;
+      }
+      const value = `${year}-${String(month).padStart(2, '0')}`;
+      const label = new Date(year, month - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      options.push({ label: i === 0 ? `${label} (Current)` : label, value });
+    }
+    return options;
   }
 
   get businessCasesOptions() {
@@ -541,6 +561,11 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
     // Initialize component with empty data to prevent blank page
     this.initializeEmptyData();
+
+    // Default Month/Year filter to current month
+    const today = new Date();
+    this.selectedMonthYear = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+    this.setMonthYearDates(this.selectedMonthYear);
 
     // Initialize with "All Customers" selected
     this.selectedCustomers = [];
@@ -3956,8 +3981,9 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   handleRefresh() {
     this.selectedMonth = "";
-    this.selectedDateFrom = "";
-    this.selectedDateTo = "";
+    const today = new Date();
+    this.selectedMonthYear = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+    this.setMonthYearDates(this.selectedMonthYear);
     this.selectedCustomer = "";
     this.selectedCustomers = []; // Clear multi-select customers
     this.selectedRegion = "";
@@ -4004,6 +4030,20 @@ export default class BusinessCaseDashboard extends NavigationMixin(
   }
 
   // Filter handlers
+  setMonthYearDates(monthYear) {
+    if (!monthYear) return;
+    const [year, month] = monthYear.split('-').map(Number);
+    const pad = n => String(n).padStart(2, '0');
+    const lastDay = new Date(year, month, 0).getDate();
+    this.selectedDateFrom = `${year}-${pad(month)}-01`;
+    this.selectedDateTo = `${year}-${pad(month)}-${pad(lastDay)}`;
+  }
+
+  handleMonthYearChange(event) {
+    this.selectedMonthYear = event.detail.value;
+    this.setMonthYearDates(this.selectedMonthYear);
+  }
+
   handleMonthChange(event) {
     this.selectedMonth = event.detail.value;
     //this.processSnapshotData();

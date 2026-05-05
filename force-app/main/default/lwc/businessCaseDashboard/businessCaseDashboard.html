@@ -57,6 +57,10 @@
 </c-b-multi-select-dropdown>
 </div> -->
 <div            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"          >
+<lightning-combobox              name="monthYearFilter"              label="Month / Year"              value={selectedMonthYear}              placeholder="Select Month / Year"              options={monthYearOptions}              onchange={handleMonthYearChange}            >
+</lightning-combobox>
+</div>
+<div            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-8"          >
 <c-b-multi-select-dropdown              label="Customers"              placeholder="Filter customers"              options={customerOptions}              selected-values={selectedCustomers}              onchange={handleCustomerChange}            >
 </c-b-multi-select-dropdown>
 <template if:true={hasSelectedCustomers}>
