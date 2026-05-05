@@ -20,7 +20,7 @@ public with sharing class CustomerDemandController {
             Customer_Demand__c demandBefore = [SELECT External_Quote_ID__c FROM Customer_Demand__c WHERE Id = :demandId LIMIT 1];
             String initialQuoteId = demandBefore.External_Quote_ID__c;
             
-            CustomerDemandIntegrationService.createCustomerDemandInSystem(demandId);
+            CustomerDemandIntegrationService.postQuotation(demandId);
             
             // Check if External Quote ID was updated
             Customer_Demand__c demandAfter = [SELECT External_Quote_ID__c FROM Customer_Demand__c WHERE Id = :demandId LIMIT 1];
