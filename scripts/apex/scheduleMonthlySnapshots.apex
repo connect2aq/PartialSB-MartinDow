@@ -7,5 +7,5 @@
 //   CronTrigger ct = [SELECT Id FROM CronTrigger WHERE CronJobDetail.Name = 'Monthly Snapshot Job' LIMIT 1];
 //   System.abortJob(ct.Id);
 
-System.schedule('Monthly Snapshot Job', '0 0 2 1 * ?', new MonthlySnapshotScheduler());
+System.schedule('Monthly Snapshot Job', '0 0 5 1 * ?', new MonthlySnapshotScheduler());
 System.debug('Monthly Snapshot Job scheduled successfully.');
