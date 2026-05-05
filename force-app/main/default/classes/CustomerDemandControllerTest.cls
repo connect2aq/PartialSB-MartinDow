@@ -12,9 +12,11 @@ public class CustomerDemandControllerTest {
   }
   @isTest
   static void testPushToSAP_Success() {
-    // Create test Customer_Demand__c record
+    Account acc = new Account(Name = 'Test Account', SAP_Customer_Number__c = '3020000001');
+    insert acc;
     Customer_Demand__c demand = new Customer_Demand__c(
-      Purchase_Order_No__c = 'Test Demand'
+      Purchase_Order_No__c = 'Test Demand',
+      Bill_To_Party__c = acc.Id
     );
     insert demand;
 
@@ -53,9 +55,11 @@ public class CustomerDemandControllerTest {
 
   @isTest
   static void testPushToSAP_Failure() {
-    // Create test Customer_Demand__c record with no External_Quote_ID__c change
+    Account acc = new Account(Name = 'Test Account 2', SAP_Customer_Number__c = '3020000002');
+    insert acc;
     Customer_Demand__c demand = new Customer_Demand__c(
-      Purchase_Order_No__c = 'Test Demand 2'
+      Purchase_Order_No__c = 'Test Demand 2',
+      Bill_To_Party__c = acc.Id
     );
     insert demand;
     // Do not update External_Quote_ID__c to simulate failure

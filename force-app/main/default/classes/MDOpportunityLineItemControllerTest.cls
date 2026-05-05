@@ -74,8 +74,11 @@ public class MDOpportunityLineItemControllerTest {
 
   @isTest
   static void testSaveSelectedProducts_CustomerDemand() {
+    Account acc = new Account(Name = 'Test Account', SAP_Customer_Number__c = '3020000001');
+    insert acc;
     Customer_Demand__c demand = new Customer_Demand__c(
-      Purchase_Order_No__c = 'Test Demand'
+      Purchase_Order_No__c = 'Test Demand',
+      Bill_To_Party__c = acc.Id
     );
     insert demand;
     MD_Product2__c prod = new MD_Product2__c(Description__c = 'Test Product 4');

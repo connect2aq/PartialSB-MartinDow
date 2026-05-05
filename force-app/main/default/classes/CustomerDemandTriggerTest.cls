@@ -38,17 +38,16 @@ private class CustomerDemandTriggerTest {
 
     // Minimal factory for Customer_Demand__c to satisfy mapping in buildQuotationRequest
     private static Customer_Demand__c makeDemand(Boolean presetExternalId) {
+        // Create Account with SAP_Customer_Number__c to satisfy Account_Must_Be_Activate validation rule
+        Account acc = new Account(Name = 'Test Account', SAP_Customer_Number__c = '3020000001');
+        insert acc;
+
         Customer_Demand__c cd = new Customer_Demand__c();
-        // Fields mapped in service; adjust if your org requires more fields
-        cd.Order_Type__c = 'YQT - Customer Demand'; // extractCode will handle
-       // cd.Sales_Org__c = '3000 - Org';
-       // cd.Distribution_Channel__c = '10 - DC';
-       // cd.Division__c = '30 - Div';
+        cd.Bill_To_Party__c = acc.Id;
+        cd.Order_Type__c = 'YQT - Customer Demand';
         cd.QT_Valid_From__c = Date.newInstance(2025, 6, 1);
         cd.QT_Valid_To__c   = Date.newInstance(2025, 6, 30);
-       // cd.Plant__c = '3300 - Plant';
         cd.Purchase_Order_No__c = '96 96';
-      //  cd.Sales_Office__c = '1000 - Office';
         cd.Date_of_Creation__c = Date.newInstance(2025, 6, 20);
         if (presetExternalId) {
             cd.External_Quote_ID__c = 'PRESET-ALREADY';
