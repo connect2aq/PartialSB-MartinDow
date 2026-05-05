@@ -1341,48 +1341,12 @@ public with sharing class BusinessCaseDashboardController {
                 WHERE RecordType.Name = 'Master Business Case'
             ];
 
-            List<String> monthNames = new List<String>{
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            };
             // Collect unique values from snapshot data
             Set<String> monthSet = new Set<String>();
             Map<String, String> customerMap = new Map<String, String>();
             Set<String> regionSet = new Set<String>();
             Set<String> supplierSet = new Set<String>();
             Set<String> businessCaseSet = new Set<String>();
-
-            AggregateResult[] groupedResults = [
-                SELECT
-                    CALENDAR_YEAR(Invoice_Date__c) year,
-                    CALENDAR_MONTH(Invoice_Date__c) month
-                FROM Invoice__c
-                WHERE Invoice_Date__c != NULL
-                GROUP BY
-                    CALENDAR_YEAR(Invoice_Date__c),
-                    CALENDAR_MONTH(Invoice_Date__c)
-                ORDER BY
-                    CALENDAR_YEAR(Invoice_Date__c),
-                    CALENDAR_MONTH(Invoice_Date__c)
-            ];
-
-            for (AggregateResult ar : groupedResults) {
-                Integer yearVal = (Integer) ar.get('year');
-                Integer monthVal = (Integer) ar.get('month');
-
-                String monthName = monthNames[monthVal - 1];
-                monthSet.add(monthName + ' ' + yearVal);
-            }
 
             if (listofbusinesscases.size() > 0) {
                 for (Business_Case__c bc : listofbusinesscases) {

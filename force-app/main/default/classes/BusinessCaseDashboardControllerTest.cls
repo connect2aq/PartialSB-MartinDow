@@ -190,7 +190,8 @@ public class BusinessCaseDashboardControllerTest {
             null, // CommitmentStatus
             null, // RiskStatus
             'TEST-CUST-1', // SearchCustomer
-            null // BusinessCaseName
+            null, // BusinessCaseName
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -1526,7 +1527,8 @@ public class BusinessCaseDashboardControllerTest {
             '', // CommitmentStatus
             '', // RiskStatus
             '', // SearchCustomer
-            '' // BusinessCaseName
+            '', // BusinessCaseName
+            null // SnapshotMonth
         );
 
         Test.stopTest();
@@ -1555,7 +1557,8 @@ public class BusinessCaseDashboardControllerTest {
             'All Commitment Statuses',
             'All Risks',
             'All Customers',
-            'All Business Cases'
+            'All Business Cases',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -1628,7 +1631,8 @@ public class BusinessCaseDashboardControllerTest {
             '', // CommitmentStatus
             '', // RiskStatus
             '', // SearchCustomer
-            '' // BusinessCaseName
+            '', // BusinessCaseName
+            null // SnapshotMonth
         );
 
         Test.stopTest();
@@ -1665,7 +1669,8 @@ public class BusinessCaseDashboardControllerTest {
             'Uncommitted',
             'All Risks',
             'Unknown Customer',
-            'Unknown BC'
+            'Unknown BC',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -1991,7 +1996,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2059,7 +2065,8 @@ public class BusinessCaseDashboardControllerTest {
             'CommitX',
             'RiskX',
             'CustX',
-            'BusinessCaseX'
+            'BusinessCaseX',
+            null // SnapshotMonth
         );
 
         Test.stopTest();
@@ -2103,7 +2110,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2161,7 +2169,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2208,7 +2217,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2256,7 +2266,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2303,7 +2314,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            masterBC.Name
+            masterBC.Name,
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2353,7 +2365,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2390,7 +2403,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2437,7 +2451,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2498,7 +2513,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2548,7 +2564,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2588,7 +2605,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -2642,7 +2660,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             'All Customers',
-            'All Business Cases'
+            'All Business Cases',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3218,7 +3237,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3245,7 +3265,8 @@ public class BusinessCaseDashboardControllerTest {
             'On Track',
             '',
             'CUST001',
-            'BC-1'
+            'BC-1',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3271,7 +3292,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3334,7 +3356,8 @@ public class BusinessCaseDashboardControllerTest {
             null, // CommitmentStatus
             null, // RiskStatus
             null, // SearchCustomer
-            null // BusinessCaseName
+            null, // BusinessCaseName
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3394,7 +3417,8 @@ public class BusinessCaseDashboardControllerTest {
             null, // CommitmentStatus
             null, // RiskStatus
             null, // SearchCustomer
-            null // BusinessCaseName
+            null, // BusinessCaseName
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3455,7 +3479,8 @@ public class BusinessCaseDashboardControllerTest {
             '', // CommitmentStatus
             '', // RiskStatus
             '', // SearchCustomer
-            searchbc.Name // BusinessCaseName
+            searchbc.Name, // BusinessCaseName
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3508,7 +3533,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3552,7 +3578,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3591,7 +3618,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3631,7 +3659,8 @@ public class BusinessCaseDashboardControllerTest {
             'On Track',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3670,7 +3699,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             'CUSTMAIN',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3852,7 +3882,8 @@ public class BusinessCaseDashboardControllerTest {
             'On Track',
             'Low Risk',
             'CUST123',
-            bc.Name
+            bc.Name,
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3902,7 +3933,8 @@ public class BusinessCaseDashboardControllerTest {
             'On Track',
             'Healthy',
             'CUST001',
-            'BC-1'
+            'BC-1',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3924,7 +3956,8 @@ public class BusinessCaseDashboardControllerTest {
             null,
             null,
             null,
-            null
+            null,
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -3946,7 +3979,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -4018,7 +4052,8 @@ public class BusinessCaseDashboardControllerTest {
             'On Track',
             'Healthy',
             'CUST001',
-            'BC-1'
+            'BC-1',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -4041,7 +4076,8 @@ public class BusinessCaseDashboardControllerTest {
             '',
             '',
             '',
-            ''
+            '',
+            null // SnapshotMonth
         );
         Test.stopTest();
 
@@ -4325,15 +4361,15 @@ public class BusinessCaseDashboardControllerTest {
         
         // Test with Region filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result1 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, 'North', '', '', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, 'North', '', '', '', '', '', '', '', null);
         
         // Test with Status filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result2 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', '', 'Active', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', '', 'Active', '', '', '', '', '', null);
         
         // Test with Vendor filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result3 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', 'A - Boule', '', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', 'A - Boule', '', '', '', '', '', '', null);
         
         Test.stopTest();
 
@@ -4396,15 +4432,15 @@ public class BusinessCaseDashboardControllerTest {
         
         // Test with Region filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result1 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, 'North', '', '', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, 'North', '', '', '', '', '', '', '', null);
         
         // Test with Status filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result2 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', '', 'Active', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', '', 'Active', '', '', '', '', '', null);
         
         // Test with Vendor filter
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result3 = 
-            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', 'A - Boule', '', '', '', '', '', '');
+            BusinessCaseDashboardController.getTotalFinancialPerformanceStats(null, null, '', 'A - Boule', '', '', '', '', '', '', null);
         
         Test.stopTest();
 
@@ -4454,7 +4490,8 @@ public class BusinessCaseDashboardControllerTest {
                 '',
                 '',
                 '',
-                ''
+                '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -4495,7 +4532,8 @@ public class BusinessCaseDashboardControllerTest {
                 'On Track',
                 '',
                 'CUST_COMPLEX',
-                ''
+                '',
+                null // SnapshotMonth
             );
         
         Test.stopTest();
@@ -4538,7 +4576,8 @@ public class BusinessCaseDashboardControllerTest {
                 '',
                 '',
                 '',
-                ''
+                '',
+                null // SnapshotMonth
             );
         
         Test.stopTest();
@@ -4743,7 +4782,8 @@ public class BusinessCaseDashboardControllerTest {
                 '',
                 'Healthy',
                 '',
-                ''
+                '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -4777,7 +4817,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result = 
             BusinessCaseDashboardController.getTotalFinancialPerformanceStats(
-                null, null, '', '', '', 'Active', '', '', '', ''
+                null, null, '', '', '', 'Active', '', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -4805,7 +4846,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         BusinessCaseDashboardController.MachineStatusCountwiseResp result = 
             BusinessCaseDashboardController.getMachineCountStatuswiseUpdated(
-                '', '', '', '', '', '', '', '', '', ''
+                '', '', '', '', '', '', '', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -4834,7 +4876,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.DetailedSnapshotWrapper> result = 
             BusinessCaseDashboardController.GetDetailedSnapshotDataUpdated(
-                '', '', 'North', '', '', '', '', 'Healthy', '', ''
+                '', '', 'North', '', '', '', '', 'Healthy', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5005,7 +5048,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.SnapshotWrapper> result = 
             BusinessCaseDashboardController.GetSnapshotDataUpdated(
-                '', '', '', '', '', '', '', '', '', bc.Id
+                '', '', '', '', '', '', '', '', '', bc.Id,
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5048,7 +5092,8 @@ public class BusinessCaseDashboardControllerTest {
                 'On Track',
                 'Healthy',
                 'FULL_FILTER',
-                ''
+                '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5118,7 +5163,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.DetailedSnapshotWrapper> result = 
             BusinessCaseDashboardController.GetDetailedSnapshotDataUpdated(
-                '', '', '', '', '', 'Demo', '', '', '', ''
+                '', '', '', '', '', 'Demo', '', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5146,7 +5192,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         BusinessCaseDashboardController.MachineStatusCountwiseResp result = 
             BusinessCaseDashboardController.getMachineCountStatuswiseUpdated(
-                '', '', 'South', 'A - Boule', '', '', '', '', '', ''
+                '', '', 'South', 'A - Boule', '', '', '', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5215,7 +5262,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.SnapshotWrapper> result = 
             BusinessCaseDashboardController.GetSnapshotDataUpdated(
-                '', '', '', '', '', '', '', '', 'CUST123', ''
+                '', '', '', '', '', '', '', '', 'CUST123', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5227,7 +5275,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         BusinessCaseDashboardController.FinancialOverviewPerformanceStats result = 
             BusinessCaseDashboardController.getTotalFinancialPerformanceStats(
-                '', '', '', '', '', '', '', '', '', ''
+                '', '', '', '', '', '', '', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5318,7 +5367,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.DetailedSnapshotWrapper> result = 
             BusinessCaseDashboardController.GetDetailedSnapshotDataUpdated(
-                '', '', '', '', '', '', 'On Track', '', '', ''
+                '', '', '', '', '', '', 'On Track', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5347,7 +5397,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         BusinessCaseDashboardController.MachineStatusCountwiseResp result = 
             BusinessCaseDashboardController.getMachineCountStatuswiseUpdated(
-                '', '', '', '', '', '', 'At Risk', '', '', ''
+                '', '', '', '', '', '', 'At Risk', '', '', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
@@ -5465,7 +5516,8 @@ public class BusinessCaseDashboardControllerTest {
         try {
             BusinessCaseDashboardController.FinancialOverviewPerformanceStats result = 
                 BusinessCaseDashboardController.getTotalFinancialPerformanceStats(
-                    '', '', '', '', '', '', '', '', '', ''
+                    '', '', '', '', '', '', '', '', '', '',
+                    null // SnapshotMonth
                 );
             System.assertNotEquals(null, result, 'Should return stats');
         } catch (AuraHandledException e) {
@@ -5493,7 +5545,8 @@ public class BusinessCaseDashboardControllerTest {
         try {
             List<BusinessCaseDashboardController.DetailedSnapshotWrapper> result = 
                 BusinessCaseDashboardController.GetDetailedSnapshotDataUpdated(
-                    '', '', '', '', '', '', '', '', '', ''
+                    '', '', '', '', '', '', '', '', '', '',
+                    null // SnapshotMonth
                 );
             System.assertNotEquals(null, result, 'Should return list of wrappers');
         } catch (Exception e) {
@@ -5508,7 +5561,8 @@ public class BusinessCaseDashboardControllerTest {
         try {
             List<BusinessCaseDashboardController.SnapshotWrapper> result = 
                 BusinessCaseDashboardController.GetSnapshotDataUpdated(
-                    '', '', '', '', '', '', '', '', '', ''
+                    '', '', '', '', '', '', '', '', '', '',
+                    null // SnapshotMonth
                 );
             System.assertNotEquals(null, result, 'Should return list of snapshots');
         } catch (Exception e) {
@@ -5566,7 +5620,8 @@ public class BusinessCaseDashboardControllerTest {
         Test.startTest();
         List<BusinessCaseDashboardController.SnapshotWrapper> result = 
             BusinessCaseDashboardController.GetSnapshotDataUpdated(
-                '', '', '', '', '', '', '', '', 'CUST - 001', ''
+                '', '', '', '', '', '', '', '', 'CUST - 001', '',
+                null // SnapshotMonth
             );
         Test.stopTest();
 
