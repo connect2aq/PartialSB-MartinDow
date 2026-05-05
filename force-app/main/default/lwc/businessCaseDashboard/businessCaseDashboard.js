@@ -4348,6 +4348,7 @@ export default class BusinessCaseDashboard extends NavigationMixin(
 
   // Handle View Business Case button click
   handleViewBusinessCase(event) {
+    event.preventDefault();
     const customerCode = event.target.dataset.customerCode;
 
     // Find the customer data based on active tab to get business case ID
