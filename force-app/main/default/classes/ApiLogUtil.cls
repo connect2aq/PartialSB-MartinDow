@@ -78,8 +78,8 @@ public without sharing class ApiLogUtil {
     
     public void flushSync() {
         if(this.buffer.size() == 0) return;
-        
         insert this.buffer;
+        this.buffer.clear();
     }
 
     // -------- Helpers (keep values concise to prevent insert failure) --------
